@@ -1,0 +1,29 @@
+{
+  "name": "front-end-interview",
+  "version": "0.1.0",
+  "description": "前端面试题分类整理文档",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShanYi-Hui/front-end-interview.git"
+  },
+  "author": "ShanYi-Hui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShanYi-Hui/front-end-interview/issues"
+  },
+  "homepage": "https://github.com/ShanYi-Hui/front-end-interview#readme",
+  "devDependencies": {
+    "vitepress": "^1.5.0"
+  }
+}
