@@ -2,7 +2,7 @@ const questionsMenu = [
   {
     dirName: 'front-base',
     menuName: '前端基础',
-    collapsed: true,
+    collapsed: false,
   },
   {
     dirName: 'front-runtime',

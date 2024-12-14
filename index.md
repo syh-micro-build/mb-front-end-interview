@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 题库学习
-      link: /src/front-base/1_HTML
+      link: /src/questions/front-base/1_HTML
     - theme: alt
       text: 在线训练
       link: /ing.md
