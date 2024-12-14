@@ -4,7 +4,7 @@ import { questionsMenu } from './menu-config.mts';
 
 // https://vitepress.dev/reference/site-config
 export default async () => {
-  const questionsSidebar = await genSpecSidebar(questionsMenu, '/src/questions')
+  const questionsSidebar = await genSpecSidebar(questionsMenu, 'src/questions')
 
   return defineConfig({
     title: "前端面试题库",

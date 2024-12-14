@@ -31,8 +31,8 @@ import * as path from 'node:path';
     } else if (stat.isFile() && path.extname(file) === extname) {
       filesInfo.push({
         name: file,
-        absolutePath: filePath,
-        relativePath: filePath.replace(initDir, ''),
+        absolutePath: filePath.replace(/\\/g, '/'),
+        relativePath: filePath.replace(initDir, '').replace(/\\/g, '/'),
       });
     }
   }
