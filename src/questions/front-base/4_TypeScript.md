@@ -10,7 +10,7 @@ interface Person {
     age: number;
 }
 ```
-- **2：** type 也可以用于定义类型
+- **1：** type 也可以用于定义类型
 ```typescript
 type Person = {
     name: string;
