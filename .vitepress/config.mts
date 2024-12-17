@@ -24,7 +24,7 @@ export default async () => {
         '/src/questions/': questionsSidebar
       },
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/ShanYi-Hui/front-end-interview' }
+        { icon: 'github', link: 'https://github.com/syh-micro-build/mb-front-end-interview' }
       ],
       footer: {
         message: '基于 MIT 许可发布',

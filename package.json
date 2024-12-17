@@ -1,5 +1,5 @@
 {
-  "name": "front-end-interview",
+  "name": "mb-front-end-interview",
   "version": "0.1.0",
   "description": "前端面试题分类整理文档",
   "main": "index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShanYi-Hui/front-end-interview.git"
+    "url": "git+https://github.com/syh-micro-build/mb-front-end-interview.git"
   },
   "author": "ShanYi-Hui",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ShanYi-Hui/front-end-interview/issues"
+    "url": "https://github.com/syh-micro-build/mb-front-end-interview/issues"
   },
-  "homepage": "https://github.com/ShanYi-Hui/front-end-interview#readme",
+  "homepage": "https://github.com/syh-micro-build/mb-front-end-interview#readme",
   "devDependencies": {
     "vitepress": "^1.5.0"
   }
