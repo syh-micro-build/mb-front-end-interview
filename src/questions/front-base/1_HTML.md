@@ -95,13 +95,21 @@
     1.如果网页设置编码是gbk，而数据库储存数据编码格式是UTF-8，此时需要程序查询数据库数据显示数据前进程序转码;  
 
     2.如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换;  
-## CSS中 link 和@import 的区别是什么？？
+## CSS中 link 和@import 的区别是什么？
 #### 类型：`拓展`
 #### 级别：`W1`、`W2`、`W3`
 #### 解答（1 分）：
   - **1：**   link属于HTML标签，而@import是CSS提供的页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;  
 
-    import只在IE5以上才能识别，而link是HTML标签，无兼容问题;  
-    
-    link方式的样式的权重 高于@import的权重。
+  import只在IE5以上才能识别，而link是HTML标签，无兼容问题;  
+
+  link方式的样式的权重 高于@import的权重。
+
+## CSS中 transition和animation的区别？
+#### 类型：`拓展`
+#### 级别：`W1`、`W2`、`W3`
+#### 解答（1 分）：
+  - **1：**  Animation和transition大部分属性是相同的，他们都是随时间改变元素的属性值，他们的主要区别是transition需要触发一个事件才能改变属性，
+而animation不需要触发任何事件的情况下才会随时间改变属性值，并且transition为2帧，从from .... to，而animation可以一帧一帧的。
+
  
