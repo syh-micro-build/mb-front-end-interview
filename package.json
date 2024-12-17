@@ -26,6 +26,10 @@
   },
   "homepage": "https://github.com/syh-micro-build/mb-front-end-interview#readme",
   "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "commitlint": "^19.6.1",
+    "cz-git": "^1.11.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
     "markdownlint-cli2": "^0.16.0",
@@ -33,5 +37,10 @@
   },
   "lint-staged": {
     "*.md": "markdownlint-cli2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git"
+    }
   }
 }
