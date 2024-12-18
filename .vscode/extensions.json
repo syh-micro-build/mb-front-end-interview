@@ -1,9 +1,6 @@
 {
     "recommendations": [
-        "yzhang.markdown-all-in-one",
         "shd101wyy.markdown-preview-enhanced",
-        "bierner.markdown-preview-github-styles",
-        "davidanson.vscode-markdownlint",
-        "hancel.markdown-image"
+        "davidanson.vscode-markdownlint"
     ]
 }
