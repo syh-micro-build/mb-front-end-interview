@@ -1,0 +1,199 @@
+{
+  "extends": [
+    "@commitlint/config-conventional"
+  ],
+  "pageSize": 20,
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "base",
+        "runtime",
+        "frame",
+        "engineering",
+        "component",
+        "safety",
+        "perfomance",
+        "architect",
+        "algorithms",
+        "newest",
+        "computer-base",
+        "ai",
+        "js",
+        "ts",
+        "vue",
+        "react",
+        "web3",
+        "style",
+        "refactor",
+        "fix",
+        "ci",
+        "test"
+      ]
+    ],
+    "subject-case": [
+      2,
+      "never",
+      [
+        "start-case",
+        "pascal-case"
+      ]
+    ]
+  },
+  "prompt": {
+    "alias": {
+      "fd": "docs: fix typos"
+    },
+    "messages": {
+      "type": "选择你要提交的类型 :",
+      "scope": "选择一个提交范围（可选）:",
+      "customScope": "请输入自定义的提交范围 :",
+      "subject": "填写简短精炼的变更描述 :\n",
+      "body": "填写更加详细的变更描述（可选）。使用 \"|\" 换行 :\n",
+      "breaking": "列举非兼容性重大的变更（可选）。使用 \"|\" 换行 :\n",
+      "footerPrefixesSelect": "选择关联issue前缀（可选）:",
+      "customFooterPrefix": "输入自定义issue前缀 :",
+      "footer": "列举关联issue (可选) 例如: #31, #I3244 :\n",
+      "confirmCommit": "是否提交或修改commit ?"
+    },
+    "types": [
+      {
+        "value": "base",
+        "name": "base:               ✨  前端基础 | Front-end basics",
+        "emoji": ":sparkles:"
+      },
+      {
+        "value": "runtime",
+        "name": "runtime:            🛠️  前端运行环境 | Front-end runtime environment",
+        "emoji": ":hammer:"
+      },
+      {
+        "value": "frame",
+        "name": "frame:              🖌️  前端框架 | Front-end framework",
+        "emoji": ":paintbrush:"
+      },
+      {
+        "value": "engineering",
+        "name": "engineering:        ⚙️  前端工程化 | Front-end engineering",
+        "emoji": ":gear:"
+      },
+      {
+        "value": "component",
+        "name": "component:          🧩  前端组件库 | Front-end component library",
+        "emoji": ":jigsaw:"
+      },
+      {
+        "value": "safety",
+        "name": "safety:             🔒  前端安全 | Front-end security",
+        "emoji": ":lock:"
+      },
+      {
+        "value": "perfomance",
+        "name": "perfomance:         ⚡️  前端性能 | Front-end performance",
+        "emoji": ":zap:"
+      },
+      {
+        "value": "architect",
+        "name": "architect:          🏗️  前端架构 | Front-end architecture",
+        "emoji": ":building_construction:"
+      },
+      {
+        "value": "algorithms",
+        "name": "algorithms:         📚  数据结构及算法 | Data structures and algorithms",
+        "emoji": ":books:"
+      },
+      {
+        "value": "newest",
+        "name": "newest:             🚀  前端最前沿 | Cutting-edge front-end",
+        "emoji": ":rocket:"
+      },
+      {
+        "value": "computer-base",
+        "name": "computer-base:      🖥️  计算机基础 | Computer fundamentals",
+        "emoji": ":desktop_computer:"
+      },
+      {
+        "value": "ai",
+        "name": "ai:                 🤖  人工智能 | Artificial intelligence",
+        "emoji": ":robot:"
+      },
+      {
+        "value": "js",
+        "name": "js:                 💻  JavaScript | JavaScript",
+        "emoji": ":computer:"
+      },
+      {
+        "value": "ts",
+        "name": "ts:                 🔷  TypeScript | TypeScript",
+        "emoji": ":blue_square:"
+      },
+      {
+        "value": "vue",
+        "name": "vue:                🔮  Vue.js | Vue.js framework",
+        "emoji": ":crystal_ball:"
+      },
+      {
+        "value": "react",
+        "name": "react:              ⚛️  React | React framework",
+        "emoji": ":atom:"
+      },
+      {
+        "value": "web3",
+        "name": "web3:               🌐  Web3 | Web3 technologies",
+        "emoji": ":globe_with_meridians:"
+      },
+      {
+        "value": "style",
+        "name": "style:              💄 代码格式 | Code style changes",
+        "emoji": ":lipstick:"
+      },
+      {
+        "value": "refactor",
+        "name": "refactor:           ♻️  代码重构 | Code refactoring",
+        "emoji": ":recycle:"
+      },
+      {
+        "value": "fix",
+        "name": "fix:                🐛  修复缺陷 | Bug fix",
+        "emoji": ":bug:"
+      },
+      {
+        "value": "ci",
+        "name": "ci:                 🎡  持续集成 | Continuous Integration",
+        "emoji": ":ferris_wheel:"
+      },
+      {
+        "value": "test",
+        "name": "test:               ✅  测试 | Tests",
+        "emoji": ":white_check_mark:"
+      }
+    ],
+    "useEmoji": true,
+    "emojiAlign": "center",
+    "useAI": false,
+    "aiNumber": 1,
+    "themeColorCode": "",
+    "allowCustomScopes": true,
+    "allowEmptyScopes": true,
+    "customScopesAlign": "bottom",
+    "customScopesAlias": "custom",
+    "emptyScopesAlias": "empty",
+    "upperCaseSubject": false,
+    "markBreakingChangeMode": false,
+    "breaklineNumber": 100,
+    "breaklineChar": "|",
+    "skipQuestions": [],
+    "customIssuePrefixAlign": "top",
+    "emptyIssuePrefixAlias": "skip",
+    "customIssuePrefixAlias": "custom",
+    "allowCustomIssuePrefix": true,
+    "allowEmptyIssuePrefix": true,
+    "confirmColorize": true,
+    "minSubjectLength": 0,
+    "defaultBody": "",
+    "defaultIssues": "",
+    "defaultScope": "",
+    "defaultSubject": ""
+  }
+}
