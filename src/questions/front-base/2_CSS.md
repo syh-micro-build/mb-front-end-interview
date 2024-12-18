@@ -17,4 +17,17 @@
   - 需要在border外侧添加空白，且空白处不需要背景（色）时，使用 margin；
   - 需要在border内测添加空白，且空白处需要背景（色）时，使用 padding。
 
+## 如何清除浮动?
+#### 类型：`基础`
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（2 分）：
+- **2：** 
+  .clearfix{
+    clear:both;
+    content:'';
+    display:block;
+    width: 0;
+    height: 0;
+    visibility:hidden;
+  }
 
