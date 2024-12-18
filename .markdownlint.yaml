@@ -1,0 +1,33 @@
+# https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+# https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+
+# https://juejin.cn/post/7075518787105062919
+
+# 是否允许多个一级标题
+MD025: false
+# 控制无序列表（unordered list）的样式
+MD004:
+  style: "sublist"
+
+# 控制行的长度限制
+MD013:
+  line_length: 200
+  heading_line_length: 128
+  code_block_line_length: 200
+
+# 防止多个内容相同的标题出现
+MD024:
+  allow_different_nesting: true
+
+MD033:
+  allowed_elements: ['abbr', 'img']
+
+# 允许提交 img 代码块，但不强制要求 alt 属性
+MD037:
+  elements: [ 'img' ]
+  alt: false
+
+# 检查是否在文件末尾有一个空行
+MD047: false
+
+MD051: false
