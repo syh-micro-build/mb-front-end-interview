@@ -50,3 +50,15 @@
   具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。  
   通俗一点来讲，可以把 BFC 理解为一个封闭的大箱子，箱子内部的元素无论如何翻江倒海，都不会影响到外部。
 
+
+
+## 解释 CSS 中的 flex 布局，并列举一些常用的 flex 属性及其作用。
+#### 类型：`基础`
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（1 分）：
+- **1：** 
+  flex 布局（弹性布局）可以更方便地实现各种复杂的布局。常用属性包括：
+display: flex：将容器设置为弹性容器。
+flex-direction：指定主轴方向，如 row（水平，从左到右）、row-reverse（水平，从右到左）、column（垂直，从上到下）、column-reverse（垂直，从下到上）。
+justify-content：在主轴上对齐项目，如 flex-start（起始位置对齐）、flex-end（末尾位置对齐）、center（居中对齐）、space-between（两端对齐，项目之间均匀分布）、space-around（每个项目两侧均匀分布）。
+align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-start、flex-end、center、baseline（项目第一行文字基线对齐）、stretch（默认值，拉伸项目以适应容器）等取值。
