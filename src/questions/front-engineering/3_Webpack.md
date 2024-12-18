@@ -33,3 +33,15 @@ module.exports = {
 - **1：** 在浏览器接受到这条消息之前，浏览器已经在上一次 socket 消息中已经记住了此时的 hash 标识这时候我们会创建一个 ajax 去服务端请求获取到变化内容的 manifest 文件mainfest 文件包含重新 build 生成的 hash 值，以及变化的模块，对应上图的 c 属性浏览器根据 manifest 文件获取模块变化的内容，从而触发 render 流程，实现局部模块更新。
 ![alt text](../../../public/front-engineering/Webpack/image.png)
 
+## 简述webpack的构建流程？
+#### 类型：`架构`
+#### 级别：`W3`、`W4`、`W5`、`W6`
+#### 解答（3 分）：
+- **1：** 初始化流程：从配置文件和 Shell 语句中读取与合并参数，并初始化需要使用的插件和配置插件等执行环境所需要的参数
+- **1：** 编译构建流程：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找.到该 Module 依赖的 Module，递归地进行编译处理
+- **1：** 输出流程：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统
+![alt text](../../../public/front-engineering/Webpack/image2.png)
+
+
+
+
