@@ -27,6 +27,8 @@ MD037:
   elements: [ 'img' ]
   alt: false
 
+MD045: false
+
 # 检查是否在文件末尾有一个空行
 MD047: false
 
