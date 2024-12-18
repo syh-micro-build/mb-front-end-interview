@@ -29,7 +29,8 @@
         "refactor",
         "fix",
         "ci",
-        "test"
+        "test",
+        "docs"
       ]
     ],
     "subject-case": [
@@ -167,6 +168,11 @@
         "value": "test",
         "name": "test:               ✅  测试 | Tests",
         "emoji": ":white_check_mark:"
+      },
+      {
+        "value": "docs",
+        "name": "docs:               ✅  文档更新 | Documentation only changes",
+        "emoji": ":memo:"
       }
     ],
     "useEmoji": true,
