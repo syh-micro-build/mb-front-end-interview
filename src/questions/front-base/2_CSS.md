@@ -31,3 +31,12 @@
     visibility:hidden;
   }
 
+## 使元素消失的方法?
+#### 类型：`基础`
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（1 分）：
+- **1：** 
+  - visibility:hidden;
+  - display:none;
+  - opacity:0;
+  - z-index:-1;
