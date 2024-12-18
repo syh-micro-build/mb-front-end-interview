@@ -42,6 +42,14 @@ module.exports = {
 - **1：** 输出流程：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统
 ![alt text](../../../public/front-engineering/Webpack/image2.png)
 
+## webpack proxy是什么？
+#### 类型：`架构`
+#### 级别：`W3`、`W4`、`W5`、`W6`
+#### 解答（2 分）：
+- **2：** webpack proxy，是 webpack 提供的代理服务，基本行为就是接收客户端发送的请求后转发给其他服务器，其目的是为了便于开发者在开发模式下解决跨域问题(浏览器安全策略限制)
+
+
+
 
 
 
