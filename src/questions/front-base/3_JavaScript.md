@@ -193,6 +193,8 @@ CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内�
 #### 类型：基础
 ####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 #### 解答（2 分）：
+<details>
+
 - **2：** new操作符的执行过程：
 
 >（1）首先创建了一个新的空对象
@@ -225,11 +227,14 @@ function objectFactory() {
 // 使用方法
 objectFactory(构造函数, 初始化参数);
 ```
+</details>
 
 ## 数组的原生方法有哪些？
 #### 类型：基础
 ####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 #### 解答（7 分）：
+<details>
+
 - **1：** 数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。
 - **1：** 数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。
 - **1：** 数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。
@@ -237,3 +242,4 @@ objectFactory(构造函数, 初始化参数);
 - **1：** 数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。
 - **1：** 数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法
 - **1：** 数组归并方法 reduce() 和 reduceRight() 方法
+</details>
