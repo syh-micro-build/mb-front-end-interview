@@ -69,8 +69,8 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **3：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
 ## Promise 的常用方法
-#### 类型：基础
-####  级别：W4
+#### 类型：`基础`
+####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 #### 解答（7 分）：
 - **1：** Promise.resolve(value)：返回一个已解决的 Promise，如果 value 是一个 Promise，返回的 Promise 会继承其状态。
 - **1：** Promise.reject(reason)：返回一个已拒绝的 Promise，带有拒绝的原因。
