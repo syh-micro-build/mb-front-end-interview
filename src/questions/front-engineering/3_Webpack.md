@@ -60,6 +60,34 @@ module.exports = {
 #### 解答（1 分）：
 - **1：** webpack-dev-server是官方推出的一款开发工具，将自动编译和自动刷新浏览器等一系列对开发友好的功能全部集成在了一起，目的是为了提高开发者日常的开发效率，只适用在开发阶段关于配置方面。
 
+## webpack代理怎么配置？proxy中常用的属性是什么？
+#### 类型：`架构`
+#### 级别：`W3`、`W4`、`W5`、`W6`
+#### 解答（3 分）
+- **1：** 配置如下：
+```javascript
+const path = require("path");
+module.exports = {
+  // ...
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+    proxy: {
+      "/api": {
+        target: "https://api.github.com",// 
+      },
+    },
+    // ...
+  },
+};
+```
+- **2：** 常用属性：\
+&ensp;  -  target：表示的是代理到的目标地址\
+&ensp;  - pathRewrite：默认情况下，我们的 /api-hy 也会被写入到URL中，如果希望删除、可以使用pathRewrite\
+&ensp;  - secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false\
+&ensp;  - changeOrigin：它表示是否更新代理后请求的 headers 中host地址\
+
 
 
 
