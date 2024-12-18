@@ -75,3 +75,7 @@ npm run lint:md
 - `ci`: 🎡 持续集成 | Continuous Integration
 - `test`: ✅ 测试 | Tests
 - `docs`: 📝 文档更新 | Documentation only changes'
+
+## markdown 书写规则
+
+[docs](https://www.newverse.wiki/senses/markdownlint/)
