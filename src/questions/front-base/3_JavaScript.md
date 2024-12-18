@@ -79,3 +79,26 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** Promise.allSettled(iterable)：返回一个新的 Promise，在所有输入的 Promise 完成时返回，结果包含每个 Promise 的状态及其结果。
 - **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise。
 - **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
+
+## 解释 Set 和 Map 的使用及区别
+#### 类型：基础
+####  级别：W5
+#### 解答（2 分）：
+- **1：** Set：是一个集合，用于存储不重复的值，按照插入顺序排列。
+- **1：** Map：是一个键值对集合，用于存储键值对，可以存储任何类型的键和值。
+```js
+// Set
+let set = new Set();
+set.add(1);
+set.add(2);
+set.add(2); // 会被忽略
+console.log(set); // Set { 1, 2 }
+
+// Map
+let map = new Map();
+map.set('name', 'Alice');
+map.set('age', 25);
+console.log(map.get('name')); // Alice
+
+```
+
