@@ -102,3 +102,76 @@ console.log(map.get('name')); // Alice
 
 ```
 
+## 请写出几个 JavaScript 函数，用于实现数组去重
+#### 类型：`基础`
+####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（5 分）：
+<details>
+
+- **1：** 方法一：使用Set对象（ES6 及以上）
+```js
+//原理：Set是一种新的数据结构，它类似于数组，但是成员的值都是唯一的。可以将数组转换为Set，然后再转换回数组来实现去重。
+function uniqueArray(arr) {
+    return [...new Set(arr)];
+}
+let array = [1, 2, 2, 3, 4, 4];
+console.log(uniqueArray(array)); // 输出[1, 2, 3, 4]
+//解释：new Set(array)会创建一个Set对象，其中包含了array中的所有元素，并且自动去重。然后，通过扩展运算符...将Set对象转换回数组，得到去重后的结果。
+```
+- **2：** 方法二：使用循环和一个新数组
+```js
+function uniqueArray(arr) {
+    let newArray = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!newArray.includes(arr[i])) {
+            newArray.push(arr[i]);
+        }
+    }
+    return newArray;
+}
+let array = [1, 2, 2, 3, 4, 4];
+    console.log(uniqueArray(array)); // 输出[1, 2, 3, 4]
+```
+
+- **3：** 方法三：使用filter方法和indexOf函数
+```js
+//原理：filter方法用于过滤数组中的元素，indexOf函数用于查找元素在数组中的首次出现位置。通过filter方法遍历数组，只保留首次出现的元素，从而实现去重。
+let array = [1, 2, 2, 3, 4, 4];
+let uniqueArray = array.filter((element, index, self) => {
+    return self.indexOf(element) === index;
+});
+console.log(uniqueArray);
+//解释：filter方法的回调函数接收三个参数：element（当前元素）、index（当前元素的索引）和self（数组本身）。在回调函数中，self.indexOf(element)会查找element在数组中的首次出现位置。如果这个位置等于当前元素的索引index，说明这个元素是首次出现的，filter方法会保留这个元素；否则，就过滤掉这个元素。最终filter方法返回一个新的去重后的数组。
+```
+
+- **4：** 方法四：使用reduce方法
+```js
+//原理：reduce方法用于对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。可以利用reduce方法来构建一个新的去重数组。
+let array = [1, 2, 2, 3, 4, 4];
+let uniqueArray = array.reduce((acc, cur) => {
+    if (!acc.includes(cur)) {
+        acc.push(cur);
+    }
+    return acc;
+}, []);
+console.log(uniqueArray);
+//解释：reduce方法的第一个参数是一个reducer函数，它接收两个参数：acc（累加器，初始值是一个空数组[]）和cur（当前元素）。在reducer函数中，如果acc数组不包含cur元素（acc.includes(cur)返回false），就将cur添加到acc中。最后，reduce方法返回acc，即去重后的数组。
+```
+
+- **5：** 方法五：使用Object对象（以元素为键）
+```js
+//原理：利用Object的键的唯一性，将数组元素作为对象的键，值可以任意设置（这里设置为true），然后获取对象的键并转换回数组来实现去重。
+let array = [1, 2, 2, 3, 4, 4];
+let uniqueArray = [];
+let tempObj = {};
+for (let i = 0; i < array.length; i++) {
+    let current = array[i];
+    if (!tempObj[current]) {
+        uniqueArray.push(current);
+        tempObj[current] = true;
+    }
+}
+console.log(uniqueArray);
+//解释：首先创建一个空数组uniqueArray用于存储去重后的元素，以及一个空对象tempObj。然后遍历array数组，对于每个元素current，检查tempObj对象中是否已经存在以current为键的属性（tempObj[current]是否为true）。如果不存在，就将current添加到uniqueArray中，并在tempObj中添加一个以current为键，值为true的属性。这样，利用对象键的唯一性实现了数组去重。最后返回uniqueArray。
+```
+</details>
