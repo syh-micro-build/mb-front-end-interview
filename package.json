@@ -8,7 +8,7 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "lint:md": "markdownlint-cli2 ./src/**/**/*.md",
+    "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "prepare": "husky",
     "boot": "npm run clear && npm install",
     "clear": "rm -fr node_modules"
