@@ -1,0 +1,8 @@
+{
+  // "window.zoomLevel": -1.4,
+  "pasteImage.path": "${projectRoot}/public/images",
+  "pasteImage.defaultName": "YMMDDHHmmss",
+  "pasteImage.basePath": "${projectRoot}",
+  "pasteImage.prefix": "/",
+  "pasteImage.namePrefix": "${currentFileNameWithoutExt}_",
+}
