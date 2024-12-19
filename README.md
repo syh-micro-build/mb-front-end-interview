@@ -48,6 +48,9 @@ npx cz
 
 ```bash
 npm run lint:md
+
+# 格式化某个文件
+npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 ```
 
 ## Git 贡献提交规范
