@@ -123,3 +123,24 @@ module.exports = {
 &ensp;  - pathRewrite：默认情况下，我们的 /api-hy 也会被写入到URL中，如果希望删除、可以使用pathRewrite\
 &ensp;  - secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false\
 &ensp;  - changeOrigin：它表示是否更新代理后请求的 headers 中host地址\
+
+
+
+## proxy是工作原理？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** proxy 工作原理实质上是利用 http-proxy-middleware 这个 http 代理中间件，实现请求转发给其他服务器
+```javascript
+const express = require('express');
+const proxy = require('http-proxy-middleware');
+const app = express();
+app.use('/api', proxy({target: 'http://www.example.org', changeOrigin: true
+}));
+app.listen(3000);
+```
+
