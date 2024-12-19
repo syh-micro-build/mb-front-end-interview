@@ -38,3 +38,23 @@ function add(a, b) {
 &emsp;示例：假设一个项目引入了lodash库，但只使用了_.isEmpty函数，Vite 会在打包时将lodash中其他未使用的函数代码排除，从而减小最终打包文件的大小。
 
 </details>
+
+## 在 Vite 项目中如何配置代理（Proxy）以解决跨域问题？
+#### 类型：`架构`
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（1 分）：
+- **1：** 在 vite.config.js 中配置 server.proxy 选项，例如：
+```js
+module.exports = {
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://backend-api-url',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
+};
+// 这会将所有以 /api 开头的请求代理到指定的后端 API 地址，并根据 rewrite 规则修改请求路径。
+```
