@@ -1,9 +1,5 @@
 {
-  "terminal.integrated.env.osx": {
-    "Q_NEW_SESSION": "1"
-  },
-  "window.zoomLevel": -1.4,
-  
+  // "window.zoomLevel": -1.4,
   "pasteImage.path": "${projectRoot}/public/images",
   "pasteImage.defaultName": "YMMDDHHmmss",
   "pasteImage.basePath": "${projectRoot}",
