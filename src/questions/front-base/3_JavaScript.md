@@ -94,7 +94,8 @@ person.sayHello();
 
 - **1：** setTimeout：在指定的延迟时间（毫秒）后执行一次回调函数。示例：setTimeout(() => console.log('Delayed'), 1000);，1 秒后会执行一次回调打印Delayed。
 setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。示例：let intervalId = setInterval(() => console.log('Repeating'), 1000);，每隔 1 秒就会执行一次回调打印Repeating。
-- **1：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
+- **1：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。
+          使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
 
 ## Promise 的常用方法
 
@@ -142,8 +143,11 @@ console.log(map.get('name')); // Alice
 ## 请写出几个 JavaScript 函数，用于实现数组去重
 
 #### 类型：`基础`
-####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-#### 解答（8 分）：
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（8 分）
+
 <details>
 
 - **1：** 方法一：使用Set对象（ES6 及以上）
@@ -157,7 +161,9 @@ let array = [1, 2, 2, 3, 4, 4];
 console.log(uniqueArray(array)); // 输出[1, 2, 3, 4]
 //解释：new Set(array)会创建一个Set对象，其中包含了array中的所有元素，并且自动去重。然后，通过扩展运算符...将Set对象转换回数组，得到去重后的结果。
 ```
+
 - **1：** 方法二：使用循环和一个新数组
+
 ```js
 function uniqueArray(arr) {
     let newArray = [];
@@ -173,6 +179,7 @@ let array = [1, 2, 2, 3, 4, 4];
 ```
 
 - **2：** 方法三：使用filter方法和indexOf函数
+
 ```js
 //原理：filter方法用于过滤数组中的元素，indexOf函数用于查找元素在数组中的首次出现位置。通过filter方法遍历数组，只保留首次出现的元素，从而实现去重。
 let array = [1, 2, 2, 3, 4, 4];
@@ -184,6 +191,7 @@ console.log(uniqueArray);
 ```
 
 - **2：** 方法四：使用reduce方法
+
 ```js
 //原理：reduce方法用于对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。可以利用reduce方法来构建一个新的去重数组。
 let array = [1, 2, 2, 3, 4, 4];
@@ -198,6 +206,7 @@ console.log(uniqueArray);
 ```
 
 - **2：** 方法五：使用Object对象（以元素为键）
+
 ```js
 //原理：利用Object的键的唯一性，将数组元素作为对象的键，值可以任意设置（这里设置为true），然后获取对象的键并转换回数组来实现去重。
 let array = [1, 2, 2, 3, 4, 4];
