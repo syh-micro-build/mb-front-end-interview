@@ -118,8 +118,57 @@ module.exports = {
 };
 ```
 
-- **2：** 常用属性：\
-&ensp;  -  target：表示的是代理到的目标地址\
-&ensp;  - pathRewrite：默认情况下，我们的 /api-hy 也会被写入到URL中，如果希望删除、可以使用pathRewrite\
-&ensp;  - secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false\
-&ensp;  - changeOrigin：它表示是否更新代理后请求的 headers 中host地址\
+- **2：** 常用属性：  
+
+ >target：表示的是代理到的目标地址  
+ >pathRewrite：默认情况下，我们的 /api-hy 也会被写入到URL中，如果希望删除、可以使用pathRewrite  
+ >secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false  
+ >changeOrigin：它表示是否更新代理后请求的 headers 中host地址  
+
+## proxy是工作原理？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** proxy 工作原理实质上是利用 http-proxy-middleware 这个 http 代理中间件，实现请求转发给其他服务器
+
+```javascript
+const express = require('express');
+const proxy = require('http-proxy-middleware');
+const app = express();
+app.use('/api', proxy({target: 'http://www.example.org', changeOrigin: true
+}));
+app.listen(3000);
+```
+
+## webpack proxy 为什么能解决跨域？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 在开发阶段，webpack-dev-server 会启动一个本地开发服务器，所以我们的应用在开发阶段是独立运行在 localhost 的一个端口上，而后端服务又是运行在另外一个地址上所以在开发阶段中，由于浏览器同源策略的原因，当本地访问后端就会出现跨域请求的问题通过设置 webpack proxy 实现代理请求后，相当于浏览器与服务端中添加一个代理者当本地发送请求的时候，
+代理服务器响应该请求，并将请求转发到目标服务器，目标服务器响应数据后再将数据返回给代理服务器，最终再由代理服务器将数据响应给本地。  
+在代理服务器传递数据给本地浏览器的过程中，两者同源，并不存在跨域行为，这时候浏览器就能正常接收数据。  
+**注意：服务器与服务器之间请求数据并不会存在跨域行为，跨域行为是浏览器安全策略限制。**
+
+## webpack的loader是什么？为什么使用它？它有哪几种配置方式
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** loader 用于对模块的"源代码"进行转换，在 import 或"加载"模块时预处理文件
+- **1：** webpack 做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。  
+在 webpack 内部中，任何文件都是模块，不仅仅只是js 文件。默认情况下，在遇到 import 或者 require 加载模块的时候，webpack 只支持对 js 和 json文件打包，像 css、 sass、 png 等这些类型的文件的时候，webpack 则无能为力，这时候就需要配置对应的 loader 进行文件内容的解析。
+- **3：** 关于配置 loader 的方式有三种:
+  >配置方式(推荐)：在 webpack.config.js文件中指定 loader  
+  >内联方式：在每个 import 语句中显式指定 loader  
+  >Cl 方式：在 shell 命令中指定它们  

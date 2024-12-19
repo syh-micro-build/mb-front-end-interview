@@ -50,13 +50,16 @@ return () => {
 #### 解答（2 分）
 
 - **1：** props（属性）：由父组件传递给子组件，用于传递数据。props 是只读的，子组件不能修改 props。
+
 ```js
  function MyComponent(props) {
   return <h1>{props.message}</h1>;
 }
 
 ```
+
 - **1：** state（状态）：由组件自身管理，用于存储和跟踪组件的动态数据。state 是可变的，可以通过 this.setState()（类组件）或 useState()（函数组件）来更新。
+
 ```js
 function MyComponent() {
   const [count, setCount] = useState(0);
@@ -74,6 +77,7 @@ function MyComponent() {
 #### 解答（3 分）
 
 - **1：** React 事件处理的方式与原生 JavaScript 不同，React 使用事件委托来优化性能，并且事件名称采用驼峰命名法。
+
 ```js
 function MyComponent() {
   const handleClick = (event) => {
@@ -84,5 +88,6 @@ function MyComponent() {
 }
 
 ```
+
 - **1：** React 会自动绑定事件处理函数。
 - **1：** 事件对象会被 React 规范化。
