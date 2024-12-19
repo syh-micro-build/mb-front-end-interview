@@ -6,6 +6,8 @@
 # TODO 暂时全关，后面做定制
 MD001: false
 
+MD024: false
+
 # 是否允许多个一级标题
 MD025: false
 # 控制无序列表（unordered list）的样式
@@ -18,8 +20,9 @@ MD013:
   heading_line_length: 128
   code_block_line_length: 200
 
-# 防止多个内容相同的标题出现
-MD024: false
+# # 防止多个内容相同的标题出现
+# MD024:
+#   allow_different_nesting: true
 
 MD033:
   allowed_elements: ['abbr', 'img', 'details']
@@ -35,3 +38,6 @@ MD045: false
 MD047: false
 
 MD051: false
+
+ignores:
+  - "./node_modules/**/*.md"
