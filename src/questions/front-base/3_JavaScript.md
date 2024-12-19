@@ -1,51 +1,74 @@
 # JavaScript
 
 ## JS 数据类型有哪些？
+
 #### 类型：`基础`
+
 #### 级别：`W1`
-#### 解答（2 分）：
+
+#### 解答（2 分）
+
 - **1：** 基本类型：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol（ES6特性）、BigInt（ES11特性）；
 - **1：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
 ## == 和 === 的区别是什么？
+
 #### 类型：`基础`
+
 #### 级别：`W1`
-#### 解答（2 分）：
+
+#### 解答（2 分）
+
 - **1：** == 是 宽松相等，会进行类型转换，比较前会先转换两边的操作数类型（例如，'5' == 5 为 true;
 - **1：** === 是 严格相等，不会进行类型转换，只有两边的值和类型都相同才会返回 true（例如，'5' === 5 为 false;
 
 ## var 、let 、 const 的区别是什么？
+
 #### 类型：`基础`
+
 #### 级别：`W1`
-#### 解答（2 分）：
+
+#### 解答（2 分）
+
 - **1：** var 作用域: 函数作用域（如果在函数内部声明），全局作用域（如果在函数外部声明）;
               提升: 声明和初始化都会被提升（变量提升，但未初始化时是 undefined）;
 - **1：** let、 const 作用域: 级作用域（只在其所在的代码块内有效）;
           提升: 变量提升但不会初始化，存在“暂时性死区”，即在声明之前不能访问;
-- **1：** 区别: 
+- **1：** 区别:
             const： 需要在声明时初始化，且之后不能被修改;
             let：可以修改其值;
             var： 是函数作用域或全局作用域，let 和 const 是块级作用域;
 
 ## 什么是事件冒泡和事件捕获？
+
 #### 类型：`基础`
+
 #### 级别：`W1`
-#### 解答（2 分）：
+
+#### 解答（2 分）
+
 - **1：** 事件冒泡：事件从目标元素开始，向上冒泡到 document;
 - **1：** 事件捕获：事件从 document 开始，向下捕获到目标元素;
 - **1：** 事件流顺序: 1.捕获 -> 2.目标 -> 3.冒泡;
 - **2：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
 ## JS 什么是防抖和节流？它们的应用场景有哪些？
+
 #### 类型：`基础`
+
 #### 级别：`W1`
-#### 解答（3 分）：
+
+#### 解答（3 分）
+
 - **1：** 防抖：在事件被触发后，延迟一定时间后再执行回调函数，如果在延迟时间内再次触发事件，则重新计算延迟时间，直到延迟时间结束后才执行回调函数。例如，在用户输入搜索框时，防止频繁发送请求，可以使用防抖函数，只有在用户停止输入一段时间后才发送搜索请求。
 - **2：** 节流：在一定时间内，只允许函数执行一次。例如，在页面滚动时，需要频繁执行某个函数来处理滚动事件，但为了避免函数执行过于频繁影响性能，可以使用节流函数，限制函数在一定时间内只执行一次。
 
 ## JS 请解释在 JavaScript 中this指针的工作原理，在以下函数调用场景中this指向什么？
+
 #### 类型：`基础`
+
 #### 级别：`W1`
+
 ```js
 const person = {
     name: "张三",
@@ -55,23 +78,34 @@ const person = {
 };
 person.sayHello();
 ```
-#### 解答（2 分）：
+
+#### 解答（2 分）
+
 - **1：** 在person.sayHello()调用中，this指向person对象。
 - **2：** 当一个函数作为对象的方法被调用时，this指向调用该方法的对象。在这里，sayHello是person对象的方法，所以this指代person，因此可以正确访问person.name
 
-## JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器。
+## JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器
+
 #### 类型：`基础`
+
 #### 级别：`W1`
-#### 解答（2 分）：
+
+#### 解答（2 分）
+
 - **1：** setTimeout：在指定的延迟时间（毫秒）后执行一次回调函数。示例：setTimeout(() => console.log('Delayed'), 1000);，1 秒后会执行一次回调打印Delayed。
 setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。示例：let intervalId = setInterval(() => console.log('Repeating'), 1000);，每隔 1 秒就会执行一次回调打印Repeating。
-- **2：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
+- **2：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。
+          使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
 - **3：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
 ## Promise 的常用方法
+
 #### 类型：`基础`
-####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-#### 解答（7 分）：
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（7 分）
+
 - **1：** Promise.resolve(value)：返回一个已解决的 Promise，如果 value 是一个 Promise，返回的 Promise 会继承其状态。
 - **1：** Promise.reject(reason)：返回一个已拒绝的 Promise，带有拒绝的原因。
 - **1：** Promise.all(iterable)：接收一个可迭代对象，返回一个新的 Promise，当所有 Promise 都成功时返回结果数组，若有任何 Promise 失败，返回的 Promise 会立即失败。
@@ -81,11 +115,16 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
 
 ## 解释 Set 和 Map 的使用及区别
+
 #### 类型：基础
-####  级别：W5
-#### 解答（2 分）：
+
+#### 级别：W5
+
+#### 解答（2 分）
+
 - **1：** Set：是一个集合，用于存储不重复的值，按照插入顺序排列。
 - **1：** Map：是一个键值对集合，用于存储键值对，可以存储任何类型的键和值。
+
 ```js
 // Set
 let set = new Set();
@@ -103,12 +142,17 @@ console.log(map.get('name')); // Alice
 ```
 
 ## 请写出几个 JavaScript 函数，用于实现数组去重
+
 #### 类型：`基础`
-####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-#### 解答（5 分）：
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
 <details>
 
 - **1：** 方法一：使用Set对象（ES6 及以上）
+
 ```js
 //原理：Set是一种新的数据结构，它类似于数组，但是成员的值都是唯一的。可以将数组转换为Set，然后再转换回数组来实现去重。
 function uniqueArray(arr) {
@@ -118,7 +162,9 @@ let array = [1, 2, 2, 3, 4, 4];
 console.log(uniqueArray(array)); // 输出[1, 2, 3, 4]
 //解释：new Set(array)会创建一个Set对象，其中包含了array中的所有元素，并且自动去重。然后，通过扩展运算符...将Set对象转换回数组，得到去重后的结果。
 ```
+
 - **2：** 方法二：使用循环和一个新数组
+
 ```js
 function uniqueArray(arr) {
     let newArray = [];
@@ -134,6 +180,7 @@ let array = [1, 2, 2, 3, 4, 4];
 ```
 
 - **3：** 方法三：使用filter方法和indexOf函数
+
 ```js
 //原理：filter方法用于过滤数组中的元素，indexOf函数用于查找元素在数组中的首次出现位置。通过filter方法遍历数组，只保留首次出现的元素，从而实现去重。
 let array = [1, 2, 2, 3, 4, 4];
@@ -145,6 +192,7 @@ console.log(uniqueArray);
 ```
 
 - **4：** 方法四：使用reduce方法
+
 ```js
 //原理：reduce方法用于对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。可以利用reduce方法来构建一个新的去重数组。
 let array = [1, 2, 2, 3, 4, 4];
@@ -159,6 +207,7 @@ console.log(uniqueArray);
 ```
 
 - **5：** 方法五：使用Object对象（以元素为键）
+
 ```js
 //原理：利用Object的键的唯一性，将数组元素作为对象的键，值可以任意设置（这里设置为true），然后获取对象的键并转换回数组来实现去重。
 let array = [1, 2, 2, 3, 4, 4];
@@ -174,12 +223,17 @@ for (let i = 0; i < array.length; i++) {
 console.log(uniqueArray);
 //解释：首先创建一个空数组uniqueArray用于存储去重后的元素，以及一个空对象tempObj。然后遍历array数组，对于每个元素current，检查tempObj对象中是否已经存在以current为键的属性（tempObj[current]是否为true）。如果不存在，就将current添加到uniqueArray中，并在tempObj中添加一个以current为键，值为true的属性。这样，利用对象键的唯一性实现了数组去重。最后返回uniqueArray。
 ```
+
 </details>
 
 ## ES6 和 CommonJS 的区别
+
 #### 类型：基础
-####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-#### 解答（4 分）：
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
 - **2：** CommonJS是对模块的浅拷⻉，ES6 Module是对模块的引⽤，即ES6 Module只存只读，不能改变其值，也就是指针指向不能变，类似const
 - **2：** import的接⼝是read-only（只读状态），不能修改其变量值。 即不能修改其变量的指针指向，但可以改变变量内部指针指向，可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错
 
@@ -190,9 +244,13 @@ CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内�
 [docs](https://juejin.cn/post/7331931937357496354)
 
 ## new 操作符的实现原理
+
 #### 类型：基础
-####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-#### 解答（2 分）：
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
 <details>
 
 - **2：** new操作符的执行过程：
@@ -227,12 +285,17 @@ function objectFactory() {
 // 使用方法
 objectFactory(构造函数, 初始化参数);
 ```
+
 </details>
 
 ## 数组的原生方法有哪些？
+
 #### 类型：基础
-####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-#### 解答（7 分）：
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（7 分）
+
 <details>
 
 - **1：** 数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。
@@ -242,4 +305,5 @@ objectFactory(构造函数, 初始化参数);
 - **1：** 数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。
 - **1：** 数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法
 - **1：** 数组归并方法 reduce() 和 reduceRight() 方法
+
 </details>

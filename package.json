@@ -8,7 +8,7 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "lint:md": "markdownlint-cli2 ./**/*.md",
+    "lint:md": "markdownlint-cli2 ./src/**/**/*.md",
     "prepare": "husky",
     "boot": "npm run clear && npm install",
     "clear": "rm -fr node_modules"
@@ -43,8 +43,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-git",
-      "maxSuggestions": 20
+      "path": "./node_modules/cz-git"
     }
   }
 }
