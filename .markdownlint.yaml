@@ -3,6 +3,9 @@
 
 # https://juejin.cn/post/7075518787105062919
 
+# TODO 暂时全关，后面做定制
+MD001: false
+
 # 是否允许多个一级标题
 MD025: false
 # 控制无序列表（unordered list）的样式
@@ -26,6 +29,8 @@ MD033:
 MD037:
   elements: [ 'img' ]
   alt: false
+
+MD045: false
 
 # 检查是否在文件末尾有一个空行
 MD047: false

@@ -48,6 +48,9 @@ npx cz
 
 ```bash
 npm run lint:md
+
+# 格式化某个文件
+npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 ```
 
 ## Git 贡献提交规范
@@ -80,6 +83,18 @@ npm run lint:md
 
 [docs](https://www.newverse.wiki/senses/markdownlint/)
 
-注：本地图片上传，在开发中......
+## 本地图片上传
 
-目前所有图片都放到 `public/images` 下，使用 `${yyyy}${MM}${dd}${HH}${mm}${ss}`.jpg/png 的格式。
+### 1、下载
+
+1、[Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
+
+2、[markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
+### 2、使用
+
+> 粘贴图片按键：
+>
+> windows Ctrl+Alt+V
+>
+> Mac Cmd+Alt+V
