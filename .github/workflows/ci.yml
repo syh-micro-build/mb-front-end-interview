@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
+        # 后面考虑升级
+        # https://github.com/marketplace/actions/checkout
         uses: actions/checkout@v2
 
       - name: Install dependencies
