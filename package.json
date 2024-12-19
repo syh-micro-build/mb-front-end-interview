@@ -10,9 +10,8 @@
     "docs:preview": "vitepress preview",
     "lint:md": "markdownlint-cli2 ./**/*.md",
     "prepare": "husky",
-    "boot": "npm run clear && npm install && pnpm run clear:lock",
-    "clear": "rm -fr node_modules && pnpm run clear:lock",
-    "clear:lock": "rm -fr package-lock.json"
+    "boot": "npm run clear && npm install",
+    "clear": "rm -fr node_modules"
   },
   "type": "module",
   "engines": {
