@@ -175,3 +175,71 @@ console.log(uniqueArray);
 //解释：首先创建一个空数组uniqueArray用于存储去重后的元素，以及一个空对象tempObj。然后遍历array数组，对于每个元素current，检查tempObj对象中是否已经存在以current为键的属性（tempObj[current]是否为true）。如果不存在，就将current添加到uniqueArray中，并在tempObj中添加一个以current为键，值为true的属性。这样，利用对象键的唯一性实现了数组去重。最后返回uniqueArray。
 ```
 </details>
+
+## ES6 和 CommonJS 的区别
+#### 类型：基础
+####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（4 分）：
+- **2：** CommonJS是对模块的浅拷⻉，ES6 Module是对模块的引⽤，即ES6 Module只存只读，不能改变其值，也就是指针指向不能变，类似const
+- **2：** import的接⼝是read-only（只读状态），不能修改其变量值。 即不能修改其变量的指针指向，但可以改变变量内部指针指向，可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错
+
+注：S6 Module和CommonJS模块的共同点：
+
+CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内部属性的值进⾏改变
+
+[docs](https://juejin.cn/post/7331931937357496354)
+
+## new 操作符的实现原理
+#### 类型：基础
+####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（2 分）：
+<details>
+
+- **2：** new操作符的执行过程：
+
+>（1）首先创建了一个新的空对象
+>
+>（2）设置原型，将对象的原型设置为函数的 prototype 对象
+>
+>（3）让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）
+>
+>（4）判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象
+
+```js
+function objectFactory() {
+  let newObject = null;
+  let constructor = Array.prototype.shift.call(arguments);
+  let result = null;
+  // 判断参数是否是一个函数
+  if (typeof constructor !== "function") {
+    console.error("type error");
+    return;
+  }
+  // 新建一个空对象，对象的原型为构造函数的 prototype 对象
+  newObject = Object.create(constructor.prototype);
+  // 将 this 指向新建对象，并执行函数
+  result = constructor.apply(newObject, arguments);
+  // 判断返回对象
+  let flag = result && (typeof result === "object" || typeof result === "function");
+  // 判断返回结果
+  return flag ? result : newObject;
+}
+// 使用方法
+objectFactory(构造函数, 初始化参数);
+```
+</details>
+
+## 数组的原生方法有哪些？
+#### 类型：基础
+####  级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 解答（7 分）：
+<details>
+
+- **1：** 数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。
+- **1：** 数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。
+- **1：** 数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。
+- **1：** 数组连接的方法 concat() ，返回的是拼接好的数组，不影响原数组。
+- **1：** 数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。
+- **1：** 数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法
+- **1：** 数组归并方法 reduce() 和 reduceRight() 方法
+</details>
