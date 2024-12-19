@@ -64,3 +64,25 @@ function MyComponent() {
 }
 
 ```
+
+## React 中如何处理事件？
+
+#### 类型：基础
+
+#### 级别：W2
+
+#### 解答（3 分）
+
+- **1：** React 事件处理的方式与原生 JavaScript 不同，React 使用事件委托来优化性能，并且事件名称采用驼峰命名法。
+```js
+function MyComponent() {
+  const handleClick = (event) => {
+    alert('Button clicked!');
+  };
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+
+```
+- **1：** React 会自动绑定事件处理函数。
+- **1：** 事件对象会被 React 规范化。
