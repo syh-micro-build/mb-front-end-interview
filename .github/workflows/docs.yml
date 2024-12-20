@@ -2,7 +2,7 @@ name: Docs
 on:
   push:
     branches:
-      - ci-workflow # 在向 ci-workflow 分支推送时触发工作流
+      - ci-workflow # 在向 main 分支推送时触发工作流
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
