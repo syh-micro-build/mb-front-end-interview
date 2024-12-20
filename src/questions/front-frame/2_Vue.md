@@ -43,3 +43,21 @@
 #### 解答（1分）
 
 * **1：** 默认插槽、具名插槽、作用域插槽
+
+## 简述 Vuex 的核心概念和工作流程。
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* **1：** 核心概念:<br/> 
+&emsp;State：存储应用的状态数据，是一个单一的数据源，所有组件都可以访问, <br/>
+&emsp;Mutations：用于同步修改 State 中的数据。
+是唯一允许修改 State 的地方，它接收 State 作为第一个参数。<br>
+&emsp;Actions：用于处理异步操作，如异步数据获取等，它不能直接修改 State，而是通过提交 Mutations 来间接修改。<br/>
+&emsp;Getters(类似于计算属性，用于从 State 中派生出一些新的数据，方便组件获取和使用)
+* **1：** 工作流程：<br/>组件通过 dispatch 方法触发 Actions，Actions 中可以进行异步操作，然后通过 commit 提交 Mutations，
+Mutations 同步修改 State 的数据，组件可以通过 mapState、mapGetters 等辅助函数获取 State 和 Getters 中的数据，从而实现数据的响应式变化
+和组件的更新。
