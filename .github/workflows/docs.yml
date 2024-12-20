@@ -33,6 +33,3 @@ jobs:
         BRANCH: gh-pages  # 部署到 gh-pages 分支
         FOLDER: dist  # 部署 dist 文件夹
         CLEAR: true
-    # - name: Display deployed site URL
-    #   run: |
-    #     echo "预览地址：https://not-have.github.io/mb-front-end-interview/"
