@@ -172,3 +172,13 @@ app.listen(3000);
   >配置方式(推荐)：在 webpack.config.js文件中指定 loader  
   >内联方式：在每个 import 语句中显式指定 loader  
   >Cl 方式：在 shell 命令中指定它们  
+
+## webpack的Plugin是什么
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** webpack 中的 plugin 赋予其各种灵活的功能，例如打包优化、资源管理、环境变量注入等，它们会运行在 webpack 的不同阶段(钩子/生命周期)，贯穿了 webpack 整个编译周期，目的在于解决 loader 无法实现的其他事
