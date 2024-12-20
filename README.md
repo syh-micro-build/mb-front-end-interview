@@ -15,7 +15,7 @@ git clone https://github.com/syh-micro-build/mb-front-end-interview.git
 ```bash
 cd mb-front-end-interview
 
-npm install
+npm run boot
 ```
 
 - 运行

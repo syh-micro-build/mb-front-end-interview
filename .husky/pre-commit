@@ -1,3 +1,7 @@
 npm test
 
+# 在这执行是检查全局文件
+# npm run lint:fix
+
+# 只检查暂存区文件，性能更好
 npx lint-staged

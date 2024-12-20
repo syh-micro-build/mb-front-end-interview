@@ -40,3 +40,54 @@ return () => {
 - **1：** useReducer()：类似于 useState，但适用于复杂的状态管理，类似于 Redux 的 reducer。
 - **1：** useRef()：用于访问组件中的 DOM 节点或保存可变的值。
 - **1：** useMemo() 和 useCallback()：用于性能优化，避免不必要的渲染。
+
+## React 中的状态和 props 有什么区别？
+
+#### 类型：基础
+
+#### 级别：W2
+
+#### 解答（2 分）
+
+- **1：** props（属性）：由父组件传递给子组件，用于传递数据。props 是只读的，子组件不能修改 props。
+
+```js
+ function MyComponent(props) {
+  return <h1>{props.message}</h1>;
+}
+
+```
+
+- **1：** state（状态）：由组件自身管理，用于存储和跟踪组件的动态数据。state 是可变的，可以通过 this.setState()（类组件）或 useState()（函数组件）来更新。
+
+```js
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+}
+
+```
+
+## React 中如何处理事件？
+
+#### 类型：基础
+
+#### 级别：W2
+
+#### 解答（3 分）
+
+- **1：** React 事件处理的方式与原生 JavaScript 不同，React 使用事件委托来优化性能，并且事件名称采用驼峰命名法。
+
+```js
+function MyComponent() {
+  const handleClick = (event) => {
+    alert('Button clicked!');
+  };
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+
+```
+
+- **1：** React 会自动绑定事件处理函数。
+- **1：** 事件对象会被 React 规范化。
