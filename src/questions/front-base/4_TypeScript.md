@@ -109,3 +109,45 @@ type Person = {
 
 - **1：**
   TypeScript 的基本数据类型包括：number（数字，包括整数和浮点数）、string（字符串）、boolean（布尔值，只有true和false）、null（表示空值）、undefined（表示未定义）、symbol（ES6 新增的一种原始数据类型，用于表示独一无二的值）和bigint（用于表示任意精度的整数）
+
+## 7、什么是泛型,有什么作用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 在定义某些函数、接口和类时，不写死类型，而是改用类型参数的形式，让类型更加灵活。
+
+<details>
+
+```typescript
+
+interface IResponseData<T>{
+    code: number;
+    message?: string;
+    data: T;
+}
+
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+// 使用时传入User类型
+const response: IResponseData<User> = {
+  code: 200,
+  message: "Success",
+  data: {
+    id: 1,
+    name: "xiaoming",
+    email: "xxx@qq.com"
+  }
+};
+
+```
+
+</details>
