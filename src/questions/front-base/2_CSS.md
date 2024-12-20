@@ -84,3 +84,17 @@ display: flex：将容器设置为弹性容器。
 flex-direction：指定主轴方向，如 row（水平，从左到右）、row-reverse（水平，从右到左）、column（垂直，从上到下）、column-reverse（垂直，从下到上）。
 justify-content：在主轴上对齐项目，如 flex-start（起始位置对齐）、flex-end（末尾位置对齐）、center（居中对齐）、space-between（两端对齐，项目之间均匀分布）、space-around（每个项目两侧均匀分布）。
 align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-start、flex-end、center、baseline（项目第一行文字基线对齐）、stretch（默认值，拉伸项目以适应容器）等取值。
+
+## 如何减少页面回流和重绘？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 避免频繁地修改布局相关的属性: 尤其是在循环或高频事件中。例如，直接通过JavaScript频繁修改元素的 width、height 会触发回流
+- **1：** 批量更新DOM: 使用 requestAnimationFrame 或 setTimeout 将多个操作合并成一次回流
+- **1：** 避免修改宽高和布局计算的父元素：获取元素的 offsetHeight 后立即改变元素的尺寸属性，这会导致浏览器先进行回流，再去计算样式
+- **1：** 使用transform和opacity代替布局属性 例如：获取元素的 offsetHeight 后立即改变元素的尺寸属性，这会导致浏览器先进行回流，再去计算样式。
+- **1：** 避免频繁地修改布局相关的属性 :修改父元素的尺寸会引起子元素的回流，尽量避免直接操作父元素的尺寸，尤其是在大型布局中
