@@ -306,3 +306,42 @@ objectFactory(构造函数, 初始化参数);
 - **1：** 数组归并方法 reduce() 和 reduceRight() 方法
 
 </details>
+
+## bind、call、apply 区别
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** call 和apply 都是为了解决改变 this 的指向。作⽤都是相同的，只是传参的⽅式不同
+- **1：** 除了第⼀个参数外，call 可以接收⼀个参数列表，apply 只接受⼀个参数数组
+
+```js
+let a = { value: 1 }
+function
+  getValue(name, age) {
+  console.log(name)
+  console.log(age)
+  console.log(this.value)
+}
+getValue.call(a, 'yck','24')
+getValue.apply(a,['yck', '24'])
+```
+
+- **1：** bind 和其他两个⽅法作⽤也是⼀致的，只是该⽅法会返回⼀个函数。并且我们可以通过 bind 实现柯⾥化
+
+</details>
+
+## == 和 ===区别，什么情况⽤ ==
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断

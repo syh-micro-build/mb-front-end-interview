@@ -91,3 +91,34 @@ function MyComponent() {
 
 - **1：** React 会自动绑定事件处理函数。
 - **1：** 事件对象会被 React 规范化。
+
+## useState 连续调用，页面不更新？
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+const [age,  setAge] = useState(42);
+
+function handleClick() {
+  setAge(age + 1); // setAge(42 + 1)
+  setAge(age + 1); // setAge(42 + 1)
+  setAge(age + 1); // setAge(42 + 1)
+}
+
+// 点击一次后，age 将只会变为 43 而不是 45！
+```
+
+- **1：** 连续调用 useState 不会触发页面更新，因为每次调用 useState 都会返回一个新的状态值和更新状态的函数。
+- **1：** 要连续更新状态，你可以使用函数式更新，将当前状态作为参数传递给更新函数
+
+```js
+function handleClick() {
+  setAge(a => a + 1); // setAge(42 => 43)
+  setAge(a => a + 1); // setAge(43 => 44)
+  setAge(a => a + 1); // setAge(44 => 45)
+}
+```
