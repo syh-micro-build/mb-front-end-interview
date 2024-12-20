@@ -27,6 +27,7 @@ jobs:
         npm run docs:build
 
     - name: Deploy
+      # https://github.com/marketplace/actions/deploy-to-github-pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         ACCESS_TOKEN: ${{ secrets.VITEPRESS }}  # 使用 GitHub Secret 中的令牌
