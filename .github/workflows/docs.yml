@@ -1,4 +1,8 @@
 name: Docs
+
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -28,6 +32,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.VITEPRESS }}  # 使用 GitHub Secret 中的令牌
         BRANCH: gh-pages  # 部署到 gh-pages 分支
         FOLDER: dist  # 部署 dist 文件夹
-    - name: Display deployed site URL
-      run: |
-        echo "预览地址：https://not-have.github.io/mb-front-end-interview/"
+        CLEAR: true
+    # - name: Display deployed site URL
+    #   run: |
+    #     echo "预览地址：https://not-have.github.io/mb-front-end-interview/"
