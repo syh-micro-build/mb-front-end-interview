@@ -108,10 +108,8 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 #### 解答（1 分）
 
 - **1：** calc() 允许你在 CSS 中执行简单的数学运算。例如：
-```js
-
+```css
   width: calc(100% - 20px);
-
 ```
 
 ## CSS 中的三种常用布局方式？
@@ -120,10 +118,22 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（1 分）
+#### 解答（3 分）
 
 - **1：** float 布局：通过浮动和清除浮动来实现布局
 - **1：** flex 布局：更加现代和灵活，适用于一维布局
 - **1：** grid 布局：二维布局，支持更复杂的布局
 
 
+## 什么是 viewport？如何在页面中设置视口大小？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 视口是用户可以看到的网页区域。设置视口的常见做法是在 <head> 中添加如下标签
+```html
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
