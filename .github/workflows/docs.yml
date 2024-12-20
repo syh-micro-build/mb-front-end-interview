@@ -17,10 +17,10 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22.12.0'  # 设置 Node.js 版本为 22.12.0
-    # - name: Install and Build
-    #   run: |
-    #     npm install
-    #     npm run docs:build
+    - name: Install and Build
+      run: |
+        npm install
+        npm run docs:build
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
@@ -28,4 +28,6 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.VITEPRESS }}  # 使用 GitHub Secret 中的令牌
         BRANCH: gh-pages  # 部署到 gh-pages 分支
         FOLDER: dist  # 部署 dist 文件夹
-        BUILD_SCRIPT: npm install && npm run docs:build  # 在部署前执行构建命令
+    - name: Display deployed site URL
+      run: |
+        echo "预览地址：https://not-have.github.io/mb-front-end-interview/"
