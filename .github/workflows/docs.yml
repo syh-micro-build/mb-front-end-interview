@@ -2,26 +2,30 @@ name: Docs
 on:
   push:
     branches:
-      - ci-workflow # 在向 main 分支推送时触发工作流
+      - ci-workflow  # 触发工作流的分支是 ci-workflow
+
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 使用 Ubuntu 最新的 runner
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        persist-credentials: false
+        persist-credentials: false  # 不要保存凭证
+
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '22.12.0'
-    - name: Install and Build
-      run: |
-        npm install
-        npm run docs:build
+        node-version: '22.12.0'  # 设置 Node.js 版本为 22.12.0
+    # - name: Install and Build
+    #   run: |
+    #     npm install
+    #     npm run docs:build
+
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
-      with: 
-        ACCESS_TOKEN: ${{ secrets.VITEPRESS }}
-        BRANCH: gh-pages
-        FOLDER: dist
+      with:
+        ACCESS_TOKEN: ${{ secrets.VITEPRESS }}  # 使用 GitHub Secret 中的令牌
+        BRANCH: gh-pages  # 部署到 gh-pages 分支
+        FOLDER: dist  # 部署 dist 文件夹
+        BUILD_SCRIPT: npm install && npm run docs:build  # 在部署前执行构建命令
