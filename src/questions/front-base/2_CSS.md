@@ -85,7 +85,6 @@ flex-direction：指定主轴方向，如 row（水平，从左到右）、row-r
 justify-content：在主轴上对齐项目，如 flex-start（起始位置对齐）、flex-end（末尾位置对齐）、center（居中对齐）、space-between（两端对齐，项目之间均匀分布）、space-around（每个项目两侧均匀分布）。
 align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-start、flex-end、center、baseline（项目第一行文字基线对齐）、stretch（默认值，拉伸项目以适应容器）等取值。
 
-
 ## 如何减少页面回流和重绘？
 
 #### 类型：`基础`
