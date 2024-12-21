@@ -1,0 +1,20 @@
+name: Sync To Gitee  #名字  可自定义
+
+# on: page_build  #触发条件   page_build表示Github Page部署完成后触发
+
+on:
+  push:
+    branches:
+      - main  # 触发工作流的分支是 main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/mirror-a-repository-using-ssh
+      - uses: wearerequired/git-mirror-action@master #开源actions包
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        with:
+          source-repo: "git@github.com:CatsAndMice/medash.git" # github仓库地址
+          destination-repo: "git@gitee.com:JsHai/tool.git" # gitee仓库地址
