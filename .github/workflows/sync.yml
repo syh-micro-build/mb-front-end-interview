@@ -1,5 +1,4 @@
 name: Sync To Gitee  # 工作流名称
-
 # on: page_build  #触发条件   page_build表示Github Page部署完成后触发
 
 on:
@@ -11,29 +10,13 @@ jobs:
   sync:
     runs-on: ubuntu-latest  # 使用最新的 Ubuntu 运行器
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4  # 检出代码
-
-      - name: Set up SSH for GitHub and Gitee
-        run: |
-          mkdir -p ~/.ssh
-          
-          # 添加 GitHub 和 Gitee 的公钥到 known_hosts
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          ssh-keyscan -t rsa gitee.com >> ~/.ssh/known_hosts
-
-          # 将 GitHub 私钥保存到 id_rsa 文件
-          echo "$GITEE_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-      - name: Set GIT_DISCOVERY_ACROSS_FILESYSTEM
-        run: |
-          echo "GIT_DISCOVERY_ACROSS_FILESYSTEM=1" >> $GITHUB_ENV
-
-      - name: Sync to Gitee
-        uses: wearerequired/git-mirror-action@master
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}  # 使用 GitHub Secrets 中的私钥
+      - name: Mirror the Github organization repos to Gitee.
+        uses: Yikun/hub-mirror-action@master
         with:
-          source-repo: "git@github.com:Not-have/mb-front-end-interview.git"  # GitHub 仓库地址
-          destination-repo: "git@gitee.com:Green_chicken/docs.git"  # Gitee 仓库地址
+          src: Not-have
+          dst: Green_chicken
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          account_type: org
+          # src_account_type: org
+          # dst_account_type: org
