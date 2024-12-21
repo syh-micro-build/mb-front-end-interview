@@ -13,8 +13,8 @@ jobs:
       - name: Mirror the Github organization repos to Gitee.
         uses: Yikun/hub-mirror-action@master
         with:
-          src: github/Not-have
-          dst: gitee/Green_chicken
+          src: git@github.com:Not-have/mb-front-end-interview.git
+          dst: git@gitee.com:Green_chicken/docs.git
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
           account_type: org
