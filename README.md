@@ -47,7 +47,11 @@ npx cz
 - 格式化 md 文件
 
 ```bash
-npm run lint:md
+# 检查所有文件
+npm run lint
+
+# 格式化所有文件
+npm run fix
 
 # 格式化某个文件
 npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix

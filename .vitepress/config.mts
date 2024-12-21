@@ -7,6 +7,8 @@ export default async () => {
   const questionsSidebar = await genSpecSidebar(questionsMenu, 'src/questions')
 
   return defineConfig({
+    base: "/mb-front-end-interview/",
+    outDir: "dist",
     title: "前端面试题库",
     description: "致力于为前端人员提供全面可靠的专业知识",
     themeConfig: {
