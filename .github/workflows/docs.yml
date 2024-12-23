@@ -63,7 +63,7 @@ jobs:
           echo $PREVIEW_URL
 
           # 输出为 GitHub Actions 的 Annotations
-          echo "::notice title=Preview Link::The site has been deployed! Visit the preview here: $PREVIEW_URL"
+          echo "::notice title=Preview Link::The site has been deployed! Visit the preview here: [$PREVIEW_URL]($PREVIEW_URL)"
 
 # 同步 Gitee 仓库
 # https://gitee.com/help/articles/4336#article-header0
