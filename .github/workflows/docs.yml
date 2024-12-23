@@ -13,7 +13,7 @@ on:
       - main  # 触发工作流的分支是 main
 
 jobs:
-  build-and-deploy:
+  docs:
     runs-on: ubuntu-latest  # 使用 Ubuntu 最新的 runner
 
     concurrency:
@@ -44,5 +44,11 @@ jobs:
           BRANCH: gh-pages  # 部署到 gh-pages 分支
           FOLDER: dist  # 部署 dist 文件夹
           CLEAR: true
+        # - name: Show Preview URL
+        #   if: always()  # 确保此步骤始终运行
+        #   run: |
+        #     echo "The site has been deployed to:"
+        #     echo "https://not-have.github.io/mb-front-end-interview/"
+
 # 同步 Gitee 仓库
 # https://gitee.com/help/articles/4336#article-header0
