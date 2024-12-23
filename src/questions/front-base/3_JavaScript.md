@@ -345,3 +345,162 @@ getValue.apply(a,['yck', '24'])
 #### 解答（1 分）
 
 - **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断
+
+## Proxy 的使用
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **4：** 部分 API
+
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e08a8f141f44148ad6f66c7fdc1ab3e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp)
+
+- **1：** 函数调用的监听
+
+```js
+function fun() {
+    console.log("哈哈哈");
+}
+
+const objProxy = new Proxy(fun, {
+    /**
+     * 拦截对函数的调用的捕获器
+     * @param target target new Proxy 所代理的 obj（监听的对象）
+     * @param thisArg 调用函数时绑定的 this 值
+     * @param argArray 调用函数时传递的参数列表
+     */
+    apply(target, thisArg, argArray) {
+        console.log("对 fun 函数进行了 apply 的调用。");
+        // 调用原始函数，并在其结果前后添加一些内容
+        target.apply(thisArg, argArray)
+    },
+    /**
+     * 监听 class 时的捕获器
+     * @param target target new Proxy 所代理的 obj（监听的对象）
+     * @param argArray new fun() 时传入的参数，例：new fun(1, 2, ...rest)
+     * @param newTarget 被调用的构造函数。在这里，newTarget 就是 objProxy 本身，因为 objProxy 是一个函数代理
+     */
+    construct(target, argArray, newTarget) {
+        console.log("对 fun 函数进行了 construct 的调用。");
+        return new target(...argArray)
+    }
+});
+
+objProxy.apply();
+new objProxy();
+
+```
+
+- **1：** new Proxy 中 receiver 参数的作用
+
+```js
+const obj = {
+    _name: "里斯",
+    age: 16,
+    get name() {
+        return this._name;
+    },
+    set name(newValue) {
+        this._name = newValue;
+    }
+};
+
+const objProxy = new Proxy(obj, {
+    /**
+     * receiver 就是 objProxy 这个代理对象
+     * receiver 传入 Reflect.get 之后，他就作为 obj 里的 this 了（this 这个时候就改变了）
+     *
+     */
+    get(target, key, receiver) {
+        console.log(receiver);
+        /**
+         * 传入 receiver 后，他被访问了两次
+         */
+        return Reflect.get(target, key, receiver);
+    },
+    set(target, key, newValue, receiver) {
+        Reflect.set(target, key, newValue, receiver);
+    }
+});
+
+objProxy.name = "哈哈哈";
+console.log(objProxy.name);
+```
+
+</details>
+
+## Object.defineProperty 的使用
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **1：** Object.defineProperty 的设计初中不是为了监听对象中属性变化的，而是为了定义访问属性描述符。
+
+- **1：** 访问属性描述符包括：configurable、enumerable、writable、value
+
+- **1：** 访问属性描述符的方法：Object.getOwnPropertyDescriptor()
+
+- **1：** 缺点
+
+    ① 一次监听太多的时候，不是很友好
+
+    ② 新增、删除的时候，他是无能为力的
+
+    ③ 会修改原对象中的属性
+
+```js
+const obj = {
+    name: "里斯",
+    age: 16
+};
+
+/**
+ * 监听某个属性
+ */
+/*
+Object.defineProperty(obj, "name", {
+    set(v) {
+        console.log(v);
+        console.log("监听到 set");
+    },
+    get() {
+        console.log("监听到 get");
+    }
+});
+*/
+
+/**
+ * 监听所有的属性
+ */
+Object.keys(obj).forEach(key => {
+    console.log(key);
+    let value = obj[key];
+    Object.defineProperty(obj, key, {
+        set(v) {
+            console.log(`监听到属性 ${key}，被 set 为 ${v}`);
+            value = v;
+        },
+        get() {
+            console.log(`监听到属性 ${key} get`);
+            return value;
+        }
+    });
+});
+
+
+obj.name = "哈哈哈";
+
+console.log(obj.name);
+```
+
+</details>
