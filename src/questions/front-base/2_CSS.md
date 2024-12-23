@@ -164,3 +164,14 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 - **1：** 使用 Autoprefixer 等工具自动添加前缀。
 - **1：** 测试多个浏览器，确保关键功能正常
 - **1：** 使用 CSS Reset 或 Normalize.css 来减少浏览器间的样式差异。
+
+## box-sizing: border-box 和 content-box 的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** content-box（默认值）：width 和 height 只包括内容区域，不包括 padding 和 border。
+- **1：** border-box：width 和 height 包括内容区域、padding 和 border。
