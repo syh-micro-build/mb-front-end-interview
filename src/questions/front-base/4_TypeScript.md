@@ -1,6 +1,6 @@
 # TypeScript
 
-## 1、ts 如何定义对象结构体
+## ts 如何定义对象结构体
 
 #### 类型：`基础`
 
@@ -26,7 +26,7 @@ type Person = {
 }
 ```
 
-## 2、type 和 interface的区别？
+## type 和 interface的区别？
 
 #### 类型：`基础`
 
@@ -42,7 +42,7 @@ type Person = {
 
 </details>
 
-## 3、常用工具类型？
+## 常用工具类型？
 
 #### 类型：`基础`
 
@@ -62,7 +62,7 @@ type Person = {
 
 </details>
 
-## 4、any、never、unknown、null & undefined 和 void 有什么区别？
+## any、never、unknown、null & undefined 和 void 有什么区别？
 
 #### 类型：`基础`
 
@@ -80,7 +80,7 @@ type Person = {
 
 </details>
 
-## 5、?.、??、!、!.、_、** 等符号的含义？
+## ?.、??、!、!.、_、** 等符号的含义？
 
 #### 类型：`基础`
 
@@ -99,7 +99,7 @@ type Person = {
 
 </details>
 
-## 6、请解释一下 TypeScript 中的基本数据类型有哪些？
+## 请解释一下 TypeScript 中的基本数据类型有哪些？
 
 #### 类型：`基础`
 
@@ -110,7 +110,7 @@ type Person = {
 - **1：**
   TypeScript 的基本数据类型包括：number（数字，包括整数和浮点数）、string（字符串）、boolean（布尔值，只有true和false）、null（表示空值）、undefined（表示未定义）、symbol（ES6 新增的一种原始数据类型，用于表示独一无二的值）和bigint（用于表示任意精度的整数）
 
-## 7、什么是泛型,有什么作用？
+## 什么是泛型,有什么作用？
 
 #### 类型：`基础`
 
