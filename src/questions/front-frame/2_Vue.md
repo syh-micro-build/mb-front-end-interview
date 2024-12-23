@@ -81,3 +81,4 @@
 * **1：** 工作流程：<br/>组件通过 dispatch 方法触发 Actions，Actions 中可以进行异步操作，然后通过 commit 提交 Mutations，
 Mutations 同步修改 State 的数据，组件可以通过 mapState、mapGetters 等辅助函数获取 State 和 Getters 中的数据，从而实现数据的响应式变化
 和组件的更新。
+
