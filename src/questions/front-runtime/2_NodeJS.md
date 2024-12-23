@@ -35,3 +35,23 @@ Node.js 的事件循环和浏览器中的事件循环的区别在于，浏览器
 - check阶段：执行setImmediate()的回调函数。
 
 - close callbacks阶段：执行关闭事件的回调函数，例如socket.on('close')。
+
+## 3. Nodejs的内存泄漏排查方法有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+Node.js的内存泄漏排查方法有以下几种：
+
+- 使用Node.js自带的内存分析工具，如`process.memoryUsage()`和`heapdump`模块。
+
+- 使用第三方内存分析工具，如Chrome DevTools、VisualVM等。
+
+- 使用内存泄漏检测工具，如`leak`、`memwatch`等。
+
+- 使用代码审查和静态分析工具，如ESLint、JSHint等。
+
+- 使用单元测试和集成测试，确保代码的正确性和稳定性。
