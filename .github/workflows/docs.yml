@@ -40,7 +40,9 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         if: github.ref == 'refs/heads/main' # 判断当前分支是否为 main
         with:
-          ACCESS_TOKEN: ${{ secrets.VITEPRESS }}  # 使用 GitHub Secret 中的令牌
+          ACCESS_TOKEN: ${{ secrets.VITEPRESS_DOCS }}  # 使用 GitHub Secret 中的令牌
           BRANCH: gh-pages  # 部署到 gh-pages 分支
           FOLDER: dist  # 部署 dist 文件夹
           CLEAR: true
+# 同步 Gitee 仓库
+# https://gitee.com/help/articles/4336#article-header0
