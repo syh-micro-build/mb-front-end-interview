@@ -138,3 +138,16 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 ```html
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
+
+## 解释 transform、translate、scale、rotate 等属性的使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **1：** transform 用于在 2D 或 3D 空间中对元素进行旋转、缩放、平移等操作。
+- **1：** translate(x, y)：平移元素
+- **1：** rotate(deg)：旋转元素。
+- **1：** scale(x, y)：缩放元素。
