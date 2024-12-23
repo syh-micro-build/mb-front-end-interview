@@ -47,11 +47,16 @@ jobs:
           BRANCH: gh-pages  # 部署到 gh-pages 分支
           FOLDER: dist  # 部署 dist 文件夹
           CLEAR: true
-        # - name: Show Preview URL
-        #   if: always()  # 确保此步骤始终运行
-        #   run: |
-        #     echo "The site has been deployed to:"
-        #     echo "https://not-have.github.io/mb-front-end-interview/"
+      - name: Show Preview URL
+        if: always()  # 确保此步骤始终运行
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          
+          # 动态生成预览 URL
+          PREVIEW_URL="https://${GITHUB_REPOSITORY/\/#/.github.io/}"
+          
+          echo "The site has been deployed to:"
+          echo $PREVIEW_URL
 
 # 同步 Gitee 仓库
 # https://gitee.com/help/articles/4336#article-header0
