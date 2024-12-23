@@ -8,6 +8,8 @@ permissions:
   contents: write
 
 on:
+  # 手动触发
+  workflow_dispatch:
   push:
     branches:
       - main  # 触发工作流的分支是 main
