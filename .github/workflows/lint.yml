@@ -12,11 +12,10 @@ jobs:
       - name: Checkout code
         # 后面考虑升级
         # https://github.com/marketplace/actions/checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: npm install
 
       - name: Run linting
-        run: npm run lint:md
-
+        run: npm run lint
