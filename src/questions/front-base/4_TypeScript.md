@@ -151,3 +151,21 @@ const response: IResponseData<User> = {
 ```
 
 </details>
+
+## 8、如何在 TypeScript 中定义一个只读属性的接口？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 使用 readonly 关键字。例如：
+
+```ts
+interface Person {
+  readonly name: string;
+}
+let p: Person = { name: "John" };
+// p.name = "Doe";  // 错误，不能修改只读属性
+```

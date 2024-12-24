@@ -20,10 +20,6 @@
         "newest",
         "computer-base",
         "ai",
-        "js",
-        "ts",
-        "vue",
-        "react",
         "web3",
         "style",
         "refactor",
@@ -118,26 +114,6 @@
         "value": "ai",
         "name": "ai:                 🤖  人工智能 | Artificial intelligence",
         "emoji": ":robot:"
-      },
-      {
-        "value": "js",
-        "name": "js:                 💻  JavaScript | JavaScript",
-        "emoji": ":computer:"
-      },
-      {
-        "value": "ts",
-        "name": "ts:                 🔷  TypeScript | TypeScript",
-        "emoji": ":blue_square:"
-      },
-      {
-        "value": "vue",
-        "name": "vue:                🔮  Vue.js | Vue.js framework",
-        "emoji": ":crystal_ball:"
-      },
-      {
-        "value": "react",
-        "name": "react:              ⚛️  React | React framework",
-        "emoji": ":atom:"
       },
       {
         "value": "web3",

@@ -8,12 +8,14 @@ permissions:
   contents: write
 
 on:
+  # 手动触发
+  workflow_dispatch:
   push:
     branches:
       - main  # 触发工作流的分支是 main
 
 jobs:
-  build-and-deploy:
+  docs:
     runs-on: ubuntu-latest  # 使用 Ubuntu 最新的 runner
 
     concurrency:
@@ -38,11 +40,30 @@ jobs:
       - name: Deploy
         # https://github.com/marketplace/actions/deploy-to-github-pages
         uses: JamesIves/github-pages-deploy-action@v4
-        if: github.ref == 'refs/heads/main' # 判断当前分支是否为 main
+        # 取消这个判断，让每个人都能基于自己分支，进行个性化部署
+        # if: github.ref == 'refs/heads/main' # 判断当前分支是否为 main
         with:
           ACCESS_TOKEN: ${{ secrets.VITEPRESS_DOCS }}  # 使用 GitHub Secret 中的令牌
           BRANCH: gh-pages  # 部署到 gh-pages 分支
           FOLDER: dist  # 部署 dist 文件夹
           CLEAR: true
+      - name: Show Preview URL
+        if: always()  # 确保此步骤始终运行
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+
+          # 获取用户名和仓库名
+          USERNAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f1)
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          
+          # 构造预览 URL
+          PREVIEW_URL="https://${USERNAME}.github.io/${REPO_NAME}/"
+          
+          echo "The site has been deployed to:"
+          echo $PREVIEW_URL
+
+          # 输出为 GitHub Actions 的 Annotations
+          echo "::notice title=Preview Link::The site has been deployed! Visit the preview here: $PREVIEW_URL"
+
 # 同步 Gitee 仓库
 # https://gitee.com/help/articles/4336#article-header0
