@@ -115,3 +115,25 @@ Node.js的模块化有以下几种方法：
 - Eggjs：基于Koa封装的框架，整合了数据库、路由、安全防护、日志记录、异常处理等中间件，可以用来快速开发Rest或者Restful API项目。
 
 - Nestjs：基于TS,使用了大量的装饰器语法，开发体验类似于Java的Springboot。除此之外，Nestjs还提供了GraphQL、WebSocket、各种MQ和微服务的解决方案，比较适合大型后端项目的开发。
+
+## 7. Nodejs的异步编程有哪些方法？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+Node.js的异步编程有以下几种方法：
+
+- 回调函数：将异步操作的结果作为回调函数的参数传递给回调函数。
+
+- Promise：将异步操作的结果封装成一个Promise对象，通过then和catch方法处理异步操作的结果。
+
+- async/await：将异步操作的结果封装成一个Promise对象，通过await关键字等待异步操作的结果。
+
+- Generator：将异步操作的结果封装成一个Generator对象，通过yield关键字等待异步操作的结果。
+
+- 流程控制库：如`async`、`bluebird`、`co`等库，提供了更方便的异步编程方式。
+
+- 事件驱动：通过事件驱动的方式处理异步操作，如`EventEmitter`、`Stream`等。
