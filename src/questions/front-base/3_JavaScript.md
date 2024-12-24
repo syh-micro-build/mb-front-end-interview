@@ -639,3 +639,70 @@ person 函数内部：
 ```
 
 </details>
+
+## 柯里化
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+给函数传递一部分参数来调用这个函数，并且 当前的这个函数他会在返回一个函数，去处理剩余的参数，见下面 示例：
+
+![](/public/images/3_JavaScript_20241224170424.png)
+
+也就是 拆分函数的参数，这样的就可以叫 柯里化。
+
+- **1：** 使用函数柯里化的好处？
+
+在函数式的编程中，尽量 让一个函数处理一个问题，尽可能的单一，而不是将一些问题交给一个方法去解决，就好比 react 的函数式组件，你的一个功能组件是经过多个 UI 组件合成而来的一样，所以我们可以将每次传入的参数在，当前函数中处理，在当前函数处理完成后，在下一个函数中在使用上一个函数的处理结果即可。
+
+- **1：** 例子
+
+实现一个给第一个参数加2，给第二个参数乘2的例子
+
+![](/public/images/3_JavaScript_20241224170632.png)
+
+- **2：** 柯里化函数的实现
+
+```js
+/**
+ * 多参函数 转 柯里化函数
+ */
+function currying(fn) { // 接受一个函数,返回一个函数
+    // 这里是接受剩余参数
+    function receivedParameters(...args) {
+        // 判断当前已经接受到的参数的个数, 和参数本身(这个参数本身就是一个函数)需要接收到参数是否已经一致
+        // console.log(fn.length);
+        // console.log(args.length);
+        // 到传入函数的参数(fn 的参数) 大于 传入的参数(...args)时,就直接调用传入的函数
+        if (args.length >= fn.length) {
+            // 这个 apply 是为了方式外面调用时,绑定了this,而导致这个里面执行 fn 时的混乱
+            return fn.apply(this, args);
+        } else {
+            // 当参数不够的时候, 需要返回一个函数,来接续接收传入的参数,所以 在这 就需要把传入的所有参数,进行一次拼接
+            return function (...smallArgs) {
+                // 这个里面用了递归,来检查参数 是否达到,达到了,就运行传入的函数(fn)
+                return receivedParameters.apply(this, [...args, ...smallArgs])
+            }
+        }
+    }
+    return receivedParameters
+}
+
+// 使用
+function fun(n, m, b) { // fun的参数个数,是可以 通过 fun.length 拿到的
+    return n + m + b
+}
+
+const test = currying(fun);
+
+console.log(test(1, 2, 3));
+console.log(test(1)(2, 3))
+console.log(test(1)(2)(3));
+```
+
+</details>
