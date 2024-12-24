@@ -137,3 +137,33 @@ Node.js的异步编程有以下几种方法：
 - 流程控制库：如`async`、`bluebird`、`co`等库，提供了更方便的异步编程方式。
 
 - 事件驱动：通过事件驱动的方式处理异步操作，如`EventEmitter`、`Stream`等。
+
+## 8. Nodejs的文件系统有哪些方法？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+Node.js的文件系统有以下几种方法：
+
+- `fs.readFile`：读取文件内容。
+
+- `fs.writeFile`：写入文件内容。
+
+- `fs.appendFile`：追加文件内容。
+
+- `fs.unlink`：删除文件。
+
+- `fs.rename`：重命名文件。
+
+- `fs.stat`：获取文件信息。
+
+- `fs.readdir`：读取目录内容。
+
+- `fs.mkdir`：创建目录。
+
+- `fs.rmdir`：删除目录。
+
+- `fs.watch`：监听文件或目录的变化。
