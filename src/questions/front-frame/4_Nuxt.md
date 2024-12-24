@@ -69,3 +69,178 @@ Nuxt2：基于 Webpack 构建，在开发过程中，热更新速度相对较慢
 更多的手动配置和复杂的逻辑来确保数据的正确获取和页面的预渲染。
 
 </details>
+
+## Nuxt.js的生命周期有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+* **1：** 服务器端生命周期：
+  + nuxtServerInit：在服务端初始化数据
+  + middleware：中间件执行
+  + validate()：验证动态路由参数
+  + asyncData()：异步数据加载
+  + fetch()：服务端数据获取
+
+* **1：** Vue生命周期（服务端）：
+  + beforeCreate：组件实例化之前
+  + created：组件创建完成
+
+* **1：** Vue生命周期（客户端）：
+  + beforeMount：DOM挂载之前
+  + mounted：DOM挂载完成
+  + beforeUpdate：数据更新前
+  + updated：数据更新后
+
+* **1：** 页面特定钩子：
+  + transition：页面过渡效果
+  + head：设置页面元信息
+
+* **1：** 注意事项：
+  + 服务端只能访问beforeCreate和created
+  + window/document只能在mounted中使用
+  + asyncData/fetch在每次路由变化时都会调用
+
+## Nuxt.js中的数据获取方式有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+* **1：** asyncData方法：
+  + 在组件初始化前调用
+  + 可以返回Promise
+  + 返回的数据会合并到组件data中
+  + 只能在页面组件中使用
+
+  ```js
+  async asyncData({ $axios }) {
+    const data = await $axios.$get('/api/data')
+    return { data }
+  }
+  ```
+
+* **1：** fetch方法：
+  + 可在任何组件中使用
+  + 不直接返回数据
+  + 通常用于填充Vuex状态
+
+  ```js
+  async fetch() {
+    const { data } = await this.$axios.$get('/api/data')
+    this.items = data
+  }
+  ```
+
+* **1：** Vuex操作：
+  + nuxtServerInit初始化存储
+  + store中的actions获取数据
+  + 支持模块化管理
+
+  ```js
+  export const actions = {
+    async fetchData({ commit }) {
+      const data = await this.$axios.$get('/api/data')
+      commit('SET_DATA', data)
+    }
+  }
+  ```
+
+* **1：** API调用最佳实践：
+  + 使用@nuxtjs/axios模块
+  + 统一管理API请求
+  + 处理错误和加载状态
+  + 实现数据缓存策略
+
+## Nuxt.js的SEO优化方案有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+* **1：** Meta标签管理：
+
+  ```js
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'keywords', name: 'keywords', content: this.keywords }
+      ]
+    }
+  }
+  ```
+
+* **1：** 服务端渲染(SSR)：
+  + 预渲染完整HTML
+  + 更好的首屏加载
+  + 搜索引擎可直接爬取内容
+
+  ```js
+  // nuxt.config.js
+  export default {
+    ssr: true
+  }
+  ```
+
+* **1：** 静态站点生成(SSG)：
+  + 构建时生成静态HTML
+  + 适合内容不常更新的站点
+
+  ```js
+  // nuxt.config.js
+  export default {
+    target: 'static',
+    generate: {
+      routes: ['/posts/1', '/posts/2']
+    }
+  }
+  ```
+
+* **1：** 结构化数据：
+  + 实现JSON-LD
+  + 添加Schema.org标记
+  + 提供更丰富的搜索结果
+
+  ```js
+  head() {
+    return {
+      script: [{
+        type: 'application/ld+json',
+        json: {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": this.title
+        }
+      }]
+    }
+  }
+  ```
+
+* **1：** 性能优化：
+  + 图片懒加载
+  + 资源预加载
+  + 代码分割
+  + 缓存策略
+
+  ```js
+  // nuxt.config.js
+  export default {
+    render: {
+      http2: {
+        push: true
+      },
+      static: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+      }
+    }
+  }
+  ```
