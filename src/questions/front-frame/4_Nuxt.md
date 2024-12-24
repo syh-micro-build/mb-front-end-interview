@@ -156,3 +156,91 @@ Nuxt2：基于 Webpack 构建，在开发过程中，热更新速度相对较慢
   + 统一管理API请求
   + 处理错误和加载状态
   + 实现数据缓存策略
+
+## Nuxt.js的SEO优化方案有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+* **1：** Meta标签管理：
+
+  ```js
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.description },
+        { hid: 'keywords', name: 'keywords', content: this.keywords }
+      ]
+    }
+  }
+  ```
+
+* **1：** 服务端渲染(SSR)：
+  + 预渲染完整HTML
+  + 更好的首屏加载
+  + 搜索引擎可直接爬取内容
+
+  ```js
+  // nuxt.config.js
+  export default {
+    ssr: true
+  }
+  ```
+
+* **1：** 静态站点生成(SSG)：
+  + 构建时生成静态HTML
+  + 适合内容不常更新的站点
+
+  ```js
+  // nuxt.config.js
+  export default {
+    target: 'static',
+    generate: {
+      routes: ['/posts/1', '/posts/2']
+    }
+  }
+  ```
+
+* **1：** 结构化数据：
+  + 实现JSON-LD
+  + 添加Schema.org标记
+  + 提供更丰富的搜索结果
+
+  ```js
+  head() {
+    return {
+      script: [{
+        type: 'application/ld+json',
+        json: {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": this.title
+        }
+      }]
+    }
+  }
+  ```
+
+* **1：** 性能优化：
+  + 图片懒加载
+  + 资源预加载
+  + 代码分割
+  + 缓存策略
+
+  ```js
+  // nuxt.config.js
+  export default {
+    render: {
+      http2: {
+        push: true
+      },
+      static: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+      }
+    }
+  }
+  ```
