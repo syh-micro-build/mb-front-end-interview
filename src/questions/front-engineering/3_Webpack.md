@@ -172,3 +172,123 @@ app.listen(3000);
   >配置方式(推荐)：在 webpack.config.js文件中指定 loader  
   >内联方式：在每个 import 语句中显式指定 loader  
   >Cl 方式：在 shell 命令中指定它们  
+
+## webpack的Plugin是什么
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** webpack 中的 plugin 赋予其各种灵活的功能，例如打包优化、资源管理、环境变量注入等，它们会运行在 webpack 的不同阶段(钩子/生命周期)，贯穿了 webpack 整个编译周期，目的在于解决 loader 无法实现的其他事
+
+## webpack的Plugin和Loader的区别
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：**【Loader】：用于对模块源码的转换， loader可以将文件从不同的语言（如TypeScript）转换为JavaScript，或者将内联图像转换为data URL。比如说：CSS-Loader，Style-Loader等。
+- **1：**【Plugin】：目的在于解决loader无法实现的其他事，从打包优化和压缩，到重新定义环境变量，功能强大到可以用来处理各种各样的任务。webpack提供了很多开箱即用的插件：CommonChunkPlugin主要用于提取第三方库和公共模块，避免首屏加载的bundle文件，或者按需加载的bundle文件体积过大，导致加载时间过长，是一把优化的利器。而在多页面应用中，更是能够为每个页面间的应用程序共享代码创建bundle。
+
+## webpack常见的提升构建速度的方法
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 常见的有一下几种：
+
+ >优化 loader 配置  
+ >合理使用 resolve.extensions  
+ >优化 resolve.modules  
+ >优化 resolve.alias  
+ >使用 DLLPlugin 插件  
+ >使用 cache-loader  
+ >terser 启动多线程  
+ >合理使用 sourceMap
+
+## webpack中的Loader如何编写？
+
+#### 类型：`架构`
+
+#### 级别：`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **5：** loader 的本质其本质为函数，函数中的 this 作为上下文会被 webpack 填充，因此我们不能将 loader 设为一个箭头函数。
+函数接受一个参数，为 webpack 传递给 loader 的文件源内容函数中 this 是由 webpack 提供的对象，能够获取当前 loader 所需要的各种信息函数中有异步操作或同步操作，异步操作通过 this.callback 返回，返回值要求为 string 或者 Buffer。
+
+```javascript
+//导出一个函数，source为webpack传递给loader的文件源内容
+module.exports = function(source){
+ const content = doSomeThing2JsString(source);
+//如果 loader 配置了 options 对象，那么this.query将指向 options
+const options = this.query;
+// 可以用作解析其他模块路径的上下文
+console.log('this.context');
+/*
+* this.callback 参数:
+* error:Error |null，当 loader 出错时向外抛出一个 error
+* content:String | Buffer，经过 loader 编译后需要导出的内容
+* sourceMap:为方便调试生成的编译后内容的 source map* ast:本次编译生成的 AST 静态语法树，之后执行的 loader 可以直接使用这个 AST.进而省去重复生成 AST 的过程
+*/
+this.callback(null，content);//异步
+return content;//同步
+}
+```
+
+## webpack中的Plugin如何编写？
+
+#### 类型：`架构`
+
+#### 级别：`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **5：** 由于 webpack 基于发布订阅模式，在运行的生命周期中会广播出许多事件，插件通过监听这些事件就可以在特定的阶段执行自己的插件任务  
+webpack 编译会创建两个核心对象:
+- compiler:包含了 webpack 环境的所有的配置信息，包括 options，loader 和 plugin，和webpack 整个生命周期相关的钩子
+- compilation:作为 plugin 内置事件回调函数的参数，包含了当前的模块资源、编译生成资源、变化的文件以及被跟踪依赖的状态信息。当检测到一个文件变化，一次新的 Compilation  
+将被创建如果自己要实现 plugin ，也需要遵循一定的规范:
+- 插件必须是一个函数或者是一个包含 apply 方法的对象，这样才能访问 compiler 实例.
+- 传给每个插件的 compiler 和compilation 对象都是同一个引用，因此不建议修改
+- 异步的事件需要在插件处理完任务时调用回调函数通知 webpack 进入下一个流程，不然会卡住
+
+```javascript
+class MyPlugin {
+  // Webpack 会调用 MyPlugin 实例的 apply 方法给插件实例传入 compiler 对象
+  apply(compiler) {
+    //找到合适的事件钩子，实现自己的插件功能
+    compiler.hooks.emit.tap("MyPlugin", (compilation) => {
+      // compilation: 当前打包构建流程的上下文
+      console.log(compilation);
+      // do something...
+    });
+  }
+}
+```
+
+## 说说如何借助webpack来优化前端性能?
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **3：**
+
+ >JS代码压缩  
+ >CSS代码压缩  
+ >Html文件代码压缩  
+ >文件大小压缩  
+ >图片压缩  
+ >Tree Shaking  
+ >代码分离  
+ >内联 chunk

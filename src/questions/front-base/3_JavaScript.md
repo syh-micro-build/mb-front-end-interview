@@ -345,3 +345,28 @@ getValue.apply(a,['yck', '24'])
 #### 解答（1 分）
 
 - **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断
+
+## 请描述 JavaScript 中 Proxy 的基本用法和应用场景
+
+#### 拓展
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **3：** Proxy 用于创建一个对象的代理，从而可以拦截并自定义对该对象的基本操作。例如：
+
+```js
+const target = {
+  name: 'John'
+};
+const handler = {
+  get: function (obj, prop) {
+    console.log(`Getting property ${prop}`);
+    return obj[prop];
+  }
+};
+const proxy = new Proxy(target, handler);
+console.log(proxy.name);
+// 输出：Getting property name、John
+```

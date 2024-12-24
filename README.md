@@ -47,7 +47,11 @@ npx cz
 - 格式化 md 文件
 
 ```bash
-npm run lint:md
+# 检查所有文件
+npm run lint
+
+# 格式化所有文件
+npm run fix
 
 # 格式化某个文件
 npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
@@ -67,10 +71,6 @@ npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 - `newest`: 🚀 前端最前沿 | Cutting-edge front-end
 - `computer-base`: 🖥️ 计算机基础 | Computer fundamentals
 - `ai`: 🤖 人工智能 | Artificial intelligence
-- `js`: 💻 JavaScript | JavaScript
-- `ts`: 🔷 TypeScript | TypeScript
-- `vue`: 🔮 Vue.js | Vue.js framework
-- `react`: ⚛️ React | React framework
 - `web3`: 🌐 Web3 | Web3 technologies
 - `style`: 💄 代码格式 | Code style changes
 - `refactor`: ♻️ 代码重构 | Code refactoring
