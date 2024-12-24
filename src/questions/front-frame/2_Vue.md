@@ -194,3 +194,20 @@ module.exports = {
 * **1：** reactive 函数只能接收引用数据类型。
 * **1：** ref 底层还是使用 reactive 来做，ref 是在 reactive 上在进行了封装，增强了其能力，使它支持了对原始数据类型的处理。
 * **1：** 在 Vue3 中 reactive 能做的，ref 也能做，reactive 不能做的，ref 也能做。
+
+## Vue 3 中的Teleport功能有什么作用，如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* **2：** Teleport功能可以将组件的子树 “瞬移” 到 DOM 的其他位置，不受组件层级的限制。使用时，在组件中使用teleport标签包裹需要瞬移的元素，并
+指定to属性为目标 DOM 元素的选择器或id。例如:
+
+```js
+<teleport to="#app-root">...</teleport>
+```
+
+会将包裹的元素移动到id为app-root的元素内部。
