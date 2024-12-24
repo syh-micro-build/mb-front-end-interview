@@ -103,3 +103,56 @@ Nuxt2：基于 Webpack 构建，在开发过程中，热更新速度相对较慢
   + 服务端只能访问beforeCreate和created
   + window/document只能在mounted中使用
   + asyncData/fetch在每次路由变化时都会调用
+
+## Nuxt.js中的数据获取方式有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+* **1：** asyncData方法：
+  + 在组件初始化前调用
+  + 可以返回Promise
+  + 返回的数据会合并到组件data中
+  + 只能在页面组件中使用
+
+  ```js
+  async asyncData({ $axios }) {
+    const data = await $axios.$get('/api/data')
+    return { data }
+  }
+  ```
+
+* **1：** fetch方法：
+  + 可在任何组件中使用
+  + 不直接返回数据
+  + 通常用于填充Vuex状态
+
+  ```js
+  async fetch() {
+    const { data } = await this.$axios.$get('/api/data')
+    this.items = data
+  }
+  ```
+
+* **1：** Vuex操作：
+  + nuxtServerInit初始化存储
+  + store中的actions获取数据
+  + 支持模块化管理
+
+  ```js
+  export const actions = {
+    async fetchData({ commit }) {
+      const data = await this.$axios.$get('/api/data')
+      commit('SET_DATA', data)
+    }
+  }
+  ```
+
+* **1：** API调用最佳实践：
+  + 使用@nuxtjs/axios模块
+  + 统一管理API请求
+  + 处理错误和加载状态
+  + 实现数据缓存策略
