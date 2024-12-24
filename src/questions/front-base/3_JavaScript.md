@@ -504,3 +504,138 @@ console.log(obj.name);
 ```
 
 </details>
+
+## 作用域链的理解
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+注：作用域链是指在 JavaScript 中，当访问一个变量时，JavaScript 引擎会按照一定的顺序在当前作用域以及其上层作用域中查找该变量。这个查找的过程就形成了作用域链。
+
+<details>
+
+- **1：** 数据类型
+
+```mermaid
+graph TD;
+
+    A[作用域链] --> B[作用域];
+    A --> C[词法作用域];
+    A --> D[作用域链];
+```
+
+- **1：** 作用域
+
+作用域即变量（变量作用域又称上下文）和函数生效（能被访问）的区域或集合。它决定了代码区块中变量和其他资源的可见性。
+例如：
+
+```js
+
+function greet() {
+  var greeting = 'Hello World!';
+  console.log(greeting);
+}
+greet();
+
+console.log(greeting);// Uncaught ReferenceError: greeting is not defined
+
+```
+
+- **1：** 全局作用域
+
+任何不在函数中或是大括号中声明的变量，都是在全局作用域下。全局作用域下声明的变量可以在程序的任意位置访问。
+
+```js
+// 全局变量
+var greeting = 'Hello World!';
+function greet() {
+  console.log(greeting);
+}
+// 打印 'Hello World!'
+greet();
+```
+
+- **1：** 函数作用域
+
+```js
+function greet() {
+  var greeting = 'Hello World!';
+  console.log(greeting);
+}
+// 打印 'Hello World!'
+greet();
+// 报错: Uncaught ReferenceError: greeting is not defined
+console.log(greeting);
+
+```
+
+- **1：** 块级作用域
+
+ES6 引入：ES6 引入了let和const关键字，与var关键字不同，在大括号中使用let和const声明的变量存在于块级作用域中。在大括号之外不能访问这些变量。
+
+```js
+{
+  // 块级作用域中的变量
+  let greeting = 'Hello World!';
+  var lang = 'English';
+  console.log(greeting); // Prints 'Hello World!'
+}
+// 变量 'English'
+console.log(lang);
+// 报错: Uncaught ReferenceError: greeting is not defined
+console.log(greeting);
+```
+
+- **1：** 词法作用域
+
+词法作用域又叫静态作用域，变量在创建时就确定好了其作用域，而非在执行阶段确定。也就是说，在编写代码时作用域就已经确定了，JavaScript 遵循的就是词法作用域
+
+```js
+
+var a = 2;
+function foo() {
+  console.log(a);
+}
+function bar() {
+  var a = 3;
+  foo();
+}
+bar();
+```
+
+- **1：** 作用域链
+
+在 JavaScript 中使用一个变量时，JavaScript 引擎会尝试在当前作用域下去寻找该变量。如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域。
+
+如果在全局作用域里仍然找不到该变量，它就会在全局范围内隐式声明该变量（非严格模式下）或是直接报错。
+
+```js
+
+var sex = '男';
+function person() {
+    var name = '张三';
+    function student() {
+        var age = 18;
+        console.log(name); // 张三
+        console.log(sex); // 男
+    }
+    student();
+    console.log(age); // Uncaught ReferenceError: age is not defined
+}
+person();
+
+/*
+student 函数内部：
+当查找name时，在student函数内部找不到，向上一层作用域（person函数内部）找，找到了输出 “张三”。
+当查找sex时，在student函数内部找不到，向上一层作用域（person函数内部）找，还找不到继续向上一层找，即全局作用域，找到了输出 “男”。
+
+person 函数内部：
+当查找age时，在person函数内部找不到，向上一层找，即全局作用域，还是找不到则报错。
+
+*/
+```
+
+</details>
