@@ -706,3 +706,91 @@ console.log(test(1)(2)(3));
 ```
 
 </details>
+
+## 迭代器
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** Iterator 描述
+
+迭代器（iterator），是确使用户可在容器对象（container，例如链表或数组）上遍访的对象，使用该接口无需关心对象的内部实现细节。
+
+注：迭代器可以帮助我们去遍历某个数据结构。
+
+[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators#%E8%BF%AD%E4%BB%A3%E5%99%A8)
+
+- **2：** 实现一个简单的迭代器
+
+迭代器是一个对象，但是需要符合[迭代器协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)。
+
+[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)
+注：在使用的过程中，根据需求，进行修改。
+
+```javascript
+/**
+ * 下面就是一个迭代器
+ * 但是他是毫无作用的
+ */
+/*
+const iterator = {
+    next: function () {
+        return {done: true, value: "test"};
+    }
+};
+*/
+
+/**
+ * 创建一个迭代器，去访问一个数组
+ * 如果迭代器能够生成序列中的下一个值，则返回 false 布尔值。（这等价于没有指定 done 这个属性。）
+ *
+ * 如果迭代器已将序列迭代完毕，则为 true。这种情况下，value 是可选的，如果它依然存在，即为迭代结束之后的默认返回值。
+ */
+function createArrayIterator(arr) {
+    let index = 0;
+    const arrIterator = {
+        next: function () {
+            // return {done: false, value: "你好"};
+            // return {done: false, value: "哈哈"};
+            // return {done: false, value: "啊啊"};
+            // return {done: true, value: undefined};
+            if (index < arr.length) {
+                return {done: false, value: arr[index++]};
+            } else {
+                return {done: true, value: undefined};
+            }
+        }
+    };
+    return arrIterator;
+}
+
+const arr1 = ["你好", "哈哈", "啊啊"];
+const arr1Iterator = createArrayIterator(arr1);
+
+console.log(arr1Iterator.next());
+console.log(arr1Iterator.next());
+console.log(arr1Iterator.next());
+// 前面的都能访问到，后面的就无法访问了
+console.log(arr1Iterator.next());
+console.log(arr1Iterator.next());
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+const arr2Iterator = createArrayIterator(arr2);
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+```
+
+ ![image-20240202230330197](https://not-have.github.io/file/images/image-20240202230330197.png)
+
+</details>
