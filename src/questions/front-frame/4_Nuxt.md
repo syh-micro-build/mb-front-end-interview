@@ -69,3 +69,37 @@ Nuxt2：基于 Webpack 构建，在开发过程中，热更新速度相对较慢
 更多的手动配置和复杂的逻辑来确保数据的正确获取和页面的预渲染。
 
 </details>
+
+## Nuxt.js的生命周期有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+* **1：** 服务器端生命周期：
+  + nuxtServerInit：在服务端初始化数据
+  + middleware：中间件执行
+  + validate()：验证动态路由参数
+  + asyncData()：异步数据加载
+  + fetch()：服务端数据获取
+
+* **1：** Vue生命周期（服务端）：
+  + beforeCreate：组件实例化之前
+  + created：组件创建完成
+
+* **1：** Vue生命周期（客户端）：
+  + beforeMount：DOM挂载之前
+  + mounted：DOM挂载完成
+  + beforeUpdate：数据更新前
+  + updated：数据更新后
+
+* **1：** 页面特定钩子：
+  + transition：页面过渡效果
+  + head：设置页面元信息
+
+* **1：** 注意事项：
+  + 服务端只能访问beforeCreate和created
+  + window/document只能在mounted中使用
+  + asyncData/fetch在每次路由变化时都会调用
