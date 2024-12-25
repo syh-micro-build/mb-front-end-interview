@@ -191,3 +191,17 @@ Node.js的文件系统有以下几种方法：
 - BFF（Backend For Frontend）是中间层，由前端同学开发的后端项目。
 
 - 最常见的BFF项目像SSR和GraphQL。SSR用来解决SEO问题，GraphQL用来聚合数据，解决API查询的问题。
+
+## 11. 什么是ORM？Nodejs的ORM框架有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- ORM框架是通过对SQL语句进行封装，并将数据库的数据表和用户代码里的模型对象进行自动映射。
+
+- 这样开发者使用时只需要调用模型对象的方法就能实现对数据库的增删改查，不用手写太多的SQL了。
+
+- Nodejs的ORM框架有Sequelize、TypeORM、Mongoose等。
