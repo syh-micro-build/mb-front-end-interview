@@ -171,3 +171,50 @@ const memoizedCallback = useCallback(
   + 使用React.lazy进行代码分割
   + 使用虚拟列表处理长列表
   + 合理设计组件层级
+
+## React中的Context是什么？如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **1：** Context的创建和提供：
+
+```jsx
+const ThemeContext = React.createContext('light');
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ThemedButton />
+    </ThemeContext.Provider>
+  );
+}
+```
+
+- **1：** 在类组件中使用Context：
+
+```jsx
+class ThemedButton extends React.Component {
+  static contextType = ThemeContext;
+  render() {
+    return <Button theme={this.context} />;
+  }
+}
+```
+
+- **1：** 在函数组件中使用useContext：
+
+```jsx
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return <Button theme={theme} />;
+}
+```
+
+- **1：** Context的注意事项：
+  + 避免过度使用Context
+  + Context值变化会导致所有消费组件重新渲染
+  + 适合共享全局数据，如主题、用户信息等
