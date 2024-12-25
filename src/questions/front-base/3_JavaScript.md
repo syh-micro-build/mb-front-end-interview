@@ -346,27 +346,296 @@ getValue.apply(a,['yck', '24'])
 
 - **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断
 
-## 请描述 JavaScript 中 Proxy 的基本用法和应用场景
+## Proxy 的使用
 
-#### 拓展
+#### 类型：基础
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（3 分）
+#### 解答（6 分）
 
-- **3：** Proxy 用于创建一个对象的代理，从而可以拦截并自定义对该对象的基本操作。例如：
+<details>
+
+- **4：** 部分 API
+
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e08a8f141f44148ad6f66c7fdc1ab3e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp)
+
+- **1：** 函数调用的监听
 
 ```js
-const target = {
-  name: 'John'
-};
-const handler = {
-  get: function (obj, prop) {
-    console.log(`Getting property ${prop}`);
-    return obj[prop];
-  }
-};
-const proxy = new Proxy(target, handler);
-console.log(proxy.name);
-// 输出：Getting property name、John
+function fun() {
+    console.log("哈哈哈");
+}
+
+const objProxy = new Proxy(fun, {
+    /**
+     * 拦截对函数的调用的捕获器
+     * @param target target new Proxy 所代理的 obj（监听的对象）
+     * @param thisArg 调用函数时绑定的 this 值
+     * @param argArray 调用函数时传递的参数列表
+     */
+    apply(target, thisArg, argArray) {
+        console.log("对 fun 函数进行了 apply 的调用。");
+        // 调用原始函数，并在其结果前后添加一些内容
+        target.apply(thisArg, argArray)
+    },
+    /**
+     * 监听 class 时的捕获器
+     * @param target target new Proxy 所代理的 obj（监听的对象）
+     * @param argArray new fun() 时传入的参数，例：new fun(1, 2, ...rest)
+     * @param newTarget 被调用的构造函数。在这里，newTarget 就是 objProxy 本身，因为 objProxy 是一个函数代理
+     */
+    construct(target, argArray, newTarget) {
+        console.log("对 fun 函数进行了 construct 的调用。");
+        return new target(...argArray)
+    }
+});
+
+objProxy.apply();
+new objProxy();
+
 ```
+
+- **1：** new Proxy 中 receiver 参数的作用
+
+```js
+const obj = {
+    _name: "里斯",
+    age: 16,
+    get name() {
+        return this._name;
+    },
+    set name(newValue) {
+        this._name = newValue;
+    }
+};
+
+const objProxy = new Proxy(obj, {
+    /**
+     * receiver 就是 objProxy 这个代理对象
+     * receiver 传入 Reflect.get 之后，他就作为 obj 里的 this 了（this 这个时候就改变了）
+     *
+     */
+    get(target, key, receiver) {
+        console.log(receiver);
+        /**
+         * 传入 receiver 后，他被访问了两次
+         */
+        return Reflect.get(target, key, receiver);
+    },
+    set(target, key, newValue, receiver) {
+        Reflect.set(target, key, newValue, receiver);
+    }
+});
+
+objProxy.name = "哈哈哈";
+console.log(objProxy.name);
+```
+
+</details>
+
+## Object.defineProperty 的使用
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **1：** Object.defineProperty 的设计初中不是为了监听对象中属性变化的，而是为了定义访问属性描述符。
+
+- **1：** 访问属性描述符包括：configurable、enumerable、writable、value
+
+- **1：** 访问属性描述符的方法：Object.getOwnPropertyDescriptor()
+
+- **1：** 缺点
+
+    ① 一次监听太多的时候，不是很友好
+
+    ② 新增、删除的时候，他是无能为力的
+
+    ③ 会修改原对象中的属性
+
+```js
+const obj = {
+    name: "里斯",
+    age: 16
+};
+
+/**
+ * 监听某个属性
+ */
+/*
+Object.defineProperty(obj, "name", {
+    set(v) {
+        console.log(v);
+        console.log("监听到 set");
+    },
+    get() {
+        console.log("监听到 get");
+    }
+});
+*/
+
+/**
+ * 监听所有的属性
+ */
+Object.keys(obj).forEach(key => {
+    console.log(key);
+    let value = obj[key];
+    Object.defineProperty(obj, key, {
+        set(v) {
+            console.log(`监听到属性 ${key}，被 set 为 ${v}`);
+            value = v;
+        },
+        get() {
+            console.log(`监听到属性 ${key} get`);
+            return value;
+        }
+    });
+});
+
+
+obj.name = "哈哈哈";
+
+console.log(obj.name);
+```
+
+</details>
+
+## 作用域链的理解
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+注：作用域链是指在 JavaScript 中，当访问一个变量时，JavaScript 引擎会按照一定的顺序在当前作用域以及其上层作用域中查找该变量。这个查找的过程就形成了作用域链。
+
+<details>
+
+- **1：** 数据类型
+
+```mermaid
+graph TD;
+
+    A[作用域链] --> B[作用域];
+    A --> C[词法作用域];
+    A --> D[作用域链];
+```
+
+- **1：** 作用域
+
+作用域即变量（变量作用域又称上下文）和函数生效（能被访问）的区域或集合。它决定了代码区块中变量和其他资源的可见性。
+例如：
+
+```js
+
+function greet() {
+  var greeting = 'Hello World!';
+  console.log(greeting);
+}
+greet();
+
+console.log(greeting);// Uncaught ReferenceError: greeting is not defined
+
+```
+
+- **1：** 全局作用域
+
+任何不在函数中或是大括号中声明的变量，都是在全局作用域下。全局作用域下声明的变量可以在程序的任意位置访问。
+
+```js
+// 全局变量
+var greeting = 'Hello World!';
+function greet() {
+  console.log(greeting);
+}
+// 打印 'Hello World!'
+greet();
+```
+
+- **1：** 函数作用域
+
+```js
+function greet() {
+  var greeting = 'Hello World!';
+  console.log(greeting);
+}
+// 打印 'Hello World!'
+greet();
+// 报错: Uncaught ReferenceError: greeting is not defined
+console.log(greeting);
+
+```
+
+- **1：** 块级作用域
+
+ES6 引入：ES6 引入了let和const关键字，与var关键字不同，在大括号中使用let和const声明的变量存在于块级作用域中。在大括号之外不能访问这些变量。
+
+```js
+{
+  // 块级作用域中的变量
+  let greeting = 'Hello World!';
+  var lang = 'English';
+  console.log(greeting); // Prints 'Hello World!'
+}
+// 变量 'English'
+console.log(lang);
+// 报错: Uncaught ReferenceError: greeting is not defined
+console.log(greeting);
+```
+
+- **1：** 词法作用域
+
+词法作用域又叫静态作用域，变量在创建时就确定好了其作用域，而非在执行阶段确定。也就是说，在编写代码时作用域就已经确定了，JavaScript 遵循的就是词法作用域
+
+```js
+
+var a = 2;
+function foo() {
+  console.log(a);
+}
+function bar() {
+  var a = 3;
+  foo();
+}
+bar();
+```
+
+- **1：** 作用域链
+
+在 JavaScript 中使用一个变量时，JavaScript 引擎会尝试在当前作用域下去寻找该变量。如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域。
+
+如果在全局作用域里仍然找不到该变量，它就会在全局范围内隐式声明该变量（非严格模式下）或是直接报错。
+
+```js
+
+var sex = '男';
+function person() {
+    var name = '张三';
+    function student() {
+        var age = 18;
+        console.log(name); // 张三
+        console.log(sex); // 男
+    }
+    student();
+    console.log(age); // Uncaught ReferenceError: age is not defined
+}
+person();
+
+/*
+student 函数内部：
+当查找name时，在student函数内部找不到，向上一层作用域（person函数内部）找，找到了输出 “张三”。
+当查找sex时，在student函数内部找不到，向上一层作用域（person函数内部）找，还找不到继续向上一层找，即全局作用域，找到了输出 “男”。
+
+person 函数内部：
+当查找age时，在person函数内部找不到，向上一层找，即全局作用域，还是找不到则报错。
+
+*/
+```
+
+</details>

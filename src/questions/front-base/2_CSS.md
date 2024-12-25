@@ -176,6 +176,43 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 - **1：** content-box（默认值）：width 和 height 只包括内容区域，不包括 padding 和 border。
 - **1：** border-box：width 和 height 包括内容区域、padding 和 border。
 
+## CSS3有哪些重要的新特性？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 选择器和伪类：
+  + 属性选择器增强
+  + 新增伪类：:nth-child()、:first-of-type等
+  + 伪元素使用双冒号::before
+
+- **1：** 视觉效果：
+  + 圆角(border-radius)
+  + 阴影(text-shadow/box-shadow)
+  + 渐变(linear-gradient/radial-gradient)
+  + RGBA和HSLA颜色
+  + 不透明度(opacity)
+
+- **1：** 转换和动画：
+  + 2D/3D转换(transform)
+  + 过渡效果(transition)
+  + 动画效果(animation/@keyframes)
+
+- **1：** 布局能力：
+  + 弹性布局(display: flex)
+  + 网格布局(display: grid)
+  + 多列布局(column-count)
+  + 盒模型调整(box-sizing)
+
+- **1：** 响应式设计：
+  + 媒体查询(@media)
+  + 视口单位(vh/vw)
+  + 图像适配(object-fit)
+  + 自定义属性(变量)
+
 ## CSS 性能优化
 
 #### 类型：`拓展`
