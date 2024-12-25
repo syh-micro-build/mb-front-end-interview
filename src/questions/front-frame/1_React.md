@@ -218,3 +218,50 @@ function ThemedButton() {
   + 避免过度使用Context
   + Context值变化会导致所有消费组件重新渲染
   + 适合共享全局数据，如主题、用户信息等
+
+## React中的Refs是什么？有哪些使用场景？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **1：** 创建和使用Refs：
+
+```jsx
+function TextInputWithFocusButton() {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <>
+      <input ref={inputRef} type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </>
+  );
+}
+```
+
+- **1：** 转发Refs：
+
+```jsx
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="fancy-button">
+    {props.children}
+  </button>
+));
+```
+
+- **1：** 常见使用场景：
+  + 管理焦点、文本选择或媒体播放
+  + 触发强制动画
+  + 集成第三方DOM库
+
+- **1：** 使用注意事项：
+  + 避免过度使用Refs
+  + 不要用Refs来做可以通过声明式实现的事情
+  + 在类组件中使用需要通过React.createRef()创建
