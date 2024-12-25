@@ -794,3 +794,137 @@ console.log(arr2Iterator.next());
  ![image-20240202230330197](https://not-have.github.io/file/images/image-20240202230330197.png)
 
 </details>
+
+## JS 如何实现函数缓存
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** 是什么
+
+就是实用一个对象来存储计算过的结果，当再次调用函数时，先检查结果是否已经存在，如果存在，则直接返回结果，否则再进行计算。
+本质上是实用空间换时间。
+常用于缓存数据计算和缓存对象：
+
+```js
+const add = (a,b) => a+b;
+const calc = memoize(add); // 函数缓存
+calc(10,20);// 30
+calc(10,20);// 30 缓存
+```
+
+- **2：** 实现
+
+注：函数缓存主要依靠 `闭包、柯里化、高阶函数`
+
+##### 1）闭包
+
+```js
+(function() {
+    var a = 1; // 在 IIFE (立即调用的函数表达式) 内部定义了变量 a
+    function add() {
+        const b = 2; // 在 add 函数内部定义了变量 b
+        let sum = b + a; // sum 是 add 函数内部的局部变量，b 和 a 都在其作用域内
+        console.log(sum); // 输出 3
+    }
+    
+    add(); // 调用 add 函数
+})();
+```
+
+##### 2）柯里化
+
+```js
+// 非函数柯里化
+var add = function (x,y) {
+    return x+y;
+}
+add(3, 15) // 15
+
+// 函数柯里化
+var add2 = function (x) {
+    return function (y) {
+        return x+y;
+    }
+}
+const str = add2(3)(15) //15
+
+console.log(`永远喜欢 ${str} 岁的 girl ！！！`);
+```
+
+##### 3）高阶函数
+
+```js
+function foo(){
+  var a = 2;
+
+  function bar() {
+    console.log(a);
+  }
+  return bar;
+}
+var baz = foo();
+baz();
+```
+
+##### 4）实现函数缓存
+
+```js
+var add = function (x, y) {
+    return x + y;
+}
+
+/**
+ * 函数缓存
+ * 
+ * @param {*} func 要缓存的函数
+ * @param {*} content 上下文
+ */
+const memoize = function (func, content) {
+  // 创建一个缓存对象，用来存储已计算的结果，避免重复计算
+  let cache = Object.create(null)
+
+  // 如果没有传递 content 参数，则将 content 设置为当前上下文 this
+  content = content || this
+  
+  // 返回一个新的函数，它会接收传入的参数，并进行缓存判断
+  return (...key) => {
+    // 使用 JSON.stringify 将 key 数组转换为字符串，确保相同的参数值被一致缓存
+    const cacheKey = JSON.stringify(key);
+
+    // 检查缓存中是否已经存储了当前参数的计算结果
+    if (!cache[cacheKey]) {
+      // 如果缓存中没有，调用 func 并将结果存储在 cache 中
+      // func.apply(content, key) 用来调用 func，传递 content 作为上下文，key 作为参数
+      cache[cacheKey] = func.apply(content, key);
+    }
+    
+    // 返回缓存中的结果（如果已计算过）
+    return cache[cacheKey];
+  }
+}
+
+/**
+ * 使用
+ */
+const calc = memoize(add);
+const num1 = calc(100, 200);  // 计算并缓存结果
+console.log(num1);  // 300
+
+const num2 = calc(100, 200);  // 从缓存中获取结果
+console.log(num2);  // 300
+```
+
+##### 5）使用场景
+
+对于昂贵的函数调用，执行复杂计算的函数
+对于具有有限且高度重复输入范围的函数
+对于具有重复输入值的递归函数
+对于纯函数，即每次使用特定输入调用时返回相同输出的函数
+
+</details>
