@@ -41,7 +41,7 @@ jobs:
         # https://github.com/marketplace/actions/deploy-to-github-pages
         uses: JamesIves/github-pages-deploy-action@v4
         # 取消这个判断，让每个人都能基于自己分支，进行个性化部署
-        # if: github.ref == 'refs/heads/main' # 判断当前分支是否为 main
+        if: github.ref == 'refs/heads/main' # 判断当前分支是否为 main
         with:
           ACCESS_TOKEN: ${{ secrets.VITEPRESS_DOCS }}  # 使用 GitHub Secret 中的令牌
           BRANCH: gh-pages  # 部署到 gh-pages 分支
