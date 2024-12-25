@@ -122,3 +122,52 @@ function handleClick() {
   setAge(a => a + 1); // setAge(44 => 45)
 }
 ```
+
+## React中的性能优化方法有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 使用React.memo进行组件缓存：
+
+```jsx
+const MyComponent = React.memo(function MyComponent(props) {
+  /* 组件逻辑 */
+});
+```
+
+- **1：** 使用useMemo缓存计算结果：
+
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+- **1：** 使用useCallback缓存函数：
+
+```jsx
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+
+- **1：** 合理使用key：
+
+```jsx
+{list.map(item => (
+  <ListItem 
+    key={item.id} // 使用唯一且稳定的key
+    data={item}
+  />
+))}
+```
+
+- **1：** 避免不必要的渲染：
+  + 使用React.lazy进行代码分割
+  + 使用虚拟列表处理长列表
+  + 合理设计组件层级
