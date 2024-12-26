@@ -216,3 +216,66 @@ function handleClick() {
 - 优点：支持生命周期方法和状态管理，功能更强大。
 
 - 缺点：代码相对复杂，性能略逊于函数组件。
+
+## React.memo 的作用和使用场景
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 作用1： 性能优化：React.memo 是一个高阶组件，它通过对组件的 props 进行浅比较来决定组件是否需要重新渲染。如果传入组件的 props 没有发生变化，组
+件就不会重新渲染；只有当 props 发生变化时，组件才会重新渲染。这有助于减少不必要的渲染操作，提高应用程序的性能。
+- **1：** 作用2：避免重复渲染：在 React 应用中，当一个组件的父组件重新渲染时，它默认会导致子组件也重新渲染。对于那些只依赖于 props 且计算成本较高的组件，这
+种默认行为可能会导致性能浪费。React.memo 可以帮助解决这个问题，它可以让组件 “记住” 之前的渲染结果，在 props 不变的情况下跳过重新渲染。
+- **1：** 使用场景1：纯展示组件。纯展示组件是指那些只根据传入的 props 来展示 UI，没有内部状态变化和副作用（如数据获取、订阅事件等）的组件。例如，一个简单的用户
+信息展示组件，它接收用户的姓名、年龄等信息作为 props，并将这些信息展示出来。示例：
+
+```js
+import React from 'react';
+const UserInfo = ({ name, age }) => (
+    <div>
+        <p>Name: {name}</p>
+        <p>Age: {age}</p>
+    </div>
+);
+export default React.memo(UserInfo);
+//在这个例子中，UserInfo 组件是一个纯展示组件。通过使用 React.memo 包裹它，当组件的 name 和 age props 没有变化时，组件就不会重新渲染，从而提高了性能。
+```
+
+- **1：** 使用场景2：大型组件树中的子组件。在大型的 React 应用中，组件树可能会非常复杂。在这种情况下，一些深层次的子组件可能会因为父组件的重新渲染而频繁地重新渲染，即
+使这些子组件的 props 并没有实际变化。示例：
+
+```js
+import React from 'react';
+const Sidebar = ({ menuData }) => {
+    // 复杂的菜单渲染逻辑
+    return (
+        <div>
+            {menuData.map((item) => (
+                <MenuItem key={item.id} item={item} />
+            ))}
+        </div>
+    );
+};
+export default React.memo(Sidebar);
+//通过使用 React.memo 包裹 Sidebar 组件，当父组件重新渲染但 menuData 没有变化时，Sidebar 组件就不会重新渲染，避免了不必要的渲染开销，提高了整个页面的性能。
+```
+
+- **1：** 使用场景3：在函数式组件中。如果组件的渲染逻辑比较复杂，或者组件在一个频繁更新的环境中（如在一个实时数据更新的仪表盘应用中），使用 React.memo 可以有效减少不
+必要的渲染。示例：
+
+```js
+import React from 'react';
+const RealTimeChart = ({ dataArray, chartType }) => {
+    // 复杂的图表绘制逻辑，可能涉及到数据处理、坐标轴设置等
+    return (
+        <div>
+            <Chart data={dataArray} type={chartType} />
+        </div>
+    );
+};
+export default React.memo(RealTimeChart);
+//当数据更新时，只有 dataArray 或 chartType 发生变化，RealTimeChart 组件才会重新渲染，否则将使用之前的渲染结果，避免了因其他无关因素导致的重新渲染，提升了性能。
+```
