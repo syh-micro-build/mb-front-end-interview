@@ -640,12 +640,296 @@ person 函数内部：
 
 </details>
 
+## 柯里化
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+给函数传递一部分参数来调用这个函数，并且 当前的这个函数他会在返回一个函数，去处理剩余的参数，见下面 示例：
+
+![](/public/images/3_JavaScript_20241224170424.png)
+
+也就是 拆分函数的参数，这样的就可以叫 柯里化。
+
+- **1：** 使用函数柯里化的好处？
+
+在函数式的编程中，尽量 让一个函数处理一个问题，尽可能的单一，而不是将一些问题交给一个方法去解决，就好比 react 的函数式组件，你的一个功能组件是经过多个 UI 组件合成而来的一样，所以我们可以将每次传入的参数在，当前函数中处理，在当前函数处理完成后，在下一个函数中在使用上一个函数的处理结果即可。
+
+- **1：** 例子
+
+实现一个给第一个参数加2，给第二个参数乘2的例子
+
+![](/public/images/3_JavaScript_20241224170632.png)
+
+- **2：** 柯里化函数的实现
+
+```js
+/**
+ * 多参函数 转 柯里化函数
+ */
+function currying(fn) { // 接受一个函数,返回一个函数
+    // 这里是接受剩余参数
+    function receivedParameters(...args) {
+        // 判断当前已经接受到的参数的个数, 和参数本身(这个参数本身就是一个函数)需要接收到参数是否已经一致
+        // console.log(fn.length);
+        // console.log(args.length);
+        // 到传入函数的参数(fn 的参数) 大于 传入的参数(...args)时,就直接调用传入的函数
+        if (args.length >= fn.length) {
+            // 这个 apply 是为了方式外面调用时,绑定了this,而导致这个里面执行 fn 时的混乱
+            return fn.apply(this, args);
+        } else {
+            // 当参数不够的时候, 需要返回一个函数,来接续接收传入的参数,所以 在这 就需要把传入的所有参数,进行一次拼接
+            return function (...smallArgs) {
+                // 这个里面用了递归,来检查参数 是否达到,达到了,就运行传入的函数(fn)
+                return receivedParameters.apply(this, [...args, ...smallArgs])
+            }
+        }
+    }
+    return receivedParameters
+}
+
+// 使用
+function fun(n, m, b) { // fun的参数个数,是可以 通过 fun.length 拿到的
+    return n + m + b
+}
+
+const test = currying(fun);
+
+console.log(test(1, 2, 3));
+console.log(test(1)(2, 3))
+console.log(test(1)(2)(3));
+```
+
+</details>
+
+## 迭代器
+
 ## CommonJS和ES6模块的区别？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
+#### 解答（3 分）
+
+<details>
+
+- **1：** Iterator 描述
+
+迭代器（iterator），是确使用户可在容器对象（container，例如链表或数组）上遍访的对象，使用该接口无需关心对象的内部实现细节。
+
+注：迭代器可以帮助我们去遍历某个数据结构。
+
+[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators#%E8%BF%AD%E4%BB%A3%E5%99%A8)
+
+- **2：** 实现一个简单的迭代器
+
+迭代器是一个对象，但是需要符合[迭代器协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)。
+
+[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)
+注：在使用的过程中，根据需求，进行修改。
+
+```javascript
+/**
+ * 下面就是一个迭代器
+ * 但是他是毫无作用的
+ */
+/*
+const iterator = {
+    next: function () {
+        return {done: true, value: "test"};
+    }
+};
+*/
+
+/**
+ * 创建一个迭代器，去访问一个数组
+ * 如果迭代器能够生成序列中的下一个值，则返回 false 布尔值。（这等价于没有指定 done 这个属性。）
+ *
+ * 如果迭代器已将序列迭代完毕，则为 true。这种情况下，value 是可选的，如果它依然存在，即为迭代结束之后的默认返回值。
+ */
+function createArrayIterator(arr) {
+    let index = 0;
+    const arrIterator = {
+        next: function () {
+            // return {done: false, value: "你好"};
+            // return {done: false, value: "哈哈"};
+            // return {done: false, value: "啊啊"};
+            // return {done: true, value: undefined};
+            if (index < arr.length) {
+                return {done: false, value: arr[index++]};
+            } else {
+                return {done: true, value: undefined};
+            }
+        }
+    };
+    return arrIterator;
+}
+
+const arr1 = ["你好", "哈哈", "啊啊"];
+const arr1Iterator = createArrayIterator(arr1);
+
+console.log(arr1Iterator.next());
+console.log(arr1Iterator.next());
+console.log(arr1Iterator.next());
+// 前面的都能访问到，后面的就无法访问了
+console.log(arr1Iterator.next());
+console.log(arr1Iterator.next());
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+const arr2Iterator = createArrayIterator(arr2);
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+console.log(arr2Iterator.next());
+```
+
+ ![image-20240202230330197](https://not-have.github.io/file/images/image-20240202230330197.png)
+
+</details>
+
+## JS 如何实现函数缓存
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** 是什么
+
+就是实用一个对象来存储计算过的结果，当再次调用函数时，先检查结果是否已经存在，如果存在，则直接返回结果，否则再进行计算。
+本质上是实用空间换时间。
+常用于缓存数据计算和缓存对象：
+
+```js
+const add = (a,b) => a+b;
+const calc = memoize(add); // 函数缓存
+calc(10,20);// 30
+calc(10,20);// 30 缓存
+```
+
+- **2：** 实现
+
+注：函数缓存主要依靠 `闭包、柯里化、高阶函数`
+
+##### 1）闭包
+
+```js
+(function() {
+    var a = 1; // 在 IIFE (立即调用的函数表达式) 内部定义了变量 a
+    function add() {
+        const b = 2; // 在 add 函数内部定义了变量 b
+        let sum = b + a; // sum 是 add 函数内部的局部变量，b 和 a 都在其作用域内
+        console.log(sum); // 输出 3
+    }
+    
+    add(); // 调用 add 函数
+})();
+```
+
+##### 2）柯里化
+
+```js
+// 非函数柯里化
+var add = function (x,y) {
+    return x+y;
+}
+add(3, 15) // 15
+
+// 函数柯里化
+var add2 = function (x) {
+    return function (y) {
+        return x+y;
+    }
+}
+const str = add2(3)(15) //15
+
+console.log(`永远喜欢 ${str} 岁的 girl ！！！`);
+```
+
+##### 3）高阶函数
+
+```js
+function foo(){
+  var a = 2;
+
+  function bar() {
+    console.log(a);
+  }
+  return bar;
+}
+var baz = foo();
+baz();
+```
+
+##### 4）实现函数缓存
+
+```js
+var add = function (x, y) {
+    return x + y;
+}
+
+/**
+ * 函数缓存
+ * 
+ * @param {*} func 要缓存的函数
+ * @param {*} content 上下文
+ */
+const memoize = function (func, content) {
+  // 创建一个缓存对象，用来存储已计算的结果，避免重复计算
+  let cache = Object.create(null)
+
+  // 如果没有传递 content 参数，则将 content 设置为当前上下文 this
+  content = content || this
+  
+  // 返回一个新的函数，它会接收传入的参数，并进行缓存判断
+  return (...key) => {
+    // 使用 JSON.stringify 将 key 数组转换为字符串，确保相同的参数值被一致缓存
+    const cacheKey = JSON.stringify(key);
+
+    // 检查缓存中是否已经存储了当前参数的计算结果
+    if (!cache[cacheKey]) {
+      // 如果缓存中没有，调用 func 并将结果存储在 cache 中
+      // func.apply(content, key) 用来调用 func，传递 content 作为上下文，key 作为参数
+      cache[cacheKey] = func.apply(content, key);
+    }
+    
+    // 返回缓存中的结果（如果已计算过）
+    return cache[cacheKey];
+  }
+}
+
+/**
+ * 使用
+ */
+const calc = memoize(add);
+const num1 = calc(100, 200);  // 计算并缓存结果
+console.log(num1);  // 300
+
+const num2 = calc(100, 200);  // 从缓存中获取结果
+console.log(num2);  // 300
+```
+
+##### 5）使用场景
+
+对于昂贵的函数调用，执行复杂计算的函数
+对于具有有限且高度重复输入范围的函数
+对于具有重复输入值的递归函数
+对于纯函数，即每次使用特定输入调用时返回相同输出的函数
+
+</details>
 #### 解答（2 分）
 
 - CommonJS模块是同步加载的，ES6模块是异步加载的。
