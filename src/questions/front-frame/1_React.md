@@ -302,3 +302,19 @@ export default App;
 - 异步操作：Redux Thunk 允许你处理异步操作，如 AJAX 请求，而不需要在 reducer 中处理异步逻辑。
 
 - 复杂逻辑：可以处理复杂的业务逻辑，如条件 dispatch、多次 dispatch 等。
+
+## 什么是 Redux Saga？它与 Redux Thunk 有什么区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Redux Saga 是一个用于管理应用副作用（如异步操作）的库，使用 Generator 函数来处理异步逻辑。
+
+- Generator 函数：Redux Saga 使用 Generator 函数，提供了更强大的控制流和错误处理机制。
+
+- 可测试性：Redux Saga 的副作用可以更容易地进行单元测试。
+
+- 复杂逻辑：Redux Saga 更适合处理复杂的异步逻辑和并发操作。
