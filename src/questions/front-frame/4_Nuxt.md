@@ -310,3 +310,27 @@ modules: [
 * `<NuxtPicture>`。
 
 </details>
+
+## 在 Nuxt3 中，怎样在服务端获取数据并传递给页面组件？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+<details>
+
+* **1：** 可以使用 asyncData 或 fetch 方法。在页面组件中，asyncData 是一个异步函数，接收上下文 ctx，在其中获取数据后返回一个对象，该对象会与组件的
+ data 合并；fetch 方法类似，但数据存储在组件实例的 $fetchState 中，例如在 asyncData 中：
+
+ ```js
+ export default { 
+  async asyncData(ctx) { 
+    const data = await ctx.$axios.get('/api/data'); 
+    return { 
+      fetchedData: data 
+    }; 
+  } 
+}
+ ```
