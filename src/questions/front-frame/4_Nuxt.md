@@ -354,3 +354,104 @@ modules: [
 #### 解答（1 分）
 
 * **1：** 在 nuxt.config.ts 中通过 css 数组添加全局样式文件路径,如： `['~/assets/css/global.css']`, 使样式在整个应用中生效。
+
+## 请解释 Nuxt3 中 nitro 的作用及关键配置项
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（8 分）
+
+<details>
+
+* **2：** nitro 负责 Nuxt3 服务器端构建与部署核心支撑、服务端渲染（SSR）及性能优化、灵活的路由处理与适配、跨平台与多环境适配
+* **1：** 指定服务器的预设模式，决定了 Nuxt3 应用最终如何构建以及适配何种类型的运行环境。例：
+
+```js
+// nuxt.config.ts
+export default {
+  nitro: {
+    preset: 'node-server'
+  }
+}
+//在上述配置中，选择 node-server 预设，表示应用将以适合在传统 Node.js 服务器上运行的方式进行构建，生成对应的可执行代码和相关配置。如果设置为 serverless，
+// 例如 preset: 'serverless'，则会按照无服务器架构的要求对应用进行构建，以便能够部署到像 AWS Lambda 这样的无服务器环境中，nitro 会自动处理相关的代码打包、资源管理等差异，确保应用正常运行。
+```
+
+* **2：** routeRules,用于详细定义各个路由的规则，涵盖缓存策略、重定向规则、响应头设置等方面，能够根据具体的业务需求对不同路由进行定制化配置，优化路由相关的性能和用户访问逻辑。
+
+```ts
+// nuxt.config.ts
+export default {
+  nitro: {
+    routeRules: {
+      '/': {
+        cache: {
+          maxAge: 60 * 10 // 为首页设置缓存时间，这里是 10 分钟
+        }
+      },
+      '/about': {
+        redirect: {
+          destination: '/', // 将访问 /about 页面重定向到首页
+          statusCode: 302
+        }
+      },
+      '/api/data': {
+        headers: {
+          'Access-Control-Allow-Origin': '*' // 为 /api/data 路由设置响应头，允许跨域访问
+        }
+      }
+    }
+  }
+}
+//在这个示例中，针对应用的根路由（/）设置了缓存策略，即用户首次访问后，在接下来的 10 分钟内再次访问该页面时，服务器可以直接从缓存中获取页面内容并返回，减
+// 少服务器处理负担；对于 /about 页面配置了重定向规则，当用户访问该页面时会以 302 状态码重定向到首页；而 /api/data 路由则通过设置响应头，解决了该路由的跨域访问问题，方便前端与之交互。
+```
+
+* **1：** devProxy, 主要在开发环境中发挥作用，用于配置代理服务器，将前端应用发出的请求代理转发到指定的后端服务器地址，以此巧妙地解决开发过程中常见的跨域问题，使得前后端能够在本地
+开发环境下顺畅地协同工作。
+
+```ts
+// nuxt.config.ts
+export default {
+  nitro: {
+    devProxy: {
+      '/api': {
+        target: 'http://localhost:3000/api', // 后端 API 服务器的实际地址
+        changeOrigin: true
+      }
+    }
+  }
+}
+```
+
+* **1：** output, 可以对构建输出的相关参数进行配置，包括指定构建输出的目录、公共资源目录的设置、确定模块格式等内容，让开发者能够根据项目的实际部署需求以及目标环境的
+要求，精准地定制构建结果的呈现形式。
+
+```ts
+// nuxt.config.ts
+export default {
+  nitro: {
+    output: {
+      dir: 'dist', // 设置构建输出目录为 dist
+      publicDir: 'public', // 设定公共资源目录为 public
+      format: 'esm' // 设置模块格式为 ESM（ECMAScript 模块），也可根据需求选择其他格式
+    }
+  }
+}
+```
+
+* **1：** plugins, 允许开发者在 nitro 的构建流程中引入自定义的插件，这些插件能够扩展 nitro 的功能，执行诸如在服务器启动时初始化特定资源、修改请求和响应处理逻辑、与外部
+系统进行集成等操作，从而为服务器端应用增添更多的灵活性和可定制性。
+
+```ts
+// nuxt.config.ts
+export default {
+  nitro: {
+    plugins: ['./server/plugins/myPlugin.ts']
+  }
+}
+```
+
+</details>
