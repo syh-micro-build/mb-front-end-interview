@@ -230,3 +230,40 @@ function handleClick() {
 - 避免额外的 DOM 节点：在需要返回多个根节点时，使用 Fragment 可以避免添加不必要的 DOM 节点。
 
 - 保持代码整洁：可以使 JSX 代码更加简洁和易读。
+
+## 什么是 Refs？如何使用 Refs？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- Refs 是 React 提供的一种访问 DOM 节点或在类组件中访问实例的方法。Refs 可以用于获取输入值、管理焦点、触发动画等。
+
+- 创建 Ref：使用 useRef Hook 或 React.createRef。
+
+- 附加 Ref：将 Ref 附加到需要访问的 DOM 节点或组件实例。
+
+- 访问 Ref：通过 ref.current 属性访问 DOM 节点或组件实例。
+
+```jsx
+
+import React, { useRef } from 'react';
+
+const App = () => {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+};
+
+export default App;
