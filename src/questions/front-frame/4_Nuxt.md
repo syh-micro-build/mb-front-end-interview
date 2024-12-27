@@ -244,3 +244,24 @@ Nuxt2：基于 Webpack 构建，在开发过程中，热更新速度相对较慢
     }
   }
   ```
+
+## 如何在 Nuxt.js 中配置和使用环境变量？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+* **1：** 创建.env文件：在项目根目录下创建.env文件，例如.env.development用于开发环境，.env.production用于生产环境，在文件中定
+义变量，如API_URL=<http://localhost:3000/api（开发环境下的> API 地址）。
+* **1：** 在nuxt.config.js中配置：使用@nuxtjs/dotenv模块（需先安装），在nuxt.config.js中添加如下配置：
+
+```js
+modules: [
+  '@nuxtjs/dotenv'
+]
+```
+
+* **1：** 在代码中使用：在组件或模块中，可以通过process.env.API_URL来获取环境变量的值，然后在发送 API 请求等操作中使用该地址，这样在
+不同环境下可以方便地切换 API 地址等配置信息，而无需修改代码中的硬编码值。
