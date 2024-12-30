@@ -339,7 +339,7 @@ export default React.memo(RealTimeChart);
 
 #### 解答（3 分）
 
-- React Context API：：
+- React Context API：
 
 - Context API 是 React 提供的一种在组件树中传递数据的机制，无需通过 props 逐层传递。
 
@@ -348,3 +348,27 @@ export default React.memo(RealTimeChart);
 - 提供 Context：使用 Context.Provider 组件将数据传递给子组件。
 
 - 消费 Context：使用 Context.Consumer 组件或 useContext Hook 在子组件中访问数据。
+
+## 什么是 React Router？它的主要特点是什么？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- React Router 是一个用于 React 应用的路由库，它允许你在单页应用（SPA）中实现多页面的导航和路由管理。
+
+- 主要特点：
+
+- 声明式路由：使用声明式的方式来定义路由，使代码更加清晰和易于维护。
+
+- 动态路由匹配：支持动态参数匹配，可以根据 URL 参数动态加载不同的组件。
+
+- 嵌套路由：支持嵌套路由，可以轻松实现多级嵌套的页面结构。
+
+- 编程式导航：提供编程式导航的方法，可以在代码中控制页面的跳转。
+
+- 路由守卫：支持路由守卫，可以在路由切换前后执行特定的逻辑。
+
+- 懒加载：支持代码分割和懒加载，可以按需加载组件，提高应用性能。
