@@ -254,7 +254,7 @@ Nuxt2：基于 Webpack 构建，在开发过程中，热更新速度相对较慢
 #### 解答（3 分）
 
 * **1：** 创建.env文件：在项目根目录下创建.env文件，例如.env.development用于开发环境，.env.production用于生产环境，在文件中定
-义变量，如API_URL=<http://localhost:3000/api（开发环境下的> API 地址）。
+义变量，如`API_URL=<http://localhost:3000/api（开发环境下的> API 地址）`。
 * **1：** 在nuxt.config.js中配置：使用@nuxtjs/dotenv模块（需先安装），在nuxt.config.js中添加如下配置：
 
 ```js
