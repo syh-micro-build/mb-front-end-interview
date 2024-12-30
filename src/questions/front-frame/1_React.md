@@ -453,3 +453,156 @@ export default React.memo(RealTimeChart);
 - **1：** 使用 Chrome 开发者工具的 Memory 面板进行内存快照分析，查找未被释放的对象；
 - **1：** 检查组件卸载时是否取消了订阅、定时器、事件监听器等可能导致内存泄漏的源头；
 - **1：** 对于使用了第三方库的情况，要确保库的使用方式正确，避免因库的不当使用造成内存泄漏。
+
+## 什么是纯组件？为什么要使用纯组件？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 纯组件：
+
+- 纯组件是一种特殊的组件，它通过 React.memo（函数组件）或 PureComponent（类组件）来实现。纯组件会在 props 或 state 发生变化时进行浅比较，如果前后值相同，则跳过重新渲染。
+
+- 优点：1、减少不必要的重新渲染，提高应用性能。 2、开发者不需要手动实现 shouldComponentUpdate 方法来优化性能。
+
+- 使用场景：
+
+- 静态数据：组件的 props 和 state 不经常变化。
+
+- 复杂组件：组件内部逻辑复杂，重新渲染开销大。
+
+## 什么是 React Context API？它解决了什么问题？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- React Context API：
+
+- Context API 是 React 提供的一种在组件树中传递数据的机制，无需通过 props 逐层传递。
+
+- 创建 Context：使用 React.createContext 创建一个 Context 对象。
+
+- 提供 Context：使用 Context.Provider 组件将数据传递给子组件。
+
+- 消费 Context：使用 Context.Consumer 组件或 useContext Hook 在子组件中访问数据。
+
+## 什么是 React Router？它的主要特点是什么？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- React Router 是一个用于 React 应用的路由库，它允许你在单页应用（SPA）中实现多页面的导航和路由管理。
+
+- 主要特点：
+
+- 声明式路由：使用声明式的方式来定义路由，使代码更加清晰和易于维护。
+
+- 动态路由匹配：支持动态参数匹配，可以根据 URL 参数动态加载不同的组件。
+
+- 嵌套路由：支持嵌套路由，可以轻松实现多级嵌套的页面结构。
+
+- 编程式导航：提供编程式导航的方法，可以在代码中控制页面的跳转。
+
+- 路由守卫：支持路由守卫，可以在路由切换前后执行特定的逻辑。
+
+- 懒加载：支持代码分割和懒加载，可以按需加载组件，提高应用性能。
+
+## 什么是 useState？它如何工作？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- useState 是一个 Hook，用于在函数组件中添加状态。
+
+- 主要特点：
+
+- 初始化状态：第一次调用 useState 时，传入的初始值会被用作初始状态。
+
+- 更新状态：返回一个数组，第一个元素是当前状态，第二个元素是一个用于更新状态的函数。
+
+```JSX
+import React, { useState } from 'react';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+
+```
+
+## 什么是 useEffect？它如何工作？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- useEffect 是一个 Hook，用于在函数组件中执行副作用操作，如数据获取、订阅或手动更改 DOM。
+
+- 工作原理：
+
+- 执行副作用：在组件挂载和更新时执行副作用操作。
+
+- 清理副作用：返回一个可选的清理函数，用于在组件卸载或下次执行副作用前清理上一次的副作用。
+
+```JSX
+import React, { useState, useEffect } from 'react';
+
+const DataFetcher = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/data');
+      const json = await response.json();
+      setData(json);
+    };
+
+    fetchData();
+
+    // 清理函数
+    return () => {
+      console.log('Cleanup');
+    };
+  }, []); // 依赖数组为空，表示仅在组件挂载时执行
+
+  return (
+    <div>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+};
+
+export default DataFetcher;
+
+```
