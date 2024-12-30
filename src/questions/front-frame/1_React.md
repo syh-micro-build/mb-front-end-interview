@@ -217,59 +217,74 @@ function handleClick() {
 
 - 缺点：代码相对复杂，性能略逊于函数组件。
 
-## 什么是 Fragment？它的作用是什么？
+## React.memo 的作用和使用场景
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（1 分）
+#### 解答（5 分）
 
-- 作用：
+<details>
 
-- 避免额外的 DOM 节点：在需要返回多个根节点时，使用 Fragment 可以避免添加不必要的 DOM 节点。
+- **1：** 作用1： 性能优化：React.memo 是一个高阶组件，它通过对组件的 props 进行浅比较来决定组件是否需要重新渲染。如果传入组件的 props 没有发生变化，组
+件就不会重新渲染；只有当 props 发生变化时，组件才会重新渲染。这有助于减少不必要的渲染操作，提高应用程序的性能。
+- **1：** 作用2：避免重复渲染：在 React 应用中，当一个组件的父组件重新渲染时，它默认会导致子组件也重新渲染。对于那些只依赖于 props 且计算成本较高的组件，这
+种默认行为可能会导致性能浪费。React.memo 可以帮助解决这个问题，它可以让组件 “记住” 之前的渲染结果，在 props 不变的情况下跳过重新渲染。
+- **1：** 使用场景1：纯展示组件。纯展示组件是指那些只根据传入的 props 来展示 UI，没有内部状态变化和副作用（如数据获取、订阅事件等）的组件。例如，一个简单的用户
+信息展示组件，它接收用户的姓名、年龄等信息作为 props，并将这些信息展示出来。示例：
 
-- 保持代码整洁：可以使 JSX 代码更加简洁和易读。
-
-## 什么是 Refs？如何使用 Refs？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- Refs 是 React 提供的一种访问 DOM 节点或在类组件中访问实例的方法。Refs 可以用于获取输入值、管理焦点、触发动画等。
-
-- 创建 Ref：使用 useRef Hook 或 React.createRef。
-
-- 附加 Ref：将 Ref 附加到需要访问的 DOM 节点或组件实例。
-
-- 访问 Ref：通过 ref.current 属性访问 DOM 节点或组件实例。
-
-```jsx
-
-import React, { useRef } from 'react';
-
-const App = () => {
-  const inputRef = useRef(null);
-
-  const focusInput = () => {
-    inputRef.current.focus();
-  };
-
-  return (
+```js
+import React from 'react';
+const UserInfo = ({ name, age }) => (
     <div>
-      <input type="text" ref={inputRef} />
-      <button onClick={focusInput}>Focus Input</button>
+        <p>Name: {name}</p>
+        <p>Age: {age}</p>
     </div>
-  );
-};
-
-export default App;
+);
+export default React.memo(UserInfo);
+//在这个例子中，UserInfo 组件是一个纯展示组件。通过使用 React.memo 包裹它，当组件的 name 和 age props 没有变化时，组件就不会重新渲染，从而提高了性能。
 ```
 
-## 什么是 Redux？它的主要特点是什么？
+- **1：** 使用场景2：大型组件树中的子组件。在大型的 React 应用中，组件树可能会非常复杂。在这种情况下，一些深层次的子组件可能会因为父组件的重新渲染而频繁地重新渲染，即
+使这些子组件的 props 并没有实际变化。示例：
+
+```js
+import React from 'react';
+const Sidebar = ({ menuData }) => {
+    // 复杂的菜单渲染逻辑
+    return (
+        <div>
+            {menuData.map((item) => (
+                <MenuItem key={item.id} item={item} />
+            ))}
+        </div>
+    );
+};
+export default React.memo(Sidebar);
+//通过使用 React.memo 包裹 Sidebar 组件，当父组件重新渲染但 menuData 没有变化时，Sidebar 组件就不会重新渲染，避免了不必要的渲染开销，提高了整个页面的性能。
+```
+
+- **1：** 使用场景3：在函数式组件中。如果组件的渲染逻辑比较复杂，或者组件在一个频繁更新的环境中（如在一个实时数据更新的仪表盘应用中），使用 React.memo 可以有效减少不
+必要的渲染。示例：
+
+```js
+import React from 'react';
+const RealTimeChart = ({ dataArray, chartType }) => {
+    // 复杂的图表绘制逻辑，可能涉及到数据处理、坐标轴设置等
+    return (
+        <div>
+            <Chart data={dataArray} type={chartType} />
+        </div>
+    );
+};
+export default React.memo(RealTimeChart);
+//当数据更新时，只有 dataArray 或 chartType 发生变化，RealTimeChart 组件才会重新渲染，否则将使用之前的渲染结果，避免了因其他无关因素导致的重新渲染，提升了性能。
+```
+
+</details>
+
+## 什么是 React 中的高阶组件（HOC）？请简单举例说明其用法
 
 #### 类型：`基础`
 
@@ -277,44 +292,21 @@ export default App;
 
 #### 解答（3 分）
 
-- Redux 是一个用于管理应用状态的 JavaScript 库，通常与 React 一起使用。它提供了一种集中管理应用状态的方式，使得状态管理更加可预测和可维护。
+- **1：** 高阶组件（Higher - Order Component，简称 HOC）是一个函数，它接收一个组件作为参数，并返回一个新的组件。这个新组件通常会增强或修改原始组件
+的功能、行为或外观。可以把它看作是一种组件的 “工厂函数”，用于创建具有额外功能的组件。
+- **1：** 用法1：代码复用。HOC 可以将多个组件共有的逻辑提取出来，放到一个地方进行复用。例如，多个组件都需要进行权限验证，就可以创建一个权限验证的 HOC，
+让这些组件都通过这个 HOC 来获得权限验证功能。
+- **1：** 用法2：逻辑抽象和分离。可以将一些复杂的、与业务逻辑无关的功能（如数据加载、动画效果等）从组件内部抽象出来，通过 HOC 来处理，使得组件本身更加专
+注于自己的核心业务逻辑（如展示 UI 和处理用户交互）。
 
-- 单一数据源：整个应用的状态存储在一个单一的 store 中，确保了状态的一致性。
+## 什如何在 React 应用中进行有效的内存泄漏排查和修复？
 
-- 状态不可变：状态是不可变的，每次状态变化时，都会生成一个新的状态对象。
-
-- 纯函数：通过纯函数（reducer）来处理状态变化，使得状态变化可预测。
-
-- 中间件支持：支持中间件，可以扩展 Redux 的功能，如异步操作、日志记录等。
-
-- 开发者工具：提供了强大的开发者工具，可以调试、回溯和重放状态变化。
-
-## 什么是 Redux Thunk？它解决了什么问题？
-
-#### 类型：`基础`
+#### 类型：`拓展`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（3 分）
 
-- Redux Thunk 是一个中间件，允许你在 action 创建函数中返回一个函数而不是一个 action 对象。这个返回的函数可以包含异步逻辑，并在适当的时候 dispatch 一个或多个 action。
-
-- 异步操作：Redux Thunk 允许你处理异步操作，如 AJAX 请求，而不需要在 reducer 中处理异步逻辑。
-
-- 复杂逻辑：可以处理复杂的业务逻辑，如条件 dispatch、多次 dispatch 等。
-
-## 什么是 Redux Saga？它与 Redux Thunk 有什么区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- Redux Saga 是一个用于管理应用副作用（如异步操作）的库，使用 Generator 函数来处理异步逻辑。
-
-- Generator 函数：Redux Saga 使用 Generator 函数，提供了更强大的控制流和错误处理机制。
-
-- 可测试性：Redux Saga 的副作用可以更容易地进行单元测试。
-
-- 复杂逻辑：Redux Saga 更适合处理复杂的异步逻辑和并发操作。
+- **1：** 使用 Chrome 开发者工具的 Memory 面板进行内存快照分析，查找未被释放的对象；
+- **1：** 检查组件卸载时是否取消了订阅、定时器、事件监听器等可能导致内存泄漏的源头；
+- **1：** 对于使用了第三方库的情况，要确保库的使用方式正确，避免因库的不当使用造成内存泄漏。
