@@ -606,3 +606,14 @@ const DataFetcher = () => {
 export default DataFetcher;
 
 ```
+
+## 在 React 组件中，useEffect 钩子的第二个参数（依赖项数组）为空数组和不设置有什么区别？
+
+#### 类型：基础
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 为空数组时，useEffect 仅在组件挂载和卸载时执行一次，类似 componentDidMount 与 componentWillUnmount 的结合；不设置时，每次组件渲染
+后 useEffect 都会执行，可能导致不必要的副作用反复运行。
