@@ -372,3 +372,94 @@ export default React.memo(RealTimeChart);
 - 路由守卫：支持路由守卫，可以在路由切换前后执行特定的逻辑。
 
 - 懒加载：支持代码分割和懒加载，可以按需加载组件，提高应用性能。
+
+## 什么是 useState？它如何工作？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- useState 是一个 Hook，用于在函数组件中添加状态。
+
+- 主要特点：
+
+- 初始化状态：第一次调用 useState 时，传入的初始值会被用作初始状态。
+
+- 更新状态：返回一个数组，第一个元素是当前状态，第二个元素是一个用于更新状态的函数。
+
+```JSX
+import React, { useState } from 'react';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+
+```
+
+## 什么是 useEffect？它如何工作？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- useEffect 是一个 Hook，用于在函数组件中执行副作用操作，如数据获取、订阅或手动更改 DOM。
+
+- 工作原理：
+
+- 执行副作用：在组件挂载和更新时执行副作用操作。
+
+- 清理副作用：返回一个可选的清理函数，用于在组件卸载或下次执行副作用前清理上一次的副作用。
+
+```JSX
+import React, { useState, useEffect } from 'react';
+
+const DataFetcher = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/data');
+      const json = await response.json();
+      setData(json);
+    };
+
+    fetchData();
+
+    // 清理函数
+    return () => {
+      console.log('Cleanup');
+    };
+  }, []); // 依赖数组为空，表示仅在组件挂载时执行
+
+  return (
+    <div>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+};
+
+export default DataFetcher;
+
+```
