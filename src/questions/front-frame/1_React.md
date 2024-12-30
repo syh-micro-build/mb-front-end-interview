@@ -330,3 +330,21 @@ export default React.memo(RealTimeChart);
 - 静态数据：组件的 props 和 state 不经常变化。
 
 - 复杂组件：组件内部逻辑复杂，重新渲染开销大。
+
+## 什么是 React Context API？它解决了什么问题？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- React Context API：：
+
+- Context API 是 React 提供的一种在组件树中传递数据的机制，无需通过 props 逐层传递。
+
+- 创建 Context：使用 React.createContext 创建一个 Context 对象。
+
+- 提供 Context：使用 Context.Provider 组件将数据传递给子组件。
+
+- 消费 Context：使用 Context.Consumer 组件或 useContext Hook 在子组件中访问数据。
