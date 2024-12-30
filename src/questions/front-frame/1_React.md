@@ -123,6 +123,55 @@ function handleClick() {
 }
 ```
 
+## React中的性能优化方法有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 使用React.memo进行组件缓存：
+
+```jsx
+const MyComponent = React.memo(function MyComponent(props) {
+  /* 组件逻辑 */
+});
+```
+
+- **1：** 使用useMemo缓存计算结果：
+
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+- **1：** 使用useCallback缓存函数：
+
+```jsx
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+
+- **1：** 合理使用key：
+
+```jsx
+{list.map(item => (
+  <ListItem 
+    key={item.id} // 使用唯一且稳定的key
+    data={item}
+  />
+))}
+```
+
+- **1：** 避免不必要的渲染：
+  + 使用React.lazy进行代码分割
+  + 使用虚拟列表处理长列表
+  + 合理设计组件层级
+
 ## 什么是 React？它的主要特点是什么？
 
 #### 类型：`基础`
@@ -161,6 +210,53 @@ function handleClick() {
 
 - 工具支持：现代开发工具（如 Babel）可以将 JSX 编译成兼容所有浏览器的 JavaScript 代码。
 
+## React中的Context是什么？如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **1：** Context的创建和提供：
+
+```jsx
+const ThemeContext = React.createContext('light');
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ThemedButton />
+    </ThemeContext.Provider>
+  );
+}
+```
+
+- **1：** 在类组件中使用Context：
+
+```jsx
+class ThemedButton extends React.Component {
+  static contextType = ThemeContext;
+  render() {
+    return <Button theme={this.context} />;
+  }
+}
+```
+
+- **1：** 在函数组件中使用useContext：
+
+```jsx
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return <Button theme={theme} />;
+}
+```
+
+- **1：** Context的注意事项：
+  + 避免过度使用Context
+  + Context值变化会导致所有消费组件重新渲染
+  + 适合共享全局数据，如主题、用户信息等
+
 ## 什么是虚拟 DOM？它是如何工作的？
 
 #### 类型：`基础`
@@ -192,6 +288,53 @@ function handleClick() {
 - 易于调试：数据流的单一方向使得调试更加容易，可以更容易地追踪数据的变化。
 
 - 可预测性：单向数据流使得应用的状态变化更加可预测，便于维护和扩展。
+
+## React中的Refs是什么？有哪些使用场景？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **1：** 创建和使用Refs：
+
+```jsx
+function TextInputWithFocusButton() {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <>
+      <input ref={inputRef} type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </>
+  );
+}
+```
+
+- **1：** 转发Refs：
+
+```jsx
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="fancy-button">
+    {props.children}
+  </button>
+));
+```
+
+- **1：** 常见使用场景：
+  + 管理焦点、文本选择或媒体播放
+  + 触发强制动画
+  + 集成第三方DOM库
+
+- **1：** 使用注意事项：
+  + 避免过度使用Refs
+  + 不要用Refs来做可以通过声明式实现的事情
+  + 在类组件中使用需要通过React.createRef()创建
 
 ## 什么是函数组件和类组件？它们有什么区别？
 
