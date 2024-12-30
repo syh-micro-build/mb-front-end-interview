@@ -208,6 +208,16 @@ module.exports = {
 
 ```js
 <teleport to="#app-root">...</teleport>
+//会将包裹的元素移动到id为app-root的元素内部。
 ```
 
-会将包裹的元素移动到id为app-root的元素内部。
+## 如何在 Vue 3 中实现自定义指令的全局注册和局部注册？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+* **1：** 全局注册在 main.js 中使用 app.directive('指令名', 指令对象)；局部注册在组件内，通过 directives: { '指令名': 指令对象 }，指令对象包含
+ mounted、updated 等生命周期钩子函数用于定义指令行为。
