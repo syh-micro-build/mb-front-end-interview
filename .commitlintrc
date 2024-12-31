@@ -26,7 +26,8 @@
         "fix",
         "ci",
         "test",
-        "docs"
+        "docs",
+        "server"
       ]
     ],
     "subject-case": [
@@ -139,6 +140,11 @@
         "value": "ci",
         "name": "ci:                 🎡  持续集成 | Continuous Integration",
         "emoji": ":ferris_wheel:"
+      },
+      {
+        "value": "server",
+        "name": "server:             🖥️  服务端 | Server",
+        "emoji": ":desktop_computer:"
       },
       {
         "value": "test",
