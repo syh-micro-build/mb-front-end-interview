@@ -19,6 +19,8 @@ brew install nginx
 
 ![](/public/images/4_Nginx_20241231111116.png)
 
+[常用指令](https://juejin.cn/post/6883018403641032712)
+
 ```shell
 
 # 查看配置信息
