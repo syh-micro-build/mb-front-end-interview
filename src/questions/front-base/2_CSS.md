@@ -478,3 +478,29 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 - **1：** 合理使用选择器：避免复杂嵌套，保持选择器简单高效，如.parent >.child比.parent.class1.class2 >.child性能更好。
 - **1：** 优化图片资源：使用合适的图片格式与尺寸，对于小图标可考虑使用雪碧图或字体图标，减少 HTTP 请求。
 - **1：** 利用 CSS 继承：将可继承的属性设置在父元素，减少重复声明，如color、font - family等。
+
+## CSS3中有哪些新特性
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 新增各种CSS选择器 （: not(.input)：所有 class 不是“input”的节点）
+
+- 圆角 （border-radius:8px）
+
+- 多列布局 （multi-column layout）
+
+- 阴影和反射 （box-shadow 和 reflect）
+
+- 文字特效 （text-shadow）
+
+- 线性渐变 （gradient）
+
+- 旋转 （transform）
+
+- 媒体查询 （@media）
+
+- 2D、3D 转换和动画
