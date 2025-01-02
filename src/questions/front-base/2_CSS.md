@@ -504,3 +504,28 @@ align-items：在交叉轴上对齐项目，类似 justify-content 有 flex-star
 - 媒体查询 （@media）
 
 - 2D、3D 转换和动画
+
+## 单行、多行文本溢出隐藏
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 单行文本溢出
+
+```css
+overflow: hidden;            // 溢出隐藏
+text-overflow: ellipsis;      // 溢出用省略号显示
+white-space: nowrap;         // 规定段落中的文本不进行换行
+```
+
+- 多行文本溢出
+
+```css
+display: -webkit-box;         // 作为弹性伸缩盒子模型显示
+-webkit-box-orient: vertical; // 设置伸缩盒子的子元素排列方式--从上到下垂直排列
+-webkit-line-clamp: 3;        // 显示的行数
+overflow: hidden;             // 溢出隐藏
+```
