@@ -189,3 +189,13 @@ let p: Person = { name: "John" };
 #### 解答（2 分）
 
 - **2：** 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
+
+## type MyType = string | number | null | undefined ，type Result = NonNullable<MyType> 请问Result类型是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
