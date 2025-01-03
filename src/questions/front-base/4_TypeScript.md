@@ -169,3 +169,15 @@ interface Person {
 let p: Person = { name: "John" };
 // p.name = "Doe";  // 错误，不能修改只读属性
 ```
+
+## type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; } 请问A和B的关系是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+<details>
+
+- **1：** A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。
