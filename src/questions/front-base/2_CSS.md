@@ -630,3 +630,17 @@ transform: scale(0.5,0.5);
 
 - 粘性定位的元素是依赖于用户的滚动，在 position:relative 与 position:fixed 定位之间切换。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 top, right, bottom 或 left
 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
+
+## display:inline-block 什么时候会显示间隙？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 有空格时会有间隙，可以删除空格解决；
+
+- margin正值时，可以让margin使用负值解决；
+
+- 使用font-size解决，给父元素设置font-size:0，子元素再设置font-size；
