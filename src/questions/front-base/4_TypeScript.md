@@ -170,7 +170,7 @@ let p: Person = { name: "John" };
 // p.name = "Doe";  // 错误，不能修改只读属性
 ```
 
-## type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; } 请问A和B的关系是什么？
+## `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
 
 #### 类型：`基础`
 
@@ -180,7 +180,7 @@ let p: Person = { name: "John" };
 
 - **1：** A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。
 
-## 定义一个泛型函数 add<T>(a: T, b: T): T，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问add<number>(1, 2)返回值类型是什么
+## 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
 
 #### 类型：`基础`
 
@@ -190,7 +190,7 @@ let p: Person = { name: "John" };
 
 - **2：** 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
 
-## type MyType = string | number | null | undefined ，type Result = NonNullable<MyType> 请问Result类型是什么？
+## `type MyType = string | number | null | undefined ，type Result = NonNullable<MyType>` 请问Result类型是什么？
 
 #### 类型：`基础`
 
