@@ -76,6 +76,7 @@ npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 - `refactor`: ♻️ 代码重构 | Code refactoring
 - `fix`: 🐛 修复缺陷 | Bug fix
 - `ci`: 🎡 持续集成 | Continuous Integration
+- `server`: 🖥️ 服务端 | Server
 - `test`: ✅ 测试 | Tests
 - `docs`: 📝 文档更新 | Documentation only changes'
 
