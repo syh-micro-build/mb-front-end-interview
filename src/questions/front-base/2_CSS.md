@@ -654,3 +654,170 @@ transform: scale(0.5,0.5);
 #### 解答（1 分）
 
 - 冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。 （2）::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在于dom之中，只存在在页面之中。
+
+## CSS 居中
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **1：定位居中**
+
+①已知大小的元素在屏幕窗口水平垂直都居中
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            background-color: aqua;
+            position:fixed;
+            left:50%;
+            top:50%;
+            margin-left:-50px;
+            margin-top:-50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>
+```
+
+②未知大小的元素在屏幕窗口水平垂直都居中
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        .box{
+            position:fixed;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>
+```
+
+- **1：子元素在父元素中居中**
+
+①已知大小的子元素在父元素中居中
+
+```css
+    父元素{
+        /* 相对定位 */
+        position: relative;
+    }
+    子元素{
+        width:100px;
+        height:100px;
+        /* 绝对定位 */
+        position:absolute;
+        left:50%;
+        top:50%;
+        margin-left:-50px;
+        margin-top:-50px;
+    }
+```
+
+②未知大小的子元素在父元素中居中
+
+```css
+  父元素{
+      /* 相对定位 */
+      position: relative;
+  }
+  子元素{
+      /* 绝对定位 */
+      position:absolute;
+      left:0;
+      top:0;
+      right:0;
+      bottom:0;
+      margin:auto;
+  }
+```
+
+- **1：使用弹性布局**
+
+① 使用flex布局的方式实现未知大小元素在屏幕窗口水平垂直都居中
+
+```css
+  html,body{
+      height:100%;
+  }
+  /* 让html和body的高度为屏幕窗口的高度（窗口高度自适应） */
+  body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+  }
+```
+
+② 使用flex布局的方式实现未知大小的子元素在父元素中水平垂直都居中**
+
+```css
+  父元素 {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+  }
+    
+```
+
+- **1：使用css3变形来实现**
+
+① 使用css3变形的方式实现未知大小的元素在屏幕窗口水平垂直都居中
+
+```css
+  元素{
+      position:fixed;
+      left:50%;
+      top:50%;
+      transform:translateX(-50%) translateY(-50%);
+  }
+```
+
+② 使用css变形的方式来实现未知大小的子元素，在父元素中水平垂直都居中
+
+```css
+  父元素{
+      position:relative;
+  }
+  子元素{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+  }
+```
+
+</details>
