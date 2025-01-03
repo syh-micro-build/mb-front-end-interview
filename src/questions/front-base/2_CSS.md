@@ -597,3 +597,23 @@ div{
     border-top-color: red;
 }
 ```
+
+## 画一条0.5px的线
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 采用transform: scale()的方式，该方法用来定义元素的2D 缩放转换：
+
+```css
+transform: scale(0.5,0.5);
+```
+
+- 采用meta viewport的方式
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5"/>
+```
