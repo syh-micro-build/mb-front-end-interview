@@ -504,3 +504,60 @@ e.greet();
 ```
 
 </details>
+
+## TypeScript中的映射类型是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 映射类型允许你从一个旧类型创建一个新类型，其中新类型的每个属性都基于旧类型的属性进行转换。TypeScript内置了几个常用的映射类型。
+
+- **2：** 示例：
+
+```typescript
+// 原始接口
+interface Person {
+    name: string;
+    age: number;
+    address: string;
+}
+
+// 将所有属性变为可选
+type PartialPerson = Partial<Person>;
+// 等价于:
+// {
+//    name?: string;
+//    age?: number;
+//    address?: string;
+// }
+
+// 将所有属性变为只读
+type ReadonlyPerson = Readonly<Person>;
+// 等价于:
+// {
+//    readonly name: string;
+//    readonly age: number;
+//    readonly address: string;
+// }
+
+// 自定义映射类型
+type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};
+
+// 使用自定义映射类型
+type NullablePerson = Nullable<Person>;
+// 等价于:
+// {
+//    name: string | null;
+//    age: number | null;
+//    address: string | null;
+// }
+```
+
+</details>
