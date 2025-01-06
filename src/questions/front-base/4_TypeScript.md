@@ -448,3 +448,59 @@ class Calculator {
 ```
 
 </details>
+
+## TypeScript中的装饰器是什么？如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **2：** 装饰器是一种特殊类型的声明，它能够被附加到类声明、方法、属性或参数上。装饰器使用 @expression 这种形式，expression求值后必须为一个函数，它会在运行时被调用。
+
+- **4：** 常见的装饰器类型：
+
+```typescript
+// 类装饰器
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+// 方法装饰器
+function methodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    // 保存原始方法
+    const originalMethod = descriptor.value;
+    
+    // 修改方法的行为
+    descriptor.value = function(...args: any[]) {
+        console.log('Before method execution');
+        const result = originalMethod.apply(this, args);
+        console.log('After method execution');
+        return result;
+    }
+}
+
+// 使用装饰器
+@classDecorator
+class Example {
+    @methodDecorator
+    greet() {
+        console.log('Hello!');
+    }
+}
+
+const e = new Example();
+e.greet();
+// 输出:
+// Before method execution
+// Hello!
+// After method execution
+```
+
+</details>
