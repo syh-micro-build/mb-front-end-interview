@@ -231,3 +231,220 @@ let p: Person = { name: "John" };
 #### 解答（2 分）
 
 - **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
+
+## 如何在TypeScript中实现函数重载？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 函数重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。在TypeScript中，我们需要先声明所有重载的函数签名，然后再实现一个通用的函数：
+
+```typescript
+// 重载签名
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
+// 实现签名
+function add(a: number | string, b: number | string): number | string {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    if (typeof a === 'string' && typeof b === 'string') {
+        return a.concat(b);
+    }
+    throw new Error('Parameters must be numbers or strings');
+}
+
+console.log(add(1, 2));          // 3
+console.log(add("Hello ", "World")); // "Hello World"
+```
+
+- **2：** 在类中使用函数重载：
+
+```typescript
+class Calculator {
+    add(a: number, b: number): number;
+    add(a: string, b: string): string;
+    add(a: any, b: any): any {
+        if (typeof a === 'number' && typeof b === 'number') {
+            return a + b;
+        }
+        if (typeof a === 'string' && typeof b === 'string') {
+            return a.concat(b);
+        }
+        throw new Error('Parameters must be numbers or strings');
+    }
+}
+```
+
+</details>
+
+## TypeScript中的装饰器是什么？如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **2：** 装饰器是一种特殊类型的声明，它能够被附加到类声明、方法、属性或参数上。装饰器使用 @expression 这种形式，expression求值后必须为一个函数，它会在运行时被调用。
+
+- **4：** 常见的装饰器类型：
+
+```typescript
+// 类装饰器
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+// 方法装饰器
+function methodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    // 保存原始方法
+    const originalMethod = descriptor.value;
+    
+    // 修改方法的行为
+    descriptor.value = function(...args: any[]) {
+        console.log('Before method execution');
+        const result = originalMethod.apply(this, args);
+        console.log('After method execution');
+        return result;
+    }
+}
+
+// 使用装饰器
+@classDecorator
+class Example {
+    @methodDecorator
+    greet() {
+        console.log('Hello!');
+    }
+}
+
+const e = new Example();
+e.greet();
+// 输出:
+// Before method execution
+// Hello!
+// After method execution
+```
+
+</details>
+
+## TypeScript中的映射类型是什么？请举例说明
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 映射类型允许你从一个旧类型创建一个新类型，其中新类型的每个属性都基于旧类型的属性进行转换。TypeScript内置了几个常用的映射类型。
+
+- **2：** 示例：
+
+```typescript
+// 原始接口
+interface Person {
+    name: string;
+    age: number;
+    address: string;
+}
+
+// 将所有属性变为可选
+type PartialPerson = Partial<Person>;
+// 等价于:
+// {
+//    name?: string;
+//    age?: number;
+//    address?: string;
+// }
+
+// 将所有属性变为只读
+type ReadonlyPerson = Readonly<Person>;
+// 等价于:
+// {
+//    readonly name: string;
+//    readonly age: number;
+//    readonly address: string;
+// }
+
+// 自定义映射类型
+type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};
+
+// 使用自定义映射类型
+type NullablePerson = Nullable<Person>;
+// 等价于:
+// {
+//    name: string | null;
+//    age: number | null;
+//    address: string | null;
+// }
+```
+
+</details>
+
+## 如何在TypeScript中实现函数重载？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 函数重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。在TypeScript中，我们需要先声明所有重载的函数签名，然后再实现一个通用的函数：
+
+```typescript
+// 重载签名
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
+// 实现签名
+function add(a: number | string, b: number | string): number | string {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    if (typeof a === 'string' && typeof b === 'string') {
+        return a.concat(b);
+    }
+    throw new Error('Parameters must be numbers or strings');
+}
+
+console.log(add(1, 2));          // 3
+console.log(add("Hello ", "World")); // "Hello World"
+```
+
+- **2：** 在类中使用函数重载：
+
+```typescript
+class Calculator {
+    add(a: number, b: number): number;
+    add(a: string, b: string): string;
+    add(a: any, b: any): any {
+        if (typeof a === 'number' && typeof b === 'number') {
+            return a + b;
+        }
+        if (typeof a === 'string' && typeof b === 'string') {
+            return a.concat(b);
+        }
+        throw new Error('Parameters must be numbers or strings');
+    }
+}
+```
+
+</details>
