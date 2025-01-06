@@ -226,3 +226,24 @@ let p: Person = { name: "John" };
 - TypeScript：noImplicitThis: true 的情况下，必须去声明 this 的类型，才能在函数或者对象中使用this。
 
 - Typescript 中箭头函数的 this 和 ES6 中箭头函数中的 this 是一致的。
+
+## 13. TypeScript 如何设计 Class 的声明？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+```ts
+class Greeter {
+   greeting: string;
+   constructor(message: string) {
+       this.greeting = message;
+   }
+   greet(): string{
+       return "Hello, " + this.greeting;
+   }
+}
+let greeter = new Greeter("world");
+```
