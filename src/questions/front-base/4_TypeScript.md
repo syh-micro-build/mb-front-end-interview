@@ -201,3 +201,33 @@ let p: Person = { name: "John" };
 - 支持面向对象编程，比如类、接口、继承、泛型等;
 
 - 支持模块化开发，使得代码更加模块化、可维护、可复用。
+
+## `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。
+
+## 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
+
+## `type MyType = string | number | null | undefined ，type Result = NonNullable<MyType>` 请问Result类型是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
