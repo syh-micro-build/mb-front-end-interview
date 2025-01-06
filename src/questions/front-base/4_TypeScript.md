@@ -169,3 +169,13 @@ interface Person {
 let p: Person = { name: "John" };
 // p.name = "Doe";  // 错误，不能修改只读属性
 ```
+
+## 9. 什么是TypeScript？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** Typescript 是一个强类型的 JavaScript 超集，支持ES6语法，支持面向对象编程的概念，如类、接口、继承、泛型等。Typescript并不直接在浏览器上运行，需要编译器编译成纯Javascript来运行。
