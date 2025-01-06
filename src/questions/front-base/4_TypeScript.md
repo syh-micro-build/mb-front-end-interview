@@ -170,6 +170,38 @@ let p: Person = { name: "John" };
 // p.name = "Doe";  // 错误，不能修改只读属性
 ```
 
+## 9. 什么是TypeScript？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** Typescript 是一个强类型的 JavaScript 超集，支持ES6语法，支持面向对象编程的概念，如类、接口、继承、泛型等。Typescript并不直接在浏览器上运行，需要编译器编译成纯Javascript来运行。
+
+## 9. 为什么要使用 TypeScript ? TypeScript 相对于 JavaScript 的优势是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 增加了静态类型，可以在开发人员编写脚本时检测错误，使得代码质量更好，更健壮。
+
+- 杜绝手误导致的变量名写错;
+
+- 类型检查，提前发现潜在问题;
+
+- 类型推断，减少代码量，提高开发效率;
+
+- 支持最新的 ECMAScript 语法，比如可选链（Optional Chaining）和空值合并运算符（Nullish Coalescing Operator）;
+
+- 支持面向对象编程，比如类、接口、继承、泛型等;
+
+- 支持模块化开发，使得代码更加模块化、可维护、可复用。
+
 ## `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
 
 #### 类型：`基础`
