@@ -861,3 +861,60 @@ transform: scale(0.5,0.5);
 ```
 
 </details>
+
+## CSS 动画和过渡的区别是什么？如何使用它们？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **2：** 过渡（Transition）：
+  + 从一个状态到另一个状态的平滑过渡
+  + 需要触发条件（如hover）
+  + 只能定义开始和结束状态
+
+```css
+.element {
+    width: 100px;
+    transition: width 0.3s ease;
+}
+
+.element:hover {
+    width: 200px;
+}
+```
+
+- **2：** 动画（Animation）：
+  + 可以定义多个状态的变化
+  + 可以循环播放
+  + 可以自动播放，无需触发条件
+
+```css
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.element {
+    animation: slide 2s ease infinite;
+}
+```
+
+- **2：** 主要区别：
+  + 触发方式：过渡需要触发条件，动画可以自动播放
+  + 状态数量：过渡只有开始和结束两个状态，动画可以有多个状态
+  + 循环播放：动画可以循环播放，过渡不能
+  + 控制能力：动画的控制能力更强，可以精确控制中间状态
+
+</details>
