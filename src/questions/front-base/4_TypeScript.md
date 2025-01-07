@@ -204,6 +204,18 @@ let p: Person = { name: "John" };
 
 ## 11. TypeScript 中 const 和 readonly 的区别？枚举和常量枚举的区别？接口和类型别名的区别？
 
+## `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。
+
+## 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
+
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
@@ -216,6 +228,10 @@ let p: Person = { name: "John" };
 - 接口和类型别名: 两者都可以用来描述对象或函数的类型。与接口不同，类型别名还可以用于其他类型，如基本类型（原始值）、联合类型、元组。
 
 ## 12. TypeScript 中的 this 和 JavaScript 中的 this 有什么差异？
+
+- **2：** 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
+
+## `type MyType = string | number | null | undefined ，type Result = NonNullable<MyType>` 请问Result类型是什么？
 
 #### 类型：`基础`
 
@@ -247,3 +263,5 @@ class Greeter {
 }
 let greeter = new Greeter("world");
 ```
+
+- **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
