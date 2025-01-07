@@ -36,7 +36,7 @@
   + 将 HTML 页面发送给浏览器。
   + 浏览器解析和显示 HTML 页面。
 
-## Next.js 中getStaticProps函数的用途是什么？
+## Next.js 中getStaticProps函数的用途是什么？ getServerSideProps和getStaticProps函数有什么区别？
 
 #### 类型：`基础`
 
@@ -44,4 +44,15 @@
 
 #### 解答（1 分）
 
-- **2：** getStaticProps函数用于在构建时获取数据以生成静态站点。此函数在构建过程中调用，可用于从外部 API 或数据库中获取数据。然后将getStaticProps返回的数据作为 props 传递给页面组件
+- **1：** getStaticProps函数用于在构建时获取数据以生成静态站点。此函数在构建过程中调用，可用于从外部 API 或数据库中获取数据。然后将getStaticProps返回的数据作为 props 传递给页面组件
+- **1：** getServerSideProps函数用于在运行时在服务器上获取数据以进行服务器端渲染，而getStaticProps函数用于在构建时获取数据以生成静态站点
+
+## 如何在 Next.js 应用程序中配置动态路由？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** Next.js 使用方括号[]表示 URL 路径中的动态段。例如，要为 URL 路径为/blog/[slug]的博客帖子创建动态路由，您可以在pages/blog目录中创建一个名为[slug].js的文件
