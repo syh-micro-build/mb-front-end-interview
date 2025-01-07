@@ -821,3 +821,43 @@ transform: scale(0.5,0.5);
 ```
 
 </details>
+
+## CSS Grid 布局的基本概念和使用方法是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** Grid布局的基本概念：
+  + Grid Container：设置 display: grid 的元素
+  + Grid Item：Grid Container 的直接子元素
+  + Grid Line：构成网格结构的分界线
+  + Grid Track：两条相邻网格线之间的空间
+  + Grid Cell：网格中的单元格
+  + Grid Area：任意数量的网格单元格组成的区域
+
+- **2：** 基本使用示例：
+
+```css
+.container {
+    display: grid;
+    /* 定义列的大小和数量 */
+    grid-template-columns: 100px 100px 100px;
+    /* 定义行的大小和数量 */
+    grid-template-rows: 100px 100px;
+    /* 设置间距 */
+    gap: 10px;
+}
+
+.item {
+    /* 指定元素位置 */
+    grid-column: 1 / 3; /* 从第1条网格线到第3条网格线 */
+    grid-row: 1 / 2;    /* 从第1条网格线到第2条网格线 */
+}
+```
+
+</details>
