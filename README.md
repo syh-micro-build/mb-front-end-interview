@@ -80,7 +80,13 @@ npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 - `test`: ✅ 测试 | Tests
 - `docs`: 📝 文档更新 | Documentation only changes'
 
-## markdown 书写规则
+## markdown
+
+### 1、下载
+
+[markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
+### 2、书写规则
 
 [docs](https://www.newverse.wiki/senses/markdownlint/)
 
@@ -88,9 +94,7 @@ npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 
 ### 1、下载
 
-1、[Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
-
-2、[markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+[Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
 
 ### 2、使用
 
