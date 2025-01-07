@@ -918,3 +918,49 @@ transform: scale(0.5,0.5);
   + 控制能力：动画的控制能力更强，可以精确控制中间状态
 
 </details>
+
+## CSS 中的 BEM 命名规范是什么？为什么要使用它？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** BEM 命名规范：
+  + Block（块）：独立的组件，如 `.button`
+  + Element（元素）：属于块的一部分，用 `__` 连接，如 `.button__text`
+  + Modifier（修饰符）：改变块或元素的外观或行为，用 `--` 连接，如 `.button--large`
+
+```css
+/* Block */
+.card {
+    padding: 20px;
+}
+
+/* Element */
+.card__title {
+    font-size: 18px;
+}
+
+/* Element */
+.card__content {
+    margin-top: 10px;
+}
+
+/* Modifier */
+.card--featured {
+    background: #f0f0f0;
+}
+```
+
+- **2：** 使用BEM的好处：
+  + 提高代码的可读性和可维护性
+  + 避免CSS选择器嵌套过深
+  + 减少命名冲突
+  + 明确表达组件结构和关系
+  + 方便团队协作和代码复用
+
+</details>
