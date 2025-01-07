@@ -1,6 +1,6 @@
 # TypeScript
 
-## ts 如何定义对象结构体
+## 1.ts 如何定义对象结构体
 
 #### 类型：`基础`
 
@@ -26,7 +26,7 @@ type Person = {
 }
 ```
 
-## type 和 interface的区别？
+## 2. type 和 interface的区别？
 
 #### 类型：`基础`
 
@@ -42,7 +42,7 @@ type Person = {
 
 </details>
 
-## 常用工具类型？
+## 3. 常用工具类型？
 
 #### 类型：`基础`
 
@@ -62,7 +62,7 @@ type Person = {
 
 </details>
 
-## any、never、unknown、null & undefined 和 void 有什么区别？
+## 4. any、never、unknown、null & undefined 和 void 有什么区别？
 
 #### 类型：`基础`
 
@@ -80,7 +80,7 @@ type Person = {
 
 </details>
 
-## ?.、??、!、!.、_、** 等符号的含义？
+## 5. ?.、??、!、!.、_、** 等符号的含义？
 
 #### 类型：`基础`
 
@@ -99,7 +99,7 @@ type Person = {
 
 </details>
 
-## 请解释一下 TypeScript 中的基本数据类型有哪些？
+## 6. 请解释一下 TypeScript 中的基本数据类型有哪些？
 
 #### 类型：`基础`
 
@@ -110,7 +110,7 @@ type Person = {
 - **1：**
   TypeScript 的基本数据类型包括：number（数字，包括整数和浮点数）、string（字符串）、boolean（布尔值，只有true和false）、null（表示空值）、undefined（表示未定义）、symbol（ES6 新增的一种原始数据类型，用于表示独一无二的值）和bigint（用于表示任意精度的整数）
 
-## 什么是泛型,有什么作用？
+## 7. 什么是泛型,有什么作用？
 
 #### 类型：`基础`
 
@@ -266,7 +266,7 @@ let greeter = new Greeter("world");
 
 - **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
 
-## 14. TypeScript 中 ?.、??、!、!.、_、** 等符号的含义？
+## 14. 类型的全局声明和局部声明
 
 #### 类型：`基础`
 
@@ -274,17 +274,7 @@ let greeter = new Greeter("world");
 
 #### 解答（2 分）
 
-- ?. 可选链 遇到 null 和 undefined 可以立即停止表达式的运行。
-
-- ?? 空值合并运算符 当左侧操作数为 null 或 undefined 时，其返回右侧的操作数，否则返回左侧的操作数。
-
-- ! 非空断言操作符 从类型检查的角度告诉编译器，某个值为非 null 或非 undefined。
-
-- !. 非空断言操作符 遇到 null 和 undefined 可以立即停止表达式的运行。
-
-- _ 下划线开头的变量表示私有变量，只能在当前类中使用。
-
-- ** 双星号表示指数运算符，用于计算一个数的幂。
+- 如果声明文件内不包含import、export，那么这个文件声明的类型就会变成全局声明。反之，若是这个文件包含了import、export，那么这个文件包含的类型声明则会是局部声明，不会影响到全局声明。
 
 ## 15. 简单介绍一下 TypeScript 模块的加载机制？
 
