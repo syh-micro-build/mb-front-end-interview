@@ -311,3 +311,56 @@ ref 的作用是被用来给元素或子组件注册引用信息。引用信息�
 * 调用子组件中的方法
 
 * 使用 vue-devtools 调试工具里显示的组见名称是由 vue 中组件 name 决定的
+
+## Vue3 中的 Composition API 和 Options API 有什么区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+* **2：** 代码组织方式：
+  + Options API 是按照 methods、computed、data、props 等配置项组织代码
+  + Composition API 是按照功能逻辑组织代码，相关功能的代码可以放在一起
+
+* **2：** 逻辑复用：
+  + Options API 主要通过 mixins 实现逻辑复用，但可能会出现命名冲突、数据来源不清晰等问题
+  + Composition API 通过抽取组合函数（composables）实现逻辑复用，更加灵活和清晰
+
+* **2：** 代码示例：
+
+```js
+// Options API
+export default {
+  data() {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    increment() {
+      this.count++
+    }
+  }
+}
+
+// Composition API
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+    const increment = () => count.value++
+
+    return {
+      count,
+      increment
+    }
+  }
+}
+```
+
+</details>
