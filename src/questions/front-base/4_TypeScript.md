@@ -229,7 +229,41 @@ let p: Person = { name: "John" };
 
 ## 12. TypeScript 中的 this 和 JavaScript 中的 this 有什么差异？
 
-- **2：** 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
+- 在 TypeScript 和 JavaScript 中，this 的工作原理本质上是相同的，因为 TypeScript 是 JavaScript 的一个超集，它添加了类型系统和一些编译时的检查，但运行时行为与纯 JavaScript 相同。因此，this 的绑定规则在两者中是一致的。
+
+- 函数上下文中的 this:
+
+- 在全局上下文中（非严格模式下），this 指向全局对象（在浏览器中通常是 window，在 Node.js 中是 global）。
+
+- 在严格模式（'use strict'）下，全局上下文中的 this 是 undefined。
+
+- 在对象的方法中，this 通常指向调用该方法的对象。
+
+- 在普通函数中，this 的值取决于函数如何被调用，而不是函数被定义的位置。例如，如果函数作为某个对象的方法被调用，this 将指向该对象；如果作为普通函数调用，this 指向全局对象或在严格模式下为 undefined。
+
+- 箭头函数中的 this:
+
+- 箭头函数不绑定自己的 this，而是继承自它们父作用域中的 this 值。这意味着在箭头函数内部使用 this 时，它引用的是定义该箭头函数时的上下文中的 this 值。
+
+- 在 TypeScript 中，可以使用 this 参数来指定函数的 this 类型。例如：
+
+```typescript
+function greet(this: { name: string }) {
+  console.log(`Hello, ${this.name}!`);
+}
+```
+
+- 在上面的例子中，this 参数指定了函数的 this 类型为 { name: string }，这意味着在调用 greet 函数时，必须传入一个具有 name 属性的对象作为 this 的值。
+
+- 在 TypeScript 中，可以使用 noImplicitThis 选项来禁用隐式 this 类型。当 noImplicitThis 选项被启用时，如果函数的 this 参数没有显式指定类型，TypeScript 编译器将抛出一个错误。例如：
+
+```typescript
+function greet() {
+  console.log(`Hello, ${this.name}!`);
+}
+```
+
+- 在上面的例子中，由于 greet 函数的 this 参数没有显式指定类型，TypeScript 编译器将抛出一个错误，因为无法确定 this 的类型。
 
 ## `type MyType = string | number | null | undefined ，type Result = NonNullable<MyType>` 请问Result类型是什么？
 
