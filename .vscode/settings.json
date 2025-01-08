@@ -5,4 +5,12 @@
   "pasteImage.basePath": "${projectRoot}",
   "pasteImage.prefix": "/",
   "pasteImage.namePrefix": "${currentFileNameWithoutExt}_",
+
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "README.md": "LICENSE",
+    "package.json": "pnpm-lock.yaml,.gitignore,,package-lock.json",
+    ".commitlintrc": ".markdownlint.yaml"
+  }
 }

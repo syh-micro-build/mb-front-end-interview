@@ -265,18 +265,6 @@ function greet() {
 
 - 在上面的例子中，由于 greet 函数的 this 参数没有显式指定类型，TypeScript 编译器将抛出一个错误，因为无法确定 this 的类型。
 
-## `type MyType = string | number | null | undefined ，type Result = NonNullable<MyType>` 请问Result类型是什么？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- TypeScript：noImplicitThis: true 的情况下，必须去声明 this 的类型，才能在函数或者对象中使用this。
-
-- Typescript 中箭头函数的 this 和 ES6 中箭头函数中的 this 是一致的。
-
 ## 13. TypeScript 如何设计 Class 的声明？
 
 #### 类型：`基础`
@@ -302,85 +290,334 @@ let greeter = new Greeter("world");
 
 ## 14. 类型的全局声明和局部声明
 
-#### 类型：`基础`
+- **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 如果声明文件内不包含import、export，那么这个文件声明的类型就会变成全局声明。反之，若是这个文件包含了import、export，那么这个文件包含的类型声明则会是局部声明，不会影响到全局声明。
-
-## 15. 简单介绍一下 TypeScript 模块的加载机制？
+## 如何在TypeScript中实现函数重载？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（4 分）
 
-- 假设有一个导入语句 import { a } from "moduleA";
+<details>
 
-- 首先，编译器会尝试定位需要导入的模块文件，通过绝对或者相对的路径查找方式；
+- **2：** 函数重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。在TypeScript中，我们需要先声明所有重载的函数签名，然后再实现一个通用的函数：
 
-- 如果上面的解析失败了，没有查找到对应的模块，编译器会尝试定位一个外部模块声明（.d.ts）；
+```typescript
+// 重载签名
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
 
-- 最后，如果编译器还是不能解析这个模块，则会抛出一个错误 error TS2307: Cannot find module 'moduleA'.
+// 实现签名
+function add(a: number | string, b: number | string): number | string {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    if (typeof a === 'string' && typeof b === 'string') {
+        return a.concat(b);
+    }
+    throw new Error('Parameters must be numbers or strings');
+}
 
-## 16. 简单聊聊你对 TypeScript 类型兼容性的理解？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- ts 类型兼容： 当一个类型 Y 可以赋值给另一个类型 X 时， 我们就可以说类型 X 兼容类型 Y。也就是说两者在结构上是一致的，而不一定非得通过 extends 的方式继承而来
-
-- 接口的兼容性：X = Y 只要目标类型 X 中声明的属性变量在源类型 Y 中都存在就是兼容的（ Y 中的类型可以比 X 中的多，但是不能少）
-
-- 函数的兼容性：X = Y Y 的每个参数必须能在 X 里找到对应类型的参数，参数的名字相同与否无所谓，只看它们的类型
-
-## 17. 协变、逆变、双变和抗变的理解？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 协变：X = Y Y 类型可以赋值给 X 类型的情况就叫做协变，也可以说是 X 类型兼容 Y 类型
-
-```ts
-interface X { name: string; age: number; } 
-interface Y { name: string; age: number; hobbies: string[] }
-let x: X = { name: 'xiaoming', age: 16 }
-let y: Y = { name: 'xiaohong', age: 18, hobbies: ['eat'] }
-x = y
+console.log(add(1, 2));          // 3
+console.log(add("Hello ", "World")); // "Hello World"
 ```
 
-- 逆变：printY = printX 函数X 类型可以赋值给函数Y 类型，因为函数Y 在调用的时候参数是按照Y类型进行约束的，但是用到的是函数X的X的属性和方法，ts检查结果是类型安全的。这种特性就叫做逆变，
-函数的参数有逆变的性质。
+- **2：** 在类中使用函数重载：
 
-```ts
-let printY: (y: Y) => void
-printY = (y) => { console.log(y.hobbies) }
-let printX: (x: X) => void
-printX = (x) => { console.log(x.name) }
-printY = printX
+```typescript
+class Calculator {
+    add(a: number, b: number): number;
+    add(a: string, b: string): string;
+    add(a: any, b: any): any {
+        if (typeof a === 'number' && typeof b === 'number') {
+            return a + b;
+        }
+        if (typeof a === 'string' && typeof b === 'string') {
+            return a.concat(b);
+        }
+        throw new Error('Parameters must be numbers or strings');
+    }
+}
 ```
 
-- 双变（双向协变）：X = Y；Y = X父类型可以赋值给子类型，子类型可以赋值给父类型，既逆变又协变，叫做“双向协变”（ts2.x 之前支持这种赋值，之后 ts 加了一个编译选项 strictFunctionTypes，设置为 true 就只支持函数参数的逆变，设置为 false 则支持双向协变）
+</details>
 
-- 抗变（不变）：非父子类型之间不会发生型变，只要类型不一样就会报错
-
-## 18. TypeScript 中对象展开会有什么副作用吗？
+## TypeScript中的装饰器是什么？如何使用？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（6 分）
 
-- 展开对象后面的属性会覆盖前面的属性；
+<details>
 
-- 仅包含对象自身的可枚举属性，不可枚举的属性将会丢失。
+- **2：** 装饰器是一种特殊类型的声明，它能够被附加到类声明、方法、属性或参数上。装饰器使用 @expression 这种形式，expression求值后必须为一个函数，它会在运行时被调用。
+
+- **4：** 常见的装饰器类型：
+
+```typescript
+// 类装饰器
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+// 方法装饰器
+function methodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    // 保存原始方法
+    const originalMethod = descriptor.value;
+    
+    // 修改方法的行为
+    descriptor.value = function(...args: any[]) {
+        console.log('Before method execution');
+        const result = originalMethod.apply(this, args);
+        console.log('After method execution');
+        return result;
+    }
+}
+
+// 使用装饰器
+@classDecorator
+class Example {
+    @methodDecorator
+    greet() {
+        console.log('Hello!');
+    }
+}
+
+const e = new Example();
+e.greet();
+// 输出:
+// Before method execution
+// Hello!
+// After method execution
+```
+
+</details>
+
+## TypeScript中的映射类型是什么？请举例说明
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 映射类型允许你从一个旧类型创建一个新类型，其中新类型的每个属性都基于旧类型的属性进行转换。TypeScript内置了几个常用的映射类型。
+
+- **2：** 示例：
+
+```typescript
+// 原始接口
+interface Person {
+    name: string;
+    age: number;
+    address: string;
+}
+
+// 将所有属性变为可选
+type PartialPerson = Partial<Person>;
+// 等价于:
+// {
+//    name?: string;
+//    age?: number;
+//    address?: string;
+// }
+
+// 将所有属性变为只读
+type ReadonlyPerson = Readonly<Person>;
+// 等价于:
+// {
+//    readonly name: string;
+//    readonly age: number;
+//    readonly address: string;
+// }
+
+// 自定义映射类型
+type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};
+
+// 使用自定义映射类型
+type NullablePerson = Nullable<Person>;
+// 等价于:
+// {
+//    name: string | null;
+//    age: number | null;
+//    address: string | null;
+// }
+```
+
+</details>
+
+## 如何在TypeScript中实现函数重载？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 函数重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。在TypeScript中，我们需要先声明所有重载的函数签名，然后再实现一个通用的函数：
+
+```typescript
+// 重载签名
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+
+// 实现签名
+function add(a: number | string, b: number | string): number | string {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    if (typeof a === 'string' && typeof b === 'string') {
+        return a.concat(b);
+    }
+    throw new Error('Parameters must be numbers or strings');
+}
+
+console.log(add(1, 2));          // 3
+console.log(add("Hello ", "World")); // "Hello World"
+```
+
+- **2：** 在类中使用函数重载：
+
+```typescript
+class Calculator {
+    add(a: number, b: number): number;
+    add(a: string, b: string): string;
+    add(a: any, b: any): any {
+        if (typeof a === 'number' && typeof b === 'number') {
+            return a + b;
+        }
+        if (typeof a === 'string' && typeof b === 'string') {
+            return a.concat(b);
+        }
+        throw new Error('Parameters must be numbers or strings');
+    }
+}
+```
+
+</details>
+
+## TypeScript中的装饰器是什么？如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **2：** 装饰器是一种特殊类型的声明，它能够被附加到类声明、方法、属性或参数上。装饰器使用 @expression 这种形式，expression求值后必须为一个函数，它会在运行时被调用。
+
+- **4：** 常见的装饰器类型：
+
+```typescript
+// 类装饰器
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+// 方法装饰器
+function methodDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    // 保存原始方法
+    const originalMethod = descriptor.value;
+    
+    // 修改方法的行为
+    descriptor.value = function(...args: any[]) {
+        console.log('Before method execution');
+        const result = originalMethod.apply(this, args);
+        console.log('After method execution');
+        return result;
+    }
+}
+
+// 使用装饰器
+@classDecorator
+class Example {
+    @methodDecorator
+    greet() {
+        console.log('Hello!');
+    }
+}
+
+const e = new Example();
+e.greet();
+// 输出:
+// Before method execution
+// Hello!
+// After method execution
+```
+
+</details>
+
+## TypeScript中的映射类型是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** 映射类型允许你从一个旧类型创建一个新类型，其中新类型的每个属性都基于旧类型的属性进行转换。TypeScript内置了几个常用的映射类型。
+
+- **2：** 示例：
+
+```typescript
+// 原始接口
+interface Person {
+    name: string;
+    age: number;
+    address: string;
+}
+
+// 将所有属性变为可选
+type PartialPerson = Partial<Person>;
+// 等价于:
+// {
+//    name?: string;
+//    age?: number;
+//    address?: string;
+// }
+
+// 将所有属性变为只读
+type ReadonlyPerson = Readonly<Person>;
+// 等价于:
+// {
+//    readonly name: string;
+//    readonly age: number;
+//    readonly address: string;
+// }
+
+// 自定义映射类型
+type Nullable<T> = {
+    [P in keyof T]: T[P] | null;
+};
+
+// 使用自定义映射类型
+type NullablePerson = Nullable<Person>;
+// 等价于:
+// {
+//    name: string | null;
+//    age: number | null;
+//    address: string | null;
+// }
+```
+
+</details>
