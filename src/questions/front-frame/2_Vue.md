@@ -364,3 +364,46 @@ export default {
 ```
 
 </details>
+
+## Vue3 中的响应式原理是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+* **2：** 基本原理：
+  + Vue3 使用 Proxy 代替 Vue2 的 Object.defineProperty
+  + Proxy 可以直接监听对象和数组的变化
+  + 可以监听动态添加的属性
+  + 可以监听删除的属性
+  + 可以监听数组的索引和 length 属性
+
+* **2：** 实现方式：
+
+```js
+// 简单实现响应式
+function reactive(obj) {
+  return new Proxy(obj, {
+    get(target, key) {
+      track(target, key)  // 依赖收集
+      return target[key]
+    },
+    set(target, key, value) {
+      target[key] = value
+      trigger(target, key)  // 触发更新
+      return true
+    }
+  })
+}
+```
+
+* **2：** 优势：
+  + 性能更好：不需要递归遍历所有属性
+  + 功能更强：可以监听更多的操作（如删除属性）
+  + 支持 Map、Set、WeakMap、WeakSet
+
+</details>
