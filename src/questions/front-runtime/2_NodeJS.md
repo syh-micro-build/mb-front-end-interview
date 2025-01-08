@@ -359,7 +359,7 @@ Node.js的文件系统有以下几种方法：
 - 通过以上步骤，可以在 Node.js 中有效地处理 HTTP 请求和响应，为用户提供丰富的 Web 功能和服务。
 需要注意的是，由于 Node.js 是单线程模型，因此在同一时刻只能处理一个请求。为了能够同时处理多个请求，可以通过集群、负载均衡等方式将多个请求分发到不同的 Node.js 进程中进行处理。
 
-## 20.请解释一下Node.js的集群化工作模式？
+## 21.请解释一下Node.js的集群化工作模式？
 
 #### 类型：`基础`
 
@@ -373,3 +373,49 @@ Node.js的文件系统有以下几种方法：
 - 此外，Node.js 还提供了一些内置的策略来实现负载均衡，如 round-robin 和 least-connections 等。用户可以根据自己的实际需求选择合适的负载均衡策略，以达到最佳的效果。
 
 - 总之，Node.js 的集群化工作模式可以有效地提高应用的性能和可用性，特别是在处理大量并发请求时尤其有用。
+
+## 22.讲一下EventEmitter？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- Node.js 的大多数核心模块都是基于EventEmitter实现的，如 http、net、fs，很多第三方库也是基于EventEmitter实现的，如socket.io、nodemailer、cheerio等。
+
+- 使用EventEmitter的好处是可以用事件的形式来处理异步任务，可以大大简化代码，并且容易处理异常。
+
+- 举个例子来看看为什么Nodejs里大多数模块都要继承EventEmitter。
+
+- 这是不使用EventEmitter实现的文件读取，所有逻辑都放在一个回调函数里：
+
+```js
+const fs = require('fs');
+
+fs.readFile('file.txt', (err, data) => {
+  if (err) {
+    console.error(`Failed to read file: ${err}`);
+  } else {
+    console.log(`File content: ${data}`);
+  }
+});
+```
+
+- 这是使用EventEmitter的文件读取：
+
+```js
+const fs = require('fs');
+
+const stream = fs.createReadStream('file.txt');
+
+stream.on('data', (chunk) => {
+  console.log(`Received ${chunk.length} bytes of data.`);
+});
+
+stream.on('end', () => {
+  console.log('Finished reading file.');
+});
+```
+
+- 很显然，使用EventEmitter之后，处理文件和处理异常的逻辑就被分开了，代码可读性和可维护性都提升了。
