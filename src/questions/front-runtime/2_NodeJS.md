@@ -419,3 +419,80 @@ stream.on('end', () => {
 ```
 
 - 很显然，使用EventEmitter之后，处理文件和处理异常的逻辑就被分开了，代码可读性和可维护性都提升了。
+
+## 23.Buffer怎么理解，有什么应用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- Buffer对象是一个类似于数组的对象，它的每个元素都是一个表示 8 位字节的整数。
+
+- 可以将其看作是一个字节数组，用来存储和操作二进制数据。
+
+- 应用场景：
+
+- 网络通信：可以使用Buffer.from()方法将字符串转换为二进制数据，然后使用net模块进行网络通信：
+
+```js
+const net = require('net');
+
+const client = net.createConnection({ port: 8080 }, () => {
+  // 将字符串转换为二进制数据
+  const data = Buffer.from('Hello, world!', 'utf8');
+
+  // 发送数据
+  client.write(data);
+});
+
+```
+
+- 文件操作，用Buffer来存储文件数据：
+
+```js
+const fs = require('fs');
+
+// 读取文件，并将数据存储到 Buffer 对象中
+const data = fs.readFileSync('/path/to/file');
+
+// 处理数据
+// ...
+```
+
+- 加密解密，例如，可以使用 crypto 模块创建加密解密算法需要的二进制数据：
+
+```js
+
+const crypto = require('crypto');
+
+// 创建加密解密算法需要的二进制数据
+const key = Buffer.from('mysecretkey', 'utf8');
+const iv = Buffer.alloc(16);
+
+// 创建加密解密算法对象
+const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+
+// 加密数据
+const encrypted = Buffer.concat([cipher.update(data), cipher.final()]);
+```
+
+- 图像处理：
+
+```js
+
+const fs = require('fs');
+const sharp = require('sharp');
+
+// 读取图片文件，并将数据存储到 Buffer 对象中
+const data = fs.readFileSync('/path/to/image');
+
+// 处理图片
+sharp(data)
+  .resize(200, 200)
+  .toFile('/path/to/resized-image', (err, info) => {
+    // ...
+  });
+
+```
