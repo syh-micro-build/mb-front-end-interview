@@ -821,3 +821,146 @@ transform: scale(0.5,0.5);
 ```
 
 </details>
+
+## CSS Grid 布局的基本概念和使用方法是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** Grid布局的基本概念：
+  + Grid Container：设置 display: grid 的元素
+  + Grid Item：Grid Container 的直接子元素
+  + Grid Line：构成网格结构的分界线
+  + Grid Track：两条相邻网格线之间的空间
+  + Grid Cell：网格中的单元格
+  + Grid Area：任意数量的网格单元格组成的区域
+
+- **2：** 基本使用示例：
+
+```css
+.container {
+    display: grid;
+    /* 定义列的大小和数量 */
+    grid-template-columns: 100px 100px 100px;
+    /* 定义行的大小和数量 */
+    grid-template-rows: 100px 100px;
+    /* 设置间距 */
+    gap: 10px;
+}
+
+.item {
+    /* 指定元素位置 */
+    grid-column: 1 / 3; /* 从第1条网格线到第3条网格线 */
+    grid-row: 1 / 2;    /* 从第1条网格线到第2条网格线 */
+}
+```
+
+</details>
+
+## CSS 动画和过渡的区别是什么？如何使用它们？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **2：** 过渡（Transition）：
+  + 从一个状态到另一个状态的平滑过渡
+  + 需要触发条件（如hover）
+  + 只能定义开始和结束状态
+
+```css
+.element {
+    width: 100px;
+    transition: width 0.3s ease;
+}
+
+.element:hover {
+    width: 200px;
+}
+```
+
+- **2：** 动画（Animation）：
+  + 可以定义多个状态的变化
+  + 可以循环播放
+  + 可以自动播放，无需触发条件
+
+```css
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.element {
+    animation: slide 2s ease infinite;
+}
+```
+
+- **2：** 主要区别：
+  + 触发方式：过渡需要触发条件，动画可以自动播放
+  + 状态数量：过渡只有开始和结束两个状态，动画可以有多个状态
+  + 循环播放：动画可以循环播放，过渡不能
+  + 控制能力：动画的控制能力更强，可以精确控制中间状态
+
+</details>
+
+## CSS 中的 BEM 命名规范是什么？为什么要使用它？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **2：** BEM 命名规范：
+  + Block（块）：独立的组件，如 `.button`
+  + Element（元素）：属于块的一部分，用 `__` 连接，如 `.button__text`
+  + Modifier（修饰符）：改变块或元素的外观或行为，用 `--` 连接，如 `.button--large`
+
+```css
+/* Block */
+.card {
+    padding: 20px;
+}
+
+/* Element */
+.card__title {
+    font-size: 18px;
+}
+
+/* Element */
+.card__content {
+    margin-top: 10px;
+}
+
+/* Modifier */
+.card--featured {
+    background: #f0f0f0;
+}
+```
+
+- **2：** 使用BEM的好处：
+  + 提高代码的可读性和可维护性
+  + 避免CSS选择器嵌套过深
+  + 减少命名冲突
+  + 明确表达组件结构和关系
+  + 方便团队协作和代码复用
+
+</details>
