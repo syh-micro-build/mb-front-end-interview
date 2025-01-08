@@ -146,3 +146,35 @@ module.exports = {
 - 开发环境下懒加载变慢：由于 unbundle 机制，动态加载的文件，需要做 resolve 、 load 、 transform 、 parse 操作，并且还有大量的 http 请求，导致懒加载性能也受到影响。
 
 - webpack支持的更广：由于 Vite 基于ES Module，所以代码中不可以使用CommonJs；webpack更多的关注兼容性, 而 Vite 关注浏览器端的开发体验。
+
+## Vite 常见的配置
+
+#### 类型：`架构`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- css.preprocessorOptions： 传递给 CSS 预处理器的配置选项，例如，我们可以定义一个全局变量文件，然后再引入这个文件：
+
+- css.postcss： PostCSS 也是用来处理 CSS 的，只不过它更像是一个工具箱，可以添加各种插件来处理 CSS（解决浏览器样式兼容问题、浏览器适配等问题）。例如：移动端使用 postcss-px-to-viewport 对不同设备进行布局适配：
+
+- resolve.alias： 定义路径别名也是我们常用的一个功能，我们通常会给 scr 定义一个路径别名：
+
+- resolve.extensions： 导入时想要省略的扩展名列表。默认值为 ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'] 。
+
+- ptimizeDeps.force： 是否开启强制依赖预构建。node_modules 中的依赖模块构建过一次就会缓存在 node_modules/.vite/deps 文件夹下，下一次会直接使用缓存的文件。而有时候我们想要修改依赖模块的代码，做一些测试或者打个补丁，这时候就要用到强制依赖预构建。
+
+- server.host： 指定服务器监听哪个 IP 地址。默认值为 localhost ，只会监听本地的 127.0.0.1。
+
+- server.proxy： 反向代理也是我们经常会用到的一个功能，通常我们使用它来解决跨域问题。
+
+- server.port： 指定开发服务器端口。默认值为 3000 。
+
+- build.outdir： 指定打包文件的输出目录，默认值为 dist。
+
+- build.assetsDir： 指定生成静态资源的存放目录，默认值为 assets。
+
+- build.assetsInlineLimit： 图片转 base64 编码的阈值。为防止过多的 http 请求，Vite 会将小于此阈值的图片转为 base64 格式，可根据实际需求进行调整
+
+- plugins：可以使用官方插件，也可以社区插件。
