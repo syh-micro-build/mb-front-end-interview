@@ -407,3 +407,48 @@ function reactive(obj) {
   + 支持 Map、Set、WeakMap、WeakSet
 
 </details>
+
+## Vue3 中的异步组件是什么？如何使用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+* **2：** 概念和使用：
+  + 异步组件是一种特殊的组件，可以延迟加载
+  + 使用 defineAsyncComponent 定义异步组件
+  + 可以配置加载和错误状态
+  + 常用于路由懒加载和大型组件的按需加载
+
+* **2：** 代码示例：
+
+```js
+import { defineAsyncComponent } from 'vue'
+
+// 基础用法
+const AsyncComp = defineAsyncComponent(() =>
+  import('./components/MyComponent.vue')
+)
+
+// 高级用法
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./components/MyComponent.vue'),
+  loadingComponent: LoadingComponent,  // 加载时显示的组件
+  errorComponent: ErrorComponent,      // 加载失败时显示的组件
+  delay: 200,                         // 展示加载组件前的延迟时间
+  timeout: 3000                       // 超时时间
+})
+
+// 在组件中使用
+export default {
+  components: {
+    AsyncComp
+  }
+}
+```
+
+</details>
