@@ -1471,3 +1471,522 @@ function getlist(){
 - `better-scroll`，默认会阻止浏览器的原生 `click` 事件，如果滚动内容区要添加点击事件，需要在实例化属性里设置 `click:true`
 
 </details>
+
+## 单例模式是什么？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（8 分）
+
+<details>
+
+- **1：** 单例模式
+
+单例模式（Singleton Pattern）是一种设计模式，确保一个类在整个程序运行过程中只有一个实例，并提供一个全局访问点来访问这个实例。它属于创建型设计模式，常用于控制某些资源的唯一访问，例如数据库连接、配置管理、线程池等。
+
+- **1：** 特点
+
+全局唯一性：一个类只有一个实例。
+
+延迟实例化：通常只有在首次需要时才会创建实例，节省资源。
+
+全局访问点：提供一个静态方法或属性获取该实例。
+
+- **5：** 实现
+
+##### 1）基本实现（闭包方式）
+
+```js
+const Singleton = (function () {
+  let instance;
+
+  function createInstance() {
+    return {
+      message: "I am the singleton instance",
+    };
+  }
+
+  return {
+    getInstance: function () {
+      if (!instance) {
+        instance = createInstance();
+      }
+      return instance;
+    },
+  };
+})();
+
+// 使用
+const singleton1 = Singleton.getInstance();
+const singleton2 = Singleton.getInstance();
+console.log(singleton1 === singleton2); // true
+```
+
+##### 2）类的实现（ES6+）
+
+```js
+class Singleton {
+  static instance = null;
+
+  constructor() {
+    if (Singleton.instance) {
+      return Singleton.instance;
+    }
+    Singleton.instance = this;
+    this.message = "I am the singleton instance";
+  }
+}
+
+// 使用
+const singleton1 = new Singleton();
+const singleton2 = new Singleton();
+console.log(singleton1 === singleton2); // true
+```
+
+##### 3）模块的实现
+
+```js
+// singleton.js
+const instance = {
+  message: "I am the singleton instance",
+};
+
+export default instance;
+
+// 使用
+import singleton1 from './singleton.js';
+import singleton2 from './singleton.js';
+
+console.log(singleton1 === singleton2); // true
+```
+
+##### 4）Symbol + WeakMap（高级实现，防止外部访问）
+
+```js
+const Singleton = (function () {
+  const instances = new WeakMap();
+
+  class SingletonClass {
+    constructor() {
+      if (instances.has(SingletonClass)) {
+        return instances.get(SingletonClass);
+      }
+      this.message = "I am the singleton instance";
+      instances.set(SingletonClass, this);
+    }
+  }
+
+  return SingletonClass;
+})();
+
+// 使用
+const singleton1 = new Singleton();
+const singleton2 = new Singleton();
+console.log(singleton1 === singleton2); // true
+```
+
+##### 5）全局变量实现
+
+```js
+const Singleton = (() => {
+  if (!globalThis.singletonInstance) {
+    globalThis.singletonInstance = {
+      message: "I am the singleton instance",
+    };
+  }
+  return globalThis.singletonInstance;
+})();
+
+// 使用
+console.log(Singleton.message);
+```
+
+- **1：** 应用场景
+
+配置管理
+
+日志记录
+
+状态管理
+
+缓存或存储封装
+
+</details>
+
+## 代理模式是什么？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（8 分）
+
+<details>
+
+- **1：** 是什么
+
+代理模式（Proxy Pattern） 是一种结构型设计模式，允许通过代理对象间接访问目标对象。代理对象控制对目标对象的访问，可以在访问目标对象之前或之后执行额外的操作，如权限控制、日志记录、延迟初始化等。
+
+代理模式主要解决以下问题：
+
+控制访问：限制或增强对目标对象的访问。
+
+延迟操作：在目标对象被真正需要时才创建或执行。
+
+功能扩展：添加额外的行为而不修改目标对象。
+
+- **4：** 实现
+
+##### 1）使用类实现静态代理
+
+静态代理通过代理类明确代理目标对象，方法调用由代理类转发。
+
+```js
+class RealSubject {
+  request() {
+    console.log("RealSubject: Handling request.");
+  }
+}
+
+class Proxy {
+  constructor(realSubject) {
+    this.realSubject = realSubject;
+  }
+
+  request() {
+    console.log("Proxy: Performing pre-processing.");
+    this.realSubject.request();
+    console.log("Proxy: Performing post-processing.");
+  }
+}
+
+// 使用
+const realSubject = new RealSubject();
+const proxy = new Proxy(realSubject);
+proxy.request();
+
+```
+
+##### 2）使用 ES6 Proxy（动态代理）
+
+```js
+const target = {
+  message: "I am the target object",
+  getMessage() {
+    return this.message;
+  },
+};
+
+const handler = {
+  get(target, prop) {
+    console.log(`Accessing property "${prop}"`);
+    return prop in target ? target[prop] : `Property "${prop}" does not exist.`;
+  },
+
+  set(target, prop, value) {
+    console.log(`Setting property "${prop}" to "${value}"`);
+    target[prop] = value;
+    return true;
+  },
+};
+
+// 创建代理
+const proxy = new Proxy(target, handler);
+
+// 使用代理
+console.log(proxy.getMessage()); // 拦截调用
+proxy.newProp = "New value"; // 拦截赋值
+console.log(proxy.nonExistentProp); // 拦截不存在属性
+```
+
+- **4：** 应用场景
+
+##### 1）图片懒加载
+
+```js
+class Image {
+  constructor(src) {
+    this.src = src;
+    console.log(`Loading image from ${src}`);
+  }
+
+  display() {
+    console.log(`Displaying image: ${this.src}`);
+  }
+}
+
+class ProxyImage {
+  constructor(src) {
+    this.src = src;
+    this.realImage = null;
+  }
+
+  display() {
+    if (!this.realImage) {
+      this.realImage = new Image(this.src); // 延迟加载
+    }
+    this.realImage.display();
+  }
+}
+
+// 使用
+const proxyImage = new ProxyImage("example.jpg");
+proxyImage.display(); // 加载并显示, 后续调用直接显示
+proxyImage.display(); // 直接显示
+```
+
+##### 2）计算缓存
+
+```js
+const expensiveCalculation = (num) => {
+  console.log("Performing expensive calculation...");
+  return num * num;
+};
+
+const calculationProxy = (function () {
+  const cache = new Map();
+  return function (num) {
+    if (cache.has(num)) {
+      console.log("Returning cached result.");
+      return cache.get(num);
+    }
+    const result = expensiveCalculation(num);
+    cache.set(num, result);
+    return result;
+  };
+})();
+
+// 使用
+console.log(calculationProxy(5)); // 执行计算
+console.log(calculationProxy(5)); // 返回缓存结果
+```
+
+##### 3）权限控制
+
+```js
+class User {
+  constructor(role) {
+    this.role = role;
+  }
+}
+
+const adminHandler = {
+  get(target, prop) {
+    if (target.role === "admin") {
+      return target[prop];
+    }
+    throw new Error("Access denied: insufficient permissions.");
+  },
+};
+
+const adminUser = new Proxy(new User("admin"), adminHandler);
+const guestUser = new Proxy(new User("guest"), adminHandler);
+
+// 使用
+console.log(adminUser.role); // 正常访问
+try {
+  console.log(guestUser.role); // 抛出错误
+} catch (error) {
+  console.error(error.message);
+}
+```
+
+##### 4）自动清理
+
+```js
+const resource = {
+  init() {
+    console.log("Resource initialized.");
+  },
+  destroy() {
+    console.log("Resource destroyed.");
+  },
+};
+
+const proxyResource = new Proxy(resource, {
+  get(target, prop) {
+    if (prop === "init") {
+      target.init();
+    } else if (prop === "destroy") {
+      target.destroy();
+    }
+    return target[prop];
+  },
+});
+
+// 使用
+proxyResource.init(); // 初始化资源
+proxyResource.destroy(); // 清理资源
+```
+
+</details>
+
+## 工厂模式是什么？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（8 分）
+
+<details>
+
+- **1：** 是什么
+
+工厂模式是用来创建对象的一种最常用的设计模式，不暴露创建对象的具体逻辑，而是将将逻辑封装在一个函数中，那么这个函数就可以被视为一个工厂
+
+其就像工厂一样重复的产生类似的产品，工厂模式只需要我们传入正确的参数，就能生产类似的产品
+
+举个例子：
+
+- 编程中，在一个 A 类中通过 new 的方式实例化了类 B，那么 A 类和 B 类之间就存在关联（耦合）
+- 后期因为需要修改了 B 类的代码和使用方式，比如构造函数中传入参数，那么 A 类也要跟着修改，一个类的依赖可能影响不大，但若有多个类依赖了 B 类，那么这个工作量将会相当的大，容易出现修改错误，也会产生很多的重复代码，这无疑是件非常痛苦的事；
+- 这种情况下，就需要将创建实例的工作从调用方（A类）中分离，与调用方**解耦**，也就是使用工厂方法创建实例的工作封装起来（**减少代码重复**），由工厂管理对象的创建逻辑，调用方不需要知道具体的创建过程，只管使用，**而降低调用者因为创建逻辑导致的错误**；
+
+- **6：** 实现
+
+##### 简单工厂模式
+
+简单工厂模式也叫静态工厂模式，用一个工厂对象创建同一类对象类的实例
+
+假设我们要开发一个公司岗位及其工作内容的录入信息，不同岗位的工作内容不一致
+
+代码如下：
+
+```js
+function Factory(career) {
+    function User(career, work) {
+        this.career = career 
+        this.work = work
+    }
+    let work
+    switch(career) {
+        case 'coder':
+            work =  ['写代码', '修Bug'] 
+            return new User(career, work)
+            break
+        case 'hr':
+            work = ['招聘', '员工信息管理']
+            return new User(career, work)
+            break
+        case 'driver':
+            work = ['开车']
+            return new User(career, work)
+            break
+        case 'boss':
+            work = ['喝茶', '开会', '审批文件']
+            return new User(career, work)
+            break
+    }
+}
+let coder = new Factory('coder')
+console.log(coder)
+let boss = new Factory('boss')
+console.log(boss)
+```
+
+`Factory`就是一个简单工厂。当我们调用工厂函数时，只需要传递name、age、career就可以获取到包含用户工作内容的实例对象
+
+##### 工厂方法模式
+
+工厂方法模式跟简单工厂模式差不多，但是把具体的产品放到了工厂函数的`prototype`中
+
+这样一来，扩展产品种类就不必修改工厂函数了，和心累就变成抽象类，也可以随时重写某种具体的产品
+
+也就是相当于工厂总部不生产产品了，交给下辖分工厂进行生产；但是进入工厂之前，需要有个判断来验证你要生产的东西是否是属于我们工厂所生产范围，如果是，就丢给下辖工厂来进行生产
+
+如下代码：
+
+```js
+// 工厂方法
+function Factory(career){
+    if(this instanceof Factory){
+        var a = new this[career]();
+        return a;
+    }else{
+        return new Factory(career);
+    }
+}
+// 工厂方法函数的原型中设置所有对象的构造函数
+Factory.prototype={
+    'coder': function(){
+        this.careerName = '程序员'
+        this.work = ['写代码', '修Bug'] 
+    },
+    'hr': function(){
+        this.careerName = 'HR'
+        this.work = ['招聘', '员工信息管理']
+    },
+    'driver': function () {
+        this.careerName = '司机'
+        this.work = ['开车']
+    },
+    'boss': function(){
+        this.careerName = '老板'
+        this.work = ['喝茶', '开会', '审批文件']
+    }
+}
+let coder = new Factory('coder')
+console.log(coder)
+let hr = new Factory('hr')
+console.log(hr)
+```
+
+工厂方法关键核心代码是工厂里面的判断this是否属于工厂，也就是做了分支判断，这个工厂只做我能做的产品
+
+##### 抽象工厂模式
+
+上述简单工厂模式和工厂方法模式都是直接生成实例，但是抽象工厂模式不同，抽象工厂模式并不直接生成实例， 而是用于对产品类簇的创建
+
+通俗点来讲就是：简单工厂和工厂方法模式的工作是生产产品，那么抽象工厂模式的工作就是生产工厂的
+
+由于`JavaScript`中并没有抽象类的概念，只能模拟，可以分成四部分：
+
+- 用于创建抽象类的函数
+- 抽象类
+- 具体类
+- 实例化具体类
+
+上面的例子中有`coder`、`hr`、`boss`、`driver`四种岗位，其中`coder`可能使用不同的开发语言进行开发，比如`JavaScript`、`Java`等等。那么这两种语言就是对应的类簇
+
+示例代码如下：
+
+```js
+let CareerAbstractFactory = function(subType, superType) {
+  // 判断抽象工厂中是否有该抽象类
+  if (typeof CareerAbstractFactory[superType] === 'function') {
+    // 缓存类
+    function F() {}
+    // 继承父类属性和方法
+    F.prototype = new CareerAbstractFactory[superType]()
+    // 将子类的constructor指向父类
+    subType.constructor = subType;
+    // 子类原型继承父类
+    subType.prototype = new F()
+  } else {
+    throw new Error('抽象类不存在')
+  }
+}
+```
+
+上面代码中`CareerAbstractFactory`就是一个抽象工厂方法，该方法在参数中传递子类和父类，在方法体内部实现了子类对父类的继承
+
+- **1：** 应用场景
+
+从上面可看到，简单简单工厂的优点就是我们只要传递正确的参数，就能获得所需的对象，而不需要关心其创建的具体细节
+
+应用场景也容易识别，有构造函数的地方，就应该考虑简单工厂，但是如果函数构建函数太多与复杂，会导致工厂函数变得复杂，所以不适合复杂的情况
+
+抽象工厂模式一般用于严格要求以面向对象思想进行开发的超大型项目中，我们一般常规的开发的话一般就是简单工厂和工厂方法模式会用的比较多一些
+
+综上，工厂模式适用场景如下：
+
+如果你不想让某个子系统与较大的那个对象之间形成强耦合，而是想运行时从许多子系统中进行挑选的话，那么工厂模式是一个理想的选择；
+
+将new操作简单封装，遇到new的时候就应该考虑是否用工厂模式；
+
+需要依赖具体环境创建不同实例，这些实例都有相同的行为,这时候我们可以使用工厂模式，简化实现的过程，同时也可以减少每种对象所需的代码量，有利于消除对象间的耦合，提供更大的灵活性。
+
+</details>
