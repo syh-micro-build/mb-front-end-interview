@@ -202,9 +202,7 @@ let p: Person = { name: "John" };
 
 - 支持模块化开发，使得代码更加模块化、可维护、可复用。
 
-## 11. TypeScript 中 const 和 readonly 的区别？枚举和常量枚举的区别？接口和类型别名的区别？
-
-## `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
+## 11. `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
 
 #### 类型：`基础`
 
@@ -214,7 +212,7 @@ let p: Person = { name: "John" };
 
 - **1：** A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。
 
-## 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
+## 12. 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
 
 #### 类型：`基础`
 
@@ -227,7 +225,13 @@ let p: Person = { name: "John" };
 
 - 接口和类型别名: 两者都可以用来描述对象或函数的类型。与接口不同，类型别名还可以用于其他类型，如基本类型（原始值）、联合类型、元组。
 
-## 12. TypeScript 中的 this 和 JavaScript 中的 this 有什么差异？
+## 13. TypeScript 中的 this 和 JavaScript 中的 this 有什么差异？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
 
 - 在 TypeScript 和 JavaScript 中，this 的工作原理本质上是相同的，因为 TypeScript 是 JavaScript 的一个超集，它添加了类型系统和一些编译时的检查，但运行时行为与纯 JavaScript 相同。因此，this 的绑定规则在两者中是一致的。
 
@@ -265,7 +269,7 @@ function greet() {
 
 - 在上面的例子中，由于 greet 函数的 this 参数没有显式指定类型，TypeScript 编译器将抛出一个错误，因为无法确定 this 的类型。
 
-## 13. TypeScript 如何设计 Class 的声明？
+## 14. TypeScript 如何设计 Class 的声明？
 
 #### 类型：`基础`
 
@@ -288,11 +292,11 @@ let greeter = new Greeter("world");
 
 - **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
 
-## 14. 类型的全局声明和局部声明
+## 15. 类型的全局声明和局部声明
 
 - **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
 
-## 如何在TypeScript中实现函数重载？
+## 16. 如何在TypeScript中实现函数重载？
 
 #### 类型：`基础`
 
@@ -344,7 +348,7 @@ class Calculator {
 
 </details>
 
-## TypeScript中的装饰器是什么？如何使用？
+## 17. TypeScript中的装饰器是什么？如何使用？
 
 #### 类型：`基础`
 
@@ -400,7 +404,7 @@ e.greet();
 
 </details>
 
-## TypeScript中的映射类型是什么？请举例说明
+## 18. TypeScript中的映射类型是什么？请举例说明
 
 #### 类型：`基础`
 
@@ -457,7 +461,7 @@ type NullablePerson = Nullable<Person>;
 
 </details>
 
-## 如何在TypeScript中实现函数重载？
+## 19. 如何在TypeScript中实现函数重载？
 
 #### 类型：`基础`
 
@@ -509,7 +513,7 @@ class Calculator {
 
 </details>
 
-## TypeScript中的装饰器是什么？如何使用？
+## 20. TypeScript中的装饰器是什么？如何使用？
 
 #### 类型：`基础`
 
@@ -565,7 +569,7 @@ e.greet();
 
 </details>
 
-## TypeScript中的映射类型是什么？
+## 21. TypeScript中的映射类型是什么？
 
 #### 类型：`基础`
 
