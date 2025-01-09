@@ -2135,3 +2135,19 @@ Function  shallowCopy(obj){
 - innerHTML将内容写入到某个DOM节点，不会导致页面重绘；
 
 - innerHTML在很多情况下都优于document.write()，原因在于其允许更精确的控制要刷新页面的那个部分
+
+## 56. window load和document ready的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- window load：当整个页面及所有依赖资源如样式表和图片都已完成加载时，触发window load事件。
+
+- document ready：当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，无需等待样式表、图像和子框架的加载完成。
+
+- window load事件是在页面加载完成后触发的，而document ready事件是在DOM加载完成后触发的，因此，document ready事件比window load事件更早触发。
+
+- 因此，如果需要在页面加载完成后执行某些操作，可以使用window load事件；如果需要在DOM加载完成后执行某些操作，可以使用document ready事件。
