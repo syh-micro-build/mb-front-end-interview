@@ -2195,3 +2195,21 @@ Function  shallowCopy(obj){
 typeof NaN; // "number"
 
 ```
+
+## 61. 其他值到字符串的转换规则？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Null 和 Undefined 类型 ，null 转换为 "null"，undefined 转换为 "undefined"，
+
+- Boolean 类型，true 转换为 "true"，false 转换为 "false"。
+
+- Number 类型的值直接转换，不过那些超出字符表示范围的整数部分，则用十六进制表示。
+
+- Symbol 类型的值直接转换，但是只允许显式转换，如 String(sym)。
+
+- 对普通对象来说，除非自行定义 toString() 方法，否则会调用 toString()（Object.prototype.toString()）来返回内部属性 [[Class]] 的值，如"[object Object]"。如果对象有自己的 toString() 方法，字符串化时就会调用该方法并使用其返回值。
