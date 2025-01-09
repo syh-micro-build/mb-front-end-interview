@@ -1773,3 +1773,23 @@ Function  shallowCopy(obj){
       return  newObj
 }
 ```
+
+## 36. 说说Ajax的原理
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- Async Javascript and XML ，是一种异步js和网页交互的技术，可以实现不刷新网页就跟服务器交换数据，更新页面。
+
+- 创建XHR实例对象
+
+- 调用实例对象中的open方法与服务器建立连接
+
+- 调用实例对象中的send方法发送请求
+
+- 监听onreadystatechange事件，通过判断readyState的值来获取到最终的数据
+
+- 将数据更新到html页面
