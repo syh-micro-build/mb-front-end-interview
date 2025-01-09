@@ -1855,3 +1855,21 @@ Function  shallowCopy(obj){
 - 有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行，将script变成异步，当scripet异步解析完成后，如果HTML页面还没有完成解析，又会继续阻塞页面的解析。
 
 - 有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行，将script变成异步。但是 script.js 的执行要在所有元素解析完成之后，类似于将这个script放在了页面的底部。
+
+## 40. class和function的区别?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 相同点：1. 函数作为构造函数
+
+- 不同点：
+
+- class构造函数必须使用new操作符。
+
+- class声明不可以提升。
+
+- class不可以用call、apply、bind改变this指向。
