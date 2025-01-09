@@ -1929,3 +1929,17 @@ Function  shallowCopy(obj){
 - 返回结果类型不同：typeof会返回一个变量的基本类型，instanceof返回的是一个布尔值
 
 - 判断范围不同：instanceof 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型；而typeof 也存在弊端，它虽然可以判断基础数据类型（null 除外），但是引用数据类型中，除了function 类型以外，其他的也无法判断
+
+## 46. 如何判断一个变量是不是数组？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- instanceof Array
+
+- Array.isArray();
+
+- Object.prototype.toString.call();
