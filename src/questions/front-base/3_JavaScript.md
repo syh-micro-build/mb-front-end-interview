@@ -1967,3 +1967,39 @@ Function  shallowCopy(obj){
 - ES5：①原型链继承 ②构造函数继承 ③组合继承 ④寄生组合继承
 
 - ES6：ES6 中引入了 class 关键字， class 可以通过 extends 关键字实现继承。ES6的继承中super是用来①调用父类函数 ②指向父类的原型
+
+## 49. 宏任务有哪些？微任务有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- JavaScript 运行时的事件循环机制中，任务分为宏任务（macro task）和微任务（micro task）。
+
+- 常见的宏任务有：
+
+- setTimeout 和 setInterval 的回调函数
+
+- DOM 事件
+
+- XMLHttpRequest 中的readystatechange事件
+
+- requestAnimationFrame 中的回调函数
+
+- I/O 操作和网络请求的回调函数
+
+- Node.js 中的文件读写操作的回调函数
+
+- Node.js 中的进程事件
+
+- 常见的微任务有：
+
+- Promise.then 和 Promise.catch 的回调函数
+
+- MutationObserver 的回调函数
+
+- process.nextTick 函数
+
+- Object.observe 的回调函数
