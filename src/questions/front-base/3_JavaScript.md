@@ -2136,7 +2136,7 @@ Function  shallowCopy(obj){
 
 - innerHTML在很多情况下都优于document.write()，原因在于其允许更精确的控制要刷新页面的那个部分
 
-## 56. window load和document ready的区别？
+## 57. window load和document ready的区别？
 
 #### 类型：`基础`
 
@@ -2151,3 +2151,17 @@ Function  shallowCopy(obj){
 - window load事件是在页面加载完成后触发的，而document ready事件是在DOM加载完成后触发的，因此，document ready事件比window load事件更早触发。
 
 - 因此，如果需要在页面加载完成后执行某些操作，可以使用window load事件；如果需要在DOM加载完成后执行某些操作，可以使用document ready事件。
+
+## 58. Set、Map的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Set：是一种新的数据结构，类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+- Map：是一种新的数据结构，类似于对象，但是键可以是任意类型。
+
+- Set和Map的区别在于，Set的键值是唯一的，而Map的键值可以是任意类型。
