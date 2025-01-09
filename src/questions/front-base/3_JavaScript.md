@@ -2119,3 +2119,19 @@ Function  shallowCopy(obj){
 - event.preventDefault();
 
 - IE： e.return Value = false;
+
+## 56. document.write() 和 innerHTML 的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- document.write()是直接写入到页面的内容流，如果在写之前没有调用document.open()，浏览器会自动调用open()，每次写完关闭之后会重新调用该函数，会导致页面被重写；
+
+- innerHTML则是 DOM 页面元素的一个属性，代表该元素的html内容；
+
+- innerHTML将内容写入到某个DOM节点，不会导致页面重绘；
+
+- innerHTML在很多情况下都优于document.write()，原因在于其允许更精确的控制要刷新页面的那个部分
