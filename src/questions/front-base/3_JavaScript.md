@@ -1555,7 +1555,7 @@ function iterate(obj){
 
 ```
 
-## 29. Promise.all和Promise.race的区别的使用场景？
+## 30. Promise.all和Promise.race的区别的使用场景？
 
 #### 类型：`基础`
 
@@ -1570,3 +1570,72 @@ function iterate(obj){
 - 需要注意，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，这样当遇到发送多个请求并根据请求顺序获取和使用数据的场景，就可以使用Promise.all来解决。
 
 - Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。当要做一件事，超过多长时间就不做了，可以用这个方法来解决：
+
+## 31. 匿名函数的典型应用场景是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 匿名函数可以在 IIFE 中使用，来封装局部作用域内的代码，以便其声明的变量不会暴露到全局作用域。
+
+```js
+(function () {
+  // 一些代码。
+})();
+```
+
+- 匿名函数可以作为只用一次，不需要在其他地方使用的回调函数。当处理函数在调用它们的程序内部被定义时，代码具有更好地自闭性和可读性，可以省去寻找该处理函数的函数体位置的麻烦。
+
+```js
+
+setTimeout(function () {
+  console.log('Hello world!');
+}, 1000);
+
+```
+
+- 匿名函数可以用于函数式编程或 Lodash（类似于回调函数）。
+
+```js
+const arr = [1, 2, 3];
+const double = arr.map(function (el) {
+  return el * 2;
+});
+console.log(double); // [2, 4, 6]
+
+```
+
+## 32. 手写单例模式（创建模式）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+```js
+    let CreateSingleton = (function(){
+       let instance;
+       return function(name) {
+           if (instance) {
+               return instance;
+           }
+           this.name = name;
+           return instance = this;
+       }
+    })();
+    CreateSingleton.prototype.getName = function() {
+       console.log(this.name);
+    }
+
+let Winner = new CreateSingleton('Winner');
+let Looser = new CreateSingleton('Looser');
+​
+console.log(Winner === Looser); // true
+console.log(Winner.getName());  // 'Winner'
+console.log(Looser.getName());  // 'Winner'
+
+```
