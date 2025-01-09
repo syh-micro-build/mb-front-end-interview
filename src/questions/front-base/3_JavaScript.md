@@ -2099,3 +2099,23 @@ Function  shallowCopy(obj){
 - sessionStorage：存储在客户端，大小限制为5MB，仅在当前会话有效，关闭浏览器后失效。
 
 - localStorage和sessionStorage的区别在于，localStorage的数据在浏览器关闭后依然存在，而sessionStorage的数据在浏览器关闭后就会失效。
+
+## 55. 如何阻止事件冒泡，事件的默认行为？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 阻止事件冒泡：
+
+- event.stopPropagation();
+
+- IE：evnet.cancelBuddle = true;
+
+- 阻止事件默认行为：
+
+- event.preventDefault();
+
+- IE： e.return Value = false;
