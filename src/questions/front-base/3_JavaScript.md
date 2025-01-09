@@ -2003,3 +2003,41 @@ Function  shallowCopy(obj){
 - process.nextTick 函数
 
 - Object.observe 的回调函数
+
+## 50. DOM操作的常用API
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 创建：createElement
+
+- 插入：appendChild
+
+- 删除：removeChild
+
+- 获取子节点：childNodes
+
+- 获取子节点：parentNodes
+
+- 获取兄弟节点：nextSibling
+
+- 获取兄弟节点：previousSibling
+
+- 获取属性：getAttribute
+
+- 设置属性：setAttribute
+
+- 获取元素样式：style
+
+- 获取元素属性：getAttribute
+
+- 设置元素属性：setAttribute
+
+- 获取元素类名：className
+
+- 设置元素类名：className
+
+- 获取元素内容：innerHTML
