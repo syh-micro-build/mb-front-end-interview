@@ -1639,3 +1639,37 @@ console.log(Winner.getName());  // 'Winner'
 console.log(Looser.getName());  // 'Winner'
 
 ```
+
+## 33. 手写观察者模式（行为模式）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+```js
+const queuedObservers = new Set();
+const observe = fn => queuedObservers.add(fn);
+​
+​
+const observable = obj => new Proxy(obj, {
+  set(target, key, value, receiver) {
+    const result = Reflect.set(target, key, value, receiver);
+    // notify
+    queuedObservers.forEach(observer => observer());
+    return result;
+  }
+});
+
+obj = observable({
+  name:'789'
+})
+​
+observe(function test(){
+  console.log('触发了')
+})
+​
+obj.name ="前端柒八九"
+
+```
