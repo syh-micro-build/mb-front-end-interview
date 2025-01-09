@@ -1817,3 +1817,21 @@ Function  shallowCopy(obj){
 - 函数的执行上下文只在函数被调用时生成，而其作用域在创建时已经生成；
 
 - 函数的作用域会包含若干个执行上下文(有可能是零个，当函数未被调用时)。
+
+## 39. require/import之间的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- require是CommonJS语法，import是ES6语法；
+
+- require只在后端服务器支持，import在高版本浏览器及Node中都可以支持；
+
+- require引入的是原始导出值的复制，import则是导出值的引用；
+
+- require时运行时动态加载，import是静态编译；
+
+- require调用时默认不是严格模式，import则默认调用严格模式.
