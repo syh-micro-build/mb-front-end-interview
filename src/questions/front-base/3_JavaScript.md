@@ -1,6 +1,6 @@
 # JavaScript
 
-## JS 数据类型有哪些？
+## 1. JS 数据类型有哪些？
 
 #### 类型：`基础`
 
@@ -11,7 +11,7 @@
 - **1：** 基本类型：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol（ES6特性）、BigInt（ES11特性）；
 - **1：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
-## == 和 === 的区别是什么？
+## 2. == 和 === 的区别是什么？
 
 #### 类型：`基础`
 
@@ -22,7 +22,7 @@
 - **1：** == 是 宽松相等，会进行类型转换，比较前会先转换两边的操作数类型（例如，'5' == 5 为 true;
 - **1：** === 是 严格相等，不会进行类型转换，只有两边的值和类型都相同才会返回 true（例如，'5' === 5 为 false;
 
-## var 、let 、 const 的区别是什么？
+## 3. var 、let 、 const 的区别是什么？
 
 #### 类型：`基础`
 
@@ -39,7 +39,7 @@
             let：可以修改其值;
             var： 是函数作用域或全局作用域，let 和 const 是块级作用域;
 
-## 什么是事件冒泡和事件捕获？
+## 4. 什么是事件冒泡和事件捕获？
 
 #### 类型：`基础`
 
@@ -52,7 +52,7 @@
 - **1：** 事件流顺序: 1.捕获 -> 2.目标 -> 3.冒泡;
 - **2：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
-## JS 什么是防抖和节流？它们的应用场景有哪些？
+## 5. JS 什么是防抖和节流？它们的应用场景有哪些？
 
 #### 类型：`基础`
 
@@ -63,7 +63,7 @@
 - **1：** 防抖：在事件被触发后，延迟一定时间后再执行回调函数，如果在延迟时间内再次触发事件，则重新计算延迟时间，直到延迟时间结束后才执行回调函数。例如，在用户输入搜索框时，防止频繁发送请求，可以使用防抖函数，只有在用户停止输入一段时间后才发送搜索请求。
 - **2：** 节流：在一定时间内，只允许函数执行一次。例如，在页面滚动时，需要频繁执行某个函数来处理滚动事件，但为了避免函数执行过于频繁影响性能，可以使用节流函数，限制函数在一定时间内只执行一次。
 
-## JS 请解释在 JavaScript 中this指针的工作原理，在以下函数调用场景中this指向什么？
+## 6. JS 请解释在 JavaScript 中this指针的工作原理，在以下函数调用场景中this指向什么？
 
 #### 类型：`基础`
 
@@ -84,7 +84,7 @@ person.sayHello();
 - **1：** 在person.sayHello()调用中，this指向person对象。
 - **1：** 当一个函数作为对象的方法被调用时，this指向调用该方法的对象。在这里，sayHello是person对象的方法，所以this指代person，因此可以正确访问person.name
 
-## JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器
+## 7. JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器
 
 #### 类型：`基础`
 
@@ -97,7 +97,7 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。
           使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
 
-## Promise 的常用方法
+## 8. Promise 的常用方法
 
 #### 类型：`基础`
 
@@ -113,7 +113,7 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise。
 - **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
 
-## 解释 Set 和 Map 的使用及区别
+## 9. 解释 Set 和 Map 的使用及区别
 
 #### 类型：基础
 
@@ -140,7 +140,7 @@ console.log(map.get('name')); // Alice
 
 ```
 
-## 请写出几个 JavaScript 函数，用于实现数组去重
+## 10. 请写出几个 JavaScript 函数，用于实现数组去重
 
 #### 类型：`基础`
 
@@ -225,7 +225,7 @@ console.log(uniqueArray);
 
 </details>
 
-## ES6 和 CommonJS 的区别
+## 11. ES6 和 CommonJS 的区别
 
 #### 类型：基础
 
@@ -242,7 +242,7 @@ CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内�
 
 [docs](https://juejin.cn/post/7331931937357496354)
 
-## new 操作符的实现原理
+## 12. new 操作符的实现原理
 
 #### 类型：基础
 
@@ -287,7 +287,7 @@ objectFactory(构造函数, 初始化参数);
 
 </details>
 
-## 数组的原生方法有哪些？
+## 13. 数组的原生方法有哪些？
 
 #### 类型：基础
 
@@ -307,7 +307,7 @@ objectFactory(构造函数, 初始化参数);
 
 </details>
 
-## bind、call、apply 区别
+## 14. bind、call、apply 区别
 
 #### 类型：基础
 
@@ -336,7 +336,7 @@ getValue.apply(a,['yck', '24'])
 
 </details>
 
-## == 和 ===区别，什么情况⽤ ==
+## 15. == 和 ===区别，什么情况⽤ ==
 
 #### 类型：基础
 
@@ -346,7 +346,7 @@ getValue.apply(a,['yck', '24'])
 
 - **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断
 
-## Proxy 的使用
+## 16. Proxy 的使用
 
 #### 类型：基础
 
@@ -434,7 +434,7 @@ console.log(objProxy.name);
 
 </details>
 
-## Object.defineProperty 的使用
+## 17. Object.defineProperty 的使用
 
 #### 类型：基础
 
@@ -505,7 +505,7 @@ console.log(obj.name);
 
 </details>
 
-## 作用域链的理解
+## 18. 作用域链的理解
 
 #### 类型：基础
 
@@ -640,7 +640,7 @@ person 函数内部：
 
 </details>
 
-## 柯里化
+## 19. 柯里化
 
 #### 类型：基础
 
@@ -707,9 +707,7 @@ console.log(test(1)(2)(3));
 
 </details>
 
-## 迭代器
-
-## CommonJS和ES6模块的区别？
+## 20. CommonJS和ES6模块的区别？
 
 #### 类型：`基础`
 
@@ -797,7 +795,7 @@ console.log(arr2Iterator.next());
 
 </details>
 
-## JS 如何实现函数缓存
+## 21. JS 如何实现函数缓存
 
 #### 类型：`拓展`
 
@@ -931,7 +929,7 @@ console.log(num2);  // 300
 
 </details>
 
-## CommonJS和ES6模块的区别？
+## 22. CommonJS和ES6模块的区别？
 
 #### 类型：`基础`
 
@@ -951,7 +949,7 @@ console.log(num2);  // 300
 
 - CommonJS模块的导出是类时，导出的类是值的拷贝，ES6模块的导出是类时，导出的类是值的引用。
 
-## 介绍一下Promise
+## 23. 介绍一下Promise
 
 #### 类型：`基础`
 
@@ -979,7 +977,7 @@ const promise = new Promise((resolve, reject) => {
 
 ```
 
-## 如何判断一个元素是否在可视区域内？
+## 24. 如何判断一个元素是否在可视区域内？
 
 #### 类型：`拓展`
 
@@ -1253,7 +1251,7 @@ $targets.each((index, element) => {
 
 </details>
 
-## 如何实现一个上拉加载，下拉刷新？
+## 25. 如何实现一个上拉加载，下拉刷新？
 
 #### 类型：`拓展`
 
@@ -1471,3 +1469,21 @@ function getlist(){
 - `better-scroll`，默认会阻止浏览器的原生 `click` 事件，如果滚动内容区要添加点击事件，需要在实例化属性里设置 `click:true`
 
 </details>
+
+## 26. cookie 可以实现不同域共享吗？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 默认情况下，Cookie 不能在不同的顶级域名之间共享数据。
+
+- 但是，如果两个域名属于同一主域名下的子域名，并且您设置了正确的 Domain 属性，那么在这些子域名之间是可以共享 Cookie 的。
+
+- 例如，对于 sub1.example.com 和 sub2.example.com 这样的子域名，如果设置 Cookie 的 Domain 属性为 .example.com ，那么在这两个子域名之间，这个 Cookie 是可以共享和访问的。
+
+- 然而，如果是完全不同的顶级域名，如 example.com 和 anotherdomain.com 之间，Cookie 是不能直接共享的。
+
+- 此外，还需要注意 Cookie 的 Path 属性、安全属性（Secure）、HttpOnly 属性等，这些属性也会影响 Cookie 的使用范围和方式。
