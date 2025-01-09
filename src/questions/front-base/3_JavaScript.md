@@ -1730,3 +1730,46 @@ class Observer {
     ob.emit('event1',567)
 
 ```
+
+## 35. 深浅拷贝的区别？如何实现一个深拷贝？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 深浅拷贝通常只针对引用类型
+
+- 浅拷贝：只拷贝一层对象，复制这一层对象中的原始值，如果有引用类型的话，就复制它的指针
+
+- 深拷贝：层层拷贝，所有类型的属性值都会被复制，原对象的修改不会影响拷贝后的对象 JSON.parse(JSON.stringify(obj)) --- 无法处理 undefined Symbol function -- 无法处理循环引用
+
+```js
+
+Function  shallowCopy(obj){
+      let newObj = {]
+      for( let key in  obj ){
+        if(obj.hasOwnProperty(key)){ 
+        //hasOwnProperty检测对象自己身上方法而不是原先链上的
+          newObj[key]=obj[key]
+        }
+      }
+      return  newObj
+} 
+// 咱们会浅拷贝当然还要深拷贝呀  开始
+Function  shallowCopy(obj){
+      let newObj = {]
+      for( let key in  obj ){
+        if(obj.hasOwnProperty(key)){ 
+        //hasOwnProperty检测对象自己身上方法而不是原先链上的
+        if  ( typeof(obj[key])!==obj||obj[key]===null){
+           newObj[key]=obj[key]
+        }else{
+           newObj[key]=shallowCopy(obj[key])
+        }  
+        }
+      }
+      return  newObj
+}
+```
