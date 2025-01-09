@@ -329,3 +329,19 @@ const state = reactive({ count: 0 });
 
 * **1：** 对比 Vue 2.x 使用的 Object.defineProperty () 方法，它只能对对象的已有属性进行逐个劫持，对于新增属性需要使用Vue.set方法来手动触发响应式更新。
 * **1：** 在 Vue 3 中，通过reactive创建的响应式对象是深层响应式的，而 Vue 2.x 中对象内部嵌套的对象，需要递归遍历进行深度响应式转换。 
+
+## 在 Vue 3 项目中，如何进行 SSR（服务器端渲染）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3分）
+
+* **0：** 搭建项目基础：创建 Vue 3 项目，可使用@vue/cli工具，通过命令vue create my-ssr-app创建项目，选择相关 Vue 3 选项。
+* **1：** 添加 SSR 相关依赖：安装`@vue/server-renderer`和`express`等依赖，`@vue/server-renderer`用于服务器端渲染，`express`作为服务器框架。命令
+为`npm install @vue/server-renderer express`。
+* **1：** 创建服务器文件：在项目根目录下创建server.js文件，用于创建服务器和处理 SSR 逻辑。在文件中，引入express，创建服务器实例，设置路由，使
+用@vue/server-renderer将 Vue 组件渲染为 HTML 字符串并返回。
+* **1：** 调整 Vue 项目代码：在 Vue 项目中，需要创建一个用于服务器端渲染的入口文件，如`entry-server.js`，在该文件中，创建 Vue 应用实例，并导出。同时，可能
+需要调整一些组件的逻辑，以适应服务器端渲染的环境。
