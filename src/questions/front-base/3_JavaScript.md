@@ -2041,3 +2041,17 @@ Function  shallowCopy(obj){
 - 设置元素类名：className
 
 - 获取元素内容：innerHTML
+
+## 51. attribute和property（都是属性）的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 两者都有可能引起DOM重新渲染
+
+- property : 修改对象属性，不会体现到html结构中
+
+- attribute : 修改html属性，会改变html结构
