@@ -1531,3 +1531,26 @@ function getlist(){
 由于Object是构造函数，原型链终点是Object.prototype.__proto__，而Object.prototype.__proto__=== null // true，所以，原型链的终点是null。原型链上的所有原型都是对象，所有的对象最终都是由Object构造的，而Object.prototype的下一级是Object.prototype.__proto__。
 
 ```
+
+## 29. 如何获得对象非原型链上的属性？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 使用后hasOwnProperty()方法来判断属性是否属于原型链的属性：
+
+```js
+
+function iterate(obj){
+   var res=[];
+   for(var key in obj){
+        if(obj.hasOwnProperty(key))
+           res.push(key+': '+obj[key]);
+   }
+   return res;
+} 
+
+```
