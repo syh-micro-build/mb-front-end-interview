@@ -1504,7 +1504,7 @@ function getlist(){
 
 - 对于数组的遍历，for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，for…of 只返回数组的下标对应的属性值；
 
-## 27. forEach和map的区别？
+## 28. forEach和map的区别？
 
 #### 类型：`基础`
 
@@ -1517,3 +1517,17 @@ function getlist(){
 - for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名forEach()方法会针对每一个元素执行提供的函数，对数据的操作会改变原数组，该方法没有返回值；
 
 - map()方法不会改变原数组的值，返回一个新数组，新数组中的值为原数组调用函数处理之后的值；
+
+## 29. 原型链的终点是什么？如何打印出原型链的终点？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+``` detail
+
+由于Object是构造函数，原型链终点是Object.prototype.__proto__，而Object.prototype.__proto__=== null // true，所以，原型链的终点是null。原型链上的所有原型都是对象，所有的对象最终都是由Object构造的，而Object.prototype的下一级是Object.prototype.__proto__。
+
+```
