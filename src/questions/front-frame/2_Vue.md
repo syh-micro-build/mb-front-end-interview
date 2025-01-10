@@ -989,3 +989,39 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
 对于 runtime 来说，只需要保证组件存在 render 函数即可，而有了预编译之后，只需要保证构建过程中生成 render 函数就可以。在 webpack 中，使用vue-loader编译.vue文件，内部依赖的vue-template-compiler模块，在 webpack 构建过程中，将template预编译成 render 函数。与 react 类似，在添加了jsx的语法糖解析器babel-plugin-transform-vue-jsx之后，就可以直接手写render函数。
 
 所以，template和jsx的都是render的一种表现形式，不同的是：JSX相对于template而言，具有更高的灵活性，在复杂的组件中，更具有优势，而 template 虽然显得有些呆滞。但是 template 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。
+
+## 50. Vue 子组件和父组件执行顺序
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+加载渲染过程：
+
+* 1.父 beforeCreate
+
+* 2.父 created
+
+* 3.父 beforeMount
+
+* 4.子 beforeCreate
+
+* 5.子 created
+
+* 6.子 beforeMount
+
+* 7.子 mounted
+
+* 8.父 mounted
+
+更新过程：
+
+* 1.父 beforeUpdate
+
+* 2.子 beforeUpdate
+
+* 3.子 updated
+
+* 4.父 updated
