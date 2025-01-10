@@ -755,3 +755,35 @@ onErrorCaptured((err) => {
 })
 
 ```
+
+## 38. vue-router怎么动态添加、删除路由？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+添加路由
+
+```js
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const addRoute = () => {
+  const newRoute = {
+    path: '/hello', name: 'hello', component: () => import('../components/HelloWorld.vue'), // 动态加载组件
+  };
+  router.addRoute(newRoute);
+};
+
+```
+
+添加路由
+
+```js
+
+router.removeRoute('xxx');
+
+```
