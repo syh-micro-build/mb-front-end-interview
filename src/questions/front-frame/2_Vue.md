@@ -451,3 +451,51 @@ Provide、inject 官方不推荐使用，但是写组件库时很常用
 Event Bus 实现跨组件通信，代码繁琐，不推荐
 
 Vuex 官方推荐使用，功能强大，vue-devtools有插件支持
+
+## 26. Vue的路由实现, hash路由和history路由实现原理说一下？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+`location.hash`的值实际就是URL中`#`后面的东西。
+
+history实际采用了HTML5中提供的API来实现，主要有history.pushState()和history.replaceState()。
+
+## 27. keep-alive的常用属性有哪些及实现原理
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+keep-alive可以实现组件缓存，当组件切换时不会对当前组件进行卸载。
+
+常用的两个属性include/exclude，允许组件有条件的进行缓存。
+
+两个生命周期activated/deactivated，用来得知当前组件是否处于活跃状态。
+
+keep-alive的中还运用了LRU(Least Recently Used)算法。
+
+## 28. nextTick 的作用是什么？他的实现原理是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+在下次 DOM 更新循环结束之后执行延迟回调。nextTick主要使用了宏任务和微任务。根据执行环境分别尝试采用
+
+* Promise
+
+* MutationObserver
+
+* setImmediate
+
+* setTimeout
+
+定义了一个异步方法，多次调用nextTick会将方法存入队列中，通过这个异步方法清空当前队列。
