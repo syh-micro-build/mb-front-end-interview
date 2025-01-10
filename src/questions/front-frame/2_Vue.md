@@ -1079,26 +1079,14 @@ const router = new Router({
 
 ```
 
-* 2.父 created
+## 52. $route 和$router 的区别
 
-* 3.父 beforeMount
+#### 类型：`基础`
 
-* 4.子 beforeCreate
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-* 5.子 created
+#### 解答（2分）
 
-* 6.子 beforeMount
+$route 是“路由信息对象”，包括 path，params，hash，query，fullPath，matched，name 等路由信息参数
 
-* 7.子 mounted
-
-* 8.父 mounted
-
-更新过程：
-
-* 1.父 beforeUpdate
-
-* 2.子 beforeUpdate
-
-* 3.子 updated
-
-* 4.父 updated
+$router 是“路由实例”对象包括了路由的跳转方法，钩子函数等。
