@@ -1132,3 +1132,24 @@ const store = new Vuex.Store({
   strict: true
 })
 ```
+
+## 56. 如何在组件中批量使用Vuex的getter属性
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+如何在组件中批量使用Vuex的getter属性
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+```js
+import {mapGetters} from 'vuex'
+export default{
+    computed:{
+        ...mapGetters(['total','discountTotal'])
+    }
+}
+```
