@@ -1025,3 +1025,80 @@ SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 H
 * 3.子 updated
 
 * 4.父 updated
+
+## 51. Vue-Router 的懒加载如何实现
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+加载渲染过程：
+
+方案一(常用)：使用箭头函数+import动态加载
+
+```js
+  const List = () => import('@/components/list.vue')
+  const router = new VueRouter({
+    routes: [
+      { path: '/list', component: List }
+    ]
+  })
+```
+
+方案二：使用箭头函数+require动态加载
+
+```js
+const router = new Router({
+  routes: [
+   {
+     path: '/list',
+     component: resolve => require(['@/components/list'], resolve)
+   }
+  ]
+})
+
+```
+
+方案二：方案三：使用webpack的require.ensure技术，也可以实现按需加载。 这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。
+
+```js
+// r就是resolve
+const List = r => require.ensure([], () => r(require('@/components/list')), 'list');
+// 路由也是正常的写法  这种是官方推荐的写的 按模块划分懒加载 
+const router = new Router({
+  routes: [
+  {
+    path: '/list',
+    component: List,
+    name: 'list'
+  }
+ ]
+}))
+
+```
+
+* 2.父 created
+
+* 3.父 beforeMount
+
+* 4.子 beforeCreate
+
+* 5.子 created
+
+* 6.子 beforeMount
+
+* 7.子 mounted
+
+* 8.父 mounted
+
+更新过程：
+
+* 1.父 beforeUpdate
+
+* 2.子 beforeUpdate
+
+* 3.子 updated
+
+* 4.父 updated
