@@ -715,3 +715,43 @@ const soptWatch = watch(() => count.value, (newVal, oldVal) => {
 soptWatch()
 
 ```
+
+## 37. Vue中怎么做全局错误监听？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+import { ref, watch } from 'vue'
+const count = ref(0)
+const soptWatch = watch(() => count.value, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+soptWatch()
+
+```
+
+## 38. 怎么监听子组件内的错误？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+// 子组件
+throw new Error("Error");
+
+//父组件
+import { onErrorCaptured } from 'vue'
+
+// 监听到子组件错误，执行回调
+onErrorCaptured((err) => {
+  console.log('error', err)
+})
+
+```
