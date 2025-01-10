@@ -666,3 +666,52 @@ Vue在initData时，做了数据代理
 * 然后变量 vm._data对象，把可枚举属性的get代理到 vm上
 
 * 访问vm.xxx 就相当于 vm._data.xx === vm.data.xx
+
+## 36. 父组件如何监听子组件生命周期？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+vue2 使用 @hook:mounted
+
+vue3 使用 @vue:mounted
+
+自定义事件，在子组件生命周期中去执行 下面是vue3的写法
+
+```js
+
+<template>
+  <h1 @click="send">Home 页面</h1>
+  <Text @vue:mounted="fn" />
+</template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import Text from '../components/Text.vue'
+const fn = () => {
+  console.log('Text mounted')
+}
+</script>
+
+```
+
+## 37. watch怎么停止监听？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+import { ref, watch } from 'vue'
+const count = ref(0)
+const soptWatch = watch(() => count.value, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+soptWatch()
+
+```
