@@ -821,3 +821,40 @@ key 是 Vue 使用 v-for 渲染列表时的节点标识。使用了 key 之后�
 #### 解答（1分）
 
   因为 Object.defineProperty()的限制，Vue 无法监听到对象或数组内部某个属性值的变化，因此在直接设置以上两类数据的值时，页面不会实时更新。此时可以通过 this.$set 方法来解决：
+
+## 41. v-on 如何绑定多个事件？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+  ```js
+<!--单事件绑定-->
+<input type="text" @click="onClick">
+<!--多事件绑定-->
+<input type="text" v-on="{ input:onInput,focus:onFocus,blur:onBlur }">
+
+```
+
+## 41. Vue 初始化页面闪动问题如何解决？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+出现该问题是因为在 Vue 代码尚未被解析之前，尚无法控制页面中 DOM 的显示，所以会看见模板字符串等代码。
+
+解决方案是，在 css 代码中添加 v-cloak 规则，同时在待编译的标签上添加 v-cloak 属性：
+
+```html
+[v-cloak] { display: none; }
+
+<div v-cloak>
+  {{ message }}
+</div>
+
+```
