@@ -1153,3 +1153,26 @@ export default{
     }
 }
 ```
+
+## 57. 如何在组件中重复使用Vuex的mutation
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+使用mapMutations辅助函数,在组件中这么使用
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+```js
+import { mapMutations } from 'vuex'
+methods:{
+    ...mapMutations({
+        setNumber:'SET_NUMBER',
+    })
+}
+```
+
+然后调用this.setNumber(10)相当调用this.$store.commit('SET_NUMBER',10)
