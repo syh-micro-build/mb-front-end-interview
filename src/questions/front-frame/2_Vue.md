@@ -627,3 +627,42 @@ complier 主要分为 3 大块：
 单向数据流是指：数据在组件树中的流动方向，是从父组件流向子组件的。这个设计使得数据流更加可预测和易于调试，确保应用状态的一致性。
 
 简单理解：父组件的状态对于子组件是只读的，子组件想改，只能通过事件的方式，通知父组件自己改。
+
+## 34. Vue中怎么异步加载组件
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+<template> 
+    <MyComponent /> 
+</template>
+<script setup>
+import { defineAsyncComponent } from 'vue'
+
+const MyComponent = defineAsyncComponent(() =>
+  import('./components/MyComponent.vue')
+)
+</script>
+```
+
+## 35. 为什么this.xx可以访问data中的数据?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+Vue在initData时，做了数据代理
+
+* 判断传入的data，函数就执行，对象不做处理
+
+* data 赋值给 vm._data
+
+* 然后变量 vm._data对象，把可枚举属性的get代理到 vm上
+
+* 访问vm.xxx 就相当于 vm._data.xx === vm.data.xx
