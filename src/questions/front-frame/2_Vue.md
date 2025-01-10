@@ -872,3 +872,30 @@ key 是 Vue 使用 v-for 渲染列表时的节点标识。使用了 key 之后�
 * 在 html 文件中加入 meta 标签，content 属性设置为no-cache;
 
 * 在后端服务器中进行禁止缓存设置。
+
+## 43. 页面刷新了之后vuex中的数据消失怎么解决
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+* vuex数据位于内存, 页面的刷新重置会导致数据的归零,也就是所谓的消失, 本地持久化可以解决这个问题.本地持久化用到的技术也就是 本次存储 sesstionStorage 或者 localStorage
+
+* tate的持久化 也就是分别需要在 state数据初始化 /更新 的时候 进行读取和设置本地存储操作
+
+```js
+  export default new Vuex.store({
+   state: {
+       user: localStorge.getItem('user')  // 初始化时读取 本地存储
+   },
+   mutations: {
+       updateUser (state, payload) {
+           state.user = payload.user
+           localStoregae.setItem('user',payload.user) // 数据更新时 设置本地存储
+       }
+   }
+})
+
+```
