@@ -755,3 +755,434 @@ onErrorCaptured((err) => {
 })
 
 ```
+
+## 38. vue-router怎么动态添加、删除路由？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+添加路由
+
+```js
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const addRoute = () => {
+  const newRoute = {
+    path: '/hello', name: 'hello', component: () => import('../components/HelloWorld.vue'), // 动态加载组件
+  };
+  router.addRoute(newRoute);
+};
+
+```
+
+添加路由
+
+```js
+
+router.removeRoute('xxx');
+
+```
+
+## 39. 有使用过v-memo么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+缓存一个模板的子树。在元素和组件上都可以使用。为了实现缓存，该指令需要传入一个固定长度的依赖值数组进行比较。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。
+
+一般与v-for配合使用，v-memo的值是一个数组。数组的值不改变的情况，该组件及子组件就会跳过更新
+
+v-memo 绑定的值没改变，子组件引用的响应数据变了，也不会更新
+
+## 40. v-for 中 key 的作用是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+key 是 Vue 使用 v-for 渲染列表时的节点标识。使用了 key 之后，当列表项发生变化时，Vue 会基于 key 的变化而重新排列元素顺序，并且移除 key 不存在的元素，提升运行效率。
+
+## 40. 如何动态更新对象或数组的值？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+  因为 Object.defineProperty()的限制，Vue 无法监听到对象或数组内部某个属性值的变化，因此在直接设置以上两类数据的值时，页面不会实时更新。此时可以通过 this.$set 方法来解决：
+
+## 41. v-on 如何绑定多个事件？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+  ```js
+<!--单事件绑定-->
+<input type="text" @click="onClick">
+<!--多事件绑定-->
+<input type="text" v-on="{ input:onInput,focus:onFocus,blur:onBlur }">
+
+```
+
+## 41. Vue 初始化页面闪动问题如何解决？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+出现该问题是因为在 Vue 代码尚未被解析之前，尚无法控制页面中 DOM 的显示，所以会看见模板字符串等代码。
+
+解决方案是，在 css 代码中添加 v-cloak 规则，同时在待编译的标签上添加 v-cloak 属性：
+
+```html
+[v-cloak] { display: none; }
+
+<div v-cloak>
+  {{ message }}
+</div>
+
+```
+
+## 42. Vue 如何清除浏览器缓存？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+* 项目打包的时候给每个打包文件加上 hash 值，一般是在文件后面加上时间戳；
+
+* 在 html 文件中加入 meta 标签，content 属性设置为no-cache;
+
+* 在后端服务器中进行禁止缓存设置。
+
+## 43. 页面刷新了之后vuex中的数据消失怎么解决
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+* vuex数据位于内存, 页面的刷新重置会导致数据的归零,也就是所谓的消失, 本地持久化可以解决这个问题.本地持久化用到的技术也就是 本次存储 sesstionStorage 或者 localStorage
+
+* tate的持久化 也就是分别需要在 state数据初始化 /更新 的时候 进行读取和设置本地存储操作
+
+```js
+  export default new Vuex.store({
+   state: {
+       user: localStorge.getItem('user')  // 初始化时读取 本地存储
+   },
+   mutations: {
+       updateUser (state, payload) {
+           state.user = payload.user
+           localStoregae.setItem('user',payload.user) // 数据更新时 设置本地存储
+       }
+   }
+})
+
+```
+
+## 44. 页面刷新了之后vuex中的数据消失怎么解决
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* 在对一些属性进行操作时，使用这种方法无法拦截，比如通过下标方式修改数组数据或者给对象新增属性，这都不能触发组件的重新渲染，因为 Object.defineProperty 不能拦截到这些操作。更精确的来说，对于数组而言，大部分操作都是拦截不到的，只是 Vue 内部通过重写函数的方式解决了这个问题。
+
+* 在 Vue3.0 中已经不使用这种方式了，而是通过使用 Proxy 对对象进行代理，从而实现数据劫持。使用Proxy 的好处是它可以完美的监听到任何方式的数据改变，唯一的缺点是兼容性的问题，因为 Proxy 是 ES6 的语法。
+
+## 45. assets和static的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* 相同点： assets 和 static 两个都是存放静态资源文件。项目中所需要的资源文件图片，字体图标，样式文件等都可以放在这两个文件下
+
+* 不相同点：assets 中存放的静态资源文件在项目打包时，也就是运行 npm run build 时会将 assets 中放置的静态资源文件进行打包上传，所谓打包简单点可以理解为压缩体积，代码格式化。而压缩后的静态资源文件最终也都会放置在 static 文件中跟着 index.html 一同上传至服务器。static 中放置的静态资源文件就不会要走打包压缩格式化等流程，而是直接进入打包好的目录，直接上传至服务器。
+
+因为避免了压缩直接进行上传，在打包时会提高一定的效率，但是 static 中的资源文件由于没有进行压缩等操作，所以文件的体积也就相对于 assets 中打包后的文件提交较大点。在服务器中就会占据更大的空间
+
+## 46. delete和Vue.delete删除数组的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* delete 只是被删除的元素变成了 empty/undefined 其他的元素的键值还是不变。
+
+* Vue.delete 直接删除了数组 改变了数组的键值。
+
+## 47. 什么是 mixin？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* Mixin 使我们能够为 Vue 组件编写可插拔和可重用的功能。
+
+* 如果希望在多个组件之间重用一组组件选项，例如生命周期 hook、 方法等，则可以将其编写为 mixin，并在组件中简单的引用它。
+
+* 然后将 mixin 的内容合并到组件中。如果你要在 mixin 中定义生命周期 hook，那么它在执行时将优化于组件自已的 hook。
+
+## 48. 对 SPA 单页面的理解，它的优缺点分别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 HTML、JavaScript 和 CSS。一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转；取而代之的是利用路由机制实现 HTML 内容的变换，UI 与用户的交互，避免页面的重新加载。
+
+优点：
+
+* 用户体验好、快，内容的改变不需要重新加载整个页面，避免了不必要的跳转和重复渲染；
+
+* 基于上面一点，SPA 相对对服务器压力小；
+
+* 前后端职责分离，架构清晰，前端进行交互逻辑，后端负责数据处理；
+
+缺点：
+
+* 初次加载耗时多：为实现单页 Web 应用功能及显示效果，需要在加载页面的时候将 JavaScript、CSS 统一加载，部分页面按需加载；
+
+* 前进后退路由管理：由于单页应用在一个页面中显示所有的内容，所以不能使用浏览器的前进后退功能，所有的页面切换需要自己建立堆栈管理；
+
+* SEO 难度较大：由于所有的内容都在一个页面中动态替换显示，所以在 SEO 上其有着天然的弱势。
+
+## 49. 对 SPA 单页面的理解，它的优缺点分别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+对于 runtime 来说，只需要保证组件存在 render 函数即可，而有了预编译之后，只需要保证构建过程中生成 render 函数就可以。在 webpack 中，使用vue-loader编译.vue文件，内部依赖的vue-template-compiler模块，在 webpack 构建过程中，将template预编译成 render 函数。与 react 类似，在添加了jsx的语法糖解析器babel-plugin-transform-vue-jsx之后，就可以直接手写render函数。
+
+所以，template和jsx的都是render的一种表现形式，不同的是：JSX相对于template而言，具有更高的灵活性，在复杂的组件中，更具有优势，而 template 虽然显得有些呆滞。但是 template 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。
+
+## 50. Vue 子组件和父组件执行顺序
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+加载渲染过程：
+
+* 1.父 beforeCreate
+
+* 2.父 created
+
+* 3.父 beforeMount
+
+* 4.子 beforeCreate
+
+* 5.子 created
+
+* 6.子 beforeMount
+
+* 7.子 mounted
+
+* 8.父 mounted
+
+更新过程：
+
+* 1.父 beforeUpdate
+
+* 2.子 beforeUpdate
+
+* 3.子 updated
+
+* 4.父 updated
+
+## 51. Vue-Router 的懒加载如何实现
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+加载渲染过程：
+
+方案一(常用)：使用箭头函数+import动态加载
+
+```js
+  const List = () => import('@/components/list.vue')
+  const router = new VueRouter({
+    routes: [
+      { path: '/list', component: List }
+    ]
+  })
+```
+
+方案二：使用箭头函数+require动态加载
+
+```js
+const router = new Router({
+  routes: [
+   {
+     path: '/list',
+     component: resolve => require(['@/components/list'], resolve)
+   }
+  ]
+})
+
+```
+
+方案二：方案三：使用webpack的require.ensure技术，也可以实现按需加载。 这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。
+
+```js
+// r就是resolve
+const List = r => require.ensure([], () => r(require('@/components/list')), 'list');
+// 路由也是正常的写法  这种是官方推荐的写的 按模块划分懒加载 
+const router = new Router({
+  routes: [
+  {
+    path: '/list',
+    component: List,
+    name: 'list'
+  }
+ ]
+}))
+
+```
+
+## 52. $route 和$router 的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+$route 是“路由信息对象”，包括 path，params，hash，query，fullPath，matched，name 等路由信息参数
+
+$router 是“路由实例”对象包括了路由的跳转方法，钩子函数等。
+
+## 53. Vuex和单纯的全局对象有什么区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。
+
+不能直接改变 store 中的状态。改变 store 中的状态的唯一途径就是显式地提交 (commit) mutation。这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用
+
+## 54. 为什么 Vuex 的 mutation 中不能做异步操作？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+Vuex中所有的状态更新的唯一途径都是mutation，异步操作通过 Action 来提交 mutation实现，这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用。
+
+每个mutation执行完成后都会对应到一个新的状态变更，这样devtools就可以打个快照存下来，然后就可以实现 time-travel 了。如果mutation支持异步操作，就没有办法知道状态是何时更新的，无法很好的进行状态的追踪，给调试带来困难。
+
+## 55. Vuex的严格模式是什么,有什么作用，如何开启？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+在严格模式下，无论何时发生了状态变更且不是由mutation函数引起的，将会抛出错误。这能保证所有的状态变更都能被调试工具跟踪到。
+
+在Vuex.Store 构造器选项中开启,如下
+
+```js
+const store = new Vuex.Store({
+  strict: true
+})
+```
+
+## 56. 如何在组件中批量使用Vuex的getter属性
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+如何在组件中批量使用Vuex的getter属性
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+```js
+import {mapGetters} from 'vuex'
+export default{
+    computed:{
+        ...mapGetters(['total','discountTotal'])
+    }
+}
+```
+
+## 57. 如何在组件中重复使用Vuex的mutation
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+使用mapMutations辅助函数,在组件中这么使用
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+```js
+import { mapMutations } from 'vuex'
+methods:{
+    ...mapMutations({
+        setNumber:'SET_NUMBER',
+    })
+}
+```
+
+然后调用this.setNumber(10)相当调用this.$store.commit('SET_NUMBER',10)
+
+## 58. 为什么不建议用index作为key?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+使用index 作为 key和没写基本上没区别，因为不管数组的顺序怎么颠倒，index 都是 0, 1, 2...这样排列，导致 Vue 会复用错误的旧子节点，做很多额外的工作。
