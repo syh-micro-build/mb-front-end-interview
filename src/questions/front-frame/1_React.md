@@ -1054,3 +1054,28 @@ context的更新需要通过setState()触发，但是这并不是很可靠的，
 调用 setState 时，组件的 state 并不会立即改变， setState 只是把要修改的 state 放入一个队列， React 会优化真正的执行时机，并出于性能原因，会将 React 事件处理程序中的多次React 事件处理程序中的多次 setState 的状态修改合并成一次状态修改。 最终更新只产生一次组件及其子组件的重新渲染，这对于大型应用程序中的性能提升至关重要。
 
 需要注意的是，只要同步代码还在执行，“攒起来”这个动作就不会停止。（注：这里之所以多次 +1 最终只有一次生效，是因为在同一个方法中多次 setState 的合并动作不是单纯地将更新累加。比如这里对于相同属性的设置，React 只会为其保留最后一次的更新）。
+
+## 48. React中有使用过getDefaultProps吗？它有什么作用？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+通过实现组件的getDefaultProps，对属性设置默认值（ES5的写法）：
+
+```js
+
+var ShowTitle = React.createClass({
+  getDefaultProps:function(){
+    return{
+      title : "React"
+    }
+  },
+  render : function(){
+    return <h1>{this.props.title}</h1>
+  }
+});
+
+```
