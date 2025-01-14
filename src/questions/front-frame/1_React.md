@@ -712,3 +712,15 @@ componentDidMount(){ this.context.router.history.listen((route)=>{ if(route.path
 - 合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty 到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
 
 - 选择性子树渲染。开发人员可以重写 shouldComponentUpdate 提高 diff 的性能。
+
+## 29. 受控组件和非受控组件有什么区别？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 在 HTML 文档中，许多表单元素（例如、、）都保持自己的状态。不受控制的组件将 DOM 视为这些输入状态的真实源。在受控组件中，内部状态用于跟踪元素值。当输入值改变时，React 会重新渲染输入。
+
+- 在与非 React 代码集成时，不受控制的组件非常有用（例如，如果您需要支持某种 jQuery 表单插件）。
