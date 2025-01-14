@@ -1235,3 +1235,33 @@ Mobx 提供了类似observable和的装饰器computed来定义可观察的状态
 
 - 调和是 React 的一种算法，用于区分一棵元素树和另一棵元素树，以确定需要替换的部分。
 调和是我们过去所说的虚拟 DOM 背后的算法。其定义听起来是这样的：当您渲染 React 应用程序时，描述应用程序的元素树会在预留内存中生成。然后，这棵树就会被包含在呈现环境中，例如，在浏览器应用程序中，它会被转化为一组 DOM 操作。应用状态更新时，会生成新的元素树。新的树会与之前的树进行比较，以便准确计算和启用重新绘制更新后的应用程序所需的操作。
+
+## 59. 如何在 Redux Thunk 中处理异步操作？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+要使用 Redux Thunk，需要将其作为中间件导入。Action创建者不应只返回一个对象，而应返回一个将dispatch 作为参数的函数。
+
+````js
+export const addUser = ({ firstName, lastName }) => {
+  return dispatch => {
+    dispatch(addUserStart());
+  }
+
+  axios.post('https://jsonplaceholder.typicode.com/users', {
+    firstName,
+    lastName,
+    completed: false
+  })
+  .then(res => {
+    dispatch(addUserSuccess(res.data));
+  })
+  .catch(error => {
+    dispatch(addUserError(error.message));
+  })
+}
+```
