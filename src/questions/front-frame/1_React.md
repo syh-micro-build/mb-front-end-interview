@@ -758,3 +758,21 @@ componentDidMount(){ this.context.router.history.listen((route)=>{ if(route.path
 #### 解答（1 分）
 
 - 保证react的单向数据流的设计模式，使状态更可预测。如果允许自组件修改，那么一个父组件将状态传递给好几个子组件，这几个子组件随意修改，就完全不可预测，不知道在什么地方修改了状态，所以我们必须像纯函数一样保护 props 不被修改
+
+## 32. 使用Hooks要遵守哪些原则？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 只在最顶层使用 Hook  不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。
+
+- 只在 React 函数中调用 Hook
+
+不要在普通的 JavaScript 函数中调用 Hook。你可以：
+
+- 在 React 的函数组件中调用 Hook
+
+- 在自定义 Hook 中调用其他 Hook
