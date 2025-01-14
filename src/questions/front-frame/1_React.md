@@ -1283,3 +1283,34 @@ useEffect(() => {
 }, [obj.someField])
 
 ```
+
+## 61. 如何访问DOM元素？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+引用是使用 React.createRef() 或 useRef() 钩子创建的，并通过 ref 属性附加到 React 元素上。通过访问创建的引用，我们可以使用 ref.current 访问 DOM 元素。
+
+```js
+
+const App = () => {
+  const myRef = useRef(null);
+
+  const handleClick = () => {
+    console.log(myRef.current); // Accessing the DOM element
+  };
+
+  return (
+    <div>
+      <input type="text" ref={myRef} />
+      <button onClick={handleClick}>Click Me</button>
+    </div>
+  );
+}
+
+export default App;
+
+```
