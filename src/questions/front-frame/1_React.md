@@ -1,6 +1,6 @@
 # react
 
-## 什么是 React 的生命周期方法？
+## 1. 什么是 React 的生命周期方法？
 
 #### 类型：基础
 
@@ -26,7 +26,7 @@ return () => {
 
 ```
 
-## React 中的 Hook 是什么？
+## 2. React 中的 Hook 是什么？
 
 #### 类型：基础
 
@@ -41,7 +41,7 @@ return () => {
 - **1：** useRef()：用于访问组件中的 DOM 节点或保存可变的值。
 - **1：** useMemo() 和 useCallback()：用于性能优化，避免不必要的渲染。
 
-## React 中的状态和 props 有什么区别？
+## 3. React 中的状态和 props 有什么区别？
 
 #### 类型：基础
 
@@ -68,7 +68,7 @@ function MyComponent() {
 
 ```
 
-## React 中如何处理事件？
+## 4. React 中如何处理事件？
 
 #### 类型：基础
 
@@ -92,7 +92,7 @@ function MyComponent() {
 - **1：** React 会自动绑定事件处理函数。
 - **1：** 事件对象会被 React 规范化。
 
-## useState 连续调用，页面不更新？
+## 5. useState 连续调用，页面不更新？
 
 #### 类型：基础
 
@@ -123,7 +123,7 @@ function handleClick() {
 }
 ```
 
-## React中的性能优化方法有哪些？
+## 6. React中的性能优化方法有哪些？
 
 #### 类型：`基础`
 
@@ -172,7 +172,7 @@ const memoizedCallback = useCallback(
   + 使用虚拟列表处理长列表
   + 合理设计组件层级
 
-## 什么是 React？它的主要特点是什么？
+## 7. 什么是 React？它的主要特点是什么？
 
 #### 类型：`基础`
 
@@ -192,7 +192,7 @@ const memoizedCallback = useCallback(
 
 - 生态系统丰富：React 拥有丰富的生态系统，包括路由器（React Router）、状态管理库（Redux、MobX）等。
 
-## 什么是 JSX？它有什么优点？
+## 8. 什么是 JSX？它有什么优点？
 
 #### 类型：`基础`
 
@@ -210,7 +210,7 @@ const memoizedCallback = useCallback(
 
 - 工具支持：现代开发工具（如 Babel）可以将 JSX 编译成兼容所有浏览器的 JavaScript 代码。
 
-## React中的Context是什么？如何使用？
+## 9. React中的Context是什么？如何使用？
 
 #### 类型：`基础`
 
@@ -257,7 +257,7 @@ function ThemedButton() {
   + Context值变化会导致所有消费组件重新渲染
   + 适合共享全局数据，如主题、用户信息等
 
-## 什么是虚拟 DOM？它是如何工作的？
+## 10. 什么是虚拟 DOM？它是如何工作的？
 
 #### 类型：`基础`
 
@@ -273,7 +273,7 @@ function ThemedButton() {
 
 - 批量更新：React 将这些差异批量应用到真实 DOM，减少 DOM 操作次数，提高性能。
 
-## React 中的单向数据流是什么意思？
+## 11. React 中的单向数据流是什么意思？
 
 #### 类型：`基础`
 
@@ -289,7 +289,7 @@ function ThemedButton() {
 
 - 可预测性：单向数据流使得应用的状态变化更加可预测，便于维护和扩展。
 
-## React中的Refs是什么？有哪些使用场景？
+## 12. React中的Refs是什么？有哪些使用场景？
 
 #### 类型：`基础`
 
@@ -336,7 +336,7 @@ const FancyButton = React.forwardRef((props, ref) => (
   + 不要用Refs来做可以通过声明式实现的事情
   + 在类组件中使用需要通过React.createRef()创建
 
-## 什么是函数组件和类组件？它们有什么区别？
+## 13. 什么是函数组件和类组件？它们有什么区别？
 
 #### 类型：`基础`
 
@@ -360,7 +360,7 @@ const FancyButton = React.forwardRef((props, ref) => (
 
 - 缺点：代码相对复杂，性能略逊于函数组件。
 
-## React.memo 的作用和使用场景
+## 14. React.memo 的作用和使用场景
 
 #### 类型：`基础`
 
@@ -427,7 +427,7 @@ export default React.memo(RealTimeChart);
 
 </details>
 
-## 什么是 React 中的高阶组件（HOC）？请简单举例说明其用法
+## 15. 什么是 React 中的高阶组件（HOC）？请简单举例说明其用法
 
 #### 类型：`基础`
 
@@ -442,7 +442,7 @@ export default React.memo(RealTimeChart);
 - **1：** 用法2：逻辑抽象和分离。可以将一些复杂的、与业务逻辑无关的功能（如数据加载、动画效果等）从组件内部抽象出来，通过 HOC 来处理，使得组件本身更加专
 注于自己的核心业务逻辑（如展示 UI 和处理用户交互）。
 
-## 什如何在 React 应用中进行有效的内存泄漏排查和修复？
+## 16. 什如何在 React 应用中进行有效的内存泄漏排查和修复？
 
 #### 类型：`拓展`
 
@@ -454,7 +454,7 @@ export default React.memo(RealTimeChart);
 - **1：** 检查组件卸载时是否取消了订阅、定时器、事件监听器等可能导致内存泄漏的源头；
 - **1：** 对于使用了第三方库的情况，要确保库的使用方式正确，避免因库的不当使用造成内存泄漏。
 
-## 什么是纯组件？为什么要使用纯组件？
+## 17. 什么是纯组件？为什么要使用纯组件？
 
 #### 类型：`拓展`
 
@@ -474,7 +474,7 @@ export default React.memo(RealTimeChart);
 
 - 复杂组件：组件内部逻辑复杂，重新渲染开销大。
 
-## 什么是 React Context API？它解决了什么问题？
+## 18. 什么是 React Context API？它解决了什么问题？
 
 #### 类型：`拓展`
 
@@ -492,7 +492,7 @@ export default React.memo(RealTimeChart);
 
 - 消费 Context：使用 Context.Consumer 组件或 useContext Hook 在子组件中访问数据。
 
-## 什么是 React Router？它的主要特点是什么？
+## 19. 什么是 React Router？它的主要特点是什么？
 
 #### 类型：`拓展`
 
@@ -516,7 +516,7 @@ export default React.memo(RealTimeChart);
 
 - 懒加载：支持代码分割和懒加载，可以按需加载组件，提高应用性能。
 
-## 什么是 useState？它如何工作？
+## 20. 什么是 useState？它如何工作？
 
 #### 类型：`拓展`
 
@@ -559,7 +559,7 @@ export default Counter;
 
 ```
 
-## 什么是 useEffect？它如何工作？
+## 21. 什么是 useEffect？它如何工作？
 
 #### 类型：`拓展`
 
@@ -607,7 +607,7 @@ export default DataFetcher;
 
 ```
 
-## 在 React 组件中，useEffect 钩子的第二个参数（依赖项数组）为空数组和不设置有什么区别？
+## 22. 在 React 组件中，useEffect 钩子的第二个参数（依赖项数组）为空数组和不设置有什么区别？
 
 #### 类型：基础
 
@@ -618,7 +618,7 @@ export default DataFetcher;
 - **1：** 为空数组时，useEffect 仅在组件挂载和卸载时执行一次，类似 componentDidMount 与 componentWillUnmount 的结合；不设置时，每次组件渲染
 后 useEffect 都会执行，可能导致不必要的副作用反复运行。
 
-## 说说对Fiber架构的理解？解决了什么问题？
+## 23. 说说对Fiber架构的理解？解决了什么问题？
 
 #### 类型：`编程`
 
@@ -632,3 +632,17 @@ export default DataFetcher;
 - **1：** 增加了异步任务，调用requestIdleCallback api，浏览器空闲的时候执行
 - **1：** dom diff树变成了链表，一个dom对应两个fiber（一个链表），对应两个队列，这都是为找到被中断的任务，重新执行
 - **1：** Fiber把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否还有剩余时间，如果有继续下一个任务；如果没有，挂起当前任务，将时间控制权交给主线程，等主线程不忙的时候在继续执行，即可以中断与恢复，恢复后也可以复用之前的中间状态，并给不同的任务赋予不同的优先级，其中每个任务更新单元为 React Element 对应的 Fiber节点
+
+## 24. react无状态组件和class类组件的区别？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- 直观区别，函数组件代码量较少，相比类组件更加简洁
+
+- 函数组件看似只是一个返回react元素的函数，其实体现的是无状态组件的思想，函数组件中没有this， 没有state，也没有生命周期，这就决定了函数组件都是展示性组件，接收props，渲染dom，而不关注其他逻辑
+
+- 因为函数组件不需要考虑组件状态和组件生命周期方法中的各种比较校验，所以有很大的性能提升空间
