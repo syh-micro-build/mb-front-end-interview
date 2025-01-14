@@ -40,3 +40,39 @@ export default {
 };
 //在上述配置中，input是一个对象，main和secondary是两个入口的名称，对应各自的入口文件路径。output.dir指定了输出目录，Rollup 会根据不同的入口文件，在dist目录下生成对应的打包文件（如main.js和secondary.js，具体文件名根据配置和输出格式而定）。
 ```
+
+## 简述 Rollup 的watch模式的作用及使用方法。
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **1：** 作用：Rollup 的watch模式的作用是在开发过程中，当源文件发生变化时，自动重新打包，提高开发效率。
+- **1：** 方法一：命令行方式，在项目目录下的package.json中添加script脚本：
+
+```js
+{
+    "scripts": {
+        "dev": "rollup -c --watch"
+    }
+}
+//然后在命令行执行npm run dev，Rollup 会启动watch模式，监听配置文件（rollup.config.js）中指定的输入文件的变化，一旦文件有改动，就会自动重新打包。
+```
+- **1：** 方法二：在rollup.config.js中也可以配置watch选项：
+
+```js
+export default {
+    input: 'input.js',
+    output: {
+        file: 'output.js',
+        format: 'esm'
+    },
+    watch: {
+        include: 'src/**',
+        exclude: 'node_modules/**'
+    }
+};
+//这里include指定了需要监听的文件或目录，exclude指定了不需要监听的文件或目录。之后通过rollup -c命令启动 Rollup，就会按照配置的watch选项进行监听。
+```
