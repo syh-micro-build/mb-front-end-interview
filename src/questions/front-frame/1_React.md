@@ -1246,7 +1246,7 @@ Mobx 提供了类似observable和的装饰器computed来定义可观察的状态
 
 要使用 Redux Thunk，需要将其作为中间件导入。Action创建者不应只返回一个对象，而应返回一个将dispatch 作为参数的函数。
 
-````js
+```js
 export const addUser = ({ firstName, lastName }) => {
   return dispatch => {
     dispatch(addUserStart());
@@ -1264,4 +1264,22 @@ export const addUser = ({ firstName, lastName }) => {
     dispatch(addUserError(error.message));
   })
 }
+```
+
+## 60. 如何跟踪功能组件中对象字段的变化？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+需要使用 useEffect 钩子，并将对象的字段作为依赖数组传递。
+
+```js
+
+useEffect(() => {
+  console.log('Changed!')
+}, [obj.someField])
+
 ```
