@@ -41,7 +41,7 @@ export default {
 //在上述配置中，input是一个对象，main和secondary是两个入口的名称，对应各自的入口文件路径。output.dir指定了输出目录，Rollup 会根据不同的入口文件，在dist目录下生成对应的打包文件（如main.js和secondary.js，具体文件名根据配置和输出格式而定）。
 ```
 
-## 简述 Rollup 的watch模式的作用及使用方法。
+## 简述 Rollup 的watch模式的作用及使用方法
 
 #### 类型：`基础`
 
@@ -62,6 +62,7 @@ export default {
 }
 //然后在命令行执行npm run dev，Rollup 会启动watch模式，监听配置文件（rollup.config.js）中指定的输入文件的变化，一旦文件有改动，就会自动重新打包。
 ```
+
 - **1：** 方法二：在rollup.config.js中也可以配置watch选项：
 
 ```js
@@ -133,6 +134,7 @@ export default {
 }
 //dev脚本用于在开发环境下启动 Rollup 的监听模式，当源文件发生变化时自动重新打包。build脚本用于在生产环境下执行打包操作。
 ```
+
 - **0：** 测试和部署：在本地对项目进行测试，确保功能正常。然后将打包后的文件部署到服务器上，供用户访问。
 
 </details>
