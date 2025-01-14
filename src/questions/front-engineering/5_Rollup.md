@@ -16,3 +16,27 @@
 - 插件系统：Rollup 的插件系统比 Webpack 更简洁，WebPack 插件系统更强大，适合复杂的应用场景。
 - 在 Rollup 中，树摇是默认启用的，只要你使用了 ES 模块的语法，并且在构建时选择生产模式（如设置 minify 或 treeshake），就能自动进行树摇优化
 - Rollup 的插件系统非常强大，可以通过 plugins 配置项来引入各种插件。插件可以用来处理各种功能，如转换文件格式、代码压缩、代码分割、环境变量注入等。
+
+## 在 Rollup 中，如何实现多入口打包？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 在 Rollup 配置文件中，可以通过将input设置为一个对象来实现多入口打包。例如：
+
+```js
+export default {
+    input: {
+        main: 'entry-main.js',
+        secondary: 'entry-secondary.js'
+    },
+    output: {
+        dir: 'dist',
+        format: 'esm'
+    }
+};
+//在上述配置中，input是一个对象，main和secondary是两个入口的名称，对应各自的入口文件路径。output.dir指定了输出目录，Rollup 会根据不同的入口文件，在dist目录下生成对应的打包文件（如main.js和secondary.js，具体文件名根据配置和输出格式而定）。
+```
