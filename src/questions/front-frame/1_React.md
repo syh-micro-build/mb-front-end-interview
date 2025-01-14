@@ -900,3 +900,41 @@ PureComponent表示一个纯组件，可以用来优化React程序，减少rende
 - 实例： 一个实例instance是你在所写的组件类component class中使用关键字this所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。
 
 函数式组件(Functional component)根本没有实例instance。类组件(Class component)有实例instance，但是永远也不需要直接创建一个组件的实例，因为React帮我们做了这些。
+
+## 40. React.createClass和extends Component的区别有哪些？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+语法区别
+
+- createClass本质上是一个工厂函数，extends的方式更加接近最新的ES6规范的class写法。两种方式在语法上的差别主要体现在方法的定义和静态属性的声明上。
+
+- createClass方式的方法定义使用逗号，隔开，因为creatClass本质上是一个函数，传递给它的是一个Object；而class的方式定义方法时务必谨记不要使用逗号隔开，这是ES6 class的语法规范。
+
+propType 和 getDefaultProps
+
+- React.createClass：通过proTypes对象和getDefaultProps()方法来设置和获取props.
+
+- React.Component：通过设置两个属性propTypes和defaultProps
+
+状态的区别
+
+- React.createClass：通过getInitialState()方法返回一个包含初始值的对象
+
+- React.Component：通过constructor构造函数设置初始状态
+
+this.state
+
+- React.createClass：需要显示的调用this.setState()方法
+
+- React.Component：不需要调用，直接this.state获取
+
+Mixins
+
+- React.createClass：通过mixins属性混合进来
+
+- React.Component：通过引入React Mixin
