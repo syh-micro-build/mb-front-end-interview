@@ -656,3 +656,17 @@ export default DataFetcher;
 #### 解答（1 分）
 
 - React Keep Alive 提供了 ，必须把 放在 Provider 里面，并且每个 组件都必须拥有一个唯一的 key
+
+## 26. React如何做路由监听
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+``` react
+
+componentDidMount(){ this.context.router.history.listen((route)=>{ if(route.pathname==='/xxx'){ console.log(1); } }); } 
+
+```
