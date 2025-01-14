@@ -1145,3 +1145,40 @@ replaceState(object nextState[, function callback])
 #### 解答（1 分）
 
 this.state通常是用来初始化state的，this.setState是用来修改state值的。如果初始化了state之后再使用this.state，之前的state会被覆盖掉，如果使用this.setState，只会替换掉相应的state值。所以，如果想要修改state的值，就需要使用setState，而不能直接修改state，直接修改state之后页面是不会更新的。
+
+## 52. 如何跟踪功能组件的卸载？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+通常，useEffect 创建的资源需要在组件离开屏幕前进行清理或重置，例如订阅或计时器标识符。
+为此，传递给 useEffect 的函数可以返回一个清理函数。清理函数将在组件从用户界面移除之前运行，以防止内存泄漏。此外，如果组件渲染多次（通常是这种情况），则会在执行下一个效果之前清理前一个效果。
+
+```js
+useEffect(() => {
+  function handleChange(value) {
+    setValue(value);
+  }
+  SomeAPI.doFunction(id, handleChange);
+
+  return function cleanup() {
+    SomeAPI.undoFunction(id, handleChange);
+  };
+})
+
+```
+
+## 53. 什么是状态管理器？你使用或了解哪些状态管理器？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+状态管理器是一种帮助管理应用程序状态的工具或库。它为存储和管理数据提供了一个集中的存储空间或容器，应用程序中的不同组件都可以访问和更新这些数据。
+状态管理器可以解决几个问题。首先，将数据和与之相关的逻辑从组件中分离出来是一种很好的做法。其次，当使用本地状态并在组件之间传递时，由于组件有可能深嵌套，代码可能会变得错综复杂。通过全局存储，我们可以从任何组件访问和修改数据。
+除了 React Context，Redux 或 MobX 也常用作状态管理库。
