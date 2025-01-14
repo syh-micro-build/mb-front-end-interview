@@ -1079,3 +1079,23 @@ var ShowTitle = React.createClass({
 });
 
 ```
+
+## 49. React中setState的第二个参数作用是什么？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+setState 的第二个参数是一个可选的回调函数。这个回调函数将在组件重新渲染后执行。等价于在 componentDidUpdate 生命周期内执行。通常建议使用 componentDidUpdate 来代替此方式。在这个回调函数中你可以拿到更新后 state 的值：
+
+```js
+
+this.setState({
+    key1: newState1,
+    key2: newState2,
+    ...
+}, callback) // 第二个参数是 state 更新完成后的回调函数
+
+```
