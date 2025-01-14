@@ -1099,3 +1099,39 @@ this.setState({
 }, callback) // 第二个参数是 state 更新完成后的回调函数
 
 ```
+
+## 50. React中的setState和replaceState的区别是什么？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+（1）setState() setState()用于设置状态对象，其语法如下：
+
+```js
+
+setState(object nextState[, function callback])
+
+```
+
+- nextState，将要设置的新状态，该状态会和当前的state合并
+
+- callback，可选参数。回调函数。将在组件重新渲染后执行。在这个回调函数中你可以拿到更新后 state 的值
+
+合并nextState和当前state，并重新渲染组件。setState是React事件处理函数中和请求回调函数中触发UI更新的主要方法。
+
+（2）replaceState() replaceState()方法与setState()类似，但是方法只会保留nextState中状态，原state不在nextState中的状态都会被删除。其语法如下
+
+```js
+
+replaceState(object nextState[, function callback])
+
+```
+
+- nextState，将要设置的新状态，该状态会替换当前的state。
+
+- callback，可选参数，回调函数。该函数会在replaceState设置成功，且组件重新渲染后调用。
+
+总结： setState 是修改其中的部分状态，相当于 Object.assign，只是覆盖，不会减少原来的状态。而replaceState 是完全替换原来的状态，相当于赋值，将原来的 state 替换为另一个对象，如果新状态属性减少，那么 state 中就没有这个状态了。
