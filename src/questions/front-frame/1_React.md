@@ -670,3 +670,27 @@ export default DataFetcher;
 componentDidMount(){ this.context.router.history.listen((route)=>{ if(route.pathname==='/xxx'){ console.log(1); } }); } 
 
 ```
+
+## 27. React 中 keys 的作用是什么？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。
+
+- 在 React 中渲染集合时，向每个重复的元素添加关键字对于帮助React跟踪元素与数据之间的关联非常重要。key 应该是唯一ID，最好是 UUID 或收集项中的其他唯一字符串：
+
+``` react
+
+  <ul>
+  {todos.map((todo) =>
+    <li key={todo.id}>
+      {todo.text}
+    </li>
+  )};
+  </ul>
+
+```
