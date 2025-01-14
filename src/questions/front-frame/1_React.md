@@ -776,3 +776,19 @@ componentDidMount(){ this.context.router.history.listen((route)=>{ if(route.path
 - 在 React 的函数组件中调用 Hook
 
 - 在自定义 Hook 中调用其他 Hook
+
+## 33. 说说对高阶组件（HOC）的理解？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 高阶函数（Higher-order function），至少满足下列一个条件的函数
+
+- 接受一个或多个函数作为输入
+
+- 输出一个函数
+
+- 在React中，高阶组件即接受一个或多个组件作为参数并且返回一个组件，本质也就是一个函数，并不是一个组件
