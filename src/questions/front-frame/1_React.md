@@ -1514,3 +1514,21 @@ setState底层处理上主要是和老的state合并；useState则重新赋值
 #### 解答（1 分）
 
 因为对象不具备迭代接口，必须要时原型或者自己身上有[Symbol.iterator]属性才可以，而数组是有迭代接口的，所以可以直接迭代。
+
+## 73. React可以在哪个生命周期访问DOM，在哪个时机访问Ref？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+访问 DOM： 在 React 中，通常应该遈避免直接操作 DOM，因为 React 采用 Virtual DOM 的方式管理页面渲染。但是，如果确实需要访问真实的 DOM 元素，可以在组件的以下生命周期方法中进行
+
+componentDidMount()：在组件挂载后立即调用。可以在这个生命周期方法中访问和操作 DOM 元素，执行初始化操作等。
+
+componentDidUpdate(prevProps, prevState)：在组件更新后被调用。可以在此方法中根据更新后的 props 或 state 来访问或操作 DOM 元素。
+
+访问 Ref： Ref 是用于访问真实 DOM 节点或 React 组件实例的一种方式。在 React 中，可以在以下时机访问 Ref：
+
+使用 Ref：可以在componentDidMount()、componentDidUpdate() 或事件处理程序中访问 Ref。通过 Ref 可以获取到对应的 DOM 元素或组件实例。
