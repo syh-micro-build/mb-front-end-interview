@@ -1572,3 +1572,22 @@ React 中校验 Props 的主要目的是为了确保组件被正确使用并且�
 #### 解答（2 分）
 
 通常，使用 Webpack的 DefinePlugin方法将 NODE ENV设置为 production。这将剥离 propType验证和额外的警告。除此之外，还可以减少代码，因为 React使用 Uglify的dead-code来消除开发代码和注释，这将大大减少包占用的空间。
+
+## 77. 在 Reducer文件里，对于返回的结果，要注意哪些问题？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+在 Reducer文件里，对于返回的结果，必须要使用 Object.assign ( )来复制一份新的 state，否则页面不会跟着数据刷新。
+
+```js
+
+return Object. assign ( { }， state, {
+type:action .type,
+shouldNotPaint : true
+})
+
+```
