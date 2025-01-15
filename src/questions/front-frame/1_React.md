@@ -1354,3 +1354,39 @@ export default App;
 4. 安装router
 
 5. 安装redux
+
+## 64. react事件绑定方式有哪些
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+render方法中使用bind
+
+```html
+<div onClick={this.handleClick.bind(this)}>test</div>
+
+```
+
+这种方式在组件每次render渲染的时候，都会重新进行bind的操作，影响性能
+
+render方法中使用箭头函数
+
+```html
+<div onClick={e => this.handleClick(e)}>test</div>
+
+```
+
+这种方式在组件每次render渲染的时候，都会重新进行bind的操作，影响性能
+
+constructor中bind
+
+```html
+
+this.handleClick = this.handleClick.bind(this);
+
+```
+
+定义阶段使用箭头函数绑定
