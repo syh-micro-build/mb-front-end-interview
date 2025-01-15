@@ -1504,3 +1504,13 @@ setState只要调用了就会执行更新；useState会浅比较2次state是否�
 setState有专门监听变化的回调函数；useState只能通过useEffect
 
 setState底层处理上主要是和老的state合并；useState则重新赋值
+
+## 72. 为什么React组件中 return 一个对象而不是一个元素时会报错
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+因为对象不具备迭代接口，必须要时原型或者自己身上有[Symbol.iterator]属性才可以，而数组是有迭代接口的，所以可以直接迭代。
