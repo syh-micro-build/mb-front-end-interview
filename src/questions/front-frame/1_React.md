@@ -1484,3 +1484,23 @@ this.handleClick = this.handleClick.bind(this);
 - 通过调用startTransition并传入一个回调函数，我们可以告诉React：“这个更新可以稍后完成，先处理其他更紧急的事情。”
 
 - 这使得React能够在等待数据加载时保持响应性，提供更好的用户体验。
+
+## 71. 类组件的setState和函数组件的useState异同
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+相同点
+
+都更新视图，底部调用了scheduleUpdateFiber方法，在事件驱动情况下都有批量更新规则。
+
+不同点
+
+setState只要调用了就会执行更新；useState会浅比较2次state是否相同
+
+setState有专门监听变化的回调函数；useState只能通过useEffect
+
+setState底层处理上主要是和老的state合并；useState则重新赋值
