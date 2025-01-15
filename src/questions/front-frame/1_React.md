@@ -1591,3 +1591,47 @@ shouldNotPaint : true
 })
 
 ```
+
+## 78. 什么是 Redux Thunk？它解决了什么问题？
+
+#### 类型：`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+Redux Thunk 是一个中间件，允许你在 action 创建函数中返回一个函数而不是一个 action 对象。这个返回的函数可以包含异步逻辑，并在适当的时候 dispatch 一个或多个 action。
+
+解决问题：
+
+异步操作：Redux Thunk 允许你处理异步操作，如 AJAX 请求，而不需要在 reducer 中处理异步逻辑。
+
+复杂逻辑：可以处理复杂的业务逻辑，如条件 dispatch、多次 dispatch 等。
+
+```js
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+const initialState = { data: null };
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'FETCH_DATA_SUCCESS':
+      return { ...state, data: action.payload };
+    default:
+      return state;
+  }
+};
+
+const fetchData = () => async (dispatch) => {
+  const response = await fetch('/api/data');
+  const data = await response.json();
+  dispatch({ type: 'FETCH_DATA_SUCCESS', payload: data });
+};
+
+const store = createStore(reducer, applyMiddleware(thunk));
+
+store.dispatch(fetchData());
+
+```
