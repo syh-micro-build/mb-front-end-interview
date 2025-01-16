@@ -1234,7 +1234,7 @@ v-if 是真正的条件渲染，它会根据表达式的真假值来决定是否
 <div :style="[baseStyles, overridingStyles]"></div>
 ```
 
-## 62. Composition API 和 Options API 的区别是什么？
+## 63. Composition API 和 Options API 的区别是什么？
 
 #### 类型：`基础`
 
@@ -1243,3 +1243,13 @@ v-if 是真正的条件渲染，它会根据表达式的真假值来决定是否
 #### 解答（1分）
 
 Composition API 允许开发者以函数的方式组织逻辑，使得逻辑更加集中，便于理解和维护。相比之下，Options API 将逻辑分散在不同的生命周期钩子和选项中，虽然结构清晰但对于大型项目来说可能不够灵活。Composition API 提供了更好的类型推断支持，并且更适合与 TypeScript 结合使用.
+
+## 64. Vue 3 生命周期钩子有什么变化？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue 3 的生命周期钩子与 Vue 2 类似，但有一些细微差别。例如，beforeCreate 和 created 钩子被 setup() 函数取代，后者在组件实例创建之前执行。其他钩子名称也有所调整，如 beforeDestroy 变为 beforeUnmount，destroyed 变为 unmounted。
