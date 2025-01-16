@@ -1506,3 +1506,15 @@ export default {
 
 
 ```
+
+## 74. Pinia与 Vuex 有哪些不同？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+更符合 Composition API 思维模式
+
+更好的 TypeScript 类型支持
