@@ -1406,3 +1406,22 @@ Suspense 用于处理异步组件的加载状态。
 </template>
 
 ```
+
+## 71. Vue 3 中的 Fragment 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Fragment 允许组件返回多个根元素。
+
+```js
+
+<template>
+  <div>Hello</div>
+  <div>Vue 3</div>
+</template>
+
+```
