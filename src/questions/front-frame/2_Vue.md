@@ -1481,3 +1481,28 @@ export default {
 };
 
 ```
+
+## 74. Vue 3 中的 onRenderTracked 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+onRenderTracked 是调试钩子，用于跟踪渲染依赖。
+
+```js
+
+import { onRenderTracked } from 'vue';
+
+export default {
+  setup() {
+    onRenderTracked((event) => {
+      console.log('跟踪到依赖:', event);
+    });
+  }
+};
+
+
+```
