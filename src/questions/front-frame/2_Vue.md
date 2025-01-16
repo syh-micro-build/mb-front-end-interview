@@ -1425,3 +1425,30 @@ Fragment 允许组件返回多个根元素。
 </template>
 
 ```
+
+## 72. Vue 3 中的 shallowRef 和 shallowReactive 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+shallowRef：只对 .value 进行响应式处理。
+
+shallowReactive：只对对象的第一层属性进行响应式处理。
+
+```js
+
+import { shallowRef, shallowReactive } from 'vue';
+
+export default {
+  setup() {
+    const count = shallowRef(0); // 基本类型
+    const state = shallowReactive({ name: 'Vue 3', info: { age: 3 } }); // 对象类型
+
+    return { count, state };
+  }
+};
+
+```
