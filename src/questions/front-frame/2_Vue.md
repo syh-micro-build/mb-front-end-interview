@@ -1186,3 +1186,269 @@ methods:{
 #### 解答（1分）
 
 使用index 作为 key和没写基本上没区别，因为不管数组的顺序怎么颠倒，index 都是 0, 1, 2...这样排列，导致 Vue 会复用错误的旧子节点，做很多额外的工作。
+
+## 59. 什么是Vue以及Vue的特点？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue 是一套用于构建用户界面的渐进式 JavaScript 框架。它的设计目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。Vue 的特点包括但不限于：组件化开发，无需直接操作 DOM；使用虚拟 DOM 和 diff 算法复用 DOM 节点；提供简洁易用的模板语法.
+
+## 60. SPA及其优缺点是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+单页面应用（Single Page Application, SPA）指的是在网页加载完成后不会因为用户的操作而进行整个页面的重新加载，而是利用路由机制实现 HTML 内容的变化、UI 和用户的交互。优点在于提高了用户体验，减轻了服务器的压力，并且实现了前后端分离。然而，初次加载耗时较长，浏览器前进后退功能不可直接使用，SEO 优化难度较大.
+
+## 61. v-if 和 v-show 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+v-if 是真正的条件渲染，它会根据表达式的真假值来决定是否将元素添加到 DOM 中；而 v-show 则始终会渲染元素，只是通过 CSS 样式控制其可见性。因此，当条件频繁切换时，v-show 更高效，因为它避免了销毁和重建元素的过程。
+
+## 62. 如何动态绑定 class 和 style？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+在 Vue 中，可以通过对象或数组的形式动态绑定 class 和 style。对于 class，如果样式个数和名字不确定，则适合使用对象写法；若样式确定但是否应用不确定，则适用数组写法。例如：
+
+```html
+<div :class="{ active: isActive, 'text-danger': hasError }"></div>
+<div :class="[isActive ? 'active' : '', errorClass]"></div>
+<div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+<div :style="[baseStyles, overridingStyles]"></div>
+```
+
+## 63. Composition API 和 Options API 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API 允许开发者以函数的方式组织逻辑，使得逻辑更加集中，便于理解和维护。相比之下，Options API 将逻辑分散在不同的生命周期钩子和选项中，虽然结构清晰但对于大型项目来说可能不够灵活。Composition API 提供了更好的类型推断支持，并且更适合与 TypeScript 结合使用.
+
+## 64. Vue 3 生命周期钩子有什么变化？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue 3 的生命周期钩子与 Vue 2 类似，但有一些细微差别。例如，beforeCreate 和 created 钩子被 setup() 函数取代，后者在组件实例创建之前执行。其他钩子名称也有所调整，如 beforeDestroy 变为 beforeUnmount，destroyed 变为 unmounted。
+
+## 65. Vue 3 的主要新特性是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API：提供更灵活的代码组织方式。
+
+性能优化：使用 Proxy 实现响应式，性能更好。
+
+Tree-shaking：支持按需引入，减小打包体积。
+
+TypeScript 支持：对 TypeScript 的支持更好。
+
+Fragment、Teleport、Suspense：新增内置组件。
+
+## 66. 什么是 Composition API？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API 是 Vue 3 引入的新特性，允许将逻辑组织为可复用的函数。
+
+```js
+
+import { ref, computed } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0); // 定义响应式数据
+    const doubleCount = computed(() => count.value * 2); // 计算属性
+
+    function increment() {
+      count.value++; // 定义方法
+    }
+
+    return { count, doubleCount, increment }; // 返回模板使用的数据和方法
+  }
+};
+
+```
+
+## 67. Vue 3 中的 toRef 和 toRefs 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+toRef：将对象的某个属性转换为 ref。
+
+toRefs：将整个响应式对象的所有属性转换为 ref。
+
+```js
+
+import { reactive, toRef, toRefs } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({ name: 'Vue 3', age: 3 });
+    const nameRef = toRef(state, 'name'); // 单个属性
+    const stateRefs = toRefs(state); // 所有属性
+
+    return { nameRef, stateRefs };
+  }
+};
+
+```
+
+## 68. Vue 3 中的 provide 和 inject 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+provide 和 inject 用于跨层级组件通信。
+
+```js
+
+import { provide, ref } from 'vue';
+
+export default {
+  setup() {
+    const message = ref('Hello from parent');
+    provide('message', message); // 提供数据
+  }
+};
+
+// 子组件
+import { inject } from 'vue';
+
+export default {
+  setup() {
+    const message = inject('message'); // 注入数据
+    return { message };
+  }
+};
+
+```
+
+## 69. Vue 3 中的 Teleport 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Teleport 用于将组件渲染到指定 DOM 节点。
+
+```js
+
+<template>
+  <teleport to="body">
+    <div>Modal</div>
+  </teleport>
+</template>
+
+```
+
+## 70. Vue 3 中的 Suspense 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Suspense 用于处理异步组件的加载状态。
+
+```js
+
+<template>
+  <Suspense>
+    <template #default>
+      <AsyncComponent />
+    </template>
+    <template #fallback>
+      <p>Loading...</p>
+    </template>
+  </Suspense>
+</template>
+
+```
+
+## 71. Vue 3 中的 Fragment 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Fragment 允许组件返回多个根元素。
+
+```js
+
+<template>
+  <div>Hello</div>
+  <div>Vue 3</div>
+</template>
+
+```
+
+## 72. Vue 3 中的 shallowRef 和 shallowReactive 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+shallowRef：只对 .value 进行响应式处理。
+
+shallowReactive：只对对象的第一层属性进行响应式处理。
+
+```js
+
+import { shallowRef, shallowReactive } from 'vue';
+
+export default {
+  setup() {
+    const count = shallowRef(0); // 基本类型
+    const state = shallowReactive({ name: 'Vue 3', info: { age: 3 } }); // 对象类型
+
+    return { count, state };
+  }
+};
+
+```
