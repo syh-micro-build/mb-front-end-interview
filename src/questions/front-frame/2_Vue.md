@@ -1300,3 +1300,84 @@ export default {
 };
 
 ```
+
+## 67. Vue 3 中的 toRef 和 toRefs 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+toRef：将对象的某个属性转换为 ref。
+
+toRefs：将整个响应式对象的所有属性转换为 ref。
+
+```js
+
+import { reactive, toRef, toRefs } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({ name: 'Vue 3', age: 3 });
+    const nameRef = toRef(state, 'name'); // 单个属性
+    const stateRefs = toRefs(state); // 所有属性
+
+    return { nameRef, stateRefs };
+  }
+};
+
+```
+
+## 68. Vue 3 中的 provide 和 inject 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+provide 和 inject 用于跨层级组件通信。
+
+```js
+
+import { provide, ref } from 'vue';
+
+export default {
+  setup() {
+    const message = ref('Hello from parent');
+    provide('message', message); // 提供数据
+  }
+};
+
+// 子组件
+import { inject } from 'vue';
+
+export default {
+  setup() {
+    const message = inject('message'); // 注入数据
+    return { message };
+  }
+};
+
+```
+
+## 69. Vue 3 中的 Teleport 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Teleport 用于将组件渲染到指定 DOM 节点。
+
+```js
+
+<template>
+  <teleport to="body">
+    <div>Modal</div>
+  </teleport>
+</template>
+
+```
