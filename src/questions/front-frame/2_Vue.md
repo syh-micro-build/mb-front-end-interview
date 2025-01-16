@@ -1253,3 +1253,21 @@ Composition API 允许开发者以函数的方式组织逻辑，使得逻辑更�
 #### 解答（1分）
 
 Vue 3 的生命周期钩子与 Vue 2 类似，但有一些细微差别。例如，beforeCreate 和 created 钩子被 setup() 函数取代，后者在组件实例创建之前执行。其他钩子名称也有所调整，如 beforeDestroy 变为 beforeUnmount，destroyed 变为 unmounted。
+
+## 65. Vue 3 的主要新特性是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API：提供更灵活的代码组织方式。
+
+性能优化：使用 Proxy 实现响应式，性能更好。
+
+Tree-shaking：支持按需引入，减小打包体积。
+
+TypeScript 支持：对 TypeScript 的支持更好。
+
+Fragment、Teleport、Suspense：新增内置组件。
