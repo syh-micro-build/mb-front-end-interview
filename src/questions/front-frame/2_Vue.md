@@ -1452,3 +1452,32 @@ export default {
 };
 
 ```
+
+## 73. Vue 3 中的 watch 如何监听多个数据？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+通过数组传入多个监听源。
+
+```js
+
+import { ref, watch } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0);
+    const name = ref('Vue 3');
+
+    watch([count, name], ([newCount, newName], [oldCount, oldName]) => {
+      console.log('count 或 name 变化了');
+    });
+
+    return { count, name };
+  }
+};
+
+```
