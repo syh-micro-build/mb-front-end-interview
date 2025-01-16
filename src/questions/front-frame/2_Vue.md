@@ -1216,3 +1216,20 @@ Vue 是一套用于构建用户界面的渐进式 JavaScript 框架。它的设�
 #### 解答（1分）
 
 v-if 是真正的条件渲染，它会根据表达式的真假值来决定是否将元素添加到 DOM 中；而 v-show 则始终会渲染元素，只是通过 CSS 样式控制其可见性。因此，当条件频繁切换时，v-show 更高效，因为它避免了销毁和重建元素的过程。
+
+## 62. 如何动态绑定 class 和 style？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+在 Vue 中，可以通过对象或数组的形式动态绑定 class 和 style。对于 class，如果样式个数和名字不确定，则适合使用对象写法；若样式确定但是否应用不确定，则适用数组写法。例如：
+
+```html
+<div :class="{ active: isActive, 'text-danger': hasError }"></div>
+<div :class="[isActive ? 'active' : '', errorClass]"></div>
+<div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+<div :style="[baseStyles, overridingStyles]"></div>
+```
