@@ -1271,3 +1271,32 @@ Tree-shaking：支持按需引入，减小打包体积。
 TypeScript 支持：对 TypeScript 的支持更好。
 
 Fragment、Teleport、Suspense：新增内置组件。
+
+## 66. 什么是 Composition API？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API 是 Vue 3 引入的新特性，允许将逻辑组织为可复用的函数。
+
+```js
+
+import { ref, computed } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0); // 定义响应式数据
+    const doubleCount = computed(() => count.value * 2); // 计算属性
+
+    function increment() {
+      count.value++; // 定义方法
+    }
+
+    return { count, doubleCount, increment }; // 返回模板使用的数据和方法
+  }
+};
+
+```
