@@ -601,3 +601,13 @@ http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 #### 解答（1 分）
 
 这是因为HTML5不基于SGML，因此不需要对DTD进行引用，但是需要DOCTYPE来规范浏览器的行为（让浏览器按照他们应该的方式来运行）而HTML4.01基于SGML，所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+
+## 37. 支持HTML5的浏览器有哪些
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+现在几乎所有现有的浏览器都支持HTML5，例如Chrome, Opera, Safari, IE, 火狐等；
