@@ -719,3 +719,19 @@ gizp压缩需要的js和css文件；
 反向链接，网站外链接优化；
 
 meta标签优化（title, description, keywords）,heading标签的优化,alt优化；
+
+## 43. Html5中datalist是什么
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+datalist标签，用来定义选项列表，与input元素配合使用该元素，来定义input可能的值。
+
+datalist及其选项不会被显示出来，他仅仅是合法的输入列表值。
+
+```html
+<input id="fruits" list="fruit" /><datalist id="fruit">  <option value="apple">  <option value="orange">  <option value="banana"></datalist>
+```
