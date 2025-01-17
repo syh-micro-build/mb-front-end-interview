@@ -351,3 +351,19 @@ webp:同时支持有损或者无损压缩，相同质量的图片，webp具有�
 <img src="image-128.png" srcset="image-256.png 2x" />
 
 ```
+
+## 25. 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+行内元素有：a b span img input select strong；
+
+块级元素有：div ul ol li dl dt dd h1 h2 h3 h4 h5 h6 p；
+
+空元素，即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：
+
+常见的有：br hr img input link meta
