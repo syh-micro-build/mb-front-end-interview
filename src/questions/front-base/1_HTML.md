@@ -514,3 +514,29 @@ dragend：事件主体是被拖放元素，在整个拖放操作结束时触发�
 - 用margin：0 auto设置水平居中:在Standards模式下，设置margin：0 auto；可以使元素水平居中，但是在Quriks模式下失效
 
 - 设置百分比高度:在Standards模式下，元素的高度是由包含的内容决定的，如果父元素没有设置百分比的高度，子元素设置百分比的高度是无效的
+
+## 33. meta viewport 是做什么用的，怎么写？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+Viewport，适配移动端，可以控制视口的大小和比例：
+
+```html
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+```
+
+width viewport ：宽度(数值/device-width)
+
+height viewport ：高度(数值/device-height)
+
+initial-scale ：初始缩放比例
+
+maximum-scale ：最大缩放比例
+
+minimum-scale ：最小缩放比例
