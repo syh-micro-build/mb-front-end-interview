@@ -554,3 +554,40 @@ minimum-scale ：最小缩放比例
 - XML：可扩展标记语言，是语法较为严格、严格的标记语言；
 
 - XHTML：可扩展超文本标记语言，是HTML进行XML严格化的结果；
+
+## 35. 什么是HTML5以及和HTML的区别是什么
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+HTML5是HTML的新标准，其主要目标是无需任何额外的插件如Flash、Silverlight等，就可以传输所有内容。它囊括了动画、视频、丰富的图形用户界面等。
+
+HTML5是由万维网联盟（W3C）和Web Hypertext Application Technology Working Group 合作创建的HTML新版本。
+
+从文档声明类型上看：
+
+- HTML是很长的一段代码，很难记住。如下代码：
+
+```html
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "
+http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+- HTML5却只有简简单单的声明，方便记忆。如下：
+
+```html
+
+<!DOCTYPE html>
+
+```
+
+从语法规则上看：
+
+- HTML5的语法规则非常宽松，不需要严格的闭合标签，不像HTML那样，标签必须闭合；
+
+- HTML5允许省略标签，比如`<img>`标签的`<img>`、`<br>`标签的`<br>`、`<input>`标签的`<input>`等，这种情况下，标签的结束标志不是必需的；
