@@ -1064,3 +1064,33 @@ translate 是 transform 属性的⼀个值。改变transform或opacity不会触�
 - 为ul设置font-size:0;。不足：如果该列表内还有其他元素，需要为其他元素设置font-size，且要保证跟父元素内font-size的值相同。
 
 - 为li设置margin:0 -4px;。不足：假如li换行，会产生新的空白间隔。
+
+## 38. CSS3中有哪些新特性
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 新增各种CSS选择器 （: not(.input)：所有 class 不是“input”的节点）
+
+- 圆角 （border-radius:8px）
+
+- 多列布局 （multi-column layout）
+
+- 阴影和反射 （Shadoweflect）
+
+- 文字特效 （text-shadow）
+
+- 线性渐变 （gradient）
+
+- 旋转 （transform）
+
+- 增加了更多的CSS3选择器 多背景 rgba
+
+- 在CSS3中唯一引入的伪元素是::selection
+
+- 媒体查询，多栏布局
+
+- border-image
