@@ -1,11 +1,10 @@
 import { defineConfig } from 'vitepress'
 import { getSpecificFilesInfo } from '../utils'
-import { questionsMenu, trainingMenu } from './menu-config.mts';
+import { questionsMenu } from './menu-config.mts';
 
 // https://vitepress.dev/reference/site-config
 export default async () => {
   const questionsSidebar = await genSpecSidebar(questionsMenu, 'src/questions')
-  const trainingSidebar = await genSpecSidebar(trainingMenu, 'src/training', '开始训练')
 
   return defineConfig({
     base: "/mb-front-end-interview/",
@@ -17,15 +16,14 @@ export default async () => {
       nav: [
         { text: '指南', link: '/src/guide/why', activeMatch: '/src/guide/' },
         { text: '题库', link: '/src/questions/front-base/1_HTML', activeMatch: '/src/questions/' },
-        { text: '训练', link: '/src/training/training-primary/index', activeMatch: '/src/training/' }
+        { text: '训练', link: '/ing.md' }
       ],
       sidebar: {
         '/src/guide/': [
           { text: '初衷', link: '/src/guide/why' },
           { text: '快速开始', link: '/src/guide/getting-started' },
         ],
-        '/src/questions/': questionsSidebar,
-        '/src/training/': trainingSidebar,
+        '/src/questions/': questionsSidebar
       },
       socialLinks: [
         { icon: 'github', link: 'https://github.com/syh-micro-build/mb-front-end-interview' }
@@ -68,10 +66,10 @@ async function genSpecSidebar(conf: Array<{
   dirName: string;
   menuName: string;
   collapsed: boolean;
-}>, sidDir: string, name?: string) {
+}>, sidDir: string) {
   const filesInfo = await getSpecificFilesInfo('.md', sidDir);
   const allSidebarItems = filesInfo.map(item => ({
-    text: name || item.name.replace(/^[^_]*_|\.[^.]*$/g, ''),
+    text: item.name.replace(/^[^_]*_|\.[^.]*$/g, ''),
     link: '/' + sidDir + item.relativePath,
   }))
   const getSidebarItems = (dir: string) => allSidebarItems.filter(item => item.link.match(dir))

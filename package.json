@@ -46,11 +46,5 @@
     "commitizen": {
       "path": "./node_modules/cz-git"
     }
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0",
-    "highlight.js": "^11.11.1",
-    "marked": "^15.0.6",
-    "marked-highlight": "^2.2.1"
   }
 }
