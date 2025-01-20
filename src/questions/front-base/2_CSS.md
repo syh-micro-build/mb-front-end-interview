@@ -1278,3 +1278,25 @@ Webpack loader 等 。
 - 子元素变为行内盒子：display: inline-block
 
 - 子元素加入浮动属性或定位
+
+## 47. absolute与fixed共同点与不同点
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+共同点：
+
+- 改变行内元素的呈现方式，将display置为inline-block  
+
+- 使元素脱离普通文档流，不占据空间
+
+- 覆盖非定位文档元素
+
+不同点：
+
+- abuselute与fixed的根元素不同，abuselute的根元素可以设置，fixed根元素是浏览器。
+
+- 在有滚动条的页面中，absolute会跟着父元素进行移动，fixed固定在页面的具体位置。
