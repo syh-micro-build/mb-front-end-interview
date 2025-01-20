@@ -1338,3 +1338,15 @@ context-box：W3C的标准盒子模型，设置元素的 height/width 属性指�
 在谷歌浏览器里，使用 **collapse** 值和使用 **hidden** 值没有什么区别。
 
 在火狐浏览器、Opera和IE11里，使用 **collapse** 值的效果就如它的字面意思：table的行会消失，它的下面一行会补充它的位置。
+
+## 51. position 跟 display、overflow、float 这些特性相互叠加后会怎么样？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+display 属性规定元素应该生成的框的类型；position属性规定元素的定位类型；float属性是一种布局方式，定义元素在哪个方向浮动。
+
+类似于优先级机制：position：absolute/fixed优先级最高，有他们在时，float不起作用，display值需要调整。float 或者absolute定位的元素，只能是块元素或表格。
