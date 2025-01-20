@@ -25,7 +25,7 @@ MD013:
 #   allow_different_nesting: true
 
 MD033:
-  allowed_elements: ['abbr', 'img', 'details', 'br']
+  allowed_elements: ['abbr', 'img', 'details', 'br', 'script']
 
 # 允许提交 img 代码块，但不强制要求 alt 属性
 MD037:
@@ -36,6 +36,7 @@ MD045: false
 
 # 检查是否在文件末尾有一个空行
 MD047: false
+MD041: false
 
 MD051: false
 
