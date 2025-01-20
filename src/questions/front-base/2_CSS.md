@@ -1094,3 +1094,27 @@ translate 是 transform 属性的⼀个值。改变transform或opacity不会触�
 - 媒体查询，多栏布局
 
 - border-image
+
+## 39. 对 CSSSprites 的理解
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+CSSSprites（精灵图），将一个页面涉及到的所有图片都包含到一张大图中去，然后利用CSS的 background-image，background-repeat，background-position属性的组合进行背景定位。
+
+优点：
+
+- 减少HTTP请求数，极大地提高页面加载速度
+
+- 增加图片信息重复度，提高压缩比，减少图片大小
+
+- 减少图片的总大小
+
+缺点：
+
+- 图片合并麻烦
+
+- 维护麻烦，修改一个图片可能需要重新布局整个图片，样式调试工作量很大
