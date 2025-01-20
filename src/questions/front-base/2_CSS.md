@@ -965,16 +965,34 @@ transform: scale(0.5,0.5);
 
 </details>
 
-## 30. display的block、inline和inline-block的区别
+## 31. display的block、inline和inline-block的区别
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（4 分）
+#### 解答（2 分）
 
 block： 会独占一行，多个元素会另起一行，可以设置width、height、margin和padding属性；
 
 inline： 元素不会独占一行，设置width、height属性无效。但可以设置水平方向的margin和padding属性，不能设置垂直方向的padding和margin；
 
 inline-block： 将对象设置为inline对象，但对象的内容作为block对象呈现，之后的内联对象会被排列在同一行内。
+
+## 32. link和@import的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+两者都是外部引用CSS的方式，它们的区别如下：
+
+- link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+
+- link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+
+- link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+
+- link支持使用Javascript控制DOM去改变样式；而@import不支持。
