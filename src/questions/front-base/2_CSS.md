@@ -1300,3 +1300,17 @@ Webpack loader 等 。
 - abuselute与fixed的根元素不同，abuselute的根元素可以设置，fixed根元素是浏览器。
 
 - 在有滚动条的页面中，absolute会跟着父元素进行移动，fixed固定在页面的具体位置。
+
+## 48. box-sizing属性？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+用来控制元素的盒子模型的解析模式，默认为content-box
+
+context-box：W3C的标准盒子模型，设置元素的 height/width 属性指的是 content 部分的高/宽
+
+**border-box：IE 传统盒子模型。**设置元素的 height/width 属性指的是 content + border + padding 部分的高/宽
