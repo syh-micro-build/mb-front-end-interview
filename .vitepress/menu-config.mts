@@ -66,6 +66,34 @@ const questionsMenu = [
   }
 ]
 
+const trainingMenu = [
+  {
+    dirName: 'training-primary',
+    menuName: '初级',
+    collapsed: false,
+  },
+  {
+    dirName: 'training-intermediate',
+    menuName: '中级',
+    collapsed: true,
+  },
+  {
+    dirName: 'training-senior',
+    menuName: '高级',
+    collapsed: true,
+  },
+  {
+    dirName: 'training-architecture',
+    menuName: '架构',
+    collapsed: true,
+  },
+  {
+    dirName: 'training-experts',
+    menuName: '专家',
+    collapsed: true,
+  },
+]
 export {
-  questionsMenu
+  questionsMenu,
+  trainingMenu
 }
