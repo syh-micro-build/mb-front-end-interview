@@ -1,6 +1,6 @@
 # TypeScript
 
-## ts 如何定义对象结构体
+## 1. ts 如何定义对象结构体
 
 #### 类型：`基础`
 
@@ -26,7 +26,7 @@ type Person = {
 }
 ```
 
-## type 和 interface的区别？
+## 2. type 和 interface的区别？
 
 #### 类型：`基础`
 
@@ -42,7 +42,7 @@ type Person = {
 
 </details>
 
-## 常用工具类型？
+## 3. 常用工具类型？
 
 #### 类型：`基础`
 
@@ -62,7 +62,7 @@ type Person = {
 
 </details>
 
-## any、never、unknown、null & undefined 和 void 有什么区别？
+## 4. any、never、unknown、null & undefined 和 void 有什么区别？
 
 #### 类型：`基础`
 
@@ -80,7 +80,7 @@ type Person = {
 
 </details>
 
-## ?.、??、!、!.、_、** 等符号的含义？
+## 5. ?.、??、!、!.、_、** 等符号的含义？
 
 #### 类型：`基础`
 
@@ -99,7 +99,7 @@ type Person = {
 
 </details>
 
-## 请解释一下 TypeScript 中的基本数据类型有哪些？
+## 6. 请解释一下 TypeScript 中的基本数据类型有哪些？
 
 #### 类型：`基础`
 
@@ -110,7 +110,7 @@ type Person = {
 - **1：**
   TypeScript 的基本数据类型包括：number（数字，包括整数和浮点数）、string（字符串）、boolean（布尔值，只有true和false）、null（表示空值）、undefined（表示未定义）、symbol（ES6 新增的一种原始数据类型，用于表示独一无二的值）和bigint（用于表示任意精度的整数）
 
-## 什么是泛型,有什么作用？
+## 7. 什么是泛型,有什么作用？
 
 #### 类型：`基础`
 
@@ -152,7 +152,7 @@ const response: IResponseData<User> = {
 
 </details>
 
-## 8、如何在 TypeScript 中定义一个只读属性的接口？
+## 8. 如何在 TypeScript 中定义一个只读属性的接口？
 
 #### 类型：`基础`
 
@@ -180,7 +180,7 @@ let p: Person = { name: "John" };
 
 - **1：** Typescript 是一个强类型的 JavaScript 超集，支持ES6语法，支持面向对象编程的概念，如类、接口、继承、泛型等。Typescript并不直接在浏览器上运行，需要编译器编译成纯Javascript来运行。
 
-## 9. 为什么要使用 TypeScript ? TypeScript 相对于 JavaScript 的优势是什么？
+## 10. 为什么要使用 TypeScript ? TypeScript 相对于 JavaScript 的优势是什么？
 
 #### 类型：`基础`
 
@@ -202,7 +202,7 @@ let p: Person = { name: "John" };
 
 - 支持模块化开发，使得代码更加模块化、可维护、可复用。
 
-## `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
+## 11. `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？
 
 #### 类型：`基础`
 
@@ -212,7 +212,7 @@ let p: Person = { name: "John" };
 
 - **1：** A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。
 
-## 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
+## 12. 定义一个泛型函数 `add<T>(a: T, b: T): T`，该函数返回 a 和 b相加的值（假设 T类型支持加法运算）。请问`add<number>(1, 2)`返回值类型是什么
 
 #### 类型：`基础`
 
@@ -220,19 +220,80 @@ let p: Person = { name: "John" };
 
 #### 解答（2 分）
 
-- **2：** 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
+- 返回值类型是 number。因为 add函数传入的类型参数 T为 number，add函数返回值类型就是 number。
 
-## `type MyType = string | number | null | undefined ，type Result = NonNullable<MyType>` 请问Result类型是什么？
+## 13. TypeScript 中的 this 和 JavaScript 中的 this 有什么差异？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（2 分）
+
+- 在 TypeScript 和 JavaScript 中，this 的工作原理本质上是相同的，因为 TypeScript 是 JavaScript 的一个超集，它添加了类型系统和一些编译时的检查，但运行时行为与纯 JavaScript 相同。因此，this 的绑定规则在两者中是一致的。
+
+- 函数上下文中的 this:
+
+- 在全局上下文中（非严格模式下），this 指向全局对象（在浏览器中通常是 window，在 Node.js 中是 global）。
+
+- 在严格模式（'use strict'）下，全局上下文中的 this 是 undefined。
+
+- 在对象的方法中，this 通常指向调用该方法的对象。
+
+- 在普通函数中，this 的值取决于函数如何被调用，而不是函数被定义的位置。例如，如果函数作为某个对象的方法被调用，this 将指向该对象；如果作为普通函数调用，this 指向全局对象或在严格模式下为 undefined。
+
+- 箭头函数中的 this:
+
+- 箭头函数不绑定自己的 this，而是继承自它们父作用域中的 this 值。这意味着在箭头函数内部使用 this 时，它引用的是定义该箭头函数时的上下文中的 this 值。
+
+- 在 TypeScript 中，可以使用 this 参数来指定函数的 this 类型。例如：
+
+```typescript
+function greet(this: { name: string }) {
+  console.log(`Hello, ${this.name}!`);
+}
+```
+
+- 在上面的例子中，this 参数指定了函数的 this 类型为 { name: string }，这意味着在调用 greet 函数时，必须传入一个具有 name 属性的对象作为 this 的值。
+
+- 在 TypeScript 中，可以使用 noImplicitThis 选项来禁用隐式 this 类型。当 noImplicitThis 选项被启用时，如果函数的 this 参数没有显式指定类型，TypeScript 编译器将抛出一个错误。例如：
+
+```typescript
+function greet() {
+  console.log(`Hello, ${this.name}!`);
+}
+```
+
+- 在上面的例子中，由于 greet 函数的 this 参数没有显式指定类型，TypeScript 编译器将抛出一个错误，因为无法确定 this 的类型。
+
+## 14. TypeScript 如何设计 Class 的声明？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+```ts
+class Greeter {
+   greeting: string;
+   constructor(message: string) {
+       this.greeting = message;
+   }
+   greet(): string{
+       return "Hello, " + this.greeting;
+   }
+}
+let greeter = new Greeter("world");
+```
 
 - **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
 
-## 如何在TypeScript中实现函数重载？
+## 15. 类型的全局声明和局部声明
+
+- **2：** Result类型是 string | number 。因为NonNullable会排除null和undefined 。
+
+## 16. 如何在TypeScript中实现函数重载？
 
 #### 类型：`基础`
 
@@ -284,7 +345,7 @@ class Calculator {
 
 </details>
 
-## TypeScript中的装饰器是什么？如何使用？
+## 17. TypeScript中的装饰器是什么？如何使用？
 
 #### 类型：`基础`
 
@@ -340,7 +401,7 @@ e.greet();
 
 </details>
 
-## TypeScript中的映射类型是什么？请举例说明
+## 18. TypeScript中的映射类型是什么？请举例说明
 
 #### 类型：`基础`
 
@@ -397,7 +458,7 @@ type NullablePerson = Nullable<Person>;
 
 </details>
 
-## 如何在TypeScript中实现函数重载？
+## 19. 如何在TypeScript中实现函数重载？
 
 #### 类型：`基础`
 
@@ -449,7 +510,7 @@ class Calculator {
 
 </details>
 
-## TypeScript中的装饰器是什么？如何使用？
+## 20. TypeScript中的装饰器是什么？如何使用？
 
 #### 类型：`基础`
 
@@ -505,7 +566,7 @@ e.greet();
 
 </details>
 
-## TypeScript中的映射类型是什么？
+## 21. TypeScript中的映射类型是什么？
 
 #### 类型：`基础`
 
@@ -561,3 +622,16 @@ type NullablePerson = Nullable<Person>;
 ```
 
 </details>
+
+## 22. TypeScript 中 const 和 readonly 的区别？枚举和常量枚举的区别？接口和类型别名的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- const 和 readonly: const可以防止变量的值被修改，readonly可以防止变量的属性被修改。
+枚举和常量枚举: 常量枚举只能使用常量枚举表达式，并且不同于常规的枚举，它们在编译阶段会被删除。 常量枚举成员在使用的地方会被内联进来。 之所以可以这么做是因为，常量枚举不允许包含计算成员。
+
+- 接口和类型别名: 两者都可以用来描述对象或函数的类型。与接口不同，类型别名还可以用于其他类型，如基本类型（原始值）、联合类型、元组。
