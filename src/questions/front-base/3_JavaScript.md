@@ -1,6 +1,6 @@
 # JavaScript
 
-## JS 数据类型有哪些？
+## 1. JS 数据类型有哪些？
 
 #### 类型：`基础`
 
@@ -11,7 +11,7 @@
 - **1：** 基本类型：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol（ES6特性）、BigInt（ES11特性）；
 - **1：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
-## == 和 === 的区别是什么？
+## 2. == 和 === 的区别是什么？
 
 #### 类型：`基础`
 
@@ -22,7 +22,7 @@
 - **1：** == 是 宽松相等，会进行类型转换，比较前会先转换两边的操作数类型（例如，'5' == 5 为 true;
 - **1：** === 是 严格相等，不会进行类型转换，只有两边的值和类型都相同才会返回 true（例如，'5' === 5 为 false;
 
-## var 、let 、 const 的区别是什么？
+## 3. var 、let 、 const 的区别是什么？
 
 #### 类型：`基础`
 
@@ -39,7 +39,7 @@
             let：可以修改其值;
             var： 是函数作用域或全局作用域，let 和 const 是块级作用域;
 
-## 什么是事件冒泡和事件捕获？
+## 4. 什么是事件冒泡和事件捕获？
 
 #### 类型：`基础`
 
@@ -52,7 +52,7 @@
 - **1：** 事件流顺序: 1.捕获 -> 2.目标 -> 3.冒泡;
 - **2：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
 
-## JS 什么是防抖和节流？它们的应用场景有哪些？
+## 5. JS 什么是防抖和节流？它们的应用场景有哪些？
 
 #### 类型：`基础`
 
@@ -63,7 +63,7 @@
 - **1：** 防抖：在事件被触发后，延迟一定时间后再执行回调函数，如果在延迟时间内再次触发事件，则重新计算延迟时间，直到延迟时间结束后才执行回调函数。例如，在用户输入搜索框时，防止频繁发送请求，可以使用防抖函数，只有在用户停止输入一段时间后才发送搜索请求。
 - **2：** 节流：在一定时间内，只允许函数执行一次。例如，在页面滚动时，需要频繁执行某个函数来处理滚动事件，但为了避免函数执行过于频繁影响性能，可以使用节流函数，限制函数在一定时间内只执行一次。
 
-## JS 请解释在 JavaScript 中this指针的工作原理，在以下函数调用场景中this指向什么？
+## 6. JS 请解释在 JavaScript 中this指针的工作原理，在以下函数调用场景中this指向什么？
 
 #### 类型：`基础`
 
@@ -84,7 +84,7 @@ person.sayHello();
 - **1：** 在person.sayHello()调用中，this指向person对象。
 - **1：** 当一个函数作为对象的方法被调用时，this指向调用该方法的对象。在这里，sayHello是person对象的方法，所以this指代person，因此可以正确访问person.name
 
-## JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器
+## 7. JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器
 
 #### 类型：`基础`
 
@@ -97,7 +97,7 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。
           使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
 
-## Promise 的常用方法
+## 8. Promise 的常用方法
 
 #### 类型：`基础`
 
@@ -113,7 +113,7 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise。
 - **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
 
-## 解释 Set 和 Map 的使用及区别
+## 9. 解释 Set 和 Map 的使用及区别
 
 #### 类型：基础
 
@@ -140,7 +140,7 @@ console.log(map.get('name')); // Alice
 
 ```
 
-## 请写出几个 JavaScript 函数，用于实现数组去重
+## 10. 请写出几个 JavaScript 函数，用于实现数组去重
 
 #### 类型：`基础`
 
@@ -225,7 +225,7 @@ console.log(uniqueArray);
 
 </details>
 
-## ES6 和 CommonJS 的区别
+## 11. ES6 和 CommonJS 的区别
 
 #### 类型：基础
 
@@ -242,7 +242,7 @@ CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内�
 
 [docs](https://juejin.cn/post/7331931937357496354)
 
-## new 操作符的实现原理
+## 12. new 操作符的实现原理
 
 #### 类型：基础
 
@@ -287,7 +287,7 @@ objectFactory(构造函数, 初始化参数);
 
 </details>
 
-## 数组的原生方法有哪些？
+## 13. 数组的原生方法有哪些？
 
 #### 类型：基础
 
@@ -307,7 +307,7 @@ objectFactory(构造函数, 初始化参数);
 
 </details>
 
-## bind、call、apply 区别
+## 14. bind、call、apply 区别
 
 #### 类型：基础
 
@@ -336,7 +336,7 @@ getValue.apply(a,['yck', '24'])
 
 </details>
 
-## == 和 ===区别，什么情况⽤ ==
+## 15. == 和 ===区别，什么情况⽤ ==
 
 #### 类型：基础
 
@@ -346,7 +346,7 @@ getValue.apply(a,['yck', '24'])
 
 - **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断
 
-## Proxy 的使用
+## 16. Proxy 的使用
 
 #### 类型：基础
 
@@ -434,7 +434,7 @@ console.log(objProxy.name);
 
 </details>
 
-## Object.defineProperty 的使用
+## 17. Object.defineProperty 的使用
 
 #### 类型：基础
 
@@ -505,7 +505,7 @@ console.log(obj.name);
 
 </details>
 
-## 作用域链的理解
+## 18. 作用域链的理解
 
 #### 类型：基础
 
@@ -640,7 +640,7 @@ person 函数内部：
 
 </details>
 
-## 柯里化
+## 19. 柯里化
 
 #### 类型：基础
 
@@ -707,9 +707,7 @@ console.log(test(1)(2)(3));
 
 </details>
 
-## 迭代器
-
-## CommonJS和ES6模块的区别？
+## 20. CommonJS和ES6模块的区别？
 
 #### 类型：`基础`
 
@@ -797,7 +795,7 @@ console.log(arr2Iterator.next());
 
 </details>
 
-## JS 如何实现函数缓存
+## 21. JS 如何实现函数缓存
 
 #### 类型：`拓展`
 
@@ -931,7 +929,7 @@ console.log(num2);  // 300
 
 </details>
 
-## CommonJS和ES6模块的区别？
+## 22. CommonJS和ES6模块的区别？
 
 #### 类型：`基础`
 
@@ -951,7 +949,7 @@ console.log(num2);  // 300
 
 - CommonJS模块的导出是类时，导出的类是值的拷贝，ES6模块的导出是类时，导出的类是值的引用。
 
-## 介绍一下Promise
+## 23. 介绍一下Promise
 
 #### 类型：`基础`
 
@@ -979,7 +977,7 @@ const promise = new Promise((resolve, reject) => {
 
 ```
 
-## 如何判断一个元素是否在可视区域内？
+## 24. 如何判断一个元素是否在可视区域内？
 
 #### 类型：`拓展`
 
@@ -1253,7 +1251,7 @@ $targets.each((index, element) => {
 
 </details>
 
-## 如何实现一个上拉加载，下拉刷新？
+## 25. 如何实现一个上拉加载，下拉刷新？
 
 #### 类型：`拓展`
 
@@ -1471,3 +1469,929 @@ function getlist(){
 - `better-scroll`，默认会阻止浏览器的原生 `click` 事件，如果滚动内容区要添加点击事件，需要在实例化属性里设置 `click:true`
 
 </details>
+
+## 26. cookie 可以实现不同域共享吗？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 默认情况下，Cookie 不能在不同的顶级域名之间共享数据。
+
+- 但是，如果两个域名属于同一主域名下的子域名，并且您设置了正确的 Domain 属性，那么在这些子域名之间是可以共享 Cookie 的。
+
+- 例如，对于 sub1.example.com 和 sub2.example.com 这样的子域名，如果设置 Cookie 的 Domain 属性为 .example.com ，那么在这两个子域名之间，这个 Cookie 是可以共享和访问的。
+
+- 然而，如果是完全不同的顶级域名，如 example.com 和 anotherdomain.com 之间，Cookie 是不能直接共享的。
+
+- 此外，还需要注意 Cookie 的 Path 属性、安全属性（Secure）、HttpOnly 属性等，这些属性也会影响 Cookie 的使用范围和方式。
+
+## 27. for in和for of的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- for…of 是ES6新增的遍历方式，允许遍历一个含有iterator接口的数据结构（数组、对象等）并且返回各项的值，和ES3中的for…in的区别如下
+
+- for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名
+
+- for… in 会遍历对象的整个原型链，性能非常差不推荐使用，而 for … of 只遍历当前对象不会遍历原型链；
+
+- 对于数组的遍历，for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，for…of 只返回数组的下标对应的属性值；
+
+## 28. forEach和map的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 这方法都是用来遍历数组的，两者区别如下：
+
+- for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名forEach()方法会针对每一个元素执行提供的函数，对数据的操作会改变原数组，该方法没有返回值；
+
+- map()方法不会改变原数组的值，返回一个新数组，新数组中的值为原数组调用函数处理之后的值；
+
+## 29. 原型链的终点是什么？如何打印出原型链的终点？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+``` detail
+
+由于Object是构造函数，原型链终点是Object.prototype.__proto__，而Object.prototype.__proto__=== null // true，所以，原型链的终点是null。原型链上的所有原型都是对象，所有的对象最终都是由Object构造的，而Object.prototype的下一级是Object.prototype.__proto__。
+
+```
+
+## 29. 如何获得对象非原型链上的属性？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 使用后hasOwnProperty()方法来判断属性是否属于原型链的属性：
+
+```js
+
+function iterate(obj){
+   var res=[];
+   for(var key in obj){
+        if(obj.hasOwnProperty(key))
+           res.push(key+': '+obj[key]);
+   }
+   return res;
+} 
+
+```
+
+## 30. Promise.all和Promise.race的区别的使用场景？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Promise.all Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值。
+
+- Promise.all中传入的是数组，返回的也是是数组，并且会将进行映射，传入的promise对象返回的值是按照顺序在数组中排列的，但是注意的是他们执行的顺序并不是按照顺序的，除非可迭代对象为空。
+
+- 需要注意，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，这样当遇到发送多个请求并根据请求顺序获取和使用数据的场景，就可以使用Promise.all来解决。
+
+- Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。当要做一件事，超过多长时间就不做了，可以用这个方法来解决：
+
+## 31. 匿名函数的典型应用场景是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 匿名函数可以在 IIFE 中使用，来封装局部作用域内的代码，以便其声明的变量不会暴露到全局作用域。
+
+```js
+(function () {
+  // 一些代码。
+})();
+```
+
+- 匿名函数可以作为只用一次，不需要在其他地方使用的回调函数。当处理函数在调用它们的程序内部被定义时，代码具有更好地自闭性和可读性，可以省去寻找该处理函数的函数体位置的麻烦。
+
+```js
+
+setTimeout(function () {
+  console.log('Hello world!');
+}, 1000);
+
+```
+
+- 匿名函数可以用于函数式编程或 Lodash（类似于回调函数）。
+
+```js
+const arr = [1, 2, 3];
+const double = arr.map(function (el) {
+  return el * 2;
+});
+console.log(double); // [2, 4, 6]
+
+```
+
+## 32. 手写单例模式（创建模式）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+```js
+    let CreateSingleton = (function(){
+       let instance;
+       return function(name) {
+           if (instance) {
+               return instance;
+           }
+           this.name = name;
+           return instance = this;
+       }
+    })();
+    CreateSingleton.prototype.getName = function() {
+       console.log(this.name);
+    }
+
+let Winner = new CreateSingleton('Winner');
+let Looser = new CreateSingleton('Looser');
+​
+console.log(Winner === Looser); // true
+console.log(Winner.getName());  // 'Winner'
+console.log(Looser.getName());  // 'Winner'
+
+```
+
+## 33. 手写观察者模式（行为模式）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+```js
+const queuedObservers = new Set();
+const observe = fn => queuedObservers.add(fn);
+​
+​
+const observable = obj => new Proxy(obj, {
+  set(target, key, value, receiver) {
+    const result = Reflect.set(target, key, value, receiver);
+    // notify
+    queuedObservers.forEach(observer => observer());
+    return result;
+  }
+});
+
+obj = observable({
+  name:'789'
+})
+​
+observe(function test(){
+  console.log('触发了')
+})
+​
+obj.name ="前端柒八九"
+
+```
+
+## 34. 手写发布订阅 （行为模式）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+```js
+class Observer {
+  caches = {}; // 事件中心
+  
+  // eventName事件名-独一无二, fn订阅后执行的自定义行为
+  on (eventName, fn){ 
+    this.caches[eventName] = this.caches[eventName] || [];
+    this.caches[eventName].push(fn);
+  }
+  
+  // 发布 => 将订阅的事件进行统一执行
+  emit (eventName, data) { 
+    if (this.caches[eventName]) {
+      this.caches[eventName]
+      .forEach(fn => fn(data));
+    }
+  }
+  // 取消订阅 => 若fn不传, 直接取消该事件所有订阅信息
+  off (eventName, fn) { 
+    if (this.caches[eventName]) {
+      const newCaches = fn 
+        ? this.caches[eventName].filter(e => e !== fn) 
+        : [];
+      this.caches[eventName] = newCaches;
+    }
+  }
+​
+}
+
+    ob = new Observer();
+    ​
+    l1 = (data) => console.log(`l1_${data}`)
+    l2 = (data) => console.log(`l2_${data}`)
+    ​
+    ob.on('event1',l1)
+    ob.on('event1',l2)
+    ​
+    //发布订阅
+    ob.emit('event1',789) 
+    // l1_789
+    // l2_789
+    ​
+    // 取消，订阅l1
+    ob.off('event1',l1)
+    ​
+    ob.emit('event1',567)
+
+```
+
+## 35. 深浅拷贝的区别？如何实现一个深拷贝？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 深浅拷贝通常只针对引用类型
+
+- 浅拷贝：只拷贝一层对象，复制这一层对象中的原始值，如果有引用类型的话，就复制它的指针
+
+- 深拷贝：层层拷贝，所有类型的属性值都会被复制，原对象的修改不会影响拷贝后的对象 JSON.parse(JSON.stringify(obj)) --- 无法处理 undefined Symbol function -- 无法处理循环引用
+
+```js
+
+Function  shallowCopy(obj){
+      let newObj = {]
+      for( let key in  obj ){
+        if(obj.hasOwnProperty(key)){ 
+        //hasOwnProperty检测对象自己身上方法而不是原先链上的
+          newObj[key]=obj[key]
+        }
+      }
+      return  newObj
+} 
+// 咱们会浅拷贝当然还要深拷贝呀  开始
+Function  shallowCopy(obj){
+      let newObj = {]
+      for( let key in  obj ){
+        if(obj.hasOwnProperty(key)){ 
+        //hasOwnProperty检测对象自己身上方法而不是原先链上的
+        if  ( typeof(obj[key])!==obj||obj[key]===null){
+           newObj[key]=obj[key]
+        }else{
+           newObj[key]=shallowCopy(obj[key])
+        }  
+        }
+      }
+      return  newObj
+}
+```
+
+## 36. 说说Ajax的原理
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- Async Javascript and XML ，是一种异步js和网页交互的技术，可以实现不刷新网页就跟服务器交换数据，更新页面。
+
+- 创建XHR实例对象
+
+- 调用实例对象中的open方法与服务器建立连接
+
+- 调用实例对象中的send方法发送请求
+
+- 监听onreadystatechange事件，通过判断readyState的值来获取到最终的数据
+
+- 将数据更新到html页面
+
+## 37. 什么是执行上下文和执行栈？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- 变量或函数的执行上下文，决定了它们的行为以及可以访问哪些数据。每个上下文都有一个关联的变量对象，而这个上下文中定义的所有变量和函数都存在于这个对象上(如DOM中全局上下文关联的便是window对象)。
+
+- 每个函数调用都有自己的上下文。当代码执行流进入函数时，函数的上下文被推到一个执行栈中。在函数执行完之后，执行栈会弹出该函数上下文，在其上的所有变量和函数都会被销毁，并将控制权返还给之前的执行上下文。 JS的执行流就是通过这个执行栈进行控制的。
+
+## 38. 作用域和执行上下文的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- 函数的执行上下文只在函数被调用时生成，而其作用域在创建时已经生成；
+
+- 函数的作用域会包含若干个执行上下文(有可能是零个，当函数未被调用时)。
+
+## 39. require/import之间的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- require是CommonJS语法，import是ES6语法；
+
+- require只在后端服务器支持，import在高版本浏览器及Node中都可以支持；
+
+- require引入的是原始导出值的复制，import则是导出值的引用；
+
+- require时运行时动态加载，import是静态编译；
+
+- require调用时默认不是严格模式，import则默认调用严格模式.
+
+## 40. script标签中defer和async的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- defer 和 async属性都是去异步加载外部的JS脚本文件，它们都不会阻塞页面HTML的解析，其区别如下：
+
+- 执行顺序： 多个带async属性的标签，不能保证加载的顺序；多个带defer属性的标签，按照加载顺序执行；
+
+- 脚本是否并行执行：async属性，表示 后续文档的加载和执行与js脚本的加载和执行是并行进行的，即异步执行；defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本需要等到文档所有元素解析完成之后才执行，DOMContentLoaded事件触发执行之前。
+
+- 没有 defer 或 async，浏览器会立即加载并执行指定的脚本，之前加载到一半的HTML页面会停止下来，被阻塞加载。
+
+- 有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行，将script变成异步，当scripet异步解析完成后，如果HTML页面还没有完成解析，又会继续阻塞页面的解析。
+
+- 有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行，将script变成异步。但是 script.js 的执行要在所有元素解析完成之后，类似于将这个script放在了页面的底部。
+
+## 41. class和function的区别?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 相同点：1. 函数作为构造函数
+
+- 不同点：
+
+- class构造函数必须使用new操作符。
+
+- class声明不可以提升。
+
+- class不可以用call、apply、bind改变this指向。
+
+## 42. 为什么0.1+0.2 ! == 0.3，如何让其相等 ？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 计算机是通过二进制的方式存储数据的，所以计算机计算0.1+0.2的时候，实际上是计算的两个数的二进制的和。0.1的二进制是0.0001100110011001100...（1100循环），0.2的二进制是：0.00110011001100...（1100循环），这两个数的二进制都是无限循环的数。那JavaScript是如何处理无限循环的二进制小数呢？
+
+- toFixed(num) 方法可把 Number 四舍五入为指定小数位数的数字。
+
+```js
+(n1 + n2).toFixed(2) // 注意，toFixed为四舍五入
+```
+
+## 43. JS严格模式有什么特点？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 全局变量必须声明
+
+- 禁止this指向windows
+
+- 函数参数名称不能重复
+
+- 禁止使用with语句
+
+- 创建eval作用域（单独作用域）
+
+## 44. js 中const真的不能修改吗？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- const定义的基本类型不能改变，但是定义的引用类型中的 数组 与 对象 可以通过修改对象属性改变。 const使用建议：不要使用const定义 数组 或 对象 作为常量。
+
+## 45. typeof与instanceof的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- 返回结果类型不同：typeof会返回一个变量的基本类型，instanceof返回的是一个布尔值
+
+- 判断范围不同：instanceof 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型；而typeof 也存在弊端，它虽然可以判断基础数据类型（null 除外），但是引用数据类型中，除了function 类型以外，其他的也无法判断
+
+## 46. 如何判断一个变量是不是数组？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- instanceof Array
+
+- Array.isArray();
+
+- Object.prototype.toString.call();
+
+## 47. class的原型本质怎么理解？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 原型：所有的class都有显示原型，每个实例都有隐式原型，实例的隐式原型等于对应class的显示原型，非基本属性的class的隐式原型等于其继承的class的显示原型。
+
+- 原型链：每一个对象都有一个隐式原型叫__proto__，它的指向是构造函数的原型对象。当查找某个属性或方法时，先从自身上查找，没有找到会沿着__proto_找到构造函数的原型对象，仍然没有找到会继续沿着__proto__向上查找到它构造函数原型对象的原型对象，直到找到顶级对象object为null，由此形成的链条为原型链。
+
+## 48. ES5、ES6 如何实现继承?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- ES5：①原型链继承 ②构造函数继承 ③组合继承 ④寄生组合继承
+
+- ES6：ES6 中引入了 class 关键字， class 可以通过 extends 关键字实现继承。ES6的继承中super是用来①调用父类函数 ②指向父类的原型
+
+## 49. 宏任务有哪些？微任务有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- JavaScript 运行时的事件循环机制中，任务分为宏任务（macro task）和微任务（micro task）。
+
+- 常见的宏任务有：
+
+- setTimeout 和 setInterval 的回调函数
+
+- DOM 事件
+
+- XMLHttpRequest 中的readystatechange事件
+
+- requestAnimationFrame 中的回调函数
+
+- I/O 操作和网络请求的回调函数
+
+- Node.js 中的文件读写操作的回调函数
+
+- Node.js 中的进程事件
+
+- 常见的微任务有：
+
+- Promise.then 和 Promise.catch 的回调函数
+
+- MutationObserver 的回调函数
+
+- process.nextTick 函数
+
+- Object.observe 的回调函数
+
+## 50. DOM操作的常用API
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 创建：createElement
+
+- 插入：appendChild
+
+- 删除：removeChild
+
+- 获取子节点：childNodes
+
+- 获取子节点：parentNodes
+
+- 获取兄弟节点：nextSibling
+
+- 获取兄弟节点：previousSibling
+
+- 获取属性：getAttribute
+
+- 设置属性：setAttribute
+
+- 获取元素样式：style
+
+- 获取元素属性：getAttribute
+
+- 设置元素属性：setAttribute
+
+- 获取元素类名：className
+
+- 设置元素类名：className
+
+- 获取元素内容：innerHTML
+
+## 51. attribute和property（都是属性）的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- 两者都有可能引起DOM重新渲染
+
+- property : 修改对象属性，不会体现到html结构中
+
+- attribute : 修改html属性，会改变html结构
+
+## 52. 什么是事件冒泡？什么是事件代理？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 事件冒泡和事件代理都是JavaScript中处理事件的机制。
+
+- 事件冒泡指的是当用户触发某个元素的事件时，该事件会先被触发该元素上，然后再逐级往上层元素传递，直至达到文档节点。简单来说，就是事件从子元素向父元素冒泡传递的过程。
+
+- 事件代理，又称事件委托，是利用了事件冒泡机制，把事件绑定到父元素上，然后通过判断事件的target属性，来确定触发事件的元素是否是我们需要处理事件的元素，从而实现事件处理的目的。这种机制能够减少事件处理程序的数量，避免了为每一个节点添加事件处理程序，从而节省内存和提高程序的效率。
+
+## 53. Ajax Fetch Axios的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Fetch：是一个具体的浏览器原生API，用于网络请求；它和xmlhttpRequest是一个级别的，但是其语法更加简洁，更加易用，并且支持Promise
+
+- Axios：是一个第三方库。内部可以通过XMLHttpRequest和Fetch来实现
+
+- Ajax：是一个概念，表示通过JavaScript进行异步网络请求的技术。
+
+## 54. 描述cookie，localStorage，sessionStorage的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- cookie：存储在客户端，大小限制为4KB，有有效期，可以设置过期时间，默认为会话级别，即浏览器关闭后cookie失效。
+
+- localStorage：存储在客户端，大小限制为5MB，没有有效期，除非手动清除，否则一直存在。
+
+- sessionStorage：存储在客户端，大小限制为5MB，仅在当前会话有效，关闭浏览器后失效。
+
+- localStorage和sessionStorage的区别在于，localStorage的数据在浏览器关闭后依然存在，而sessionStorage的数据在浏览器关闭后就会失效。
+
+## 55. 如何阻止事件冒泡，事件的默认行为？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 阻止事件冒泡：
+
+- event.stopPropagation();
+
+- IE：evnet.cancelBuddle = true;
+
+- 阻止事件默认行为：
+
+- event.preventDefault();
+
+- IE： e.return Value = false;
+
+## 56. document.write() 和 innerHTML 的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- document.write()是直接写入到页面的内容流，如果在写之前没有调用document.open()，浏览器会自动调用open()，每次写完关闭之后会重新调用该函数，会导致页面被重写；
+
+- innerHTML则是 DOM 页面元素的一个属性，代表该元素的html内容；
+
+- innerHTML将内容写入到某个DOM节点，不会导致页面重绘；
+
+- innerHTML在很多情况下都优于document.write()，原因在于其允许更精确的控制要刷新页面的那个部分
+
+## 57. window load和document ready的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- window load：当整个页面及所有依赖资源如样式表和图片都已完成加载时，触发window load事件。
+
+- document ready：当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，无需等待样式表、图像和子框架的加载完成。
+
+- window load事件是在页面加载完成后触发的，而document ready事件是在DOM加载完成后触发的，因此，document ready事件比window load事件更早触发。
+
+- 因此，如果需要在页面加载完成后执行某些操作，可以使用window load事件；如果需要在DOM加载完成后执行某些操作，可以使用document ready事件。
+
+## 58. Set、Map的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Set：是一种新的数据结构，类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+- Map：是一种新的数据结构，类似于对象，但是键可以是任意类型。
+
+- Set和Map的区别在于，Set的键值是唯一的，而Map的键值可以是任意类型。
+
+## 59. return，break，continue的区别是什么
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- return 必须写在函数内部，遇到return后函数内部剩余的代码不再执行，直接返回；还可以使用return返回一个值给外面使用
+
+- break 跳出循环，剩余的循环不再执行
+
+- continue  跳出本次循环，剩余的循环继续执行
+
+## 60. typeof NaN 的结果是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- NaN 指“不是一个数字”（not a number），NaN 是一个“警戒值”（sentinel value，有特殊用途的常规值），用于指出数字类型中的错误情况，即“执行数学运算没有成功，这是失败后返回的结果”。
+
+```js
+
+typeof NaN; // "number"
+
+```
+
+## 61. 其他值到字符串的转换规则？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Null 和 Undefined 类型 ，null 转换为 "null"，undefined 转换为 "undefined"，
+
+- Boolean 类型，true 转换为 "true"，false 转换为 "false"。
+
+- Number 类型的值直接转换，不过那些超出字符表示范围的整数部分，则用十六进制表示。
+
+- Symbol 类型的值直接转换，但是只允许显式转换，如 String(sym)。
+
+- 对普通对象来说，除非自行定义 toString() 方法，否则会调用 toString()（Object.prototype.toString()）来返回内部属性 [[Class]] 的值，如"[object Object]"。如果对象有自己的 toString() 方法，字符串化时就会调用该方法并使用其返回值。
+
+## 62. isNaN 和 Number.isNaN 函数的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 函数 isNaN 接收参数后，会尝试将这个参数转换为数值，任何不能被转换为数值的的值都会返回 true，因此非数字值传入也会返回 true ，会影响 NaN 的判断。
+
+- 函数 Number.isNaN 会首先判断传入参数是否为数字，如果是数字再继续判断是否为 NaN ，不会进行数据类型的转换，这种方法对于 NaN 的判断更为准确。
+
+## 63.  || 和 && 操作符的返回值？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- || 和 && 首先会对第一个操作数执行条件判断，如果其不是布尔值就先强制转换为布尔类型，然后再执行条件判断。
+
+- 对于 || 来说，如果条件判断结果为 true 就返回第一个操作数的值，如果为 false 就返回第二个操作数的值。
+
+- && 则相反，如果条件判断结果为 true 就返回第二个操作数的值，如果为 false 就返回第一个操作数的值。
+
+- || 和 && 返回它们其中一个操作数的值，而非条件判断的结果。
+
+## 64. 为什么会有BigInt的提案？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- JavaScript中Number.MAX_SAFE_INTEGER表示最⼤安全数字，计算结果是9007199254740991，即在这个数范围内不会出现精度丢失（⼩数除外）。但是⼀旦超过这个范围，js就会出现计算不准确的情况，这在⼤数计算的时候不得不依靠⼀些第三⽅库进⾏解决，因此官⽅提出了BigInt来解决此问题。
+
+## 65. object.assign和扩展运算法是深拷贝还是浅拷贝，两者区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 两者都是浅拷贝。
+
+- Object.assign()方法接收的第一个参数作为目标对象，后面的所有参数作为源对象。然后把所有的源对象合并到目标对象中。它会修改了一个对象，因此会触发 ES6 setter。
+
+- 扩展操作符（…）使用它时，数组或对象中的每一个值都会被拷贝到一个新的数组或对象中。它不复制继承的属性或类的属性，但是它会复制ES6的 symbols 属性。
+
+## 66. 如果new一个箭头函数的会怎么样?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 箭头函数是ES6中的提出来的，它没有prototype，也没有自己的this指向，更不可以使用arguments参数，所以不能New一个箭头函数。
+
+- new操作符的实现步骤如下：
+
+- 1.创建一个对象
+
+- 2.将构造函数的作用域赋给新对象（也就是将对象的__proto__属性指向构造函数的prototype属性）
+
+- 3.指向构造函数中的代码，构造函数中的this指向该对象（也就是为这个对象添加属性和方法）
+
+- 4.返回新的对象
+
+- 由于箭头函数没有自己的this，用new调用会报错！所以，上面的第二、三步，箭头函数都是没有办法执行的。
+
+## 67. 对对象与数组的解构的理解
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 解构是 ES6 提供的一种新的提取数据的模式，这种模式能够从对象或数组里有针对性地拿到想要的数值。
+
+- 数组的解构 在解构数组时，以元素的位置为匹配条件来提取想要的数据的
+
+- 对象的解构 对象解构比数组结构稍微复杂一些，也更显强大。在解构对象时，是以属性的名称为匹配条件，来提取想要的数据的
+
+## 68. 对 rest 参数的理解
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 扩展运算符被用在函数形参上时，它还可以把一个分离的参数序列整合成一个数组：
+
+``` js
+function mutiple(...args) {
+  let result = 1;
+  for (var val of args) {
+    result *= val;
+  }
+  return result;
+}
+mutiple(1, 2, 3, 4) // 24
+
+```
+
+- 这里，传入 mutiple 的是四个分离的参数，但是如果在 mutiple 函数里尝试输出 args 的值，会发现它是一个数组：
+
+``` js
+function mutiple(...args) {
+  console.log(args)
+}
+mutiple(1, 2, 3, 4) // [1, 2, 3, 4]
+
+```
+
+- 这就是 … rest运算符的又一层威力了，它可以把函数的多个入参收敛进一个数组里。这一点经常用于获取函数的多余参数，或者像上面这样处理函数参数个数不确定的情况。
+
+## 68. Map数据结构有哪些操作方法？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- size： map.size 返回Map结构的成员总数。
+
+- set(key,value)：设置键名key对应的键值value，然后返回整个Map结构，如果key已经有值，则键值会被更新，否则就新生成该键。（因为返回的是当前Map对象，所以可以链式调用）
+
+- get(key)：读取key对应的键值，如果找不到key，返回undefined。
+
+- has(key)：返回一个布尔值，表示某个键是否在当前Map对象中。
+
+- delete(key)：删除某个键，返回true。如果删除失败，返回false。
+
+- clear()：清除所有成员，没有返回值。
+
+## 69. 数组有哪些原生方法？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- 数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。
+
+- 数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。
+
+- 数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。
+
+- 数组连接的方法 concat() ，返回的是拼接好的数组，不影响原数组。
+
+- 数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。
+
+- 数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法
+
+- reduce() 和 reduceRight() 方法将数组元素计算为一个值，这对求和非常有用
+
+## 70. Unicode、UTF-8、UTF-16、UTF-32的区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- Unicode 是一种字符集，包含了世界上所有的符号，每个符号对应一个唯一的编码，Unicode 的编码范围是 0x0000 至 0x10FFFF。
+
+- UTF-8、UTF-16、UTF-32 是三种不同的 Unicode 的编码方式，用于将 Unicode 的编码转换为字节序列，以便在计算机中存储和传输。
+
+- UTF-8 是一种变长的编码方式，使用 1 到 4 个字节来表示一个符号，根据不同的符号而变化字节长度。
+
+- UTF-16 是一种定长的编码方式，使用 2 个或 4 个字节来表示一个符号，根据不同的符号而变化字节长度。
+
+- UTF-32 是一种定长的编码方式，使用 4 个字节来表示一个符号，每个符号都使用 4 个字节来表示。
