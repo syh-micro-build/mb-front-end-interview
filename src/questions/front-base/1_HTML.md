@@ -289,4 +289,3 @@
 `<a href="mailto:example@domain.com">联系我们</a>`，还可添加参数，如?subject=主题&body=邮件内容，`<a href="mailto:example@domain.com?subject=合作咨询&body=您好，我想咨询合作事宜">联系我们</a>`。
 - **1：**  下载文件：当链接的文件类型浏览器无法直接打开（如.zip、.pdf等），或者设置了download属性时，点击链接会下载文件。例如`<a href="document.pdf" download>下载文档</a>`，若不设置download属性，浏览器可能尝试直接打开文件（若支持该文件类型）。
 - **1：**  执行 JavaScript 代码：使用javascript:伪协议，href属性值设置为 JavaScript 代码片段，点击链接时会执行相应代码。如`<a href="javascript:alert('Hello')">点击提示</a>`，但这种方式在现代开发中较少使用，通常会使用事件绑定来处理 JavaScript 交互。
-
