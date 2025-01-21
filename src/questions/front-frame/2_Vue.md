@@ -1,6 +1,6 @@
 # Vue
 
-## vue3和vue2的区别
+## 1. vue3和vue2的区别
 
 #### 类型：`基础`
 
@@ -20,7 +20,7 @@
 * **1：** Props 的使用变化：vue2 通过 this 获取 props 里面的内容，vue3 直接通过 props
 * **1：** 父子组件传值：vue3 在向父组件传回数据时，如使用的自定义名称，如 backData，则需要在 emits 中定义一下
 
-## watch 和 watchEffect 的区别？
+## 2. watch 和 watchEffect 的区别？
 
 #### 类型：`基础`
 
@@ -32,7 +32,7 @@
 * **1：** watchEffect 可以自动监听数据源作为依赖。不用指明监视哪个数据，监视的回调中用到哪个数据，那就监视哪个数据。
 * **1：** watch 可以访问改变之前和之后的值，watchEffect 只能获取改变后的值。
 
-## 在 Vue2.x 中如何检测数组的变化？
+## 3. 在 Vue2.x 中如何检测数组的变化？
 
 #### 类型：`基础`
 
@@ -42,7 +42,7 @@
 
 * **1：** 使用了函数劫持的方式，重写了数组的方法，Vue将data中的数组进行了原型链重写，指向了自己定义的数组原型方法。这样当调用数组api时，可以通知依赖更新。如果数组中包含着引用类型，会对数组中的引用类型再次递归遍历进行监控。这样就实现了监测数组变化。
 
-## 在 v-if 与 v-show 的区别？
+## 4. 在 v-if 与 v-show 的区别？
 
 #### 类型：`基础`
 
@@ -52,7 +52,7 @@
 
 * **1：** 当条件不成立时，v-if不会渲染DOM元素，v-show操作的是样式(display)，切换当前DOM的显示和隐藏。
 
-## 如何实现 Vue 组件的插槽（slot）？有哪些类型的插槽？
+## 5. 如何实现 Vue 组件的插槽（slot）？有哪些类型的插槽？
 
 #### 类型：`基础`
 
@@ -62,7 +62,7 @@
 
 * **1：** 默认插槽、具名插槽、作用域插槽
 
-## 简述 Vuex 的核心概念和工作流程
+## 6. 简述 Vuex 的核心概念和工作流程
 
 #### 类型：`基础`
 
@@ -80,7 +80,7 @@
 Mutations 同步修改 State 的数据，组件可以通过 mapState、mapGetters 等辅助函数获取 State 和 Getters 中的数据，从而实现数据的响应式变化
 和组件的更新。
 
-## Vue项目中如何进行性能优化？
+## 7. Vue项目中如何进行性能优化？
 
 #### 类型：`基础`
 
@@ -160,7 +160,7 @@ module.exports = {
 
 </details>
 
-## v-model 双向绑定的原理是什么？
+## 8. v-model 双向绑定的原理是什么？
 
 #### 类型：`基础`
 
@@ -170,7 +170,7 @@ module.exports = {
 
 * **1：** v-model本质就是一个语法糖，可以看成是value + input方法的语法糖。 可以通过model属性的prop和event属性来进行自定义。原生的v-model，会根据标签的不同生成不同的事件和属性 。
 
-## 在  v-if 和 v-for 的优先级哪个高？
+## 9. 在v-if 和 v-for 的优先级哪个高？
 
 #### 类型：`基础`
 
@@ -180,7 +180,7 @@ module.exports = {
 
 * **1：** 在 vue2 中 v-for 的优先级更高，但是在 vue3 中优先级改变了。v-if 的优先级更高。
 
-## ref与reactive的区别？
+## 10. ref与reactive的区别？
 
 #### 类型：`基础`
 
@@ -195,7 +195,7 @@ module.exports = {
 * **1：** ref 底层还是使用 reactive 来做，ref 是在 reactive 上在进行了封装，增强了其能力，使它支持了对原始数据类型的处理。
 * **1：** 在 Vue3 中 reactive 能做的，ref 也能做，reactive 不能做的，ref 也能做。
 
-## Vue 3 中的Teleport功能有什么作用，如何使用？
+## 11. Vue 3 中的Teleport功能有什么作用，如何使用？
 
 #### 类型：`基础`
 
@@ -211,7 +211,7 @@ module.exports = {
 //会将包裹的元素移动到id为app-root的元素内部。
 ```
 
-## 如何在 Vue 3 中实现自定义指令的全局注册和局部注册？
+## 12. 如何在 Vue 3 中实现自定义指令的全局注册和局部注册？
 
 #### 类型：`基础`
 
@@ -222,7 +222,7 @@ module.exports = {
 * **1：** 全局注册在 main.js 中使用 app.directive('指令名', 指令对象)；局部注册在组件内，通过 directives: { '指令名': 指令对象 }，指令对象包含
  mounted、updated 等生命周期钩子函数用于定义指令行为。
 
-## 说一下 Vue SSR 的实现原理
+## 13. 说一下 Vue SSR 的实现原理
 
 #### 类型：`基础`
 
@@ -234,7 +234,7 @@ module.exports = {
 
 * SSR有着更好的SEO、并且首屏加载速度更快等优点。不过它也有一些缺点，比如我们的开发条件会受到限制，服务器端渲染只支持beforeCreate和created两个钩子，当我们需要一些外部扩展库时需要特殊处理，服务端渲染应用程序也需要处于Node.js的运行环境。还有就是服务器会有更大的负载需求。
 
-## Vue 组件的 data 为什么必须是函数？
+## 14. Vue 组件的 data 为什么必须是函数？
 
 #### 类型：`基础`
 
@@ -244,7 +244,7 @@ module.exports = {
 
 * 一个组件被复用多次的话，也就会创建多个实例。本质上，这些实例用的都是同一个构造函数。如果data是对象的话，对象属于引用类型，会影响到所有的实例。所以为了保证组件不同的实例之间data不冲突，data必须是一个函数。
 
-## vue 中的 spa 应用如何优化首屏加载速度?
+## 15. vue 中的 spa 应用如何优化首屏加载速度?
 
 #### 类型：`基础`
 
@@ -276,7 +276,7 @@ module.exports = {
 
 * 使用 svg 图标：相对于用一张图片来表示图标，svg 拥有更好的图片质量，体积更小，并且不需要开启额外的 http 请求
 
-## 组件中写 name 选项有哪些好处？
+## 16. 组件中写 name 选项有哪些好处？
 
 #### 类型：`基础`
 
@@ -292,7 +292,7 @@ module.exports = {
 
 * 使用 vue-devtools 调试工具里显示的组见名称是由 vue 中组件 name 决定的
 
-## 说一下 ref 的作用是什么？
+## 17. 说一下 ref 的作用是什么？
 
 #### 类型：`基础`
 
@@ -311,3 +311,1284 @@ ref 的作用是被用来给元素或子组件注册引用信息。引用信息�
 * 调用子组件中的方法
 
 * 使用 vue-devtools 调试工具里显示的组见名称是由 vue 中组件 name 决定的
+
+## 18. 谈谈你对 Vue 3 Composition API 中响应式原理的理解，以及它与 Vue 2.x 中响应式原理的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3分）
+
+* **1：** Vue 3 使用 ES6 的 Proxy 对象来实现响应式，它可以直接代理整个对象，而不仅仅是对象的属性。例如：
+
+```js
+const state = reactive({ count: 0 });
+//Proxy 能对对象的所有操作进行拦截，包括属性的读取、设置、删除等，从而实现更精准的响应式追踪。
+```
+
+* **1：** 对比 Vue 2.x 使用的 Object.defineProperty () 方法，它只能对对象的已有属性进行逐个劫持，对于新增属性需要使用Vue.set方法来手动触发响应式更新。
+* **1：** 在 Vue 3 中，通过reactive创建的响应式对象是深层响应式的，而 Vue 2.x 中对象内部嵌套的对象，需要递归遍历进行深度响应式转换。
+
+## 19. 在 Vue 3 项目中，如何进行 SSR（服务器端渲染）
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3分）
+
+* **0：** 搭建项目基础：创建 Vue 3 项目，可使用@vue/cli工具，通过命令vue create my-ssr-app创建项目，选择相关 Vue 3 选项。
+* **1：** 添加 SSR 相关依赖：安装`@vue/server-renderer`和`express`等依赖，`@vue/server-renderer`用于服务器端渲染，`express`作为服务器框架。命令
+为`npm install @vue/server-renderer express`。
+* **1：** 创建服务器文件：在项目根目录下创建server.js文件，用于创建服务器和处理 SSR 逻辑。在文件中，引入express，创建服务器实例，设置路由，使
+用@vue/server-renderer将 Vue 组件渲染为 HTML 字符串并返回。
+* **1：** 调整 Vue 项目代码：在 Vue 项目中，需要创建一个用于服务器端渲染的入口文件，如`entry-server.js`，在该文件中，创建 Vue 应用实例，并导出。同时，可能
+需要调整一些组件的逻辑，以适应服务器端渲染的环境。
+
+## 20. Vue 3中的Suspense组件的作用是什么，它是如何工作的？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* **1：** Suspense是在vue3中新提供的，用来处理异步组件的加载状态。
+* **1：** Suspense 组件允许你指定一个加载中的状态`（fallback）`和一个加载失败的状态`（fallback slot）`，用于处理异步组件的加载状态。当异步组件加载时，会先显示加载中
+的状态；加载完成后，会显示异步组件；如果加载失败，会显示加载失败的状态。
+
+## 21. vue的生命周期有哪些及每个生命周期做了什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3分）
+
+* beforeCreate是new Vue()之后触发的第一个钩子，在当前阶段data、methods、computed以及watch上的数据和方法都不能被访问。
+
+* created是实例创建完成后触发的钩子，当前阶段已经完成了数据观测、属性和方法的运算，watch/event事件回调。然而，挂载阶段还没开始，$el属性目前不可见。
+
+* beforeMount是挂载开始之前被触发的钩子，相关的render函数首次被调用。该钩子在服务器端渲染期间不被调用。
+
+* mounted是el被新创建的vm.$el替换，并挂载到实例上去之后调用该钩子。如果根实例挂载到一个文档内元素上，当mounted被调用时vm.$el也在文档内。该钩子在服务器端渲染期间不被调用。
+
+* beforeUpdate是数据更新时调用，发生在虚拟DOM重新渲染和打补丁之前。你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。
+
+* updated是由于数据更改导致的虚拟DOM重新渲染和打补丁之后调用。当这个钩子被调用时，组件DOM已经更新，所以你现在可以执行依赖于DOM的操作。然而请注意，在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用。
+
+* beforeDestroy是实例销毁之前调用。在这一步，实例仍然完全可用。
+
+* destroyed是Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。
+
+## 22. vue响应式原理是什么？vue3的响应式有何不同?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* Vue在初始化数据时，会使用Object.defineProperty重新定义data中的所有属性，当页面使用对应属性时，首先会进行依赖收集(收集当前组件的watcher)如果属性发生变化会通知相关依赖进行更新操作(发布订阅)。
+
+* Vue3.x改用Proxy替代Object.defineProperty。因为Proxy可以直接监听对象和数组的变化，并且有多达13种拦截方法。并且作为新标准将受到浏览器厂商重点持续的性能优化。
+
+## 23. 谈一谈对 MVVM 的理解？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* MVVM是Model-View-ViewModel缩写，也就是把MVC中的Controller演变成ViewModel。Model层代表数据模型，View代表UI组件，ViewModel是View和Model层的桥梁，数据会绑定到viewModel层并自动将数据渲染到页面中，视图变化的时候会通知viewModel层更新数据.
+
+## 24. vue2.x 和 vuex3.x 渲染器的 diff 算法分别说一下？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+简单来说，diff算法有以下过程
+
+* 同级比较，再比较子节点
+
+* 先判断一方有子节点一方没有子节点的情况(如果新的children没有子节点，将旧的子节点移除)
+
+* 比较都有子节点的情况(核心diff)
+
+* 递归比较子节点
+
+Vue2的核心Diff算法采用了双端比较的算法，同时从新旧children的两端开始进行比较，借助key值找到可复用的节点，再进行相关操作。相比React的Diff算法，同样情况下可以减少移动节点次数，减少不必要的性能损耗，更加的优雅。
+
+Vue3.x借鉴了 ivi算法和 inferno算法
+
+在创建VNode时就确定其类型，以及在mount/patch的过程中采用位运算来判断一个VNode的类型，在这个基础之上再配合核心的Diff算法，使得性能上较Vue2.x有了提升。(实际的实现可以结合Vue3.x源码看。)
+
+## 25. vue 组件通信方式有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+父子组件通信
+
+父->子props，子->父 $on、$emit
+
+获取父子组件实例 $parent、$children
+
+Ref 获取实例的方式调用组件的属性或者方法
+
+Provide、inject 官方不推荐使用，但是写组件库时很常用
+
+兄弟组件通信
+
+Event Bus 实现跨组件通信，代码繁琐，不推荐
+
+Vuex 官方推荐使用，功能强大，vue-devtools有插件支持
+
+## 26. Vue的路由实现, hash路由和history路由实现原理说一下？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+`location.hash`的值实际就是URL中`#`后面的东西。
+
+history实际采用了HTML5中提供的API来实现，主要有history.pushState()和history.replaceState()。
+
+## 27. keep-alive的常用属性有哪些及实现原理
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+keep-alive可以实现组件缓存，当组件切换时不会对当前组件进行卸载。
+
+常用的两个属性include/exclude，允许组件有条件的进行缓存。
+
+两个生命周期activated/deactivated，用来得知当前组件是否处于活跃状态。
+
+keep-alive的中还运用了LRU(Least Recently Used)算法。
+
+## 28. nextTick 的作用是什么？他的实现原理是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+在下次 DOM 更新循环结束之后执行延迟回调。nextTick主要使用了宏任务和微任务。根据执行环境分别尝试采用
+
+* Promise
+
+* MutationObserver
+
+* setImmediate
+
+* setTimeout
+
+定义了一个异步方法，多次调用nextTick会将方法存入队列中，通过这个异步方法清空当前队列。
+
+## 29. 说一下 Vue 的 computed 的实现原理
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3分）
+
+当组件实例触发生命周期函数 beforeCreate 后，它会做一系列事情，其中就包括对 computed 的处理。
+
+它会遍历 computed 配置中的所有属性，为每一个属性创建一个 Watcher 对象，并传入一个函数，该函数的本质其实就是 computed 配置中的 getter，这样一来，getter 运行过程中就会收集依赖
+
+但是和渲染函数不同，为计算属性创建的 Watcher 不会立即执行，因为要考虑到该计算属性是否会被渲染函数使用，如果没有使用，就不会得到执行。因此，在创建 Watcher 的时候，它使用了 lazy 配置，lazy 配置可以让 Watcher 不会立即执行。
+
+收到 lazy 的影响，Watcher 内部会保存两个关键属性来实现缓存，一个是 value，一个是 dirty
+
+value 属性用于保存 Watcher 运行的结果，受 lazy 的影响，该值在最开始是 undefined
+
+dirty 属性用于指示当前的 value 是否已经过时了，即是否为脏值，受 lazy 的影响，该值在最开始是 true
+
+定义了一个异步方法，多次调用nextTick会将方法存入队列中，通过这个异步方法清空当前队列。
+
+Watcher 创建好后，vue 会使用代理模式，将计算属性挂载到组件实例中
+
+当读取计算属性时，vue 检查其对应的 Watcher 是否是脏值，如果是，则运行函数，计算依赖，并得到对应的值，保存在 Watcher 的 value 中，然后设置 dirty 为 false，然后返回。
+
+如果 dirty 为 false，则直接返回 watcher 的 value
+
+巧妙的是，在依赖收集时，被依赖的数据不仅会收集到计算属性的 Watcher，还会收集到组件的 Watcher
+
+当计算属性的依赖变化时，会先触发计算属性的 Watcher 执行，此时，它只需设置 dirty 为 true 即可，不做任何处理。
+
+由于依赖同时会收集到组件的 Watcher，因此组件会重新渲染，而重新渲染时又读取到了计算属性，由于计算属性目前已为 dirty，因此会重新运行 getter 进行运算
+
+而对于计算属性的 setter，则极其简单，当设置计算属性时，直接运行 setter 即可。
+
+## 30. 说一下 Vue complier 的实现原理是什么样的？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3分）
+
+complier 的主要作用是解析模板，生成渲染模板的 render， 而 render 的作用主要是为了生成 VNode
+
+complier 主要分为 3 大块：
+
+* parse：接受 template 原始模板，按着模板的节点和数据生成对应的 ast
+
+* optimize：遍历 ast 的每一个节点，标记静态节点，这样就知道哪部分不会变化，于是在页面需要更新时，通过 diff 减少去对比这部分DOM，提升性能
+
+* generate 把前两步生成完善的 ast，组成 render 字符串，然后将 render 字符串通过 new Function 的方式转换成渲染函数
+
+## 31. 说一下 watch 与 computed 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* 都是观察数据变化的（相同）
+
+* 计算属性将会混入到 vue 的实例中，所以需要监听自定义变量；watch 监听 data 、props 里面数据的变化
+
+* computed 有缓存，它依赖的值变了才会重新计算，watch 没有；
+
+* watch 支持异步，computed 不支持；
+
+* watch 是一对多（监听某一个值变化，执行对应操作）；computed 是多对一（监听属性依赖于其他属性）
+
+* watch 监听函数接收两个参数，第一个是最新值，第二个是输入之前的值；
+
+* omputed 属性是函数时，都有 get 和 set 方法，默认走 get 方法，get 必须有返回值（return）
+
+## 32. 说一下你知道的 vue 修饰符都有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+事件修饰符
+
+* .stop：阻止冒泡。
+
+* .prevent：阻止默认事件。
+
+* .capture：使用事件捕获模式。
+
+* .self：只在当前元素本身触发。
+
+* once：只触发一次。
+
+* passive：默认行为将会立即触发。
+
+按键修饰符
+
+* .left：左键
+
+* .right：右键
+
+* .middle：滚轮
+
+* .enter：回车
+
+表单修饰符
+
+* .lazy：在文本框失去焦点时才会渲染
+
+* .number：将文本框中所输入的内容转换为number类型
+
+* .trim：可以自动过滤输入首尾的空格
+
+## 33. 怎么理解Vue的单向数据流？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+单向数据流是指：数据在组件树中的流动方向，是从父组件流向子组件的。这个设计使得数据流更加可预测和易于调试，确保应用状态的一致性。
+
+简单理解：父组件的状态对于子组件是只读的，子组件想改，只能通过事件的方式，通知父组件自己改。
+
+## 34. Vue中怎么异步加载组件
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+<template> 
+    <MyComponent /> 
+</template>
+<script setup>
+import { defineAsyncComponent } from 'vue'
+
+const MyComponent = defineAsyncComponent(() =>
+  import('./components/MyComponent.vue')
+)
+</script>
+```
+
+## 35. 为什么this.xx可以访问data中的数据?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+Vue在initData时，做了数据代理
+
+* 判断传入的data，函数就执行，对象不做处理
+
+* data 赋值给 vm._data
+
+* 然后变量 vm._data对象，把可枚举属性的get代理到 vm上
+
+* 访问vm.xxx 就相当于 vm._data.xx === vm.data.xx
+
+## 36. 父组件如何监听子组件生命周期？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+vue2 使用 @hook:mounted
+
+vue3 使用 @vue:mounted
+
+自定义事件，在子组件生命周期中去执行 下面是vue3的写法
+
+```js
+
+<template>
+  <h1 @click="send">Home 页面</h1>
+  <Text @vue:mounted="fn" />
+</template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import Text from '../components/Text.vue'
+const fn = () => {
+  console.log('Text mounted')
+}
+</script>
+
+```
+
+## 37. watch怎么停止监听？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+import { ref, watch } from 'vue'
+const count = ref(0)
+const soptWatch = watch(() => count.value, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+soptWatch()
+
+```
+
+## 37. Vue中怎么做全局错误监听？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+import { ref, watch } from 'vue'
+const count = ref(0)
+const soptWatch = watch(() => count.value, (newVal, oldVal) => {
+  console.log(newVal, oldVal)
+})
+soptWatch()
+
+```
+
+## 38. 怎么监听子组件内的错误？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+```js
+// 子组件
+throw new Error("Error");
+
+//父组件
+import { onErrorCaptured } from 'vue'
+
+// 监听到子组件错误，执行回调
+onErrorCaptured((err) => {
+  console.log('error', err)
+})
+
+```
+
+## 38. vue-router怎么动态添加、删除路由？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+添加路由
+
+```js
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const addRoute = () => {
+  const newRoute = {
+    path: '/hello', name: 'hello', component: () => import('../components/HelloWorld.vue'), // 动态加载组件
+  };
+  router.addRoute(newRoute);
+};
+
+```
+
+添加路由
+
+```js
+
+router.removeRoute('xxx');
+
+```
+
+## 39. 有使用过v-memo么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+缓存一个模板的子树。在元素和组件上都可以使用。为了实现缓存，该指令需要传入一个固定长度的依赖值数组进行比较。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。
+
+一般与v-for配合使用，v-memo的值是一个数组。数组的值不改变的情况，该组件及子组件就会跳过更新
+
+v-memo 绑定的值没改变，子组件引用的响应数据变了，也不会更新
+
+## 40. v-for 中 key 的作用是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+key 是 Vue 使用 v-for 渲染列表时的节点标识。使用了 key 之后，当列表项发生变化时，Vue 会基于 key 的变化而重新排列元素顺序，并且移除 key 不存在的元素，提升运行效率。
+
+## 40. 如何动态更新对象或数组的值？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+  因为 Object.defineProperty()的限制，Vue 无法监听到对象或数组内部某个属性值的变化，因此在直接设置以上两类数据的值时，页面不会实时更新。此时可以通过 this.$set 方法来解决：
+
+## 41. v-on 如何绑定多个事件？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+  ```js
+<!--单事件绑定-->
+<input type="text" @click="onClick">
+<!--多事件绑定-->
+<input type="text" v-on="{ input:onInput,focus:onFocus,blur:onBlur }">
+
+```
+
+## 41. Vue 初始化页面闪动问题如何解决？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+出现该问题是因为在 Vue 代码尚未被解析之前，尚无法控制页面中 DOM 的显示，所以会看见模板字符串等代码。
+
+解决方案是，在 css 代码中添加 v-cloak 规则，同时在待编译的标签上添加 v-cloak 属性：
+
+```html
+[v-cloak] { display: none; }
+
+<div v-cloak>
+  {{ message }}
+</div>
+
+```
+
+## 42. Vue 如何清除浏览器缓存？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+* 项目打包的时候给每个打包文件加上 hash 值，一般是在文件后面加上时间戳；
+
+* 在 html 文件中加入 meta 标签，content 属性设置为no-cache;
+
+* 在后端服务器中进行禁止缓存设置。
+
+## 43. 页面刷新了之后vuex中的数据消失怎么解决
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+* vuex数据位于内存, 页面的刷新重置会导致数据的归零,也就是所谓的消失, 本地持久化可以解决这个问题.本地持久化用到的技术也就是 本次存储 sesstionStorage 或者 localStorage
+
+* tate的持久化 也就是分别需要在 state数据初始化 /更新 的时候 进行读取和设置本地存储操作
+
+```js
+  export default new Vuex.store({
+   state: {
+       user: localStorge.getItem('user')  // 初始化时读取 本地存储
+   },
+   mutations: {
+       updateUser (state, payload) {
+           state.user = payload.user
+           localStoregae.setItem('user',payload.user) // 数据更新时 设置本地存储
+       }
+   }
+})
+
+```
+
+## 44. 页面刷新了之后vuex中的数据消失怎么解决
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* 在对一些属性进行操作时，使用这种方法无法拦截，比如通过下标方式修改数组数据或者给对象新增属性，这都不能触发组件的重新渲染，因为 Object.defineProperty 不能拦截到这些操作。更精确的来说，对于数组而言，大部分操作都是拦截不到的，只是 Vue 内部通过重写函数的方式解决了这个问题。
+
+* 在 Vue3.0 中已经不使用这种方式了，而是通过使用 Proxy 对对象进行代理，从而实现数据劫持。使用Proxy 的好处是它可以完美的监听到任何方式的数据改变，唯一的缺点是兼容性的问题，因为 Proxy 是 ES6 的语法。
+
+## 45. assets和static的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* 相同点： assets 和 static 两个都是存放静态资源文件。项目中所需要的资源文件图片，字体图标，样式文件等都可以放在这两个文件下
+
+* 不相同点：assets 中存放的静态资源文件在项目打包时，也就是运行 npm run build 时会将 assets 中放置的静态资源文件进行打包上传，所谓打包简单点可以理解为压缩体积，代码格式化。而压缩后的静态资源文件最终也都会放置在 static 文件中跟着 index.html 一同上传至服务器。static 中放置的静态资源文件就不会要走打包压缩格式化等流程，而是直接进入打包好的目录，直接上传至服务器。
+
+因为避免了压缩直接进行上传，在打包时会提高一定的效率，但是 static 中的资源文件由于没有进行压缩等操作，所以文件的体积也就相对于 assets 中打包后的文件提交较大点。在服务器中就会占据更大的空间
+
+## 46. delete和Vue.delete删除数组的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* delete 只是被删除的元素变成了 empty/undefined 其他的元素的键值还是不变。
+
+* Vue.delete 直接删除了数组 改变了数组的键值。
+
+## 47. 什么是 mixin？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+* Mixin 使我们能够为 Vue 组件编写可插拔和可重用的功能。
+
+* 如果希望在多个组件之间重用一组组件选项，例如生命周期 hook、 方法等，则可以将其编写为 mixin，并在组件中简单的引用它。
+
+* 然后将 mixin 的内容合并到组件中。如果你要在 mixin 中定义生命周期 hook，那么它在执行时将优化于组件自已的 hook。
+
+## 48. 对 SPA 单页面的理解，它的优缺点分别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+SPA（ single-page application ）仅在 Web 页面初始化时加载相应的 HTML、JavaScript 和 CSS。一旦页面加载完成，SPA 不会因为用户的操作而进行页面的重新加载或跳转；取而代之的是利用路由机制实现 HTML 内容的变换，UI 与用户的交互，避免页面的重新加载。
+
+优点：
+
+* 用户体验好、快，内容的改变不需要重新加载整个页面，避免了不必要的跳转和重复渲染；
+
+* 基于上面一点，SPA 相对对服务器压力小；
+
+* 前后端职责分离，架构清晰，前端进行交互逻辑，后端负责数据处理；
+
+缺点：
+
+* 初次加载耗时多：为实现单页 Web 应用功能及显示效果，需要在加载页面的时候将 JavaScript、CSS 统一加载，部分页面按需加载；
+
+* 前进后退路由管理：由于单页应用在一个页面中显示所有的内容，所以不能使用浏览器的前进后退功能，所有的页面切换需要自己建立堆栈管理；
+
+* SEO 难度较大：由于所有的内容都在一个页面中动态替换显示，所以在 SEO 上其有着天然的弱势。
+
+## 49. 对 SPA 单页面的理解，它的优缺点分别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+对于 runtime 来说，只需要保证组件存在 render 函数即可，而有了预编译之后，只需要保证构建过程中生成 render 函数就可以。在 webpack 中，使用vue-loader编译.vue文件，内部依赖的vue-template-compiler模块，在 webpack 构建过程中，将template预编译成 render 函数。与 react 类似，在添加了jsx的语法糖解析器babel-plugin-transform-vue-jsx之后，就可以直接手写render函数。
+
+所以，template和jsx的都是render的一种表现形式，不同的是：JSX相对于template而言，具有更高的灵活性，在复杂的组件中，更具有优势，而 template 虽然显得有些呆滞。但是 template 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。
+
+## 50. Vue 子组件和父组件执行顺序
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+加载渲染过程：
+
+* 1.父 beforeCreate
+
+* 2.父 created
+
+* 3.父 beforeMount
+
+* 4.子 beforeCreate
+
+* 5.子 created
+
+* 6.子 beforeMount
+
+* 7.子 mounted
+
+* 8.父 mounted
+
+更新过程：
+
+* 1.父 beforeUpdate
+
+* 2.子 beforeUpdate
+
+* 3.子 updated
+
+* 4.父 updated
+
+## 51. Vue-Router 的懒加载如何实现
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+加载渲染过程：
+
+方案一(常用)：使用箭头函数+import动态加载
+
+```js
+  const List = () => import('@/components/list.vue')
+  const router = new VueRouter({
+    routes: [
+      { path: '/list', component: List }
+    ]
+  })
+```
+
+方案二：使用箭头函数+require动态加载
+
+```js
+const router = new Router({
+  routes: [
+   {
+     path: '/list',
+     component: resolve => require(['@/components/list'], resolve)
+   }
+  ]
+})
+
+```
+
+方案二：方案三：使用webpack的require.ensure技术，也可以实现按需加载。 这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。
+
+```js
+// r就是resolve
+const List = r => require.ensure([], () => r(require('@/components/list')), 'list');
+// 路由也是正常的写法  这种是官方推荐的写的 按模块划分懒加载 
+const router = new Router({
+  routes: [
+  {
+    path: '/list',
+    component: List,
+    name: 'list'
+  }
+ ]
+}))
+
+```
+
+## 52. $route 和$router 的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+$route 是“路由信息对象”，包括 path，params，hash，query，fullPath，matched，name 等路由信息参数
+
+$router 是“路由实例”对象包括了路由的跳转方法，钩子函数等。
+
+## 53. Vuex和单纯的全局对象有什么区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。
+
+不能直接改变 store 中的状态。改变 store 中的状态的唯一途径就是显式地提交 (commit) mutation。这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用
+
+## 54. 为什么 Vuex 的 mutation 中不能做异步操作？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+Vuex中所有的状态更新的唯一途径都是mutation，异步操作通过 Action 来提交 mutation实现，这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用。
+
+每个mutation执行完成后都会对应到一个新的状态变更，这样devtools就可以打个快照存下来，然后就可以实现 time-travel 了。如果mutation支持异步操作，就没有办法知道状态是何时更新的，无法很好的进行状态的追踪，给调试带来困难。
+
+## 55. Vuex的严格模式是什么,有什么作用，如何开启？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+在严格模式下，无论何时发生了状态变更且不是由mutation函数引起的，将会抛出错误。这能保证所有的状态变更都能被调试工具跟踪到。
+
+在Vuex.Store 构造器选项中开启,如下
+
+```js
+const store = new Vuex.Store({
+  strict: true
+})
+```
+
+## 56. 如何在组件中批量使用Vuex的getter属性
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+如何在组件中批量使用Vuex的getter属性
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+```js
+import {mapGetters} from 'vuex'
+export default{
+    computed:{
+        ...mapGetters(['total','discountTotal'])
+    }
+}
+```
+
+## 57. 如何在组件中重复使用Vuex的mutation
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2分）
+
+使用mapMutations辅助函数,在组件中这么使用
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+```js
+import { mapMutations } from 'vuex'
+methods:{
+    ...mapMutations({
+        setNumber:'SET_NUMBER',
+    })
+}
+```
+
+然后调用this.setNumber(10)相当调用this.$store.commit('SET_NUMBER',10)
+
+## 58. 为什么不建议用index作为key?
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+使用index 作为 key和没写基本上没区别，因为不管数组的顺序怎么颠倒，index 都是 0, 1, 2...这样排列，导致 Vue 会复用错误的旧子节点，做很多额外的工作。
+
+## 59. 什么是Vue以及Vue的特点？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue 是一套用于构建用户界面的渐进式 JavaScript 框架。它的设计目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。Vue 的特点包括但不限于：组件化开发，无需直接操作 DOM；使用虚拟 DOM 和 diff 算法复用 DOM 节点；提供简洁易用的模板语法.
+
+## 60. SPA及其优缺点是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+单页面应用（Single Page Application, SPA）指的是在网页加载完成后不会因为用户的操作而进行整个页面的重新加载，而是利用路由机制实现 HTML 内容的变化、UI 和用户的交互。优点在于提高了用户体验，减轻了服务器的压力，并且实现了前后端分离。然而，初次加载耗时较长，浏览器前进后退功能不可直接使用，SEO 优化难度较大.
+
+## 61. v-if 和 v-show 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+v-if 是真正的条件渲染，它会根据表达式的真假值来决定是否将元素添加到 DOM 中；而 v-show 则始终会渲染元素，只是通过 CSS 样式控制其可见性。因此，当条件频繁切换时，v-show 更高效，因为它避免了销毁和重建元素的过程。
+
+## 62. 如何动态绑定 class 和 style？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+在 Vue 中，可以通过对象或数组的形式动态绑定 class 和 style。对于 class，如果样式个数和名字不确定，则适合使用对象写法；若样式确定但是否应用不确定，则适用数组写法。例如：
+
+```html
+<div :class="{ active: isActive, 'text-danger': hasError }"></div>
+<div :class="[isActive ? 'active' : '', errorClass]"></div>
+<div :style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
+<div :style="[baseStyles, overridingStyles]"></div>
+```
+
+## 63. Composition API 和 Options API 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API 允许开发者以函数的方式组织逻辑，使得逻辑更加集中，便于理解和维护。相比之下，Options API 将逻辑分散在不同的生命周期钩子和选项中，虽然结构清晰但对于大型项目来说可能不够灵活。Composition API 提供了更好的类型推断支持，并且更适合与 TypeScript 结合使用.
+
+## 64. Vue 3 生命周期钩子有什么变化？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue 3 的生命周期钩子与 Vue 2 类似，但有一些细微差别。例如，beforeCreate 和 created 钩子被 setup() 函数取代，后者在组件实例创建之前执行。其他钩子名称也有所调整，如 beforeDestroy 变为 beforeUnmount，destroyed 变为 unmounted。
+
+## 65. Vue 3 的主要新特性是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API：提供更灵活的代码组织方式。
+
+性能优化：使用 Proxy 实现响应式，性能更好。
+
+Tree-shaking：支持按需引入，减小打包体积。
+
+TypeScript 支持：对 TypeScript 的支持更好。
+
+Fragment、Teleport、Suspense：新增内置组件。
+
+## 66. 什么是 Composition API？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Composition API 是 Vue 3 引入的新特性，允许将逻辑组织为可复用的函数。
+
+```js
+
+import { ref, computed } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0); // 定义响应式数据
+    const doubleCount = computed(() => count.value * 2); // 计算属性
+
+    function increment() {
+      count.value++; // 定义方法
+    }
+
+    return { count, doubleCount, increment }; // 返回模板使用的数据和方法
+  }
+};
+
+```
+
+## 67. Vue 3 中的 toRef 和 toRefs 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+toRef：将对象的某个属性转换为 ref。
+
+toRefs：将整个响应式对象的所有属性转换为 ref。
+
+```js
+
+import { reactive, toRef, toRefs } from 'vue';
+
+export default {
+  setup() {
+    const state = reactive({ name: 'Vue 3', age: 3 });
+    const nameRef = toRef(state, 'name'); // 单个属性
+    const stateRefs = toRefs(state); // 所有属性
+
+    return { nameRef, stateRefs };
+  }
+};
+
+```
+
+## 68. Vue 3 中的 provide 和 inject 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+provide 和 inject 用于跨层级组件通信。
+
+```js
+
+import { provide, ref } from 'vue';
+
+export default {
+  setup() {
+    const message = ref('Hello from parent');
+    provide('message', message); // 提供数据
+  }
+};
+
+// 子组件
+import { inject } from 'vue';
+
+export default {
+  setup() {
+    const message = inject('message'); // 注入数据
+    return { message };
+  }
+};
+
+```
+
+## 69. Vue 3 中的 Teleport 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Teleport 用于将组件渲染到指定 DOM 节点。
+
+```js
+
+<template>
+  <teleport to="body">
+    <div>Modal</div>
+  </teleport>
+</template>
+
+```
+
+## 70. Vue 3 中的 Suspense 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Suspense 用于处理异步组件的加载状态。
+
+```js
+
+<template>
+  <Suspense>
+    <template #default>
+      <AsyncComponent />
+    </template>
+    <template #fallback>
+      <p>Loading...</p>
+    </template>
+  </Suspense>
+</template>
+
+```
+
+## 71. Vue 3 中的 Fragment 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Fragment 允许组件返回多个根元素。
+
+```js
+
+<template>
+  <div>Hello</div>
+  <div>Vue 3</div>
+</template>
+
+```
+
+## 72. Vue 3 中的 shallowRef 和 shallowReactive 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+shallowRef：只对 .value 进行响应式处理。
+
+shallowReactive：只对对象的第一层属性进行响应式处理。
+
+```js
+
+import { shallowRef, shallowReactive } from 'vue';
+
+export default {
+  setup() {
+    const count = shallowRef(0); // 基本类型
+    const state = shallowReactive({ name: 'Vue 3', info: { age: 3 } }); // 对象类型
+
+    return { count, state };
+  }
+};
+
+```
+
+## 73. Vue 3 中的 watch 如何监听多个数据？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+通过数组传入多个监听源。
+
+```js
+
+import { ref, watch } from 'vue';
+
+export default {
+  setup() {
+    const count = ref(0);
+    const name = ref('Vue 3');
+
+    watch([count, name], ([newCount, newName], [oldCount, oldName]) => {
+      console.log('count 或 name 变化了');
+    });
+
+    return { count, name };
+  }
+};
+
+```
+
+## 74. Vue 3 中的 onRenderTracked 是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+onRenderTracked 是调试钩子，用于跟踪渲染依赖。
+
+```js
+
+import { onRenderTracked } from 'vue';
+
+export default {
+  setup() {
+    onRenderTracked((event) => {
+      console.log('跟踪到依赖:', event);
+    });
+  }
+};
+
+
+```
+
+## 74. Pinia与 Vuex 有哪些不同？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+更符合 Composition API 思维模式
+
+更好的 TypeScript 类型支持
+
+## 75. Vue 项目中如何实现多环境配置？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+可以使用 .env 文件来为不同环境配置变量。常见的环境文件包括：
+
+env：默认的环境配置（用于开发环境或没有明确环境时）。
+
+.env.development：开发环境配置。
+
+.env.production：生产环境配置。
+
+.env.test：测试环境配置。
+
+## 76. EventBus 与 mitt 区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue2 中我们使用 EventBus 来实现跨组件之间的一些通信，它依赖于 Vue 自带的$on/$emit/$off等方法，这种方式使用非常简单方便，但如果使用不当也会带来难以维护的毁灭灾难。而 Vue3 中移除了这些相关方法，这意味着 EventBus 这种方式我们使用不了，Vue3 推荐尽可能使用props/emits、provide/inject、Vuex 等其他方式来替代。
+
+如果 Vue3 内部的方式无法满足，官方建议使用一些外部的辅助库，例如：mitt。优点：
+
+非常小，压缩后仅有 200 bytes。
+
+完整 TS 支持，源码由 TS 编码。
+
+跨框架，它并不是只能用在 Vue 中，React、JQ 等框架中也可以使用。
+
+使用简单，仅有 on、emit、off 等少量实用API。
+
+## 77. v-if和v-for为什么不能连用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+v-for优先于v-if被解析，从源码中发现，先处理静态节点，在处理once，在处理for，在处理if，代码显示for的优先级比if高，断点调试也证实for优先于if。在vue3中v-if优先于v-for被解析。
+
+如果同时使用，每次渲染都会先执行循环在判断条件，无论如何循环都避免不了，浪费了性能。
+
+要避免出现这种情况，可以采用多层包裹来解决性能损耗问题。例如外层给标签绑定指令v-if或者是内层标签绑定v-if。
+
+## 78. mixin和mixis区别？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+mixin用于全局混入，会影响到每个组件实例，通常插件都是这样做初始化的。比如：可以全局混入封装好的ajax或者一些工具函数等。
+
+mixins用于单组件，是最常使用的扩展组件的方式。如果多个组件中有相同的业务逻辑，就可以将这些逻辑剥离出来，通过mixins混入代码。比如上拉下拉加载数据这种逻辑等。
+
+## 79. Vue 3的插槽（Slots）和Vue 2有何不同？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1分）
+
+Vue 3的插槽（Slots）与Vue 2相比有一些改进和变化。首先，Vue 3支持具名插槽和默认插槽的混合使用，这使得插槽的使用更加灵活。其次，Vue 3引入了作用域插槽（Scoped Slots），允许你在插槽中访问子组件的数据和方法。此外，Vue 3还改进了插槽的渲染和更新性能。
