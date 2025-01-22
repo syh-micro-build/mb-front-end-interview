@@ -618,3 +618,56 @@ emit 事件发生时，可以读取到最终输出的资源、代码块、模块
 watch-run 当依赖的文件发生变化时会触发
 
 - 异步的事件需要在插件处理完任务时调用回调函数通知 Webpack 进入下一个流程，不然会卡住
+
+### 33. 聊一聊Babel原理吧
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+大多数JavaScript Parser遵循 estree 规范，Babel 最初基于 acorn 项目(轻量级现代 JavaScript 解析器) Babel大概分为三大部分：
+
+- 解析：将代码转换成 AST
+
+  词法分析：将代码(字符串)分割为token流，即语法单元成的数组
+
+  语法分析：分析token流(上面生成的数组)并生成 AST
+
+- 转换：处理 AST，进行添加、更新或移除等操作
+
+  Taro就是利用 babel 完成的小程序语法转换
+
+- 生成：将处理后的 AST 转换成代码
+
+### 34. Babel如何配置？如何配置才能让babel支持最新es语法？
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+Babel 是一个编译器，它主要用于将 ECMAScript 2015+ 代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。
+
+Babel 的配置文件通常是一个名为 babel.config.js 的 JavaScript 文件，它位于项目的根目录中。在这个文件中，你可以使用 Babel 的配置选项来指定如何转换你的代码。
+
+要配置 Babel 以支持最新的 ECMAScript 语法，你可以使用 @babel/preset-env 预设。这个预设会根据你的目标环境自动选择需要的 Babel 插件和 polyfills，以支持最新的 ECMAScript 语法。
+
+以下是一个基本的 babel.config.js 文件的示例，它使用 @babel/preset-env 预设来支持最新的 ECMAScript 语法：
+
+```javascript
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
+  ],
+};
+```
