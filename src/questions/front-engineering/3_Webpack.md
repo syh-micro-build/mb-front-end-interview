@@ -354,3 +354,23 @@ class MyPlugin {
 - webpack-bundle-analyzer：可视化 webpack 输出文件的体积，方便找出问题所在
 
 - HotModuleReplacementPlugin：模块热替换
+
+### 21. source map是什么？生产环境怎么用？
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+source map 是将编译、打包、压缩后的代码映射回源代码的过程。打包压缩后的代码不具备良好的可读性，想要调试源码就需要 soucre map。
+
+map文件只要不打开开发者工具，浏览器是不会加载的。
+
+线上环境一般有三种处理方案：
+
+- hidden-source-map：借助第三方错误监控平台 Sentry 使用
+- nosources-source-map：只会显示具体行数和错误，不会显示具体源码
+- inline-source-map：通过 dataURL 形式内联在打包文件中
+
+注意：避免在生产中使用 eval-source-map 和 cheap-module-eval-source-map，因为这两个配置会导致代码缓存失效，从而降低应用性能。
