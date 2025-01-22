@@ -487,3 +487,56 @@ module.exports = {
 
 
 ```
+
+### 28. 图片的文件指纹设置
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+设置file-loader的name，使用hash。
+
+- ext 资源后缀名
+
+- name 资源名称
+
+- path 资源所在路径
+
+- folder 资源所在文件夹
+
+- base 资源相对于上下文路径
+
+- hash 文件内容的 hash 值
+
+- digest 文件内容的 digest 值
+
+- content 文件内容的 base64 编码
+
+- query url查询参数
+
+- emoji 一个随机的指代文件内容的emoj
+
+```js
+
+const path = require('path');
+module.exports = {    
+  entry: './src/index.js',    
+  output: {        
+    filename:'bundle.js',        
+    path:path.resolve(__dirname, 'dist')    
+    },    
+    module:{        
+      rules:[{            
+        test:/\.(png|svg|jpg|gif)$/,            
+        use:[{                
+          loader:'file-loader',                
+          options:{                    
+            name:'img/[name][hash:8].[ext]'                
+        }            
+      }]        
+    }]    
+  }}
+
+```
