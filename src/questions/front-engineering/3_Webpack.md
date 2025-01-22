@@ -314,3 +314,25 @@ class MyPlugin {
 - babel-loader：把 ES6 转换成 ES5
 
 - css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
+
+### 19. 有哪些常见的Plugin？你用过哪些Plugin？
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- html-webpack-plugin：简化 html 文件的创建，可以指定模板和输出文件
+
+- mini-css-extract-plugin：分离 css 文件
+
+- clean-webpack-plugin：清理文件夹
+
+- webpack-bundle-analyzer：可视化 webpack 输出文件的体积
+
+- terser-webpack-plugin：压缩 js 文件
+
+- optimize-css-assets-webpack-plugin：压缩 css 文件
+
+- webpack-bundle-analyzer：可视化 webpack 输出文件的体积
