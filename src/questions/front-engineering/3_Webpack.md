@@ -1,6 +1,6 @@
 # webpack
 
-## webpack 的热更新是什么?
+## 1. webpack 的热更新是什么?
 
 #### 类型：`架构`
 
@@ -11,7 +11,7 @@
 - **1：** Hot Module Replacement 简称 HRM
 - **1：** 模块热替换，指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个应用
 
-## webpack 中如何配置开启热更新？
+## 2. webpack 中如何配置开启热更新？
 
 #### 类型：`架构`
 
@@ -33,7 +33,7 @@ module.exports = {
 };
 ```
 
-## webpack 的热更新原理?
+## 3. webpack 的热更新原理?
 
 #### 类型：`架构`
 
@@ -47,7 +47,7 @@ module.exports = {
 - **1：** 在浏览器接受到这条消息之前，浏览器已经在上一次 socket 消息中已经记住了此时的 hash 标识这时候我们会创建一个 ajax 去服务端请求获取到变化内容的 manifest 文件mainfest 文件包含重新 build 生成的 hash 值，以及变化的模块，对应上图的 c 属性浏览器根据 manifest 文件获取模块变化的内容，从而触发 render 流程，实现局部模块更新。
 ![alt text](/public/images/image.png)
 
-## 简述webpack的构建流程？
+## 4. 简述webpack的构建流程？
 
 #### 类型：`架构`
 
@@ -60,7 +60,7 @@ module.exports = {
 - **1：** 输出流程：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统
 ![alt text](/public/images/image2.png)
 
-## webpack proxy是什么？
+## 5. webpack proxy是什么？
 
 #### 类型：`架构`
 
@@ -70,7 +70,7 @@ module.exports = {
 
 - **2：** webpack proxy，是 webpack 提供的代理服务，基本行为就是接收客户端发送的请求后转发给其他服务器，其目的是为了便于开发者在开发模式下解决跨域问题(浏览器安全策略限制)
 
-## webpack 中提供服务器的工具是什么？
+## 6. webpack 中提供服务器的工具是什么？
 
 #### 类型：`架构`
 
@@ -80,7 +80,7 @@ module.exports = {
 
 - **1：** webpack 中提供服务器的工具为 webpack-dev-server
 
-## webpack-dev-server是什么？
+## 7. webpack-dev-server是什么？
 
 #### 类型：`架构`
 
@@ -90,7 +90,7 @@ module.exports = {
 
 - **1：** webpack-dev-server是官方推出的一款开发工具，将自动编译和自动刷新浏览器等一系列对开发友好的功能全部集成在了一起，目的是为了提高开发者日常的开发效率，只适用在开发阶段关于配置方面。
 
-## webpack代理怎么配置？proxy中常用的属性是什么？
+## 8. webpack代理怎么配置？proxy中常用的属性是什么？
 
 #### 类型：`架构`
 
@@ -125,7 +125,7 @@ module.exports = {
  >secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false  
  >changeOrigin：它表示是否更新代理后请求的 headers 中host地址  
 
-## proxy是工作原理？
+## 9. proxy是工作原理？
 
 #### 类型：`架构`
 
@@ -144,7 +144,7 @@ app.use('/api', proxy({target: 'http://www.example.org', changeOrigin: true
 app.listen(3000);
 ```
 
-## webpack proxy 为什么能解决跨域？
+## 10. webpack proxy 为什么能解决跨域？
 
 #### 类型：`架构`
 
@@ -157,7 +157,7 @@ app.listen(3000);
 在代理服务器传递数据给本地浏览器的过程中，两者同源，并不存在跨域行为，这时候浏览器就能正常接收数据。  
 **注意：服务器与服务器之间请求数据并不会存在跨域行为，跨域行为是浏览器安全策略限制。**
 
-## webpack的loader是什么？为什么使用它？它有哪几种配置方式
+## 11. webpack的loader是什么？为什么使用它？它有哪几种配置方式
 
 #### 类型：`架构`
 
@@ -173,7 +173,7 @@ app.listen(3000);
   >内联方式：在每个 import 语句中显式指定 loader  
   >Cl 方式：在 shell 命令中指定它们  
 
-## webpack的Plugin是什么
+## 12. webpack的Plugin是什么
 
 #### 类型：`架构`
 
@@ -183,7 +183,7 @@ app.listen(3000);
 
 - **2：** webpack 中的 plugin 赋予其各种灵活的功能，例如打包优化、资源管理、环境变量注入等，它们会运行在 webpack 的不同阶段(钩子/生命周期)，贯穿了 webpack 整个编译周期，目的在于解决 loader 无法实现的其他事
 
-## webpack的Plugin和Loader的区别
+## 13. webpack的Plugin和Loader的区别
 
 #### 类型：`架构`
 
@@ -194,7 +194,7 @@ app.listen(3000);
 - **1：**【Loader】：用于对模块源码的转换， loader可以将文件从不同的语言（如TypeScript）转换为JavaScript，或者将内联图像转换为data URL。比如说：CSS-Loader，Style-Loader等。
 - **1：**【Plugin】：目的在于解决loader无法实现的其他事，从打包优化和压缩，到重新定义环境变量，功能强大到可以用来处理各种各样的任务。webpack提供了很多开箱即用的插件：CommonChunkPlugin主要用于提取第三方库和公共模块，避免首屏加载的bundle文件，或者按需加载的bundle文件体积过大，导致加载时间过长，是一把优化的利器。而在多页面应用中，更是能够为每个页面间的应用程序共享代码创建bundle。
 
-## webpack常见的提升构建速度的方法
+## 14. webpack常见的提升构建速度的方法
 
 #### 类型：`架构`
 
@@ -213,7 +213,7 @@ app.listen(3000);
  >terser 启动多线程  
  >合理使用 sourceMap
 
-## webpack中的Loader如何编写？
+## 15. webpack中的Loader如何编写？
 
 #### 类型：`架构`
 
@@ -243,7 +243,7 @@ return content;//同步
 }
 ```
 
-## webpack中的Plugin如何编写？
+## 16. webpack中的Plugin如何编写？
 
 #### 类型：`架构`
 
@@ -274,7 +274,7 @@ class MyPlugin {
 }
 ```
 
-## 说说如何借助webpack来优化前端性能?
+## 17. 说说如何借助webpack来优化前端性能?
 
 #### 类型：`架构`
 
@@ -292,3 +292,25 @@ class MyPlugin {
  >Tree Shaking  
  >代码分离  
  >内联 chunk
+
+### 18. 有哪些常见的Loader？你用过哪些Loader？
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- raw-loader：加载文件原始内容（utf-8）
+
+- file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
+
+- url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去
+
+- source-map-loader：加载额外的 Source Map 文件，以方便断点调试
+
+- image-loader：加载并且压缩图片文件
+
+- babel-loader：把 ES6 转换成 ES5
+
+- css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
