@@ -635,3 +635,65 @@ type NullablePerson = Nullable<Person>;
 枚举和常量枚举: 常量枚举只能使用常量枚举表达式，并且不同于常规的枚举，它们在编译阶段会被删除。 常量枚举成员在使用的地方会被内联进来。 之所以可以这么做是因为，常量枚举不允许包含计算成员。
 
 - 接口和类型别名: 两者都可以用来描述对象或函数的类型。与接口不同，类型别名还可以用于其他类型，如基本类型（原始值）、联合类型、元组。
+
+## 23. 解释 TypeScript 中的类型断言（Type Assertion）及其作用
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** 类型断言是一种告诉编译器某个值的类型的方式，它允许开发者手动指定一个值的类型，而不是让编译器自动推断。有两种语法形式：as语法和尖括号语法。例如：
+
+```ts
+// as语法
+let someValue: any = "this is a string";
+let strLength: number = (someValue as string).length;
+
+// 尖括号语法
+let someValue: any = "this is a string";
+let strLength: number = (<string>someValue).length;
+```
+
+- **1：** 类型断言的作用主要是在某些情况下，当编译器无法准确推断类型或者开发者确定某个值的类型时，通过类型断言来告诉编译器，以便进行更准确的类型检查和代码提示，避免类型错误。
+
+## 24. 什么是 TypeScript 中的模块（Module）？如何在模块中导出和导入成员？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** 模块定义：模块是 TypeScript 中用于组织和封装代码的一种方式，它可以将相关的代码、类型定义、函数等组合在一起，形成一个独立的单元，提高代码的可维护性和可复用性。
+- **1：** 导出成员：使用export关键字来导出模块中的成员，如变量、函数、类、接口等。可以在定义成员时直接使用export导出，也可以在模块末尾统一使用export导出。
+
+```ts
+// 方式一：直接导出
+export const name = 'Tom';
+export function sayHello() {
+    console.log('Hello');
+}
+// 方式二：统一导出
+const age = 18;
+function doSomething() {
+    console.log('Doing something');
+}
+export { age, doSomething };
+```
+
+- **1：** 导入成员：使用import关键字来导入模块中的成员，可以按需导入特定成员，也可以整体导入模块并通过别名访问成员。
+
+```ts
+// 按需导入
+import { name, sayHello } from './module';
+// 整体导入并使用别名
+import * as myModule from './module';
+console.log(myModule.name);
+myModule.sayHello();
+```
+
+</details>
