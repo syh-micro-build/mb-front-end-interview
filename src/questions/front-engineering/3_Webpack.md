@@ -415,3 +415,45 @@ Webpack开启监听模式，有两种方式：
 
 VSCode 中有一个插件 Import Cost 可以帮助我们对引入模块的大小进行实时监测，还可以使用 webpack-bundle-analyzer 生成 bundle 的模块组成图，显示所占体积。
 bundlesize 工具包可以进行自动化资源体积监控。
+
+### 25. 文件指纹是什么
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+文件指纹是打包后输出的文件名的后缀。
+
+- Hash：和整个项目的构建相关，只要项目文件有修改，整个项目构建的 hash 值就会更改
+
+- Chunkhash：和 Webpack 打包的 chunk 有关，不同的 entry 会生成不同的 chunkhash 值
+
+- Contenthash：根据文件内容来定义 hash，文件内容不变，则 contenthash 不变
+
+### 26. JS的文件指纹设置
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+文件指纹是打包后输出的文件名的后缀。
+
+设置 output 的 filename，用 chunkhash。
+
+```js
+
+module.exports = {    
+  entry: {        
+    app: './scr/app.js',        
+    search: './src/search.js'    
+    },    
+    output: {        
+      filename: '[name][chunkhash:8].js',        
+      path:__dirname + '/dist'    
+}}
+
+```
