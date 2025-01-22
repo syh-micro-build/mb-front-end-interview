@@ -457,3 +457,33 @@ module.exports = {
 }}
 
 ```
+
+### 27. CSS的文件指纹设置
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+设置 MiniCssExtractPlugin 的 filename，使用 contenthash。
+
+```js
+
+module.exports = {    
+  entry: {        
+    app: './scr/app.js',        
+    search: './src/search.js'    },   
+    output: {        
+      filename: '[name][chunkhash:8].js',        
+      path:__dirname + '/dist'    
+    },    
+    plugins:[        
+        new MiniCssExtractPlugin({            
+        filename: `[name][contenthash:8].css`        
+      })    
+  ]}
+
+
+
+```
