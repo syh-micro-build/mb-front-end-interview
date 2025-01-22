@@ -336,3 +336,21 @@ class MyPlugin {
 - optimize-css-assets-webpack-plugin：压缩 css 文件
 
 - webpack-bundle-analyzer：可视化 webpack 输出文件的体积
+
+### 20. 使用webpack开发时，你用过哪些可以提高效率的插件？
+
+#### 类型：`架构`
+
+#### 级别：`w3`,`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- webpack-dashboard：可以更友好的展示相关打包信息。
+
+- webpack-merge：提取公共配置，减少重复配置代码
+
+- speed-measure-webpack-plugin：可以得知每个 loader 和 plugin 的执行耗时
+
+- webpack-bundle-analyzer：可视化 webpack 输出文件的体积，方便找出问题所在
+
+- HotModuleReplacementPlugin：模块热替换
