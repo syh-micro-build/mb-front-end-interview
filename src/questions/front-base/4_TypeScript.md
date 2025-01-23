@@ -745,3 +745,13 @@ type Pop<T extends any[]> = T extends [...infer Rest, infer _] ? Rest : [];
 type Tuple = [1, 2, 3];
 type Result = Pop<Tuple>; // [1, 2]
 ```
+
+## 28. 解释 TypeScript 中 infer 关键字的作用。
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** infer 关键字用于在条件类型中推断类型。它通常和 extends 一起使用，在类型匹配成功时，将匹配到的部分类型赋值给一个新的类型变量。
