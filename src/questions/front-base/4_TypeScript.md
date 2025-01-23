@@ -727,7 +727,7 @@ type Result1 = IsNever<never>; // true
 type Result2 = IsNever<string>; // false
 ```
 
-## 27. 实现一个类型工具 Pop<T>，用于移除元组类型 T 的最后一个元素。
+## 27. 实现一个类型工具 Pop<T>，用于移除元组类型 T 的最后一个元素
 
 #### 类型：`基础`
 
@@ -746,7 +746,7 @@ type Tuple = [1, 2, 3];
 type Result = Pop<Tuple>; // [1, 2]
 ```
 
-## 28. 解释 TypeScript 中 infer 关键字的作用。
+## 28. 解释 TypeScript 中 infer 关键字的作用
 
 #### 类型：`基础`
 
