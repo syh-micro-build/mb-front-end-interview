@@ -63,17 +63,17 @@
       },
       {
         "value": "runtime",
-        "name": "runtime:            🛠️  前端运行环境 | Front-end runtime environment",
+        "name": "runtime:            🛠️   前端运行环境 | Front-end runtime environment",
         "emoji": ":hammer:"
       },
       {
         "value": "frame",
-        "name": "frame:              🖌️  前端框架 | Front-end framework",
+        "name": "frame:              🖌️   前端框架 | Front-end framework",
         "emoji": ":paintbrush:"
       },
       {
         "value": "engineering",
-        "name": "engineering:        ⚙️  前端工程化 | Front-end engineering",
+        "name": "engineering:        ⚙️   前端工程化 | Front-end engineering",
         "emoji": ":gear:"
       },
       {
@@ -93,7 +93,7 @@
       },
       {
         "value": "architect",
-        "name": "architect:          🏗️  前端架构 | Front-end architecture",
+        "name": "architect:          🏗️   前端架构 | Front-end architecture",
         "emoji": ":building_construction:"
       },
       {
@@ -108,7 +108,7 @@
       },
       {
         "value": "computer-base",
-        "name": "computer-base:      🖥️  计算机基础 | Computer fundamentals",
+        "name": "computer-base:      🖥️   计算机基础 | Computer fundamentals",
         "emoji": ":desktop_computer:"
       },
       {
@@ -123,12 +123,12 @@
       },
       {
         "value": "style",
-        "name": "style:              💄 代码格式 | Code style changes",
+        "name": "style:              💄  代码格式 | Code style changes",
         "emoji": ":lipstick:"
       },
       {
         "value": "refactor",
-        "name": "refactor:           ♻️  代码重构 | Code refactoring",
+        "name": "refactor:           ♻️   代码重构 | Code refactoring",
         "emoji": ":recycle:"
       },
       {
@@ -143,7 +143,7 @@
       },
       {
         "value": "server",
-        "name": "server:             🖥️  服务端 | Server",
+        "name": "server:             🖥️   服务端 | Server",
         "emoji": ":desktop_computer:"
       },
       {
