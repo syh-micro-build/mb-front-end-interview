@@ -709,7 +709,7 @@ myModule.sayHello();
 - **1：** keyof操作符用于获取类型的键类型。例如，`type K = keyof { a: number; b: string }`，K的类型就是`'a' | 'b'`。
 - **1：** 使用场景包括实现类型安全的对象访问，如根据键获取对象的值时确保键的类型正确。
 
-## 26. 如何实现一个类型工具 IsNever<T>，用于判断一个类型 T 是否为 never 类型？
+## 26. 如何实现一个类型工具 `IsNever<T>`，用于判断一个类型 T 是否为 never 类型？
 
 #### 类型：`基础`
 
@@ -727,7 +727,7 @@ type Result1 = IsNever<never>; // true
 type Result2 = IsNever<string>; // false
 ```
 
-## 27. 实现一个类型工具 Pop<T>，用于移除元组类型 T 的最后一个元素
+## 27. 实现一个类型工具 `Pop<T>`，用于移除元组类型 T 的最后一个元素
 
 #### 类型：`基础`
 
