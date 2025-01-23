@@ -708,3 +708,21 @@ myModule.sayHello();
 
 - **1：** keyof操作符用于获取类型的键类型。例如，`type K = keyof { a: number; b: string }`，K的类型就是`'a' | 'b'`。
 - **1：** 使用场景包括实现类型安全的对象访问，如根据键获取对象的值时确保键的类型正确。
+
+## 25. 如何实现一个类型工具 IsNever<T>，用于判断一个类型 T 是否为 never 类型？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 使用 `[T]` extends `[never]` 来判断，因为直接 T extends never 会有特殊处理，而包装成元组可以正确判断。
+
+```ts
+// 答案
+type IsNever<T> = [T] extends [never]? true : false;
+// 测试
+type Result1 = IsNever<never>; // true
+type Result2 = IsNever<string>; // false
+```
