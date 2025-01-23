@@ -697,3 +697,61 @@ myModule.sayHello();
 ```
 
 </details>
+
+## 25. 描述一下 TypeScript 中keyof操作符的作用和使用场景
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** keyof操作符用于获取类型的键类型。例如，`type K = keyof { a: number; b: string }`，K的类型就是`'a' | 'b'`。
+- **1：** 使用场景包括实现类型安全的对象访问，如根据键获取对象的值时确保键的类型正确。
+
+## 26. 如何实现一个类型工具 `IsNever<T>`，用于判断一个类型 T 是否为 never 类型？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 使用 `[T]` extends `[never]` 来判断，因为直接 T extends never 会有特殊处理，而包装成元组可以正确判断。
+
+```ts
+// 答案
+type IsNever<T> = [T] extends [never]? true : false;
+// 测试
+type Result1 = IsNever<never>; // true
+type Result2 = IsNever<string>; // false
+```
+
+## 27. 实现一个类型工具 `Pop<T>`，用于移除元组类型 T 的最后一个元素
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** 使用 infer 关键字来推断元组的前面部分 Rest 和最后一个元素，然后返回 Rest。
+
+```ts
+// 答案
+type Pop<T extends any[]> = T extends [...infer Rest, infer _] ? Rest : [];
+
+// 测试
+type Tuple = [1, 2, 3];
+type Result = Pop<Tuple>; // [1, 2]
+```
+
+## 28. 解释 TypeScript 中 infer 关键字的作用
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** infer 关键字用于在条件类型中推断类型。它通常和 extends 一起使用，在类型匹配成功时，将匹配到的部分类型赋值给一个新的类型变量。
