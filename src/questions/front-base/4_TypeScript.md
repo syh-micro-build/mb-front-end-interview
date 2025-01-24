@@ -795,3 +795,41 @@ const example: DeepReadonly<Example> = {
 ```
 
 </details>
+
+## 30. 请解释 TypeScript 中类型断言和类型守卫的区别，并分别举例说明
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+<details>
+
+- **2：** 类型断言：类型断言是一种告诉 TypeScript 编译器某个变量具有特定类型的方式，它不会进行运行时检查，只是在编译阶段影响类型系统。开发者需要确保断言的正
+确性，否则可能导致运行时错误。
+
+```ts
+// 定义一个变量，类型为 unknown
+let value: unknown = 'hello';
+
+// 使用类型断言将 unknown 类型断言为 string 类型
+let strLength: number = (value as string).length;
+console.log(strLength); // 输出: 5
+```
+
+- **2：** 类型守卫：类型守卫是在运行时检查某个变量是否符合特定类型的条件，根据检查结果缩小变量的类型范围，使得在特定代码块内可以安全地使用该类型的属性和方法。
+
+```ts
+// 定义一个类型守卫函数，检查值是否为字符串
+function isString(value: unknown): value is string {
+    return typeof value === 'string';
+}
+
+let value: unknown = 'hello';
+if (isString(value)) {
+    // 在这个代码块内，TypeScript 知道 value 是 string 类型
+    let strLength: number = value.length;
+    console.log(strLength); // 输出: 5
+}
+```
