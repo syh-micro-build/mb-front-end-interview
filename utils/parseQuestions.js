@@ -1,4 +1,6 @@
 import * as cheerio from 'cheerio'
+import ExcelJS from 'exceljs'
+import FileSaver from 'file-saver'
 import { data } from './getQuestions.data.js'
 
 
@@ -130,4 +132,20 @@ export const getQuestions = () => {
     return questions
   }).flat().filter(node => node.text)
   return questionsData
+}
+
+export const exportExcel = (data, scoringNum) => {
+  const _workbook = new ExcelJS.Workbook()
+  const _sheet1 = _workbook.addWorksheet('sheet1')
+  const _titleCell = _sheet1.getRow(1)
+  _titleCell.font = { name: '黑体', bold: true, size: 14, color: { argb: '0000000' }}
+  _sheet1.columns = [{ header: '题目', key: 'title', width: 60 }, { header: '得分', key: 'scoring', width: 10 }]
+  _sheet1.addRows(data)
+  _sheet1.addRow({ title: '总分', scoring: scoringNum })
+  const _totalCell = _sheet1.getRow((data.length + 2))
+  _totalCell.font = { name: '黑体', bold: true, size: 14, color: { argb: 'f66f81ff' }}
+  _workbook.xlsx.writeBuffer().then(buffer => {
+    let _file = new Blob([buffer], { type: 'application/octet-stream' })
+    FileSaver.saveAs(_file, '训练结果.xlsx')
+  })
 }
