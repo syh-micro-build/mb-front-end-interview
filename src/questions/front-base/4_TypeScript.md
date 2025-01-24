@@ -755,3 +755,43 @@ type Result = Pop<Tuple>; // [1, 2]
 #### 解答（2 分）
 
 - **2：** infer 关键字用于在条件类型中推断类型。它通常和 extends 一起使用，在类型匹配成功时，将匹配到的部分类型赋值给一个新的类型变量。
+
+## 29. 如何在 TypeScript 中实现一个深度只读（Deep Readonly）类型？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+<details>
+
+- **2：** 答案如下：
+
+```ts
+type DeepReadonly<T> = {
+    readonly [P in keyof T]: T[P] extends object? DeepReadonly<T[P]> : T[P];
+};
+interface Example {
+    a: number;
+    b: {
+        c: string;
+        d: {
+            e: boolean;
+        };
+    };
+}
+const example: DeepReadonly<Example> = {
+    a: 1,
+    b: {
+        c: 'test',
+        d: {
+            e: true
+        }
+    }
+};
+// example.a = 2; // 报错，只读属性不能被重新赋值
+// example.b.c = 'new'; // 报错，深层属性也为只读
+```
+
+</details>
