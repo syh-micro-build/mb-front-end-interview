@@ -833,3 +833,5 @@ if (isString(value)) {
     console.log(strLength); // 输出: 5
 }
 ```
+
+</details>
