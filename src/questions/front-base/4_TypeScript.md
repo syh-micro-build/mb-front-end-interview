@@ -864,4 +864,4 @@ if (isString(value)) {
   + 联合类型：具有较好的扩展性，当需要增加新的可能类型时，直接使用|运算符添加到联合类型中即可。比如，对于`function foo(arg: string | number)`，如果还需要支持布尔类型，只
   需要修改为`function foo(arg: string | number | boolean)`。
 
-  </details>
+</details>
