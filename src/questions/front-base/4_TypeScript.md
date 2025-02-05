@@ -885,3 +885,19 @@ const colors = {
 type ColorKeys = keyof typeof colors; 
 // ColorKeys 类型为 'red' | 'green' | 'blue'
 ```
+
+## 33. 简述 NonNullable 类型工具的作用
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** `NonNullable<T>` 用于从类型 T 中排除 null 和 undefined 类型。示例：
+
+```ts
+type MaybeString = string | null | undefined;
+type DefiniteString = NonNullable<MaybeString>; 
+// DefiniteString 类型为 string
+```
