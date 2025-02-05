@@ -901,3 +901,19 @@ type MaybeString = string | null | undefined;
 type DefiniteString = NonNullable<MaybeString>; 
 // DefiniteString 类型为 string
 ```
+
+## 34. 如何定义一个只读数组类型？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 使用 readonly 关键字，如 `readonly number[]` 或 `ReadonlyArray<number>`。示例代码如下：
+
+```ts
+const readonlyArr: readonly number[] = [1, 2, 3];
+// 以下操作会报错，因为数组是只读的
+// readonlyArr[0] = 10; 
+```
