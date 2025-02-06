@@ -743,3 +743,53 @@ module.exports = {
 - **1：** ** loader**：用于处理不同类型的文件，将它们转换为 Webpack 能够处理的模块。例如，`css-loader` 用于处理 CSS 文件，`babel-loader` 用于将 ES6+ 代码转
 换为向后兼容的 JavaScript 代码。
 - **1：** 插件（Plugin）：用于执行更广泛的任务，如代码压缩、分割代码、生成 HTML 文件等。常见的插件有 HtmlWebpackPlugin、MiniCssExtractPlugin 等。
+
+## 39. Webpack 如何实现代码分割？
+
+#### 类型：`架构`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+在 Webpack 中，实现代码分割有以下几种方式：
+- **1：** 多入口配置：在 entry 中配置多个入口，Webpack 会为每个入口生成一个独立的打包文件。
+
+```js
+module.exports = {
+  entry: {
+    index: './src/index.js',
+    about: './src/about.js'
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
+```
+
+- **1：** 动态导入（Dynamic Import）：使用 ES6 的动态导入语法（import()）实现按需加载。Webpack 会自动将动态导入的模块分割成单独的文件。
+
+```js
+// 在代码中使用动态导入
+button.addEventListener('click', async () => {
+  const { add } = await import('./math.js');
+  console.log(add(1, 2));
+});
+```
+
+- **1：** SplitChunksPlugin：Webpack 内置的插件，用于分割公共代码和第三方库，减少重复打包。
+
+```js
+module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
+};
+```
+
+</details>
