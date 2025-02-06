@@ -740,7 +740,7 @@ module.exports = {
 
 - **1：** 入口（Entry）：指示 Webpack 从哪个模块开始打包，可配置单个或多个入口。
 - **1：** 输出（Output）：告诉 Webpack 打包后的文件存放在哪里，以及如何命名。
-- **1：** ** loader**：用于处理不同类型的文件，将它们转换为 Webpack 能够处理的模块。例如，`css-loader` 用于处理 CSS 文件，`babel-loader` 用于将 ES6+ 代码转
+- **1：** loader：用于处理不同类型的文件，将它们转换为 Webpack 能够处理的模块。例如，`css-loader` 用于处理 CSS 文件，`babel-loader` 用于将 ES6+ 代码转
 换为向后兼容的 JavaScript 代码。
 - **1：** 插件（Plugin）：用于执行更广泛的任务，如代码压缩、分割代码、生成 HTML 文件等。常见的插件有 HtmlWebpackPlugin、MiniCssExtractPlugin 等。
 
@@ -755,6 +755,7 @@ module.exports = {
 <details>
 
 在 Webpack 中，实现代码分割有以下几种方式：
+
 - **1：** 多入口配置：在 entry 中配置多个入口，Webpack 会为每个入口生成一个独立的打包文件。
 
 ```js
