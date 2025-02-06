@@ -793,3 +793,22 @@ module.exports = {
 ```
 
 </details>
+
+## 40. Webpack 中的 externals 配置有什么作用？
+
+#### 类型：`架构`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- externals 配置用于告诉 Webpack 哪些模块不需要打包到输出文件中，而是在运行时从外部获取。这在处理一些第三方库时非常有用，例如使用 CDN 引入 jQuery 时，我
+们不希望 Webpack 将 jQuery 打包到我们的项目中，而是在页面中通过 CDN 引入。示例配置如下：
+
+```js
+module.exports = {
+    externals: {
+        jquery: 'jQuery'
+    }
+};
+```
