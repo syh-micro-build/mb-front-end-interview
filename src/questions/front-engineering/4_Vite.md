@@ -152,3 +152,30 @@ module.exports = {
 - **1：** 代码问题：某些代码结构或语法可能导致热更新失效，例如在模块顶层使用 const 定义的对象或函数被修改，可能无法触发热更新。
 - **1：** 插件冲突：使用的某些插件可能与 Vite 的热更新机制冲突，尝试禁用部分插件排查问题。
 - **1：** 浏览器缓存：浏览器缓存可能会影响热更新，尝试清空浏览器缓存或使用无痕模式。
+
+## Vite 中的 define 配置项有什么作用？
+
+#### 类型：`架构`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** define 配置项用于在编译时定义全局常量。它可以让你在代码中使用这些常量，并且在打包时会将这些常量替换为实际的值。这在处理一些环境特定的配置或常量时非常有用。
+例如，在 vite.config.js 中：
+
+```js
+import { defineConfig } from 'vite';
+export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify('1.0.0'),
+    'process.env.NODE_ENV': JSON.stringify('development')
+  }
+});
+
+//在代码中就可以使用这些定义的常量：
+console.log(__APP_VERSION__);
+if (process.env.NODE_ENV === 'development') {
+  console.log('当前是开发环境');
+}
+```
