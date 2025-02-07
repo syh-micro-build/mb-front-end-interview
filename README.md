@@ -69,7 +69,7 @@ npx markdownlint-cli2 src/questions/front-base/3_JavaScript.md --fix
 - `architect`: 🏗️ 前端架构 | Front-end architecture
 - `algorithms`: 📚 数据结构及算法 | Data structures and algorithms
 - `newest`: 🚀 前端最前沿 | Cutting-edge front-end
-- `computer-base`: 🖥️ 计算机基础 | Computer fundamentals
+- `computer`: 🖥️ 计算机基础 | Computer fundamentals
 - `ai`: 🤖 人工智能 | Artificial intelligence
 - `web3`: 🌐 Web3 | Web3 technologies
 - `style`: 💄 代码格式 | Code style changes

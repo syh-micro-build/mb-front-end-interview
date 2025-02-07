@@ -18,7 +18,7 @@
         "architect",
         "algorithms",
         "newest",
-        "computer-base",
+        "computer",
         "ai",
         "web3",
         "style",
@@ -107,8 +107,8 @@
         "emoji": ":rocket:"
       },
       {
-        "value": "computer-base",
-        "name": "computer-base:      🖥️   计算机基础 | Computer fundamentals",
+        "value": "computer",
+        "name": "computer:      🖥️   计算机基础 | Computer fundamentals",
         "emoji": ":desktop_computer:"
       },
       {
