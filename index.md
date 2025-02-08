@@ -13,7 +13,9 @@ hero:
     - theme: alt
       text: 实战演练
       link: /src/training/training-primary/index
-
+  image:
+    src: /images/home.png
+    alt: 前端开发面试宝典
 features:
   - title: 体系化学习
     icon: 🛠️

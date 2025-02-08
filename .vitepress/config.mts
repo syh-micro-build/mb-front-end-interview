@@ -12,8 +12,16 @@ export default async () => {
     outDir: "dist",
     title: "前端面试题库",
     description: "致力于为前端人员提供全面可靠的专业知识",
+    head: [
+      ["meta", { name: "author", content: "小鹏学长" }],
+      ["meta", { name: "keywords", content: "前端面试题, vue,css,JavaScript" }],
+      ["link", { rel: "icon", href: "/images/icon.png" }],
+      ["link", { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" }],
+      ["script", { src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js" }],
+    ],
     themeConfig: {
       // https://vitepress.dev/reference/default-theme-config
+      logo: "/images/icon.png",
       nav: [
         { text: '指南', link: '/src/guide/why', activeMatch: '/src/guide/' },
         { text: '题库', link: '/src/questions/front-base/1_HTML', activeMatch: '/src/questions/' },
