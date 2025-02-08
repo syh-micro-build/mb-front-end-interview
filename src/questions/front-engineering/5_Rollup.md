@@ -16,3 +16,61 @@
 - 插件系统：Rollup 的插件系统比 Webpack 更简洁，WebPack 插件系统更强大，适合复杂的应用场景。
 - 在 Rollup 中，树摇是默认启用的，只要你使用了 ES 模块的语法，并且在构建时选择生产模式（如设置 minify 或 treeshake），就能自动进行树摇优化
 - Rollup 的插件系统非常强大，可以通过 plugins 配置项来引入各种插件。插件可以用来处理各种功能，如转换文件格式、代码压缩、代码分割、环境变量注入等。
+
+## Rollup 支持哪些输出格式？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** Rollup 支持多种输出格式，包括amd（用于 AMD 模块系统）、cjs（CommonJS，用于 Node.js）、es（ES6 模块）、iife（立即执行函数表达式，用于浏览器）、umd（通用模块定义，可在多种环境使用）
+
+## 如何配置 Rollup 进行代码压缩？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 可以使用terser插件来进行代码压缩。首先安装terser插件，然后在 Rollup 配置文件中添加：
+
+```js
+import terser from '@rollup/plugin - terser';
+
+export default {
+    input: 'input.js',
+    output: {
+        file: 'output.js',
+        format: 'iife'
+    },
+    plugins: [
+        terser()
+    ]
+};
+```
+
+## Rollup 的preserveModules选项有什么作用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** preserveModules选项会保留原始的模块结构，输出的文件中每个模块会单独成为一个文件，并且保持目录结构。这在需要保持模块结构清晰，或者需要对每个模块进行单独处理时很有用。例如：
+
+```js
+export default {
+    input: 'input.js',
+    output: {
+        dir: 'dist',
+        format: 'es',
+        preserveModules: true
+    }
+};
+//这样会在dist目录下按照原始模块结构生成多个文件。
+//如果你对这些面试题的答案还有更深入的问题，或者还想补充一些特定的知识点考察，欢迎随时告诉我。
+```
