@@ -5,7 +5,7 @@ import { data } from './getQuestions.data.js'
 
 
 let questionsData = null
-const typeDistribution = {
+export const typeDistribution = {
   初级: { 基础: 0.6, 编程: 0.3, 业务: 0.1, 架构: 0.0, 管理: 0.0, 拓展: 0.0 },
   中级: { 基础: 0.2, 编程: 0.6, 业务: 0.1, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
   高级: { 基础: 0.1, 编程: 0.2, 业务: 0.5, 架构: 0.1, 管理: 0.0, 拓展: 0.1 },
@@ -140,6 +140,7 @@ export const exportExcel = (data, scoringNum) => {
   const _titleCell = _sheet1.getRow(1)
   _titleCell.font = { name: '黑体', bold: true, size: 14, color: { argb: '0000000' }}
   _sheet1.columns = [{ header: '题目', key: 'title', width: 60 }, { header: '得分', key: 'scoring', width: 10 }]
+  _sheet1.getColumn('A').alignment = { wrapText: true }
   _sheet1.addRows(data)
   _sheet1.addRow({ title: '总分', scoring: scoringNum })
   const _totalCell = _sheet1.getRow((data.length + 2))
