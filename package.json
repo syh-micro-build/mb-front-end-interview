@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'test nothing 😈'",
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview",
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
     "lint": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "fix": "markdownlint-cli2 '**/*.md' '#node_modules' --fix",
     "prepare": "husky",

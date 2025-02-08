@@ -3,23 +3,27 @@
 layout: home
 
 hero:
-  name: "前端面试题库"
-  text: ""
-  tagline: 致力于为前端人员提供全面可靠的专业知识
+  name: "前端开发面试宝典"
+  text: "系统化的前端学习与面试指南"
+  tagline: 助力前端开发者构建完整知识体系，提升核心竞争力
   actions:
     - theme: brand
-      text: 题库学习
+      text: 开始学习
       link: /src/questions/front-base/1_HTML
     - theme: alt
-      text: 在线训练
+      text: 实战演练
       link: /src/training/training-primary/index
 
 features:
-  - title: 知识体系
-    details: 完整的前端知识图谱，包含基础、进阶、工程化、框架、算法、设计模式等
-  - title: 动态更新
-    details: 分析市场环境，针对性的更新题库，降低学习成本，保证学习效果
-  - title: 面经分享
-    details: 整合全行业面经，分享学习经验，帮助大家提高面试能力
----
+  - title: 体系化学习
+    icon: 🛠️
+    details: 精心打造前端知识图谱，涵盖基础语言、框架原理、工程化、性能优化、算法、设计模式等核心领域
 
+  - title: 持续更新
+    icon: ⚡
+    details: 紧跟技术发展，深入分析市场需求，定期更新优质内容，让您的学习始终与行业同步
+
+  - title: 经验分享
+    icon: 💡
+    details: 汇集一线大厂面试真题与经验分享，提供实用的备考策略，助您从容应对各类面试挑战
+---
