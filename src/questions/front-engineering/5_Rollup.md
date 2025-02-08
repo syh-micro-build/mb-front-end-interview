@@ -51,3 +51,26 @@ export default {
     ]
 };
 ```
+
+## Rollup 的preserveModules选项有什么作用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** preserveModules选项会保留原始的模块结构，输出的文件中每个模块会单独成为一个文件，并且保持目录结构。这在需要保持模块结构清晰，或者需要对每个模块进行单独处理时很有用。例如：
+
+```js
+export default {
+    input: 'input.js',
+    output: {
+        dir: 'dist',
+        format: 'es',
+        preserveModules: true
+    }
+};
+//这样会在dist目录下按照原始模块结构生成多个文件。
+//如果你对这些面试题的答案还有更深入的问题，或者还想补充一些特定的知识点考察，欢迎随时告诉我。
+```
