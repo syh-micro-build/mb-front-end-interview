@@ -26,3 +26,28 @@
 #### 解答（1 分）
 
 - **1：** Rollup 支持多种输出格式，包括amd（用于 AMD 模块系统）、cjs（CommonJS，用于 Node.js）、es（ES6 模块）、iife（立即执行函数表达式，用于浏览器）、umd（通用模块定义，可在多种环境使用）
+
+## 如何配置 Rollup 进行代码压缩？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 可以使用terser插件来进行代码压缩。首先安装terser插件，然后在 Rollup 配置文件中添加：
+
+```js
+import terser from '@rollup/plugin - terser';
+
+export default {
+    input: 'input.js',
+    output: {
+        file: 'output.js',
+        format: 'iife'
+    },
+    plugins: [
+        terser()
+    ]
+};
+```
