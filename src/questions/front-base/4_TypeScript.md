@@ -865,3 +865,55 @@ if (isString(value)) {
   需要修改为`function foo(arg: string | number | boolean)`。
 
 </details>
+
+## 32. 解释 keyof typeof 的组合用法
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** typeof 用于获取一个值的类型，keyof 用于获取一个类型的所有键组成的联合类型。keyof typeof 通常用于获取一个对象值的所有属性名组成的联合类型。示例：
+
+```ts
+const colors = {
+    red: '#FF0000',
+    green: '#00FF00',
+    blue: '#0000FF'
+};
+type ColorKeys = keyof typeof colors; 
+// ColorKeys 类型为 'red' | 'green' | 'blue'
+```
+
+## 33. 简述 NonNullable 类型工具的作用
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **2：** `NonNullable<T>` 用于从类型 T 中排除 null 和 undefined 类型。示例：
+
+```ts
+type MaybeString = string | null | undefined;
+type DefiniteString = NonNullable<MaybeString>; 
+// DefiniteString 类型为 string
+```
+
+## 34. 如何定义一个只读数组类型？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 使用 readonly 关键字，如 `readonly number[]` 或 `ReadonlyArray<number>`。示例代码如下：
+
+```ts
+const readonlyArr: readonly number[] = [1, 2, 3];
+// 以下操作会报错，因为数组是只读的
+// readonlyArr[0] = 10; 
+```
