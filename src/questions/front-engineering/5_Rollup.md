@@ -74,3 +74,27 @@ export default {
 //这样会在dist目录下按照原始模块结构生成多个文件。
 //如果你对这些面试题的答案还有更深入的问题，或者还想补充一些特定的知识点考察，欢迎随时告诉我。
 ```
+
+## Rollup 的onwarn选项有什么作用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** onwarn选项用于自定义警告信息的处理。可以通过它来忽略某些特定的警告，或者对警告进行统一的日志记录等操作。例如，忽略UNUSED_EXTERNAL_IMPORT警告：
+
+```js
+export default {
+    input: 'input.js',
+    output: {
+        file: 'output.js',
+        format: 'iife'
+    },
+    onwarn(warning, warn) {
+        if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return;
+        warn(warning);
+    }
+};
+```
