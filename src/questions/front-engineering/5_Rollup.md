@@ -74,3 +74,65 @@ export default {
 //这样会在dist目录下按照原始模块结构生成多个文件。
 //如果你对这些面试题的答案还有更深入的问题，或者还想补充一些特定的知识点考察，欢迎随时告诉我。
 ```
+
+## Rollup 的onwarn选项有什么作用？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** onwarn选项用于自定义警告信息的处理。可以通过它来忽略某些特定的警告，或者对警告进行统一的日志记录等操作。例如，忽略UNUSED_EXTERNAL_IMPORT警告：
+
+```js
+export default {
+    input: 'input.js',
+    output: {
+        file: 'output.js',
+        format: 'iife'
+    },
+    onwarn(warning, warn) {
+        if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return;
+        warn(warning);
+    }
+};
+```
+
+## Rollup 和 Parcel 相比，有哪些不同点？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **1：** 配置复杂度：Parcel 是零配置的打包工具，开箱即用；Rollup 需要手动配置，虽然灵活性高，但上手门槛相对较高。
+- **1：** 打包性能：在某些场景下，Rollup 的 Tree - shaking 能力更强，能生成更精简的代码包；Parcel 在处理多模块和热更新方面有较好的表现，更适合快速开发。
+- **1：** 适用场景：Rollup 适合库和追求极致优化的小型项目；Parcel 适合快速搭建原型和开发不需要复杂配置的应用。
+
+## 在 Rollup 中，如何实现对 TypeScript 代码的打包？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **1：** 可以使用rollup-plugin-typescript2插件。首先确保项目安装了typescript和rollup-plugin-typescript2，然后在 Rollup 配置文件中配置：
+
+```js
+import typescript from 'rollup-plugin-typescript2';
+
+export default {
+    input: 'input.ts',
+    output: {
+        file: 'output.js',
+        format: 'iife'
+    },
+    plugins: [
+        typescript()
+    ]
+};
+//该插件会将 TypeScript 代码编译为 JavaScript 代码，并进行打包。
+```
