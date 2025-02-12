@@ -76,3 +76,35 @@ Qiankun 是一个基于 single-spa 的微前端实现库，由蚂蚁金服开源
 - **1：** 大型项目拆分：将复杂的大型前端项目拆分成多个小型、独立的子应用，每个子应用可以由不同的团队独立开发、测试和部署。
 - **1：** 旧系统升级：在不影响现有业务的前提下，逐步对旧系统进行升级改造，将新功能以子应用的形式集成到旧系统中。
 - **1：** 多技术栈融合：允许在同一个项目中使用不同的前端技术栈（如 Vue、React、Angular 等），充分发挥各技术栈的优势。
+
+## Qiankun 中主应用和子应用是如何通信的？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **1：** props 通信：主应用在加载子应用时，可以通过 props 向子应用传递数据。子应用可以在 mount 生命周期中接收这些数据。例如：
+
+```js
+// 主应用
+registerMicroApps([
+  {
+    name: 'app1',
+    entry: '//localhost:8081',
+    container: '#subapp-viewport',
+    props: {
+      message: 'Hello from main app'
+    }
+  }
+]);
+
+// 子应用
+export async function mount(props) {
+  console.log(props.message); // 输出: Hello from main app
+}
+```
+
+- **1：** 事件通信：可以使用自定义事件来实现主应用和子应用之间的通信。主应用和子应用都可以触发和监听事件。Qiankun 提供了 window.dispatchEvent 和 window.addEventListener 来实现事件的触发和监听。
+- **1：** 全局状态管理：使用第三方状态管理库（如 Redux、MobX 等），将状态存储在全局，主应用和子应用都可以访问和修改这些状态。
