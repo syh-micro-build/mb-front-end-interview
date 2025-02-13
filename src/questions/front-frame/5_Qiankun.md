@@ -130,3 +130,38 @@ export async function mount(props) {
 
 - **1：** Shadow DOM：Qiankun 内部可以利用 Shadow DOM 的特性，将子应用的 DOM 结构和样式封装在一个独立的作用域中，使其样式不会影响到外部主应用和其他子应用。
 - **1：** CSS 前缀：给子应用的所有 CSS 类名添加特定的前缀，避免类名冲突，从而实现样式隔离。
+
+## 当子应用出现加载失败的情况，如何进行处理？
+
+#### 类型：`拓展`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** 可以通过 registerMicroApps 的 lifecycles 配置项中的 beforeLoad 和 afterLoad 钩子来处理加载失败的情况。在 afterLoad 钩子中，可以捕获加载过程中
+抛出的错误，并在页面上显示友好的错误提示信息，示例代码如下：
+
+```js
+registerMicroApps([
+  {
+    name: 'sub - app1',
+    entry: '//localhost:8081',
+    container: '#sub - app - container',
+    activeRule: '/sub - app1'
+  }
+], {
+  afterLoad: (app) => {
+    return new Promise((resolve, reject) => {
+      try {
+        // 子应用加载成功
+        resolve();
+      } catch (error) {
+        // 显示错误提示
+        console.error('子应用加载失败:', error);
+        reject(error);
+      }
+    });
+  }
+});
+```
