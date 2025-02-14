@@ -6,8 +6,8 @@ import { data } from './getQuestions.data.js'
 
 let questionsData = null
 export const typeDistribution = {
-  初级: { 基础: 0.6, 编程: 0.3, 业务: 0.1, 架构: 0.0, 管理: 0.0, 拓展: 0.0 },
-  中级: { 基础: 0.2, 编程: 0.6, 业务: 0.1, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
+  初级: { 基础: 0.4, 编程: 0.3, 业务: 0.2, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
+  中级: { 基础: 0.2, 编程: 0.5, 业务: 0.2, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
   高级: { 基础: 0.1, 编程: 0.2, 业务: 0.5, 架构: 0.1, 管理: 0.0, 拓展: 0.1 },
   架构: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.5, 管理: 0.1, 拓展: 0.1 },
   专家: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.3, 管理: 0.2, 拓展: 0.2 },
@@ -75,6 +75,8 @@ export const chunkMarkdown = (node) => {
     } else if (ele.type === 'heading' && ele.depth === 4) {
       if (ele.text.startsWith('类型：')) {
         currentBlock.type = ele.text.replace('类型：', '').trim().replace(/^`(.*)`$/, '\$1')
+      } else if (ele.text.startsWith('级别：')) {
+        currentBlock.level = ele.text.replace(/^级别：/, "")
       } else if (ele.text.startsWith('解答（')) {
         const scoreMatch = ele.text.match(/解答\s*（\s*(\d+)\s*分\s*）/i)
         if (scoreMatch) score = parseInt(scoreMatch[1], 10)
@@ -87,8 +89,22 @@ export const chunkMarkdown = (node) => {
   return result
 }
 
-export const selectQuestionsForLevel = (data, level) => {
-  const distribution = typeDistribution[level] || typeDistribution['初级']
+const shuffleArray = (array) => {
+  const times = 10
+  for (let t = 0; t < times; t++) {
+    for (let i = array.length - 1; i > 0; i--) {
+      // 通过不同的随机因子让每次生成的 j 值有所不同
+      const randomFactor = Math.floor(Math.random() * (i + 1) * (Date.now() % 1000))
+      const j = randomFactor % (i + 1);
+      [array[i], array[j]] = [array[j], array[i]]
+    }
+  }
+}
+
+
+export const selectQuestionsForLevel = (data, level, dist) => {
+  const distribution = dist ?? (typeDistribution[level] || typeDistribution['初级'])
+  shuffleArray(data)
   const groupedByType = data.reduce((acc, question) => {
     if (!acc[question.type]) acc[question.type] = []
     acc[question.type].push(question)
@@ -96,33 +112,68 @@ export const selectQuestionsForLevel = (data, level) => {
   }, {})
   const selectedQuestions = []
   let totalScore = 0
-  while (totalScore < 100) {
-    for (const type in distribution) {
-      const questionsOfType = groupedByType[type] || []
-      const probability = distribution[type]
-      const numToSelect = Math.ceil(probability * 100)
-      for (let i = 0; i < numToSelect; i++) {
-        if (questionsOfType.length === 0) continue
-        const randomIndex = Math.floor(Math.random() * questionsOfType.length)
-        const selectedQuestion = questionsOfType.splice(randomIndex, 1)[0]
-        if (totalScore + selectedQuestion.score <= 100) {
-          selectedQuestions.push(selectedQuestion)
-          totalScore += selectedQuestion.score
-        }
-        if (totalScore >= 100) break
+
+
+  const numQuestions = 100
+  const questionsByType = {}
+  for (const type in distribution) {
+    const proportion = distribution[type]
+    const numForType = Math.ceil(proportion * numQuestions)
+    questionsByType[type] = { num: numForType, selected: [] }
+  }
+
+  for (const type in questionsByType) {
+    const questions = groupedByType[type] || []
+    const numToSelect = questionsByType[type].num
+    let selectedForType = 0
+    while (selectedForType < numToSelect && questions.length > 0) {
+      const randomIndex = Math.floor(Math.random() * questions.length)
+      const selectedQuestion = questions.splice(randomIndex, 1)[0]
+      if (totalScore + selectedQuestion.score <= numQuestions) {
+        selectedQuestions.push(selectedQuestion)
+        totalScore += selectedQuestion.score
+        selectedForType++
       }
-      if (totalScore >= 100) break
+      if (totalScore >= numQuestions) break
     }
   }
-  while (totalScore < 100) {
+
+  while (totalScore < numQuestions) {
     const remainingQuestions = data.filter(q => !selectedQuestions.includes(q))
     const randomIndex = Math.floor(Math.random() * remainingQuestions.length)
     const randomQuestion = remainingQuestions[randomIndex]
-    if (totalScore + randomQuestion.score <= 100) {
+    if (totalScore + randomQuestion.score <= numQuestions) {
       selectedQuestions.push(randomQuestion)
       totalScore += randomQuestion.score
     }
   }
+  // while (totalScore < 100) {
+  //   for (const type in distribution) {
+  //     const questionsOfType = groupedByType[type] || []
+  //     const probability = distribution[type]
+  //     const numToSelect = Math.ceil(probability * 100)
+  //     for (let i = 0; i < numToSelect; i++) {
+  //       if (questionsOfType.length === 0) continue
+  //       const randomIndex = Math.floor(Math.random() * questionsOfType.length)
+  //       const selectedQuestion = questionsOfType.splice(randomIndex, 1)[0]
+  //       if (totalScore + selectedQuestion.score <= 100) {
+  //         selectedQuestions.push(selectedQuestion)
+  //         totalScore += selectedQuestion.score
+  //       }
+  //       if (totalScore >= 100) break
+  //     }
+  //     if (totalScore >= 100) break
+  //   }
+  // }
+  // while (totalScore < 100) {
+  //   const remainingQuestions = data.filter(q => !selectedQuestions.includes(q))
+  //   const randomIndex = Math.floor(Math.random() * remainingQuestions.length)
+  //   const randomQuestion = remainingQuestions[randomIndex]
+  //   if (totalScore + randomQuestion.score <= 100) {
+  //     selectedQuestions.push(randomQuestion)
+  //     totalScore += randomQuestion.score
+  //   }
+  // }
   return selectedQuestions
 }
 export const getQuestions = () => {
@@ -139,7 +190,7 @@ export const exportExcel = (data, scoringNum) => {
   const _sheet1 = _workbook.addWorksheet('sheet1')
   const _titleCell = _sheet1.getRow(1)
   _titleCell.font = { name: '黑体', bold: true, size: 14, color: { argb: '0000000' }}
-  _sheet1.columns = [{ header: '题目', key: 'title', width: 60 }, { header: '得分', key: 'scoring', width: 10 }]
+  _sheet1.columns = [{ header: '题目', key: 'title', width: 60 }, { header: '类别', key: 'type', width: 10 }, { header: '级别', key: 'level', width: 40 }, { header: '得分', key: 'scoring', width: 10 }]
   _sheet1.getColumn('A').alignment = { wrapText: true }
   _sheet1.addRows(data)
   _sheet1.addRow({ title: '总分', scoring: scoringNum })

@@ -56,6 +56,8 @@ export default {
               h('input', { class: 'head-statistics', type: 'number', step: 1, onInput: (vl) => onCalculate(vl, node) })
             ])
           ]),
+          h('div', { class: 'head-tips' }, `类型 ${node.type}`),
+          h('div', { class: 'head-tips' }, `级别: ${ node.level }`),
           /<details\s+[^>]*>/i.test(content) ? h('div', { class: 'inner-content ', innerHTML: content }) : h('details', { class: 'inner-content ', innerHTML: content }),
         ])
       })
@@ -74,7 +76,9 @@ export default {
   .main-box .main-box_inner .inner-head { display: flex; align-items: center; justify-content: space-between; }
   .main-box_inner .inner-head .head-title { flex: 3; margin: 0; }
   .main-box_inner .inner-head .head-re { flex: 1; display: flex; justify-content: flex-end;}
+  .main-box_inner .inner-content { margin: 10px 0 10px 20px; }
   .main-box_inner .inner-head .head-statistics { width: 60px; margin-left: 8px; border: 1px solid var(--vp-c-gray-1); border-radius: 5px; padding: 0 8px; }
+  .main-box_inner .head-tips { font-size: 12px; color: var(--vp-c-text-3); }
   .main-box .content-scoring { margin-top: 20px; display: flex; justify-content: flex-end; align-items: center;}
   .main-box .content-scoring .scoring-num { color: var(--vp-c-red-1); padding-right: 15px; }
   .main-box .content-scoring .export-excel { color: var(--vp-c-text-1); padding: 2px 5px; border: 1px solid var(--vp-c-border);  border-radius: 3px; }
