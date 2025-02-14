@@ -87,7 +87,7 @@ export default {
 <style>
 .md-overlay { z-index: 100; position: fixed; top: 0; right: 0; left: 0; height: 100%; background-color: rgba(0, 0, 0, .5); overflow: auto; }
 .md-overlay .md-overlay_dialog { position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: auto; }
-.md-overlay .md-overlay_dialog .md-dialog { position: relative; overflow-wrap: break-word; width: 30%; height: 32%; margin: 15vh auto 50px; border-radius: 5px; background-color: var(--vp-c-bg); padding: 10px;}
+.md-overlay .md-overlay_dialog .md-dialog { position: relative; overflow-wrap: break-word; width: 30%; height: 32%; margin: 15vh auto 50px; border-radius: 5px; background-color: var(--vp-c-bg); padding: 10px; min-height: 300px;}
 .md-overlay .md-overlay_dialog .md-dialog .md-dialog_header { padding-bottom: 15px; }
 .md-overlay .md-overlay_dialog .md-dialog .md-dialog_header .md-dialog_close { position: absolute; z-index: 100; right: 5px; font-size: 24px; top: 5px; }
 .md-overlay .md-overlay_dialog .md-dialog_body .body-level { display: flex; padding-bottom: 18px;}
