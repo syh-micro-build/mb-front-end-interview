@@ -25,7 +25,7 @@ MD013:
 #   allow_different_nesting: true
 
 MD033:
-  allowed_elements: ['abbr', 'img', 'details', 'br', 'script', 'componentMarkdown']
+  allowed_elements: ['abbr', 'img', 'details', 'br', 'script', 'componentMarkdown', 'markdownDialog']
 
 # 允许提交 img 代码块，但不强制要求 alt 属性
 MD037:
