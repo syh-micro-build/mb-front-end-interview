@@ -3,14 +3,26 @@ level:  专家
 ---
 
 <script setup>
+import { ref, nextTick } from 'vue'
 import { getQuestions, selectQuestionsForLevel } from '../../../utils/parseQuestions.js'
 import componentMarkdown from '../components/componentMarkdown.vue'
+import markdownDialog from '../components/markdownDialog.vue'
 
-let questions = []
-const questionInit = () => {
+const questions = ref([])
+const vis = ref(true)
+const questionInit = (proportion) => {
   const list = getQuestions()
-  questions = selectQuestionsForLevel(list, '专家')
+  questions.value = selectQuestionsForLevel(list, '专家', proportion)
+}
+const handleSubmit = (v) => {
+  vis.value = false
+  questionInit(v)
+  const time = setTimeout(_ => {
+    vis.value = true
+    clearTimeout(time)
+  })
 }
 questionInit()
 </script>
-<componentMarkdown v-once :data="questions" />
+<markdownDialog level="专家" @submit="handleSubmit"  />
+<componentMarkdown v-if="vis" :data="questions" />
