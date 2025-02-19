@@ -122,19 +122,24 @@ export const selectQuestionsForLevel = (data, level, dist) => {
     questionsByType[type] = { num: numForType, selected: [] }
   }
 
-  for (const type in questionsByType) {
+  const sortedArr = Object.entries(questionsByType).sort((a, b) => b[1].num - a[1].num)
+  const sortedObj = Object.fromEntries(sortedArr)
+
+  for (const type in sortedObj) {
     const questions = groupedByType[type] || []
-    const numToSelect = questionsByType[type].num
+    const numToSelect = sortedObj[type].num
     let selectedForType = 0
-    while (selectedForType < numToSelect && questions.length > 0) {
+    while ((selectedForType < numToSelect) && questions.length > 0) {
       const randomIndex = Math.floor(Math.random() * questions.length)
       const selectedQuestion = questions.splice(randomIndex, 1)[0]
-      if (totalScore + selectedQuestion.score <= numQuestions) {
+      if (selectedForType <= numToSelect) {
         selectedQuestions.push(selectedQuestion)
         totalScore += selectedQuestion.score
-        selectedForType++
+        selectedForType += selectedQuestion.score
       }
-      if (totalScore >= numQuestions) break
+      if (selectedForType >= numToSelect) {
+        break
+      }
     }
   }
 
@@ -147,33 +152,6 @@ export const selectQuestionsForLevel = (data, level, dist) => {
       totalScore += randomQuestion.score
     }
   }
-  // while (totalScore < 100) {
-  //   for (const type in distribution) {
-  //     const questionsOfType = groupedByType[type] || []
-  //     const probability = distribution[type]
-  //     const numToSelect = Math.ceil(probability * 100)
-  //     for (let i = 0; i < numToSelect; i++) {
-  //       if (questionsOfType.length === 0) continue
-  //       const randomIndex = Math.floor(Math.random() * questionsOfType.length)
-  //       const selectedQuestion = questionsOfType.splice(randomIndex, 1)[0]
-  //       if (totalScore + selectedQuestion.score <= 100) {
-  //         selectedQuestions.push(selectedQuestion)
-  //         totalScore += selectedQuestion.score
-  //       }
-  //       if (totalScore >= 100) break
-  //     }
-  //     if (totalScore >= 100) break
-  //   }
-  // }
-  // while (totalScore < 100) {
-  //   const remainingQuestions = data.filter(q => !selectedQuestions.includes(q))
-  //   const randomIndex = Math.floor(Math.random() * remainingQuestions.length)
-  //   const randomQuestion = remainingQuestions[randomIndex]
-  //   if (totalScore + randomQuestion.score <= 100) {
-  //     selectedQuestions.push(randomQuestion)
-  //     totalScore += randomQuestion.score
-  //   }
-  // }
   return selectedQuestions
 }
 export const getQuestions = () => {
@@ -190,8 +168,9 @@ export const exportExcel = (data, scoringNum) => {
   const _sheet1 = _workbook.addWorksheet('sheet1')
   const _titleCell = _sheet1.getRow(1)
   _titleCell.font = { name: '黑体', bold: true, size: 14, color: { argb: '0000000' }}
-  _sheet1.columns = [{ header: '题目', key: 'title', width: 60 }, { header: '类别', key: 'type', width: 10 }, { header: '级别', key: 'level', width: 40 }, { header: '得分', key: 'scoring', width: 10 }]
+  _sheet1.columns = [{ header: '题目', key: 'title', width: 60 }, { header: '类别', key: 'type', width: 10 }, { header: '级别', key: 'level', width: 40 },  { header: '参考答案', key: 'text', width: 60 }, { header: '得分', key: 'scoring', width: 10 }]
   _sheet1.getColumn('A').alignment = { wrapText: true }
+  _sheet1.getColumn('D').hidden = true
   _sheet1.addRows(data)
   _sheet1.addRow({ title: '总分', scoring: scoringNum })
   const _totalCell = _sheet1.getRow((data.length + 2))

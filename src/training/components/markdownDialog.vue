@@ -6,7 +6,8 @@ export default {
   props: { level: { type: String, default: '' } },
   emits: ['close', 'submit', 'update:modelValue'],
   setup(props, { emit }) {
-    const visible = ref(true)
+    const displayed = window.sessionStorage.getItem('NoDisplayed') ? false : true
+    const visible = ref(displayed)
     const actions = ref(Object.entries(typeDistribution).map(([label, value]) => ({ label, value: Object.entries(value).map(([item, itemValue]) => ({ item, value: itemValue,})),})))
     const options = actions.value?.filter(node => node.label === props.level)?.[0].value
     const hotNum = ref(0)
@@ -16,8 +17,12 @@ export default {
     })
     const clickListener = () => {
       document.addEventListener('click', (event) => {
-        if (!nodeDoc.contains(event.target)) handleClose()
+        if (!nodeDoc?.contains(event.target)) handleClose()
       })
+    }
+    const handleDisplayed = () => {
+      window.sessionStorage.setItem('NoDisplayed', true)
+      handleClose()
     }
     const handleClose = (e) => {
       e?.stopPropagation()
@@ -69,6 +74,7 @@ export default {
             ]),
             h('div', { class: 'md-dialog_body' }, [h('div', { class: 'body-level' }, [...optionRender(), hotStatistics()])]),
             h('footer', { class: 'md-dialog_footer' }, [
+              h('button', { class: 'md-footer_displayed', onClick: () => handleDisplayed() }, h('span', '不再提示')),
               h('button', { class: 'md-footer_close', onClick: () => handleClose() }, h('span', '取消')),
               h('button', { class: 'md-footer_submit', onClick: () => handleSubmit() }, '确定')
             ])
@@ -95,6 +101,15 @@ export default {
 .md-overlay .md-dialog_body .md-body_inner .inner-input{ -webkit-appearance: slider-vertical; writing-mode: bt-lr; width: 10px; }
 .md-overlay .md-dialog_body .md-body_inner .tips { color: var(--vp-c-yellow-3); }
 .md-dialog .md-dialog_footer { display: flex; justify-content: flex-end; }
+.md-dialog .md-dialog_footer .md-footer_displayed {
+  padding: 8px 15px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid var(--vp-c-border);
+}
 .md-dialog .md-dialog_footer .md-footer_close {
   padding: 8px 15px;
   height: 32px;
@@ -103,6 +118,7 @@ export default {
   justify-content: center;
   border-radius: 5px;
   border: 1px solid var(--vp-c-border);
+  margin-left: 12px;
 }
 .md-dialog .md-dialog_footer .md-footer_submit {
   padding: 8px 15px;
