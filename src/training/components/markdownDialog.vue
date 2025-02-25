@@ -6,7 +6,7 @@ export default {
   props: { level: { type: String, default: '' } },
   emits: ['close', 'submit', 'update:modelValue'],
   setup(props, { emit }) {
-    const displayed = window.sessionStorage.getItem('NoDisplayed') ? false : true
+    const displayed = window.sessionStorage.getItem(props.level) ? false : true
     const visible = ref(displayed)
     const actions = ref(Object.entries(typeDistribution).map(([label, value]) => ({ label, value: Object.entries(value).map(([item, itemValue]) => ({ item, value: itemValue,})),})))
     const options = actions.value?.filter(node => node.label === props.level)?.[0].value
@@ -21,7 +21,7 @@ export default {
       })
     }
     const handleDisplayed = () => {
-      window.sessionStorage.setItem('NoDisplayed', true)
+      window.sessionStorage.setItem(props.level, true)
       handleClose()
     }
     const handleClose = (e) => {
