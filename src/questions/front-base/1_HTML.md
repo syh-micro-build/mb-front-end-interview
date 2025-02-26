@@ -335,7 +335,7 @@ label标签来定义表单控件的关系：当用户选择label标签时，浏�
 
 文档的头部描述了文档的各种属性和信息，包括文档的标题、在 Web 中的位置以及和其他文档的关系等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。
 
-下面这些标签可用在 head 部分：meta, link 等。
+下面这些标签可用在 head 部分：title、meta、link 等。
 
 ## 说一下 HTML5 drag API
 
@@ -482,6 +482,8 @@ gizp压缩需要的js和css文件；
 反向链接，网站外链接优化；
 
 meta标签优化（title, description, keywords）,heading标签的优化,alt优化；
+
+代码分割（Code Splitting）、Tree Shaking删除未使用代码；
 
 ## `<form>`标签的method属性有get和post两种取值，它们之间有什么区别？
 
