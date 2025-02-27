@@ -12,7 +12,7 @@ hero:
       link: /src/questions/front-base/1_HTML
     - theme: alt
       text: 在线训练
-      link: /src/training/training-primary/index
+      link: /src/training/training-level/w1
 
 features:
   - title: 知识体系

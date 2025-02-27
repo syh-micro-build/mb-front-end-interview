@@ -6,10 +6,10 @@ export default {
   props: { level: { type: String, default: '' } },
   emits: ['close', 'submit', 'update:modelValue'],
   setup(props, { emit }) {
-    const displayed = window.sessionStorage.getItem(props.level) ? false : true
-    const visible = ref(displayed)
+    const option = JSON.parse(window.sessionStorage.getItem(props.level))
+    const visible = ref(true)
     const actions = ref(Object.entries(typeDistribution).map(([label, value]) => ({ label, value: Object.entries(value).map(([item, itemValue]) => ({ item, value: itemValue,})),})))
-    const options = actions.value?.filter(node => node.label === props.level)?.[0].value
+    const options = option ?? actions.value?.filter(node => node.label === props.level)?.[0].value
     const hotNum = ref(0)
     let nodeDoc = null
     nextTick(() => {
@@ -21,7 +21,6 @@ export default {
       })
     }
     const handleDisplayed = () => {
-      window.sessionStorage.setItem(props.level, true)
       handleClose()
     }
     const handleClose = (e) => {
@@ -34,6 +33,7 @@ export default {
         acc[item] = value
         return acc
       }, {})
+      window.sessionStorage.setItem(props.level, JSON.stringify(options))
       emit('submit', result)
       visible.value = false
     }
@@ -74,7 +74,7 @@ export default {
             ]),
             h('div', { class: 'md-dialog_body' }, [h('div', { class: 'body-level' }, [...optionRender(), hotStatistics()])]),
             h('footer', { class: 'md-dialog_footer' }, [
-              h('button', { class: 'md-footer_displayed', onClick: () => handleDisplayed() }, h('span', '不再提示')),
+              // h('button', { class: 'md-footer_displayed', onClick: () => handleDisplayed() }, h('span', '不再提示')),
               h('button', { class: 'md-footer_close', onClick: () => handleClose() }, h('span', '取消')),
               h('button', { class: 'md-footer_submit', onClick: () => handleSubmit() }, '确定')
             ])
