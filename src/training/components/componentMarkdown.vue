@@ -10,7 +10,8 @@ import 'highlight.js/styles/atom-one-light.css'
 export default {
   name: 'componentMarkdown',
   props: { data: { type: Array } },
-  setup(props) {
+  emits: ['open'],
+  setup(props, { emit }) {
     const datas = ref([...props.data])
     const scoringNum = ref(0)
     const newMarked = new Marked()
@@ -24,6 +25,7 @@ export default {
       if (!scoringNum.value) return confirm('请对训练进行打分后即可导出')
       exportExcel(exportData, scoringNum.value)
     }
+    const onCustomized = () => emit('open', true)
     newMarked.use(markedHighlight({
       langPrefix: 'hljs language-',
       gfm: true,
@@ -62,6 +64,7 @@ export default {
         ])
       })
       return h('div', { class: 'main-box', }, [...children, h('div', { class: 'content-scoring' }, [
+        h('button', { class: 'export-excel customized', onClick: () => onCustomized() }, '客制化'),
         h('span', {}, '总得分：'),
         h('span', { class: 'scoring-num' }, scoringNum.value),
         h('button', { class: 'export-excel', onClick: () => onExportExcel()}, '导出到Excel')
@@ -82,4 +85,5 @@ export default {
   .main-box .content-scoring { margin-top: 20px; display: flex; justify-content: flex-end; align-items: center;}
   .main-box .content-scoring .scoring-num { color: var(--vp-c-red-1); padding-right: 15px; }
   .main-box .content-scoring .export-excel { color: var(--vp-c-text-1); padding: 2px 5px; border: 1px solid var(--vp-c-border);  border-radius: 3px; }
+  .main-box .content-scoring .customized { position: absolute; left: 0px; border-radius: 5px; margin-right: 15px; }
 </style>

@@ -6,11 +6,12 @@ import { data } from './getQuestions.data.js'
 
 let questionsData = null
 export const typeDistribution = {
-  初级: { 基础: 0.4, 编程: 0.3, 业务: 0.2, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
-  中级: { 基础: 0.2, 编程: 0.5, 业务: 0.2, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
-  高级: { 基础: 0.1, 编程: 0.2, 业务: 0.5, 架构: 0.1, 管理: 0.0, 拓展: 0.1 },
-  架构: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.5, 管理: 0.1, 拓展: 0.1 },
-  专家: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.3, 管理: 0.2, 拓展: 0.2 },
+  W1: { 基础: 0.4, 编程: 0.3, 业务: 0.2, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
+  W2: { 基础: 0.2, 编程: 0.5, 业务: 0.2, 架构: 0.1, 管理: 0.0, 拓展: 0.0 },
+  W3: { 基础: 0.1, 编程: 0.2, 业务: 0.5, 架构: 0.1, 管理: 0.0, 拓展: 0.1 },
+  W4: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.5, 管理: 0.1, 拓展: 0.1 },
+  W5: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.3, 管理: 0.2, 拓展: 0.2 },
+  W6: { 基础: 0.1, 编程: 0.1, 业务: 0.1, 架构: 0.3, 管理: 0.2, 拓展: 0.2 },
 }
 
 export const parseQuestions = (htmlContent) => {
@@ -93,7 +94,6 @@ const shuffleArray = (array) => {
   const times = 10
   for (let t = 0; t < times; t++) {
     for (let i = array.length - 1; i > 0; i--) {
-      // 通过不同的随机因子让每次生成的 j 值有所不同
       const randomFactor = Math.floor(Math.random() * (i + 1) * (Date.now() % 1000))
       const j = randomFactor % (i + 1);
       [array[i], array[j]] = [array[j], array[i]]
@@ -103,13 +103,17 @@ const shuffleArray = (array) => {
 
 
 export const selectQuestionsForLevel = (data, level, dist) => {
-  const distribution = dist ?? (typeDistribution[level] || typeDistribution['初级'])
+  const distribution = dist ?? (typeDistribution[level] || typeDistribution['W1'])
   shuffleArray(data)
-  const groupedByType = data.reduce((acc, question) => {
+  const filterLevel = data.filter(node => {
+    if (node.level?.includes(level)) return node
+  })
+  const groupedByType = filterLevel.reduce((acc, question) => {
     if (!acc[question.type]) acc[question.type] = []
     acc[question.type].push(question)
     return acc
   }, {})
+
   const selectedQuestions = []
   let totalScore = 0
 
