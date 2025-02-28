@@ -30,13 +30,10 @@
         "server"
       ]
     ],
-    "subject-case": [
+    'subject-case': [
       2,
-      "never",
-      [
-        "start-case",
-        "pascal-case"
-      ]
+      'always',
+      ['sentence-case', 'lower-case']
     ]
   },
   "prompt": {
