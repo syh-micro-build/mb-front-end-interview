@@ -515,125 +515,78 @@
 
 </details>
 
-## 16. CSS 性能优化
+## CSS 性能优化
 
-#### 类型：`拓展`
+#### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
-#### 解答（4 分）
+#### 解答（6 分）
 
-- **1：** 合并与压缩 CSS 文件：减少文件体积，降低网络传输时间，如使用工具将多个 CSS 文件合并为一个并压缩代码。
-- **1：** 合理使用选择器：避免复杂嵌套，保持选择器简单高效，如.parent >.child比.parent.class1.class2 >.child性能更好。
-- **1：** 优化图片资源：使用合适的图片格式与尺寸，对于小图标可考虑使用雪碧图或字体图标，减少 HTTP 请求。
-- **1：** 利用 CSS 继承：将可继承的属性设置在父元素，减少重复声明，如color、font - family等。
+- **3：** 减少文件体积
+  + 使用css代码压缩工具
+  + 图片压缩
+  + 使用css预处理工具（less、sass等）
+  + 雪碧图
+  + 合理使用属性继承
+  + 减少重复声明
+- **2：** 降低计算成本
+  + 减少回流重绘
+  + 避免选择器嵌套
+  + 优先使用id、类选择器
+  + 合理使用css计算属性
+- **1：** 减少渲染阻塞
+  + 避免使用@import
+  + 合理拆分合并css文件，减少http请求数
 
-## 17. CSS3中有哪些新特性
+## 单行、多行文本溢出隐藏
 
-#### 类型：`拓展`
+#### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-- 新增各种CSS选择器 （: not(.input)：所有 class 不是“input”的节点）
-
-- 圆角 （border-radius:8px）
-
-- 多列布局 （multi-column layout）
-
-- 阴影和反射 （box-shadow 和 reflect）
-
-- 文字特效 （text-shadow）
-
-- 线性渐变 （gradient）
-
-- 旋转 （transform）
-
-- 媒体查询 （@media）
-
-- 2D、3D 转换和动画
-
-## 18. 单行、多行文本溢出隐藏
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W1`、`W2`、`W3`、`W4`
 
 #### 解答（3 分）
 
 - 单行文本溢出
 
 ```css
-overflow: hidden;            // 溢出隐藏
-text-overflow: ellipsis;      // 溢出用省略号显示
-white-space: nowrap;         // 规定段落中的文本不进行换行
+.text-overflow {
+  overflow: hidden;            // 溢出隐藏
+  text-overflow: ellipsis;      // 溢出用省略号显示
+  white-space: nowrap;         // 规定段落中的文本不进行换行
+}
 ```
 
 - 多行文本溢出
 
 ```css
-display: -webkit-box;         // 作为弹性伸缩盒子模型显示
--webkit-box-orient: vertical; // 设置伸缩盒子的子元素排列方式--从上到下垂直排列
--webkit-line-clamp: 3;        // 显示的行数
-overflow: hidden;             // 溢出隐藏
+.text-overflow {
+  display: -webkit-box;         // 作为弹性伸缩盒子模型显示
+  -webkit-box-orient: vertical; // 设置伸缩盒子的子元素排列方式--从上到下垂直排列
+  -webkit-line-clamp: 3;        // 显示的行数
+  overflow: hidden;             // 溢出隐藏
+  text-overflow: ellipsis;      // 溢出用省略号显示
+}
 ```
 
-## 19. Sass、Less 是什么？为什么要使用他们？
+## 如何根据设计稿进行移动端适配？
 
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-- 他们都是 CSS 预处理器，是 CSS 上的一种抽象层。他们是一种特殊的语法/语言编译成 CSS。 例如 Less 是一种动态样式语言，将 CSS 赋予了动态语言的特性，如变量，继承，运算， 函数，LESS 既可以在客户端上运行 (支持 IE 6+, Webkit, Firefox)，也可以在服务端运行 (借助 Node.js)。
-
-- 为什么要使用它们？
-
-- 结构清晰，便于扩展。 可以方便地屏蔽浏览器私有语法差异。封装对浏览器语法差异的重复处理， 减少无意义的机械劳动。
-
-- 可以轻松实现多重继承。 完全兼容 CSS 代码，可以方便地应用到老项目中。 减少代码量，提高开发效率。
-
-## 20. z-index属性在什么情况下会失效?
-
-#### 类型：`拓展`
+#### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（2 分）
 
-- 通常 z-index 的使用是在有两个重叠的标签，在一定的情况下控制其中一个在另一个的上方或者下方出现。z-index值越大就越是在上层。z-index元素的position属性需要是relative，absolute或是fixed。
+- **1:** 使用 rem，em，vw，vh 等相对单位针对设计稿进行px换算；
+- **1:** 使用现成的 npm 包，如 postcss-pxtorem 进行换算支持。
 
-- 父元素position为relative时，子元素的z-index失效。解决：父元素position改为absolute或static；
+## 实现一个扇形
 
-- 元素没有设置position属性为非static属性。解决：设置该元素的position属性为relative，absolute或是fixed中的一种；
+#### 类型：`编程`
 
-- 元素在设置z-index的同时还设置了float浮动。解决：float去除，改为display：inline-block；
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
 
-## 21. 如何根据设计稿进行移动端适配？
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 移动端适配主要有两个维度：
-
-- 适配不同像素密度， 针对不同的像素密度，使用 CSS 媒体查询，选择不同精度的图片，以保证图片不会失真；
-
-- 适配不同屏幕大小， 由于不同的屏幕有着不同的逻辑像素大小，所以如果直接使用 px 作为开发单位，会使得开发的页面在某一款手机上可以准确显示，但是在另一款手机上就会失真。为了适配不同屏幕的大小，应按照比例来还原设计稿的内容。
-
-- 为了能让页面的尺寸自适应，可以使用 rem，em，vw，vh 等相对单位。
-
-## 22 .实现一个扇形
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
+#### 解答（5 分）
 
 - 用CSS实现扇形的思路和三角形基本一致，就是多了一个圆角的样式，实现一个90°的扇形：
 
@@ -641,68 +594,56 @@ overflow: hidden;             // 溢出隐藏
 div{
     border: 100px solid transparent;
     width: 0;
-    heigt: 0;
+    height: 0;
     border-radius: 100px;
     border-top-color: red;
 }
 ```
 
-## 23. 画一条0.5px的线
+## 画一条0.5px的线
 
 #### 类型：`拓展`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（4 分）
 
-- 采用transform: scale()的方式，该方法用来定义元素的2D 缩放转换：
+- **2:** 采用transform: scale()的方式，该方法用来定义元素的2D 缩放转换：
 
 ```css
 transform: scale(0.5,0.5);
 ```
 
-- 采用meta viewport的方式
+- **2:** 采用meta viewport的方式
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5"/>
 ```
 
-## 24. 对 sticky 定位的理解
+## 相邻图片为什么会产生间隙？该如何处理？
 
-#### 类型：`拓展`
+#### 类型：`基础`
+
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **1:** 图片标签是行内块元素，浏览器会将相邻行内块之间的空白字符解析为空格，从而产生间隙。
+- **3:** 处理方式
+  + 使用`display: block`；
+  + 使用负 margin 值；
+  + 父容器`font-size: 0`；
+
+## 单冒号和双冒号有什么区别？
+
+#### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（2 分）
 
-- sticky 英文字面意思是粘贴，所以可以把它称之为粘性定位。语法：position: sticky; 基于用户的滚动位置来定位。
-
-- 粘性定位的元素是依赖于用户的滚动，在 position:relative 与 position:fixed 定位之间切换。它的行为就像 position:relative; 而当页面滚动超出目标区域时，它的表现就像 position:fixed;，它会固定在目标位置。元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。这个特定阈值指的是 top, right, bottom 或 left
-之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
-
-## 25. display:inline-block 什么时候会显示间隙？
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 有空格时会有间隙，可以删除空格解决；
-
-- margin正值时，可以让margin使用负值解决；
-
-- 使用font-size解决，给父元素设置font-size:0，子元素再设置font-size；
-
-## 26. ::before 和 :after 的双冒号和单冒号有什么区别？
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- 冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。 （2）::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在于dom之中，只存在在页面之中。
+- **1:** 单冒号用于CSS3伪类（`:hover`、`:nth-child()`）
+- **1:** 双冒号用于CSS3伪元素（`::before`、`::after`）
 
 ## 27. CSS 居中
 
@@ -712,164 +653,42 @@ transform: scale(0.5,0.5);
 
 #### 解答（4 分）
 
-<details>
+- **1:** 水平居中
+  + `text-align: center;`（文本、行内元素、行内块元素）
+  + `margin: auto;（`已知宽度的块级元素）
+  + `display: flex;justify-content: center;`（任意元素）
+- **1:** 垂直居中
+  + `line-height`（适用于单行文本）
+  + `display: flex;align-items: center;`（任意元素）
+  + `position + transform`（任意元素）
 
-- **1：定位居中**
-
-①已知大小的元素在屏幕窗口水平垂直都居中
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    <style>
-        .box{
-            width:100px;
-            height:100px;
-            background-color: aqua;
-            position:fixed;
-            left:50%;
-            top:50%;
-            margin-left:-50px;
-            margin-top:-50px;
-        }
-    </style>
-</head>
-<body>
-    <div class="box">
-
-    </div>
-</body>
-</html>
-```
-
-②未知大小的元素在屏幕窗口水平垂直都居中
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    <style>
-        .box{
-            position:fixed;
-            left:0;
-            top:0;
-            right:0;
-            bottom:0;
-            margin:auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="box">
-
-    </div>
-</body>
-</html>
-```
-
-- **1：子元素在父元素中居中**
-
-①已知大小的子元素在父元素中居中
-
-```css
-    父元素{
-        /* 相对定位 */
-        position: relative;
-    }
-    子元素{
-        width:100px;
-        height:100px;
-        /* 绝对定位 */
-        position:absolute;
-        left:50%;
-        top:50%;
-        margin-left:-50px;
-        margin-top:-50px;
-    }
-```
-
-②未知大小的子元素在父元素中居中
-
-```css
-  父元素{
-      /* 相对定位 */
+    ```css
+    .parent {
       position: relative;
-  }
-  子元素{
-      /* 绝对定位 */
-      position:absolute;
-      left:0;
-      top:0;
-      right:0;
-      bottom:0;
-      margin:auto;
-  }
-```
+    }
 
-- **1：使用弹性布局**
+    .child {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    ```
 
-① 使用flex布局的方式实现未知大小元素在屏幕窗口水平垂直都居中
+- **1:** 水平居中+垂直居中
+  + `flex`（任意元素），参考上方
+  + `position + transform`（任意元素），参考上方
+  + `possition + translate`（定宽定高）
 
-```css
-  html,body{
-      height:100%;
-  }
-  /* 让html和body的高度为屏幕窗口的高度（窗口高度自适应） */
-  body{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-  }
-```
+    ```css
+    .fixed {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    ```
 
-② 使用flex布局的方式实现未知大小的子元素在父元素中水平垂直都居中**
-
-```css
-  父元素 {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-  }
-    
-```
-
-- **1：使用css3变形来实现**
-
-① 使用css3变形的方式实现未知大小的元素在屏幕窗口水平垂直都居中
-
-```css
-  元素{
-      position:fixed;
-      left:50%;
-      top:50%;
-      transform:translateX(-50%) translateY(-50%);
-  }
-```
-
-② 使用css变形的方式来实现未知大小的子元素，在父元素中水平垂直都居中
-
-```css
-  父元素{
-      position:relative;
-  }
-  子元素{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-  }
-```
-
-</details>
+  + `display: grid;place-items: center;`（现代浏览器）
 
 ## 28. CSS Grid 布局的基本概念和使用方法是什么？
 
