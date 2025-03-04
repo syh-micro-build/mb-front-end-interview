@@ -262,258 +262,38 @@
   + 图像适配(object-fit)
   + 自定义属性(变量)
 
-## 15. CSS哪些属性可以继承
+## 谈谈你对CSS属性继承的理解
 
 #### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
 #### 解答（5 分）
 
-<details>
+- **1：** 可继承属性
+  + 字体相关：font、font-family、font-size、font-style、font-variant、font-weight
+  + 文本相关：color、letter-spacing、line-height、visibility、cursor、direction
+- **1：** 不可继承属性
+  + 盒模型：width、height、margin、padding、border
+  + 定位 & 布局：display、position、top、left、right、bottom、z-index、overflow
+  + 背景 & 其他：background、box-shadow、visibility
+- **1：** 强制继承或不继承
+  + 强制继承：inherit，`background-color: inherit;`
+  + 阻止继承：initial，`color: initial;`
+  + 恢复原继承模式：unset，多用于样式重置
 
-- **1：** 不可继承的
+    ```css
+    .reset {
+      color: unset;  /*对于 color，相当于 inherit */
+      border: unset; /* 对于 border，相当于 initial，变为默认无边框*/
+      /*或*/
+      all: unset;
+    }
+    ```
 
-  + display
-    指定元素的显示方式，常见的值包括：
-    block：块级元素，占据整行
-    inline：行内元素，只占据必要的宽度，不换行
-    inline-block：结合了 inline 和 block 的特性
-    none：隐藏元素
-
-  + margin
-    设置元素外部的空白区域，即元素与其他元素之间的距离
-
-  + border
-    设置元素的边框可以指定边框的宽度、样式和颜色
-
-  + padding
-    设置元素内容与边框之间的内边距，控制元素内部的空白区域
-
-  + background
-    设置元素的背景，包括背景颜色、背景图像等
-
-  + height
-    指定元素的高度
-
-  + min-height
-    设置元素的最小高度，元素的高度不能小于此值
-
-  + max-height
-    设置元素的最大高度，元素的高度不能超过此值
-
-  + width
-    指定元素的宽度
-
-  + min-width
-    设置元素的最小宽度，元素的宽度不能小于此值
-
-  + max-width
-    设置元素的最大宽度，元素的宽度不能超过此值
-
-  + overflow
-    控制当内容溢出元素的边界时如何显示常见的值：
-      visible：内容溢出时可见
-      hidden：内容溢出时隐藏
-      scroll：出现滚动条
-      auto：根据需要自动显示滚动条
-
-  + position
-    设置元素的定位方式常见的值：
-      static：默认值，元素按文档流排列
-      relative：相对定位，元素相对于其原始位置偏移
-      absolute：绝对定位，元素相对于最近的已定位祖先元素定位
-      fixed：固定定位，元素相对于浏览器窗口定位
-      sticky：粘性定位，元素在滚动到特定位置时变为固定定位
-
-  + top, bottom, left, right
-    当元素使用 position 定位时，指定元素相对于其定位上下文的偏移量
-
-  + z-index
-    控制重叠元素的堆叠顺序，值越大的元素会覆盖值较小的元素仅对定位元素有效
-
-  + float
-    指定元素是否浮动（通常用于让文本环绕图片等）常见的值：
-      left：元素向左浮动
-      right：元素向右浮动
-      none：取消浮动
-
-  + clear
-    控制元素周围浮动元素的行为，通常与 float 一起使用常见的值：
-      left：禁止元素左侧有浮动元素
-      right：禁止元素右侧有浮动元素
-      both：禁止元素两侧有浮动元素
-      none：允许两侧都有浮动元素
-
-  + table-layout
-    控制表格布局的算法常见的值：
-      auto：浏览器根据内容调整列宽（默认）
-      fixed：浏览器根据表格的宽度固定列宽
-
-  + vertical-align
-    控制元素在垂直方向上的对齐方式常见的值：
-      top：元素顶部对齐
-      middle：元素垂直居中对齐
-      bottom：元素底部对齐
-
-  + page-break-after
-    控制分页符的位置常见的值：
-      auto：默认，自动决定分页
-      always：强制分页
-      avoid：避免分页
-
-  + page-break-before
-    与 page-break-after 类似，控制元素前面的分页符
-
-  + unicode-bidi
-    控制文本的双向性，通常与 direction 属性一起使用，用于处理多语言文本的显示常见的值：
-      normal：正常的双向文本布局
-      embed：强制嵌入的文本遵循本地的方向性
-      bidi-override：覆盖文本的方向性，强制使用 direction 属性的值
-
-- **1：** 所有元素可继承的
-
-  + visibility
-    visibility 属性控制元素的可见性，与 display: none 不同，使用 visibility: hidden 隐藏元素时，元素依然占据空间，但不可见；
-    常见值包括：
-      visible（默认值）：元素是可见的
-      hidden：元素不可见，但仍然占据空间
-      collapse：用于表格元素时，隐藏元素并且不占据空间（与 hidden 类似，但通常用于 `<tr>、<th>、<td>` 等表格元素）
-
-  + cursor
-    cursor 属性控制鼠标指针在元素上的样式，通常用于改变鼠标悬停在某个元素上时的外观；
-    常见值包括：
-      auto：默认指针，浏览器根据上下文决定指针样式
-      pointer：显示手形指针，通常用于可点击的链接或按钮
-      default：默认的光标样式
-      none：隐藏鼠标指针
-      wait：显示一个旋转的沙漏或类似的等待指针，表示操作正在进行
-      move：显示一个四向箭头，表示可以移动元素
-      text：显示文本光标，通常用于文本输入区域
-      not-allowed：显示禁用的指针，通常表示该操作不可用
-      help：显示问号光标，通常表示需要帮助的地方
-
-- **1：** 终极块级元素可继承的
-
-  + text-indent
-    text-indent 用于控制文本的首行缩进；这个属性通常应用于块级元素，如 `<p>、<div>` 等，控制块内文本的缩进量；常见值：
-      length：指定缩进的距离，例如 20px 或 2em
-      %：表示缩进的百分比，基于元素的宽度
-      initial：将属性恢复为默认值
-
-  + text-align
-    text-align 用于设置块级元素内文本的对齐方式，可以控制文本或内联元素在其父容器中的水平对齐，常见值：
-      left：将文本对齐到左边
-      right：将文本对齐到右边
-      center：将文本居中
-      justify：将文本两端对齐，通常用于段落，使得文本两端都紧贴容器
-      start 和 end：依据书写方向（左到右或右到左）自动决定对齐方式
-
-- **1：** 内联元素可继承的
-  + letter-spacing
-    letter-spacing 用于设置文本中字符之间的间距。它控制字母之间的距离，可以让文本看起来更加紧凑或更加宽松，常见值：
-      normal：默认的字符间距，通常为 0
-      length：指定字符间的间距，可以使用单位如 px、em、rem 等。例如，2px 或 0.1em
-
-  + word-spacing
-    word-spacing 用于设置单词之间的间距。它控制单词之间的空白区域，可以增加或减少单词间的空隙。
-    常见值：
-      normal：默认的单词间距。
-      length：指定单词间距，可以使用 px、em、rem 等单位。
-
-  + white-space
-    white-space 用于控制元素内文本的空白字符处理方式。它决定了文本中的空格、换行等如何展示；常见值：
-      normal：默认值，连续空白字符会合并为一个空格，文本会自动换行
-      nowrap：文本不会换行，所有空白字符会被合并为一个空格
-      pre：保留空格和换行符，类似于 `<pre>` 标签的效果
-      pre-wrap：保留空格和换行符，文本会自动换行
-      pre-line：合并多个空白字符，但保留换行符
-
-  + line-height
-    line-height 用于设置文本行与行之间的垂直间距。它控制行之间的间隔，通常用于改善文本的可读性；常见值：
-      normal：默认的行高，通常为字体大小的 1.2 倍。
-      number：指定行高为字体大小的倍数。
-      length：指定固定的行高值，如 20px、1.5em。
-      percentage：指定行高为字体大小的百分比。
-
-  + color
-    color 用于设置文本的颜色，常见值：
-      color：任何有效的颜色值，例如 red、#ff0000、rgb(255, 0, 0)、rgba(255, 0, 0, 0.5)。
-
-  + font
-
-    font 是一个简写属性，用于设置字体相关的多个属性。它可以同时设置字体系列、字体样式、字体粗细、字体大小等；常见值：
-      font-style、font-variant、font-weight、font-size、line-height、font-family
-  + font-size
-    font-size 用于设置文本的大小；常见值：
-      length：如 12px、1em、0.75rem。
-      percentage：相对于父元素的字体大小，如 150%。
-      medium：默认字体大小。
-      larger / smaller：相对于父元素字体大小的大小调整。
-
-  + font-style
-    font-style 用于设置文本的样式，通常用于斜体文本；常见值：
-      normal：正常样式
-      italic：斜体
-      oblique：倾斜字体，通常与 italic 类似，但不是正式的斜体字形
-
-  + font-variant
-    font-variant 用于控制文本是否使用变体字体；常见值：
-      normal：正常字体。
-      small-caps：小型大写字母，通常用于显示大写字母，但它们比普通大写字母小。
-
-  + font-weight
-    font-weight 用于设置文本的粗细；常见值：
-      normal：正常的字体粗细
-      bold：加粗字体
-      bolder：比父元素更粗
-      lighter：比父元素更细
-      number：可以指定 100 到 900 之间的数值，例如 400 是正常粗细，700 是加粗
-
-  + text-decoration
-    text-decoration 用于设置文本的装饰效果，如下划线、删除线等；常见值：
-      none：无装饰
-      underline：下划线
-      overline：上划线
-      line-through：删除线
-      blink：闪烁的文本（大多数浏览器已不支持）
-
-  + text-transform
-    text-transform 用于控制文本的大小写转换；常见值：
-      none：不转换大小写
-      capitalize：将每个单词的首字母转换为大写
-      uppercase：将所有字母转换为大写
-      lowercase：将所有字母转换为小写
-
-  + direction
-    direction 用于设置文本的书写方向；常见值：
-      ltr：从左到右（默认）
-      rtl：从右到左，通常用于阿拉伯语、希伯来语等语言
-
-- **1：** 列表元素可继承的属性
-  + list-style
-    list-style 是一个简写属性，用于设置列表项的标记类型、位置等。它同时设置 list-style-type、list-style-position 和 list-style-image；常见值：
-      list-style-type：标记类型，如 disc、circle、square、decimal、none 等。
-      list-style-position：标记的位置，inside 或 outside。
-      list-style-image：指定列表项标记为图片。
-
-  + list-style-type
-    list-style-type 用于设置列表项的标记类型；常见值：
-      disc：实心圆点（默认）
-      circle：空心圆点
-      square：方块
-      decimal：数字列表（如 1, 2, 3）
-      none：没有标记
-
-  + list-style-position
-    list-style-position 用于设置列表标记的位置；常见值：
-      outside：标记在列表项外部（默认）
-      inside：标记在列表项内部
-
-  + list-style-image
-    list-style-image 用于设置列表项标记为自定义图像；常见值：`url(<image-url>)：指定图像的 URL，如 url('bullet.png')`
-
-</details>
+- **1:** 作用
+  + 减少重复定义，降低代码量
+  + 特定情境禁止继承，保证元素独立性
 
 ## CSS 性能优化
 
