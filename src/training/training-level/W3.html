@@ -9,12 +9,12 @@
     <link rel="preload stylesheet" href="/mb-front-end-interview/assets/style.CfHBCVxN.css" as="style">
     <link rel="preload stylesheet" href="/mb-front-end-interview/vp-icons.css" as="style">
     
-    <script type="module" src="/mb-front-end-interview/assets/app.Bt3pbsmU.js"></script>
+    <script type="module" src="/mb-front-end-interview/assets/app.aWa-iuwY.js"></script>
     <link rel="preload" href="/mb-front-end-interview/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/theme.CEnCHjJr.js">
+    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/theme.H9aklZEq.js">
     <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/framework.Dvg3AjVP.js">
-    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/markdownDialog.D5gjOo2e.js">
-    <link rel="modulepreload" href="/mb-front-end-interview/assets/src_training_training-level_W3.md.pOOTXcup.lean.js">
+    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/markdownDialog.DbFOcVcq.js">
+    <link rel="modulepreload" href="/mb-front-end-interview/assets/src_training_training-level_W3.md.yOkoU3sC.lean.js">
     <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
     <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
   </head>
@@ -31,423 +31,55 @@
 </ul>
 </li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">75. shouldComponentUpdate有什么用？为什么它很重要？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>组件状态数据或者属性数据发生更新的时候，组件会进入存在期，视图会渲染更新。在生命周期方法 should ComponentUpdate中，允许选择退出某些组件（和它们的子组件）的和解过程。</p>
-<p>和解的最终目标是根据新的状态，以最有效的方式更新用户界面。如果我们知道用户界面的某一部分不会改变，那么没有理由让 React弄清楚它是否应该更新渲染。通过在 shouldComponentUpdate方法中返回 false, React将让当前组件及其所有子组件保持与当前组件状态相同。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">31. 为什么说React中的props是只读的？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li>保证react的单向数据流的设计模式，使状态更可预测。如果允许自组件修改，那么一个父组件将状态传递给好几个子组件，这几个子组件随意修改，就完全不可预测，不知道在什么地方修改了状态，所以我们必须像纯函数一样保护 props 不被修改</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">45. 对 React-Intl 的理解，它的工作原理？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>React-intl是雅虎的语言国际化开源项目FormatJS的一部分，通过其提供的组件和API可以与ReactJS绑定。</p>
-<p>React-intl提供了两种使用方法，一种是引用React组件，另一种是直接调取API，官方更加推荐在React项目中使用前者，只有在无法使用React组件的地方，才应该调用框架提供的API。它提供了一系列的React组件，包括数字格式化、字符串格式化、日期格式化等。</p>
-<p>在React-intl中，可以配置不同的语言包，他的工作原理就是根据需要，在语言包之间进行切换。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">68. React18中引入的并发模式是什么，它带来了哪些改进</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>React18中引入的并发模式是一种新的渲染策略，它允许React在渲染过程中中断和恢复工作，以便更好地响应用户输入和其他高优先级任务。</p>
-</li>
-<li><p>通过并发模式，React可以更好地管理资源的分配和使用，提高应用的响应性和性能。</p>
-</li>
-<li><p>此外，并发模式还为React的未来扩展提供了基础，比如支持更复杂的动画和交互效果。</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">67. 说说React的Context API及其使用场景</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>React的Context API提供了一种在组件树中传递数据的方式，而无需手动逐层传递props。</p>
-</li>
-<li><p>它特别适用于跨多个层级共享数据或状态的情况，如主题、用户信息等。</p>
-</li>
-<li><p>使用Context API可以简化代码结构，避免prop drilling（属性穿透）的问题，并提高组件的复用性。</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">59. 如何在 Redux Thunk 中处理异步操作？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>要使用 Redux Thunk，需要将其作为中间件导入。Action创建者不应只返回一个对象，而应返回一个将dispatch 作为参数的函数。</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">addUser</span> = (<span class="hljs-params">{ firstName, lastName }</span>) =&gt; {
-  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatch</span> =&gt;</span> {
-    <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">addUserStart</span>());
-  }
-
-  axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/users&#x27;</span>, {
-    firstName,
-    lastName,
-    <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>
-  })
-  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> {
-    <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">addUserSuccess</span>(res.<span class="hljs-property">data</span>));
-  })
-  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">addUserError</span>(error.<span class="hljs-property">message</span>));
-  })
-}
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">56. 使用 Mobx 的特点是什么？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Mobx 提供了类似observable和的装饰器computed来定义可观察的状态和反应函数。用action修饰的动作用于修改状态，确保跟踪所有更改。Mobx 还提供自动依赖跟踪、不同类型的反应、对反应性的细粒度控制，以及通过 mobx-react 包与 React 无缝集成。总体而言，Mobx 通过根据可观察状态的变化自动执行更新过程来简化状态管理。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">23. 说说对Fiber架构的理解？解决了什么问题？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>在react中，主要做了以下的操作：</p>
-<ul>
-<li><strong>1：</strong> 为每个增加了优先级，优先级高的任务可以中断低优先级的任务。然后再重新，注意是重新执行优先级低的任务</li>
-<li><strong>1：</strong> 增加了异步任务，调用requestIdleCallback api，浏览器空闲的时候执行</li>
-<li><strong>1：</strong> dom diff树变成了链表，一个dom对应两个fiber（一个链表），对应两个队列，这都是为找到被中断的任务，重新执行</li>
-<li><strong>1：</strong> Fiber把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否还有剩余时间，如果有继续下一个任务；如果没有，挂起当前任务，将时间控制权交给主线程，等主线程不忙的时候在继续执行，即可以中断与恢复，恢复后也可以复用之前的中间状态，并给不同的任务赋予不同的优先级，其中每个任务更新单元为 React Element 对应的 Fiber节点</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">74. React为什么要校验Prop？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>React 中校验 Props 的主要目的是为了确保组件被正确使用并且传入的数据是符合预期的。通过对 Props 进行校验，可以提高代码的可靠性、可维护性和可读性，帮助开发人员尽早发现潜在的问题并减少调试时间。</p>
-<p>数据完整性和类型安全：Props 校验可以确保组件所需的数据类型和结构是正确的，避免意外的数据类型错误或缺失。这有助于提高代码的稳定性和可靠性。</p>
-<p>组件复用：通过校验 Props，可以明确指定组件所需的数据格式和限制条件，使其更具通用性和可复用性。其他开发人员在使用组件时能够更容易地理解如何正确传入数据。</p>
-<p>提供清晰的接口：Props 校验定义了组件的接口规范，使得组件的用法更加清晰明了。开发人员在调用组件时可以清晰地了解需要传入哪些数据，以及这些数据的约束条件。</p>
-<p>调试和错误检测：当传入的 Props 不符合校验规则时，React 会在开发环境下发出警告信息，帮助开发人员快速定位问题并进行修复，从而提高代码质量和可维护性。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">37. React 组件中怎么做事件代理？它的原理是什么？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>区别：</p>
-<p>React基于Virtual DOM实现了一个SyntheticEvent层（合成事件层），定义的事件处理器会接收到一个合成事件对象的实例，它符合W3C标准，且与原生的浏览器事件拥有同样的接口，支持冒泡机制，所有的事件都自动绑定在最外层上。</p>
-<p>在React底层，主要对合成事件做了两件事：</p>
-<ul>
-<li><p>事件委派： React会把所有的事件绑定到结构的最外层，使用统一的事件监听器，这个事件监听器上维持了一个映射来保存所有组件内部事件监听和处理函数。</p>
-</li>
-<li><p>自动绑定： React组件中，每个方法的上下文都会指向该组件的实例，即自动绑定this为当前组件。</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">22. 你知道 302 状态码是什么嘛？你平时浏览网页的过程中遇到过哪些 302 的场景？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>而 302 表示临时重定向，这个资源只是暂时不能被访问了，但是之后过一段时间还是可以继续访问，一般是访问某个网站的资源需要权限时，会需要用户去登录，跳转到登录页面之后登录之后，还可以继续访问。</p>
-<p>301 类似，都会跳转到一个新的网站，但是 301 代表访问的地址的资源被永久移除了，以后都不应该访问这个地址，搜索引擎抓取的时候也会用新的地址替换这个老的。可以在返回的响应的 location 首部去获取到返回的地址。301 的场景如下：</p>
-<ul>
-<li><p>比如从 baidu.com，跳转到 baidu.com</p>
-</li>
-<li><p>域名换了</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">58. Set、Map的区别？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>Set：是一种新的数据结构，类似于数组，但是成员的值都是唯一的，没有重复的值。</p>
-</li>
-<li><p>Map：是一种新的数据结构，类似于对象，但是键可以是任意类型。</p>
-</li>
-<li><p>Set和Map的区别在于，Set的键值是唯一的，而Map的键值可以是任意类型。</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">69. 数组有哪些原生方法？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。</p>
-</li>
-<li><p>数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。</p>
-</li>
-<li><p>数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。</p>
-</li>
-<li><p>数组连接的方法 concat() ，返回的是拼接好的数组，不影响原数组。</p>
-</li>
-<li><p>数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。</p>
-</li>
-<li><p>数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法</p>
-</li>
-<li><p>reduce() 和 reduceRight() 方法将数组元素计算为一个值，这对求和非常有用</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">10. 请写出几个 JavaScript 函数，用于实现数组去重</h4><div class="head-re"><span class="head-score">8 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><strong>1：</strong> 方法一：使用Set对象（ES6 及以上）</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-comment">//原理：Set是一种新的数据结构，它类似于数组，但是成员的值都是唯一的。可以将数组转换为Set，然后再转换回数组来实现去重。</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">uniqueArray</span>(<span class="hljs-params">arr</span>) {
-    <span class="hljs-keyword">return</span> [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr)];
-}
-<span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">uniqueArray</span>(array)); <span class="hljs-comment">// 输出[1, 2, 3, 4]</span>
-<span class="hljs-comment">//解释：new Set(array)会创建一个Set对象，其中包含了array中的所有元素，并且自动去重。然后，通过扩展运算符...将Set对象转换回数组，得到去重后的结果。</span>
-</code></pre><ul>
-<li><strong>1：</strong> 方法二：使用循环和一个新数组</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">uniqueArray</span>(<span class="hljs-params">arr</span>) {
-    <span class="hljs-keyword">let</span> newArray = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i++) {
-        <span class="hljs-keyword">if</span> (!newArray.<span class="hljs-title function_">includes</span>(arr[i])) {
-            newArray.<span class="hljs-title function_">push</span>(arr[i]);
-        }
-    }
-    <span class="hljs-keyword">return</span> newArray;
-}
-<span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">uniqueArray</span>(array)); <span class="hljs-comment">// 输出[1, 2, 3, 4]</span>
-</code></pre><ul>
-<li><strong>2：</strong> 方法三：使用filter方法和indexOf函数</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-comment">//原理：filter方法用于过滤数组中的元素，indexOf函数用于查找元素在数组中的首次出现位置。通过filter方法遍历数组，只保留首次出现的元素，从而实现去重。</span>
-<span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
-<span class="hljs-keyword">let</span> uniqueArray = array.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">element, index, self</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> self.<span class="hljs-title function_">indexOf</span>(element) === index;
-});
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(uniqueArray);
-<span class="hljs-comment">//解释：filter方法的回调函数接收三个参数：element（当前元素）、index（当前元素的索引）和self（数组本身）。在回调函数中，self.indexOf(element)会查找element在数组中的首次出现位置。如果这个位置等于当前元素的索引index，说明这个元素是首次出现的，filter方法会保留这个元素；否则，就过滤掉这个元素。最终filter方法返回一个新的去重后的数组。</span>
-</code></pre><ul>
-<li><strong>2：</strong> 方法四：使用reduce方法</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-comment">//原理：reduce方法用于对数组中的每个元素执行一个由您提供的reducer函数（升序执行），将其结果汇总为单个返回值。可以利用reduce方法来构建一个新的去重数组。</span>
-<span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
-<span class="hljs-keyword">let</span> uniqueArray = array.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, cur</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (!acc.<span class="hljs-title function_">includes</span>(cur)) {
-        acc.<span class="hljs-title function_">push</span>(cur);
-    }
-    <span class="hljs-keyword">return</span> acc;
-}, []);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(uniqueArray);
-<span class="hljs-comment">//解释：reduce方法的第一个参数是一个reducer函数，它接收两个参数：acc（累加器，初始值是一个空数组[]）和cur（当前元素）。在reducer函数中，如果acc数组不包含cur元素（acc.includes(cur)返回false），就将cur添加到acc中。最后，reduce方法返回acc，即去重后的数组。</span>
-</code></pre><ul>
-<li><strong>2：</strong> 方法五：使用Object对象（以元素为键）</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-comment">//原理：利用Object的键的唯一性，将数组元素作为对象的键，值可以任意设置（这里设置为true），然后获取对象的键并转换回数组来实现去重。</span>
-<span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>];
-<span class="hljs-keyword">let</span> uniqueArray = [];
-<span class="hljs-keyword">let</span> tempObj = {};
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.<span class="hljs-property">length</span>; i++) {
-    <span class="hljs-keyword">let</span> current = array[i];
-    <span class="hljs-keyword">if</span> (!tempObj[current]) {
-        uniqueArray.<span class="hljs-title function_">push</span>(current);
-        tempObj[current] = <span class="hljs-literal">true</span>;
-    }
-}
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(uniqueArray);
-<span class="hljs-comment">//解释：首先创建一个空数组uniqueArray用于存储去重后的元素，以及一个空对象tempObj。然后遍历array数组，对于每个元素current，检查tempObj对象中是否已经存在以current为键的属性（tempObj[current]是否为true）。如果不存在，就将current添加到uniqueArray中，并在tempObj中添加一个以current为键，值为true的属性。这样，利用对象键的唯一性实现了数组去重。最后返回uniqueArray。</span>
-</code></pre></details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Vite 生产构建的主要优化策略有哪些？</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><strong>1：</strong> 依赖预打包<br>
-&emsp;原理：在生产构建时，Vite 会对项目的依赖进行预打包。因为在开发阶段，Vite 利用浏览器原生的 ES 模块加载，每个依赖都是单独的模块请求。但在生产环境中，过多的小模块请求会影响性能。Vite 将多个依赖模块合并为一个或几个较大的 chunk 文件，减少 HTTP 请求数量。<br>
-&emsp;示例：比如一个项目使用了 lodash、axios 等多个库，Vite 会把这些库的相关模块打包到一起。假设在开发时，加载这些库可能会产生 10 个小的模块请求，经过预打包后可能只需要 1 - 2 个请求来加载这些库的代码。</li>
-<li><strong>1：</strong> 代码压缩与混淆:<br>
-&emsp;原理： Vite 使用工具（如 Terser）对 JavaScript 代码进行压缩和混淆。压缩是去除代码中的空格、注释等冗余信息，减小文件体积。混淆则是将变量名、函数名等替换为更短或难以理解的名称，增加代码的安全性并且进一步减小体积。<br>
-&emsp;示例: 原始的 JavaScript 代码可能包含大量的注释和有意义的变量名如：</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a, b</span>) {
-    <span class="hljs-keyword">return</span> a + b;
-}
-</code></pre><p>经过压缩和混淆后可能变成类似function n(a,b){return a + b;}的形式，文件大小也会显著减小。</p>
-<ul>
-<li><p><strong>1：</strong> CSS 优化:</br>
-&emsp;(1)提取公共 CSS：Vite 会将多个组件或模块中相同的 CSS 样式提取出来，合并到一个或多个 CSS 文件中。这样可以避免在每个组件的 HTML 文件中重复加载相同的 CSS 代码，减少文件大小和请求次数。</br>
-&emsp;(2)压缩 CSS：使用工具（如 cssnano）对 CSS 文件进行压缩，去除不必要的空格、注释，优化 CSS 属性的表示方式等。例如，将color: #ffffff;可能会被优化为color:#fff;。</p>
-</li>
-<li><p><strong>1：</strong> 静态资源处理:</br>
-&emsp;(1)哈希处理：对静态资源（如图片、字体等）进行哈希处理。当资源内容发生变化时，其哈希值也会改变，这样可以在浏览器中实现长效缓存。浏览器可以根据资源的哈希值判断是否需要重新请求资源。</br>
-&emsp;(2)优化路径和加载方式：确保在生产环境中，静态资源的路径是正确的，并且以最优的方式加载。例如，对于一些小的图片，可能会被转换为 Base64 格式嵌入到 CSS 或 HTML 文件中，减少额外的请求。</p>
-</li>
-<li><p><strong>2：</strong> Tree - Shaking（摇树优化）:</br>
-&emsp;原理：Vite 会分析代码的依赖关系，在打包过程中去除那些没有被实际使用的代码。例如，如果在一个 JavaScript 模块中引入了一个大型库，但只使用了其中的一个小功能，Vite 会将未使用的代码部分剔除。</br>
-&emsp;示例：假设一个项目引入了lodash库，但只使用了_.isEmpty函数，Vite 会在打包时将lodash中其他未使用的函数代码排除，从而减小最终打包文件的大小。</p>
-</li>
-</ul>
-</details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Vite 项目构建速度快的原因是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> Vite 利用了现代浏览器的原生 ES （ES Modules）模块支持，采用了按需加载和热更新技术。在开发过程中，它只加载和处理当前需要的模块，减少了不必要的代码编译和打包工作，并且通过快速
-的热更新机制，使开发过程中能够迅速响应代码变化，提高了构建速度。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">8. webpack代理怎么配置？proxy中常用的属性是什么？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> 配置如下：</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-  <span class="hljs-comment">// ...</span>
-  <span class="hljs-attr">devServer</span>: {
-    <span class="hljs-attr">contentBase</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&quot;dist&quot;</span>),
-    <span class="hljs-attr">compress</span>: <span class="hljs-literal">true</span>,
-    <span class="hljs-attr">port</span>: <span class="hljs-number">9000</span>,
-    <span class="hljs-attr">proxy</span>: {
-      <span class="hljs-string">&quot;/api&quot;</span>: {
-        <span class="hljs-attr">target</span>: <span class="hljs-string">&quot;https://api.github.com&quot;</span>,<span class="hljs-comment">// </span>
-      },
-    },
-    <span class="hljs-comment">// ...</span>
-  },
-};
-</code></pre><ul>
-<li><strong>2：</strong> 常用属性：</li>
-</ul>
-<blockquote>
-<p>target：表示的是代理到的目标地址<br>pathRewrite：默认情况下，我们的 /api-hy 也会被写入到URL中，如果希望删除、可以使用pathRewrite<br>secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false<br>changeOrigin：它表示是否更新代理后请求的 headers 中host地址  </p>
-</blockquote>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">25. 如何实现一个上拉加载，下拉刷新？</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><strong>2：</strong> 上拉加载</li>
-</ul>
-<p>首先可以看一张图</p>
-<p><img src="/public/images/3_JavaScript_20241230002614.png" alt=""></p>
-<p>上拉加载的本质是页面触底，或者快要触底时的动作</p>
-<p>判断页面触底我们需要先了解一下下面几个属性</p>
-<ul>
-<li><p><code>scrollTop</code>：滚动视窗的高度距离<code>window</code>顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值</p>
-</li>
-<li><p><code>clientHeight</code>:它是一个定值，表示屏幕可视区域的高度；</p>
-</li>
-<li><p><code>scrollHeight</code>：页面不能滚动时也是存在的,此时scrollHeight等于clientHeight。scrollHeight表示<code>body</code>所有元素的总长度(包括body元素自身的padding)</p>
-</li>
-</ul>
-<p>综上我们得出一个触底公式：</p>
-<pre><code class="hljs language-js">scrollTop + clientHeight &gt;= scrollHeight
-</code></pre><p>简单实现</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> clientHeight  = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientHeight</span>; <span class="hljs-comment">//浏览器高度</span>
-<span class="hljs-keyword">let</span> scrollHeight = <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">scrollHeight</span>;
-<span class="hljs-keyword">let</span> scrollTop = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span>;
- 
-<span class="hljs-keyword">let</span> distance = <span class="hljs-number">50</span>;  <span class="hljs-comment">//距离视窗还用50的时候，开始触发；</span>
-
-<span class="hljs-keyword">if</span> ((scrollTop + clientHeight) &gt;= (scrollHeight - distance)) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;开始加载数据&quot;</span>);
-}
-</code></pre><ul>
-<li><strong>2：</strong> 下拉刷新</li>
-</ul>
-<p>下拉刷新的本质是页面本身置于顶部时，用户下拉时需要触发的动作</p>
-<p>关于下拉刷新的原生实现，主要分成三步：</p>
-<ul>
-<li>监听原生<code>touchstart</code>事件，记录其初始位置的值，<code>e.touches[0].pageY</code>；</li>
-<li>监听原生<code>touchmove</code>事件，记录并计算当前滑动的位置值与初始位置值的差值，大于<code>0</code>表示向下拉动，并借助CSS3的<code>translateY</code>属性使元素跟随手势向下滑动对应的差值，同时也应设置一个允许滑动的最大值；</li>
-<li>监听原生<code>touchend</code>事件，若此时元素滑动达到最大值，则触发<code>callback</code>，同时将<code>translateY</code>重设为<code>0</code>，元素回到初始位置</li>
-</ul>
-<p>举个例子：</p>
-<p><code>Html</code>结构如下：</p>
-<pre><code class="hljs language-js">&lt;main&gt;
-    &lt;p class=&quot;refreshText&quot;&gt;&lt;/p &gt;
-    &lt;ul id=&quot;refreshContainer&quot;&gt;
-        &lt;li&gt;111&lt;/li&gt;
-        &lt;li&gt;222&lt;/li&gt;
-        &lt;li&gt;333&lt;/li&gt;
-        &lt;li&gt;444&lt;/li&gt;
-        &lt;li&gt;555&lt;/li&gt;
-        ...
-    &lt;/ul&gt;
-&lt;/main&gt;
-</code></pre><p>监听<code>touchstart</code>事件，记录初始的值</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> _element = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;refreshContainer&#x27;</span>),
-    _refreshText = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.refreshText&#x27;</span>),
-    _startPos = <span class="hljs-number">0</span>,  <span class="hljs-comment">// 初始的值</span>
-    _transitionHeight = <span class="hljs-number">0</span>; <span class="hljs-comment">// 移动的距离</span>
-
-_element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;touchstart&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) {
-    _startPos = e.<span class="hljs-property">touches</span>[<span class="hljs-number">0</span>].<span class="hljs-property">pageY</span>; <span class="hljs-comment">// 记录初始位置</span>
-    _element.<span class="hljs-property">style</span>.<span class="hljs-property">position</span> = <span class="hljs-string">&#x27;relative&#x27;</span>;
-    _element.<span class="hljs-property">style</span>.<span class="hljs-property">transition</span> = <span class="hljs-string">&#x27;transform 0s&#x27;</span>;
-}, <span class="hljs-literal">false</span>);
-</code></pre><p>监听<code>touchmove</code>移动事件，记录滑动差值</p>
-<pre><code class="hljs language-js">_element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;touchmove&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) {
-    <span class="hljs-comment">// e.touches[0].pageY 当前位置</span>
-    _transitionHeight = e.<span class="hljs-property">touches</span>[<span class="hljs-number">0</span>].<span class="hljs-property">pageY</span> - _startPos; <span class="hljs-comment">// 记录差值</span>
-
-    <span class="hljs-keyword">if</span> (_transitionHeight &gt; <span class="hljs-number">0</span> &amp;&amp; _transitionHeight &lt; <span class="hljs-number">60</span>) { 
-        _refreshText.<span class="hljs-property">innerText</span> = <span class="hljs-string">&#x27;下拉刷新&#x27;</span>; 
-        _element.<span class="hljs-property">style</span>.<span class="hljs-property">transform</span> = <span class="hljs-string">&#x27;translateY(&#x27;</span>+_transitionHeight+<span class="hljs-string">&#x27;px)&#x27;</span>;
-
-        <span class="hljs-keyword">if</span> (_transitionHeight &gt; <span class="hljs-number">55</span>) {
-            _refreshText.<span class="hljs-property">innerText</span> = <span class="hljs-string">&#x27;释放更新&#x27;</span>;
-        }
-    }                
-}, <span class="hljs-literal">false</span>);
-</code></pre><p>最后，就是监听<code>touchend</code>离开的事件</p>
-<pre><code class="hljs language-js">_element.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;touchend&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) {
-    _element.<span class="hljs-property">style</span>.<span class="hljs-property">transition</span> = <span class="hljs-string">&#x27;transform 0.5s ease 1s&#x27;</span>;
-    _element.<span class="hljs-property">style</span>.<span class="hljs-property">transform</span> = <span class="hljs-string">&#x27;translateY(0px)&#x27;</span>;
-    _refreshText.<span class="hljs-property">innerText</span> = <span class="hljs-string">&#x27;更新中...&#x27;</span>;
-    <span class="hljs-comment">// todo...</span>
-
-}, <span class="hljs-literal">false</span>);
-</code></pre><p>从上面可以看到，在下拉到松手的过程中，经历了三个阶段：</p>
-<ul>
-<li><p>当前手势滑动位置与初始位置差值大于零时，提示正在进行下拉刷新操作</p>
-</li>
-<li><p>下拉到一定值时，显示松手释放后的操作提示</p>
-</li>
-<li><p>下拉到达设定最大值松手时，执行回调，提示正在进行更新操作</p>
-</li>
-<li><p><strong>2：</strong> 案例</p>
-</li>
-</ul>
-<p>在实际开发中，我们更多的是使用第三方库，下面以<code>better-scroll</code>进行举例：</p>
-<p>HTML结构</p>
-<pre><code class="hljs language-js">&lt;div id=<span class="hljs-string">&quot;position-wrapper&quot;</span>&gt;
-    &lt;div&gt;
-        &lt;p class=&quot;refresh&quot;&gt;下拉刷新&lt;/p &gt;
-        &lt;div class=&quot;position-list&quot;&gt;
-   &lt;!--列表内容--&gt;
-        &lt;/div&gt;
-        &lt;p class=&quot;more&quot;&gt;查看更多&lt;/p &gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>实例化上拉下拉插件，通过<code>use</code>来注册插件</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">BScroll</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@better-scroll/core&quot;</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-title class_">PullDown</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@better-scroll/pull-down&quot;</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-title class_">PullUp</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@better-scroll/pull-up&#x27;</span>;
-<span class="hljs-title class_">BScroll</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">PullDown</span>);
-<span class="hljs-title class_">BScroll</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">PullUp</span>);
-</code></pre><p>实例化<code>BetterScroll</code>，并传入相关的参数</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> pageNo = <span class="hljs-number">1</span>,pageSize = <span class="hljs-number">10</span>,dataList = [],isMore = <span class="hljs-literal">true</span>;  
-<span class="hljs-keyword">var</span> scroll= <span class="hljs-keyword">new</span> <span class="hljs-title class_">BScroll</span>(<span class="hljs-string">&quot;#position-wrapper&quot;</span>,{
-    <span class="hljs-attr">scrollY</span>:<span class="hljs-literal">true</span>,<span class="hljs-comment">//垂直方向滚动</span>
-    <span class="hljs-attr">click</span>:<span class="hljs-literal">true</span>,<span class="hljs-comment">//默认会阻止浏览器的原生click事件，如果需要点击，这里要设为true</span>
-    <span class="hljs-attr">pullUpLoad</span>:<span class="hljs-literal">true</span>,<span class="hljs-comment">//上拉加载更多</span>
-    <span class="hljs-attr">pullDownRefresh</span>:{
-        <span class="hljs-attr">threshold</span>:<span class="hljs-number">50</span>,<span class="hljs-comment">//触发pullingDown事件的位置</span>
-        <span class="hljs-attr">stop</span>:<span class="hljs-number">0</span><span class="hljs-comment">//下拉回弹后停留的位置</span>
-    }
-});
-<span class="hljs-comment">//监听下拉刷新</span>
-scroll.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;pullingDown&quot;</span>,pullingDownHandler);
-<span class="hljs-comment">//监测实时滚动</span>
-scroll.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;scroll&quot;</span>,scrollHandler);
-<span class="hljs-comment">//上拉加载更多</span>
-scroll.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;pullingUp&quot;</span>,pullingUpHandler);
-
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">pullingDownHandler</span>(<span class="hljs-params"></span>){
-    dataList=[];
-    pageNo=<span class="hljs-number">1</span>;
-    isMore=<span class="hljs-literal">true</span>;
-    $(<span class="hljs-string">&quot;.more&quot;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;查看更多&quot;</span>);
-    <span class="hljs-keyword">await</span> <span class="hljs-title function_">getlist</span>();<span class="hljs-comment">//请求数据</span>
-    scroll.<span class="hljs-title function_">finishPullDown</span>();<span class="hljs-comment">//每次下拉结束后，需要执行这个操作</span>
-    scroll.<span class="hljs-title function_">refresh</span>();<span class="hljs-comment">//当滚动区域的dom结构有变化时，需要执行这个操作</span>
-}
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">pullingUpHandler</span>(<span class="hljs-params"></span>){
-    <span class="hljs-keyword">if</span>(!isMore){
-        $(<span class="hljs-string">&quot;.more&quot;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;没有更多数据了&quot;</span>);
-        scroll.<span class="hljs-title function_">finishPullUp</span>();<span class="hljs-comment">//每次上拉结束后，需要执行这个操作</span>
-        <span class="hljs-keyword">return</span>;
-    }
-    pageNo++;
-    <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getlist</span>();<span class="hljs-comment">//请求数据</span>
-    scroll.<span class="hljs-title function_">finishPullUp</span>();<span class="hljs-comment">//每次上拉结束后，需要执行这个操作</span>
-    scroll.<span class="hljs-title function_">refresh</span>();<span class="hljs-comment">//当滚动区域的dom结构有变化时，需要执行这个操作    </span>
-}
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">scrollHandler</span>(<span class="hljs-params"></span>){
-    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>&gt;<span class="hljs-number">50</span>) $(<span class="hljs-string">&#x27;.refresh&#x27;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;松手开始加载&quot;</span>);
-    <span class="hljs-keyword">else</span> $(<span class="hljs-string">&#x27;.refresh&#x27;</span>).<span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;下拉刷新&quot;</span>);
-}
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">getlist</span>(<span class="hljs-params"></span>){
-    <span class="hljs-comment">//返回的数据</span>
-    <span class="hljs-keyword">let</span> result=....;
-    dataList=dataList.<span class="hljs-title function_">concat</span>(result);
-    <span class="hljs-comment">//判断是否已加载完</span>
-    <span class="hljs-keyword">if</span>(result.<span class="hljs-property">length</span>&lt;pageSize) isMore=<span class="hljs-literal">false</span>;
-    <span class="hljs-comment">//将dataList渲染到html内容中</span>
-}    
-</code></pre><p>注意点：</p>
-<p>使用 <code>better-scroll</code> 实现下拉刷新、上拉加载时要注意以下几点：</p>
-<ul>
-<li><code>wrapper</code> 里必须只有一个子元素</li>
-<li>子元素的高度要比 <code>wrapper</code> 要高</li>
-<li>使用的时候，要确定 <code>DOM</code> 元素是否已经生成，必须要等到 <code>DOM</code> 渲染完成后，再 <code>new BScroll()</code></li>
-<li>滚动区域的 <code>DOM</code> 元素结构有变化后，需要执行刷新 <code>refresh()</code></li>
-<li>上拉或者下拉，结束后，需要执行 <code>finishPullUp()</code> 或者 <code>finishPullDown()</code>，否则将不会执行下次操作</li>
-<li><code>better-scroll</code>，默认会阻止浏览器的原生 <code>click</code> 事件，如果滚动内容区要添加点击事件，需要在实例化属性里设置 <code>click:true</code></li>
-</ul>
-</details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Qiankun 有哪些优点？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> 技术栈无关：支持不同技术栈的子应用集成，如 Vue、React、Angular 等。</li>
-<li><strong>1：</strong> 独立开发部署：各个子应用可以独立开发、测试、部署，提高团队开发效率。</li>
-<li><strong>1：</strong> 提升可维护性：便于对大型前端项目进行拆分和管理，降低代码复杂度，提升可维护性。</li>
-<li><strong>1：</strong> 动态加载：根据需要动态加载子应用，优化资源加载和页面性能。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">38. vue-router怎么动态添加、删除路由？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>添加路由</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">61. 如何访问DOM元素？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>引用是使用 React.createRef() 或 useRef() 钩子创建的，并通过 ref 属性附加到 React 元素上。通过访问创建的引用，我们可以使用 ref.current 访问 DOM 元素。</p>
 <pre><code class="hljs language-js">
-<span class="hljs-keyword">import</span> { useRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> myRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
 
-<span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>();
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">addRoute</span> = (<span class="hljs-params"></span>) =&gt; {
-  <span class="hljs-keyword">const</span> newRoute = {
-    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/hello&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/HelloWorld.vue&#x27;</span>), <span class="hljs-comment">// 动态加载组件</span>
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleClick</span> = (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myRef.<span class="hljs-property">current</span>); <span class="hljs-comment">// Accessing the DOM element</span>
   };
-  router.<span class="hljs-title function_">addRoute</span>(newRoute);
-};
-</code></pre><p>添加路由</p>
-<pre><code class="hljs language-js">
-router.<span class="hljs-title function_">removeRoute</span>(<span class="hljs-string">&#x27;xxx&#x27;</span>);
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">63. 如何不使用脚手架创建一个项目</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ol>
+
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      &lt;input type=&quot;text&quot; ref={myRef} /&gt;
+      &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">41. 对componentWillReceiveProps 的理解</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>该方法当props发生变化时执行，初始化render时不执行，在这个回调函数里面，你可以根据属性的变化，通过调用this.setState()来更新你的组件状态，旧的属性还是可以通过this.props来获取,这里调用更新状态是安全的，并不会触发额外的render调用。</p>
+<p>使用好处： 在这个生命周期中，可以在子组件的render函数执行前获取新的props，从而更新子组件自己的state。 可以将数据请求放在这里进行执行，需要传的参数则从componentWillReceiveProps(nextProps)中获取。而不必将所有的请求都放在父组件中。于是该请求只会在该组件渲染时才会发出，从而减轻请求负担。</p>
+<p>componentWillReceiveProps在初始化render的时候不会执行，它会在Component接受到新的状态(Props)时被触发，一般用于父组件状态更新时子组件的重新渲染。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">二分查找</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 适用条件： 数组必须是有序的。</li>
+<li><strong>1：</strong> 应用场景： 查找有序数组中的元素，例如数据查询、搜索问题。</li>
+<li><strong>1：</strong> 时间复杂度： O(log n)。</li>
+<li><strong>1：</strong> 思路：<ul>
+<li>每次取中间元素与目标值比较。</li>
+<li>若中间值大于目标值，目标值一定在左半部分。</li>
+<li>若中间值小于目标值，目标值一定在右半部分。</li>
+<li>重复上述步骤直到找到目标值或数组为空。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">binarySearch</span>(<span class="hljs-params">arr, target</span>) {
+  <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">while</span> (left &lt;= right) {
+    <span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((left + right) / <span class="hljs-number">2</span>);
+    <span class="hljs-keyword">if</span> (arr[mid] === target) {
+        <span class="hljs-keyword">return</span> mid;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &lt; target) {
+        left = mid + <span class="hljs-number">1</span>;
+    } <span class="hljs-keyword">else</span> {
+        right = mid - <span class="hljs-number">1</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>; <span class="hljs-comment">// 未找到目标值</span>
+}
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">54. 在什么情况下可以使用本地状态，什么时候应该使用全局状态？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>如果本地状态仅在一个组件中使用并且不打算将其传递给其他组件，则建议使用本地状态。本地状态也用在表示列表中单个项目的组件中。但是，如果组件分解涉及嵌套组件且数据沿层次结构传递，则最好使用全局状态。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">63. 如何不使用脚手架创建一个项目</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ol>
 <li><p>yarn init 初始化package.json文件</p>
 </li>
 <li><p>安装react和react-dom</p>
@@ -459,151 +91,689 @@ router.<span class="hljs-title function_">removeRoute</span>(<span class="hljs-s
 <li><p>安装redux</p>
 </li>
 </ol>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">18. 解释一下Node.js的Express框架及其主要组件?</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>Express是一个基于Node.js的web应用程序框架，它可以帮助开发人员快速构建Web服务。它的主要组件包括：</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">53. 什么是状态管理器？你使用或了解哪些状态管理器？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>状态管理器是一种帮助管理应用程序状态的工具或库。它为存储和管理数据提供了一个集中的存储空间或容器，应用程序中的不同组件都可以访问和更新这些数据。
+状态管理器可以解决几个问题。首先，将数据和与之相关的逻辑从组件中分离出来是一种很好的做法。其次，当使用本地状态并在组件之间传递时，由于组件有可能深嵌套，代码可能会变得错综复杂。通过全局存储，我们可以从任何组件访问和修改数据。
+除了 React Context，Redux 或 MobX 也常用作状态管理库。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">76. 如何用 React构建（ build）生产模式？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>通常，使用 Webpack的 DefinePlugin方法将 NODE ENV设置为 production。这将剥离 propType验证和额外的警告。除此之外，还可以减少代码，因为 React使用 Uglify的dead-code来消除开发代码和注释，这将大大减少包占用的空间。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">74. React为什么要校验Prop？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>React 中校验 Props 的主要目的是为了确保组件被正确使用并且传入的数据是符合预期的。通过对 Props 进行校验，可以提高代码的可靠性、可维护性和可读性，帮助开发人员尽早发现潜在的问题并减少调试时间。</p>
+<p>数据完整性和类型安全：Props 校验可以确保组件所需的数据类型和结构是正确的，避免意外的数据类型错误或缺失。这有助于提高代码的稳定性和可靠性。</p>
+<p>组件复用：通过校验 Props，可以明确指定组件所需的数据格式和限制条件，使其更具通用性和可复用性。其他开发人员在使用组件时能够更容易地理解如何正确传入数据。</p>
+<p>提供清晰的接口：Props 校验定义了组件的接口规范，使得组件的用法更加清晰明了。开发人员在调用组件时可以清晰地了解需要传入哪些数据，以及这些数据的约束条件。</p>
+<p>调试和错误检测：当传入的 Props 不符合校验规则时，React 会在开发环境下发出警告信息，帮助开发人员快速定位问题并进行修复，从而提高代码质量和可维护性。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">39. Component, Element, Instance 之间有什么区别和联系？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>元素： 一个元素element是一个普通对象(plain object)，描述了对于一个DOM节点或者其他组件component，你想让它在屏幕上呈现成什么样子。元素element可以在它的属性props中包含其他元素(译注:用于形成元素树)。创建一个React元素element成本很低。元素element创建之后是不可变的。</p>
 </li>
-<li><p>Router：路由器，用于定义路由规则，根据URL的不同路径映射到不同的处理器。</p>
+<li><p>组件： 一个组件component可以通过多种方式声明。可以是带有一个render()方法的类，简单点也可以定义为一个函数。这两种情况下，它都把属性props作为输入，把返回的一棵元素树作为输出。</p>
 </li>
-<li><p>Middleware：中间件，用于拦截HTTP请求，并对其进行预处理或后处理。</p>
-</li>
-<li><p>View engine：视图引擎，用于渲染HTML模板。</p>
-</li>
-<li><p>Body-parser：用于解析POST请求体中的内容，如表单数据和JSON数据。</p>
-</li>
-<li><p>Cors：跨域资源共享模块，允许客户端向不同域名的服务器发起请求。</p>
-</li>
-<li><p>Static：静态文件服务器，用于托管静态文件，如图片、CSS和JavaScript文件。</p>
-</li>
-<li><p>Express还支持自定义错误处理器、HTTP中间件等功能，使得开发者可以轻松地搭建出高质量的Web服务。</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">54. 浏览器是怎样解析CSS选择器的？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>CSS选择器的解析是从右向左解析的，为了避免对所有元素进行遍历。若从左向右的匹配，发现不符合规则，需要进行回溯，会损失很多性能。若从右向左匹配，先找到所有的最右节点，对于每一个节点，向上寻找其父节点直到找到根元素或满足条件的匹配规则，则结束这个分支的遍历。两种匹配规则的性能差别很大，是因为从右向左的匹配在第一步就筛选掉了大量的不符合条件的最右节点（叶子节点），而从左向右的匹配规则的性能都浪费在了失败的查找上面。
-而在 CSS 解析完毕后，需要将解析的结果与 DOM Tree 的内容一起进行分析建立一棵 Render Tree，最终用来进行绘图。在建立 Render Tree 时（WebKit 中的「Attachment」过程），浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 Render Tree。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">10. 什么是BFF？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>BFF（Backend For Frontend）是中间层，由前端同学开发的后端项目。</p>
-</li>
-<li><p>最常见的BFF项目像SSR和GraphQL。SSR用来解决SEO问题，GraphQL用来聚合数据，解决API查询的问题。</p>
+<li><p>实例： 一个实例instance是你在所写的组件类component class中使用关键字this所指向的东西(译注:组件实例)。它用来存储本地状态和响应生命周期事件很有用。</p>
 </li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">script、script async 和 script defer 的区别？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>script - HTML 解析中断，脚本被提取并立即执行。执行结束后，HTML 解析继续。  </p>
-<p>async - 脚本的提取、执行的过程与 HTML 解析过程并行，脚本执行完毕可能在 HTML 解析完毕之前。当脚本与页面上其他脚本独立时，可以使用 async，比如用作页面统计分析。  </p>
-<p>defer - 脚本仅提取过程与 HTML 解析过程并行，脚本的执行将在 HTML 解析完毕后进行。如果有多个含 defer 的脚本，脚本的执行顺序将按照在 document 中出现的位置，从上到下顺序执行。</p>
+<p>函数式组件(Functional component)根本没有实例instance。类组件(Class component)有实例instance，但是永远也不需要直接创建一个组件的实例，因为React帮我们做了这些。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">67. Vue 3 中的 toRef 和 toRefs 是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>toRef：将对象的某个属性转换为 ref。</p>
+<p>toRefs：将整个响应式对象的所有属性转换为 ref。</p>
+<pre><code class="hljs language-js">
+<span class="hljs-keyword">import</span> { reactive, toRef, toRefs } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Vue 3&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">3</span> });
+    <span class="hljs-keyword">const</span> nameRef = <span class="hljs-title function_">toRef</span>(state, <span class="hljs-string">&#x27;name&#x27;</span>); <span class="hljs-comment">// 单个属性</span>
+    <span class="hljs-keyword">const</span> stateRefs = <span class="hljs-title function_">toRefs</span>(state); <span class="hljs-comment">// 所有属性</span>
+
+    <span class="hljs-keyword">return</span> { nameRef, stateRefs };
+  }
+};
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">什么是二叉搜索树（BST）</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 二叉搜索树是一种二叉树，对于树中的每个节点，其左子树的所有节点值都小于该节点值，右子树的所有节点值都大于该节点值。这种特性使得在二叉搜索树上进行查
+找、插入和删除操作的平均时间复杂度为 O (log n)，n 为节点数。</li>
+</ul>
 </details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">React 中 useEffect 与 Next.js 用途是什么?有什么关系？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
 <li><strong>1：</strong> useEffect钩子用于在功能组件中执行副作用，例如从 API 获取数据或更新文档标题。</li>
 <li><strong>1：</strong> 在 Next.js 中,useEffect钩子可以用来使用fetch API 或第三方库（如 Axios 或 SWR）执行客户端数据获取。</li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">72. Vue 3 中的 shallowRef 和 shallowReactive 是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>shallowRef：只对 .value 进行响应式处理。</p>
-<p>shallowReactive：只对对象的第一层属性进行响应式处理。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">68. Vue 3 中的 provide 和 inject 是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>provide 和 inject 用于跨层级组件通信。</p>
 <pre><code class="hljs language-js">
-<span class="hljs-keyword">import</span> { shallowRef, shallowReactive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
+<span class="hljs-keyword">import</span> { provide, ref } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
   <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">shallowRef</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// 基本类型</span>
-    <span class="hljs-keyword">const</span> state = <span class="hljs-title function_">shallowReactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Vue 3&#x27;</span>, <span class="hljs-attr">info</span>: { <span class="hljs-attr">age</span>: <span class="hljs-number">3</span> } }); <span class="hljs-comment">// 对象类型</span>
-
-    <span class="hljs-keyword">return</span> { count, state };
+    <span class="hljs-keyword">const</span> message = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;Hello from parent&#x27;</span>);
+    <span class="hljs-title function_">provide</span>(<span class="hljs-string">&#x27;message&#x27;</span>, message); <span class="hljs-comment">// 提供数据</span>
   }
 };
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">点击劫持</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>:1</strong> 通过 iframe 使用别人提供的内容时，自己的页面也可能正在被不法分子放到他们精心构造的 iframe 中，进行点击劫持攻击。这是一种欺骗性强、用户参与高的攻击。</li>
-<li><strong>:2</strong> 通常的攻击步骤是这样的：</li>
-</ul>
-<blockquote>
-<p>1、攻击者构造一个诱导用户点击的内容，比如页面小游戏。<br>2、将我们的页面放入到 iframe 当中。<br>3、利用 z-index 等 CSS 样式将这个 iframe 叠加到小游戏的垂直方向的正上方。<br>4、把 iframe 设置为100%透明度。<br>5、受害者访问到这个页面后，肉眼看到的是一个小游戏，如果受到诱导进行了点击的话，实际上点击到的却是 iframe 中的我们自己的页面。</p>
-</blockquote>
-<ul>
-<li><strong>:1</strong> 危害：</li>
-</ul>
-<blockquote>
-<p>攻击者利用了受害者的用户身份，在其不知情的情况下进行一些操作。如果是删除某个重要文件记录，或者窃取敏感信息，那么造成的危害就难以承受。</p>
-</blockquote>
-<ul>
-<li><strong>:2</strong> 防御：</li>
-</ul>
-<blockquote>
-<p>1、使用 X-Frame-Options：DENY 这个 HTTP Header 来明确的告知浏览器，不要把当前HTTP响应中的内容在HTML Frame 中显示出来。
-2、判断当前页面是否被嵌入到 iframe 中。</p>
-</blockquote>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">内存管理机制的原理、优点、缺点</h4><div class="head-re"><span class="head-score">8 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> 内存分页管理机制。</li>
-<li><strong>1：</strong> 内存分页管理机制原理：将内存和进程的地址空间划分为大小相等的页，进程的逻辑地址由页号和页内偏移量组成。通过页表将逻辑地址转换为物理地址。</li>
-<li><strong>1：</strong> 内存分页管理机制优点：内存利用率高，减少了内存碎片；便于实现虚拟内存，提高了内存的使用效率。</li>
-<li><strong>1：</strong> 内存分页管理机制缺点：页表需要占用一定的内存空间，增加了系统开销；页面置换算法可能会带来一定的性能开销。</li>
-<li><strong>1：</strong> 内存分段管理机制。</li>
-<li><strong>1：</strong> 内存分段管理机制原理：将进程的地址空间划分为若干个大小不等的段，每个段有自己的段名和段长。通过段表将逻辑地址转换为物理地址。</li>
-<li><strong>1：</strong> 内存分段管理机制优点：便于程序的模块化设计和共享；可以根据段的实际大小分配内存，减少了内存碎片。</li>
-<li><strong>1：</strong> 内存分段管理机制缺点：内存管理复杂，段表的维护开销较大；可能会导致内存碎片过多，降低内存利用率。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">39. 有使用过v-memo么？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>缓存一个模板的子树。在元素和组件上都可以使用。为了实现缓存，该指令需要传入一个固定长度的依赖值数组进行比较。如果数组里的每个值都与最后一次的渲染相同，那么整个子树的更新将被跳过。</p>
-<p>一般与v-for配合使用，v-memo的值是一个数组。数组的值不改变的情况，该组件及子组件就会跳过更新</p>
-<p>v-memo 绑定的值没改变，子组件引用的响应数据变了，也不会更新</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">51. Vue-Router 的懒加载如何实现</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>加载渲染过程：</p>
-<p>方案一(常用)：使用箭头函数+import动态加载</p>
-<pre><code class="hljs language-js">  <span class="hljs-keyword">const</span> <span class="hljs-title function_">List</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/list.vue&#x27;</span>)
-  <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>({
-    <span class="hljs-attr">routes</span>: [
-      { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">List</span> }
-    ]
-  })
-</code></pre><p>方案二：使用箭头函数+require动态加载</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>({
-  <span class="hljs-attr">routes</span>: [
-   {
-     <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list&#x27;</span>,
-     <span class="hljs-attr">component</span>: <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">require</span>([<span class="hljs-string">&#x27;@/components/list&#x27;</span>], resolve)
-   }
-  ]
-})
-</code></pre><p>方案二：方案三：使用webpack的require.ensure技术，也可以实现按需加载。 这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。</p>
-<pre><code class="hljs language-js"><span class="hljs-comment">// r就是resolve</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">List</span> = r =&gt; <span class="hljs-built_in">require</span>.<span class="hljs-title function_">ensure</span>([], <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">r</span>(<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@/components/list&#x27;</span>)), <span class="hljs-string">&#x27;list&#x27;</span>);
-<span class="hljs-comment">// 路由也是正常的写法  这种是官方推荐的写的 按模块划分懒加载 </span>
-<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>({
-  <span class="hljs-attr">routes</span>: [
-  {
-    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list&#x27;</span>,
-    <span class="hljs-attr">component</span>: <span class="hljs-title class_">List</span>,
-    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;list&#x27;</span>
+
+<span class="hljs-comment">// 子组件</span>
+<span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> message = <span class="hljs-title function_">inject</span>(<span class="hljs-string">&#x27;message&#x27;</span>); <span class="hljs-comment">// 注入数据</span>
+    <span class="hljs-keyword">return</span> { message };
   }
- ]
-}))
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">什么是 Rollup？它与 Webpack 有何不同？</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p><strong>6：</strong> Rollup 是一个 JavaScript 模块打包器，主要用于将多个模块捆绑成一个或多个文件。与 Webpack 相比，Rollup 主要优化了代码的静态分析和树摇（Tree Shaking），它特别适用于构建 JavaScript 库和模块。</p>
-</li>
-<li><p>模块系统支持：Rollup 专注于 ES6 模块（ESM），而 Webpack 则支持多种模块系统（CommonJS、AMD、ESM 等）。</p>
-</li>
-<li><p>性能：Rollup 对于构建库的性能比 Webpack 更好，因为它优化了打包过程，特别是树摇（Tree Shaking）。</p>
-</li>
-<li><p>输出格式：Rollup 支持多种输出格式（如 ES、CommonJS、UMD、IIFE 等），而 Webpack 更加侧重于打包应用程序。</p>
-</li>
-<li><p>插件系统：Rollup 的插件系统比 Webpack 更简洁，WebPack 插件系统更强大，适合复杂的应用场景。</p>
-</li>
-<li><p>在 Rollup 中，树摇是默认启用的，只要你使用了 ES 模块的语法，并且在构建时选择生产模式（如设置 minify 或 treeshake），就能自动进行树摇优化</p>
-</li>
-<li><p>Rollup 的插件系统非常强大，可以通过 plugins 配置项来引入各种插件。插件可以用来处理各种功能，如转换文件格式、代码压缩、代码分割、环境变量注入等。</p>
-</li>
+};
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">iframe 风险</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>:1</strong> 前端页面需要用到第三方提供的页面组件，通常会以 iframe 的方式引入，比如广告插件等。这些第三方提供的插件可以运行 js 脚本、flash 插件等，破坏用户体验。</li>
+<li><strong>:1</strong> 防御：</li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">5. useState 连续调用，页面不更新？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><pre><code class="hljs language-js"><span class="hljs-keyword">const</span> [age,  setAge] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">42</span>);
+<blockquote>
+<p>iframe 中有一个叫做 sandbox 的安全属性，通过它可以对 iframe 的行为进行各种限制，充分实现“最小权限”原则。  </p>
+</blockquote>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">29. 说一下 Vue 的 computed 的实现原理</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>当组件实例触发生命周期函数 beforeCreate 后，它会做一系列事情，其中就包括对 computed 的处理。</p>
+<p>它会遍历 computed 配置中的所有属性，为每一个属性创建一个 Watcher 对象，并传入一个函数，该函数的本质其实就是 computed 配置中的 getter，这样一来，getter 运行过程中就会收集依赖</p>
+<p>但是和渲染函数不同，为计算属性创建的 Watcher 不会立即执行，因为要考虑到该计算属性是否会被渲染函数使用，如果没有使用，就不会得到执行。因此，在创建 Watcher 的时候，它使用了 lazy 配置，lazy 配置可以让 Watcher 不会立即执行。</p>
+<p>收到 lazy 的影响，Watcher 内部会保存两个关键属性来实现缓存，一个是 value，一个是 dirty</p>
+<p>value 属性用于保存 Watcher 运行的结果，受 lazy 的影响，该值在最开始是 undefined</p>
+<p>dirty 属性用于指示当前的 value 是否已经过时了，即是否为脏值，受 lazy 的影响，该值在最开始是 true</p>
+<p>定义了一个异步方法，多次调用nextTick会将方法存入队列中，通过这个异步方法清空当前队列。</p>
+<p>Watcher 创建好后，vue 会使用代理模式，将计算属性挂载到组件实例中</p>
+<p>当读取计算属性时，vue 检查其对应的 Watcher 是否是脏值，如果是，则运行函数，计算依赖，并得到对应的值，保存在 Watcher 的 value 中，然后设置 dirty 为 false，然后返回。</p>
+<p>如果 dirty 为 false，则直接返回 watcher 的 value</p>
+<p>巧妙的是，在依赖收集时，被依赖的数据不仅会收集到计算属性的 Watcher，还会收集到组件的 Watcher</p>
+<p>当计算属性的依赖变化时，会先触发计算属性的 Watcher 执行，此时，它只需设置 dirty 为 true 即可，不做任何处理。</p>
+<p>由于依赖同时会收集到组件的 Watcher，因此组件会重新渲染，而重新渲染时又读取到了计算属性，由于计算属性目前已为 dirty，因此会重新运行 getter 进行运算</p>
+<p>而对于计算属性的 setter，则极其简单，当设置计算属性时，直接运行 setter 即可。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">2. webpack 中如何配置开启热更新？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>2：</strong></li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;webpack&quot;</span>);
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">devServer</span>: {
+    <span class="hljs-comment">// HMR</span>
+    <span class="hljs-attr">hot</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-comment">// hotOnly: true</span>
+  },
+};
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Vite 中的 define 配置项有什么作用？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>2：</strong> define 配置项用于在编译时定义全局常量。它可以让你在代码中使用这些常量，并且在打包时会将这些常量替换为实际的值。这在处理一些环境特定的配置或常量时非常有用。
+例如，在 vite.config.js 中：</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-keyword">import</span> { defineConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>({
+  <span class="hljs-attr">define</span>: {
+    <span class="hljs-attr">__APP_VERSION__</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-string">&#x27;1.0.0&#x27;</span>),
+    <span class="hljs-string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(<span class="hljs-string">&#x27;development&#x27;</span>)
+  }
+});
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-title function_">setAge</span>(age + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 + 1)</span>
-  <span class="hljs-title function_">setAge</span>(age + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 + 1)</span>
-  <span class="hljs-title function_">setAge</span>(age + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 + 1)</span>
+<span class="hljs-comment">//在代码中就可以使用这些定义的常量：</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(__APP_VERSION__);
+<span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&#x27;development&#x27;</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;当前是开发环境&#x27;</span>);
 }
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">39. Webpack 如何实现代码分割？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
 
-<span class="hljs-comment">// 点击一次后，age 将只会变为 43 而不是 45！</span>
+<p>在 Webpack 中，实现代码分割有以下几种方式：</p>
+<ul>
+<li><strong>1：</strong> 多入口配置：在 entry 中配置多个入口，Webpack 会为每个入口生成一个独立的打包文件。</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">entry</span>: {
+    <span class="hljs-attr">index</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,
+    <span class="hljs-attr">about</span>: <span class="hljs-string">&#x27;./src/about.js&#x27;</span>
+  },
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;[name].bundle.js&#x27;</span>,
+    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>)
+  }
+};
 </code></pre><ul>
-<li><strong>1：</strong> 连续调用 useState 不会触发页面更新，因为每次调用 useState 都会返回一个新的状态值和更新状态的函数。</li>
-<li><strong>1：</strong> 要连续更新状态，你可以使用函数式更新，将当前状态作为参数传递给更新函数</li>
+<li><strong>1：</strong> 动态导入（Dynamic Import）：使用 ES6 的动态导入语法（import()）实现按需加载。Webpack 会自动将动态导入的模块分割成单独的文件。</li>
 </ul>
-<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleClick</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-title function_">setAge</span>(<span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> a + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(42 =&gt; 43)</span>
-  <span class="hljs-title function_">setAge</span>(<span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> a + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(43 =&gt; 44)</span>
-  <span class="hljs-title function_">setAge</span>(<span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> a + <span class="hljs-number">1</span>); <span class="hljs-comment">// setAge(44 =&gt; 45)</span>
+<pre><code class="hljs language-js"><span class="hljs-comment">// 在代码中使用动态导入</span>
+button.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-title function_">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> { add } = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./math.js&#x27;</span>);
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
+});
+</code></pre><ul>
+<li><strong>1：</strong> SplitChunksPlugin：Webpack 内置的插件，用于分割公共代码和第三方库，减少重复打包。</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">optimization</span>: {
+    <span class="hljs-attr">splitChunks</span>: {
+      <span class="hljs-attr">chunks</span>: <span class="hljs-string">&#x27;all&#x27;</span>
+    }
+  }
+};
+</code></pre></details>
+
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">11. webpack的loader是什么？为什么使用它？它有哪几种配置方式</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> loader 用于对模块的&quot;源代码&quot;进行转换，在 import 或&quot;加载&quot;模块时预处理文件</li>
+<li><strong>1：</strong> webpack 做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。<br>在 webpack 内部中，任何文件都是模块，不仅仅只是js 文件。默认情况下，在遇到 import 或者 require 加载模块的时候，webpack 只支持对 js 和 json文件打包，像 css、 sass、 png 等这些类型的文件的时候，webpack 则无能为力，这时候就需要配置对应的 loader 进行文件内容的解析。</li>
+<li><strong>3：</strong> 关于配置 loader 的方式有三种:<blockquote>
+<p>配置方式(推荐)：在 webpack.config.js文件中指定 loader<br>内联方式：在每个 import 语句中显式指定 loader<br>Cl 方式：在 shell 命令中指定它们</p>
+</blockquote>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">24. 如何判断一个元素是否在可视区域内？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
+
+<ul>
+<li><strong>1：用途</strong></li>
+</ul>
+<p>可视区域即我们浏览网页的设备肉眼可见的区域，如下图</p>
+<p><img src="/public/images/3_JavaScript_20241230001543.png" alt=""></p>
+<p>在日常开发中，我们经常需要判断目标元素是否在视窗之内或者和视窗的距离小于一个值（例如 100 px），从而实现一些常用的功能，例如：</p>
+<blockquote>
+<ul>
+<li>图片的懒加载</li>
+<li>列表的无限滚动</li>
+<li>计算广告元素的曝光情况</li>
+<li>可点击链接的预加载</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>实现方式: 3</strong></li>
+</ul>
+<p><code>offsetTop</code>，元素的上外边框至包含元素的上内边框之间的像素距离，其他<code>offset</code>属性如下图所示：</p>
+<p><img src="/public/images/3_JavaScript_20241230001827.png" alt=""></p>
+<p>下面再来了解下<code>clientWidth</code>、<code>clientHeight</code>：</p>
+<ul>
+<li><code>clientWidth</code>：元素内容区宽度加上左右内边距宽度，即<code>clientWidth = content + padding</code></li>
+<li><code>clientHeight</code>：元素内容区高度加上上下内边距高度，即<code>clientHeight = content + padding</code></li>
+</ul>
+<p>这里可以看到<code>client</code>元素都不包括外边距</p>
+<p>最后，关于<code>scroll</code>系列的属性如下：</p>
+<ul>
+<li><p><code>scrollWidth</code> 和 <code>scrollHeight</code> 主要用于确定元素内容的实际大小</p>
+</li>
+<li><p><code>scrollLeft</code> 和 <code>scrollTop</code> 属性既可以确定元素当前滚动的状态，也可以设置元素的滚动位置</p>
+</li>
+<li><p>垂直滚动 <code>scrollTop &gt; 0</code></p>
+</li>
+<li><p>水平滚动 <code>scrollLeft &gt; 0</code></p>
+</li>
+<li><p>将元素的 <code>scrollLeft</code> 和 <code>scrollTop</code> 设置为 0，可以重置元素的滚动位置</p>
+</li>
+<li><p>上述属性都是只读的，每次访问都要重新开始</p>
+</li>
+</ul>
+<p>下面再看看如何实现判断：</p>
+<p>公式如下：</p>
+<pre><code class="hljs language-js">el.<span class="hljs-property">offsetTop</span> - <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span> &lt;= viewPortHeight
+</code></pre><p>代码实现：</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isInViewPortOfOne</span> (<span class="hljs-params">el</span>) {
+    <span class="hljs-comment">// viewPortHeight 兼容所有浏览器写法</span>
+    <span class="hljs-keyword">const</span> viewPortHeight = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span> || <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientHeight</span> || <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-property">clientHeight</span> 
+    <span class="hljs-keyword">const</span> offsetTop = el.<span class="hljs-property">offsetTop</span>
+    <span class="hljs-keyword">const</span> scrollTop = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span>
+    <span class="hljs-keyword">const</span> top = offsetTop - scrollTop
+    <span class="hljs-keyword">return</span> top &lt;= viewPortHeight
 }
-</code></pre></details></div><div class="content-scoring"><button class="export-excel customized">客制化</button><span>总得分：</span><span class="scoring-num">0</span><button class="export-excel">导出到Excel</button></div></div></div></div></main><footer class="VPDocFooter" data-v-e6f2a212 data-v-1bcd8184><!--[--><!--]--><div class="edit-info" data-v-1bcd8184><!----><div class="last-updated" data-v-1bcd8184><p class="VPLastUpdated" data-v-1bcd8184 data-v-1bb0c8a8>最后更新于: <time datetime="2025-03-04T00:19:19.000Z" data-v-1bb0c8a8></time></p></div></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-1bcd8184><span class="visually-hidden" id="doc-footer-aria-label" data-v-1bcd8184>Pager</span><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link prev" href="/mb-front-end-interview/src/training/training-level/W2.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>上一页</span><span class="title" data-v-1bcd8184>W2</span><!--]--></a></div><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link next" href="/mb-front-end-interview/src/training/training-level/W4.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>下一页</span><span class="title" data-v-1bcd8184>W4</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-d8b57b2d data-v-566314d4><div class="container" data-v-566314d4><p class="message" data-v-566314d4>基于 MIT 许可发布</p><p class="copyright" data-v-566314d4>版权所有 © 2024-2025 ShanYi-Hui</p></div></footer><!--[--><!--]--></div></div>
-    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"DEf70kS0\",\"ing.md\":\"D6XR6RjO\",\"readme.md\":\"BBm891Mw\",\"src_guide_getting-started.md\":\"BO_3MHmx\",\"src_guide_why.md\":\"DSTZyc49\",\"src_questions_artificial-intelligence_1_基础理论.md\":\"RHWCGLX9\",\"src_questions_artificial-intelligence_2_基础应用.md\":\"ASbY_aXN\",\"src_questions_computer-base_1_计算机硬件.md\":\"BszPPz7Z\",\"src_questions_computer-base_2_计算机软件.md\":\"U536WFH-\",\"src_questions_computer-base_3_计算机网络.md\":\"CNiAjvbU\",\"src_questions_computer-base_4_计算机编程.md\":\"zOXknp9Q\",\"src_questions_computer-base_5_计算机科学.md\":\"DSIyOYam\",\"src_questions_computer-base_6_软件工程.md\":\"DcgqkrBB\",\"src_questions_computer-base_7_计算机系统 mac.md\":\"DMB_war2\",\"src_questions_computer-base_8_计算机系统 windows.md\":\"u5iTAQUk\",\"src_questions_data-structures-algorithms_1_算法.md\":\"DL8GhOMr\",\"src_questions_front-architect_1_前端架构.md\":\"B7S_3UKi\",\"src_questions_front-base_1_html.md\":\"k4-XCfoq\",\"src_questions_front-base_2_css.md\":\"C12iZOUr\",\"src_questions_front-base_3_javascript.md\":\"BWQM-5Jo\",\"src_questions_front-base_4_typescript.md\":\"B8LZXbBM\",\"src_questions_front-component_1_ui组件库.md\":\"CD2o96b2\",\"src_questions_front-component_2_业务组件库.md\":\"D3ETTuVD\",\"src_questions_front-engineering_1_前端标准化.md\":\"DqatVzLP\",\"src_questions_front-engineering_2_前端自动化.md\":\"C1D13rhg\",\"src_questions_front-engineering_3_webpack.md\":\"peFUc604\",\"src_questions_front-engineering_4_vite.md\":\"Bxts2pBM\",\"src_questions_front-engineering_5_rollup.md\":\"dcwrBFz2\",\"src_questions_front-frame_1_react.md\":\"ze1Jr_mh\",\"src_questions_front-frame_2_vue.md\":\"xs_nkPX8\",\"src_questions_front-frame_3_next.md\":\"CskjDchM\",\"src_questions_front-frame_4_nuxt.md\":\"C0hpK4NE\",\"src_questions_front-frame_5_qiankun.md\":\"lUSwpWwX\",\"src_questions_front-newest_1_前端最前沿.md\":\"tiBurrsx\",\"src_questions_front-perfomance_1_前端性能优化.md\":\"55THAsjd\",\"src_questions_front-runtime_1_浏览器.md\":\"KPwMG_i_\",\"src_questions_front-runtime_2_nodejs.md\":\"TD19fk6z\",\"src_questions_front-safety_1_前端安全.md\":\"lRg9T1yp\",\"src_questions_server_1_nest.md\":\"CN3smk10\",\"src_questions_server_2_mongodb.md\":\"B9ZWtgeY\",\"src_questions_server_3_mysql.md\":\"CV7BULpw\",\"src_questions_server_4_nginx.md\":\"EYHb3Exv\",\"src_questions_server_5_docker.md\":\"B2xOuJTA\",\"src_questions_server_6_kubernets.md\":\"C3T-025Z\",\"src_questions_server_7_nacos.md\":\"JuAUgvIr\",\"src_questions_server_8_redis.md\":\"BpWQVduz\",\"src_training_training-level_w1.md\":\"BF61QxIk\",\"src_training_training-level_w2.md\":\"BkRCuRFu\",\"src_training_training-level_w3.md\":\"pOOTXcup\",\"src_training_training-level_w4.md\":\"CzKLmKkS\",\"src_training_training-level_w5.md\":\"xyi2zPcM\",\"src_training_training-level_w6.md\":\"DsJxajAX\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"前端面试题库\",\"description\":\"致力于为前端人员提供全面可靠的专业知识\",\"base\":\"/mb-front-end-interview/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"nav\":[{\"text\":\"指南\",\"link\":\"/src/guide/why\",\"activeMatch\":\"/src/guide/\"},{\"text\":\"题库\",\"link\":\"/src/questions/front-base/1_HTML\",\"activeMatch\":\"/src/questions/\"},{\"text\":\"训练\",\"link\":\"/src/training/training-level/w1\",\"activeMatch\":\"/src/training/\"}],\"sidebar\":{\"/src/guide/\":[{\"text\":\"初衷\",\"link\":\"/src/guide/why\"},{\"text\":\"快速开始\",\"link\":\"/src/guide/getting-started\"}],\"/src/questions/\":[{\"text\":\"前端基础\",\"collapsed\":false,\"items\":[{\"text\":\"HTML\",\"link\":\"/src/questions/front-base/1_HTML.md\"},{\"text\":\"CSS\",\"link\":\"/src/questions/front-base/2_CSS.md\"},{\"text\":\"JavaScript\",\"link\":\"/src/questions/front-base/3_JavaScript.md\"},{\"text\":\"TypeScript\",\"link\":\"/src/questions/front-base/4_TypeScript.md\"}]},{\"text\":\"前端运行环境\",\"collapsed\":true,\"items\":[{\"text\":\"浏览器\",\"link\":\"/src/questions/front-runtime/1_浏览器.md\"},{\"text\":\"NodeJS\",\"link\":\"/src/questions/front-runtime/2_NodeJS.md\"}]},{\"text\":\"前端框架\",\"collapsed\":true,\"items\":[{\"text\":\"React\",\"link\":\"/src/questions/front-frame/1_React.md\"},{\"text\":\"Vue\",\"link\":\"/src/questions/front-frame/2_Vue.md\"},{\"text\":\"Next\",\"link\":\"/src/questions/front-frame/3_Next.md\"},{\"text\":\"Nuxt\",\"link\":\"/src/questions/front-frame/4_Nuxt.md\"},{\"text\":\"Qiankun\",\"link\":\"/src/questions/front-frame/5_Qiankun.md\"}]},{\"text\":\"前端工程化\",\"collapsed\":true,\"items\":[{\"text\":\"前端标准化\",\"link\":\"/src/questions/front-engineering/1_前端标准化.md\"},{\"text\":\"前端自动化\",\"link\":\"/src/questions/front-engineering/2_前端自动化.md\"},{\"text\":\"Webpack\",\"link\":\"/src/questions/front-engineering/3_Webpack.md\"},{\"text\":\"Vite\",\"link\":\"/src/questions/front-engineering/4_Vite.md\"},{\"text\":\"Rollup\",\"link\":\"/src/questions/front-engineering/5_Rollup.md\"}]},{\"text\":\"前端组件库\",\"collapsed\":true,\"items\":[{\"text\":\"UI组件库\",\"link\":\"/src/questions/front-component/1_UI组件库.md\"},{\"text\":\"业务组件库\",\"link\":\"/src/questions/front-component/2_业务组件库.md\"}]},{\"text\":\"前端安全\",\"collapsed\":true,\"items\":[{\"text\":\"前端安全\",\"link\":\"/src/questions/front-safety/1_前端安全.md\"}]},{\"text\":\"前端性能\",\"collapsed\":true,\"items\":[{\"text\":\"前端性能优化\",\"link\":\"/src/questions/front-perfomance/1_前端性能优化.md\"}]},{\"text\":\"前端架构\",\"collapsed\":true,\"items\":[{\"text\":\"前端架构\",\"link\":\"/src/questions/front-architect/1_前端架构.md\"}]},{\"text\":\"服务端\",\"collapsed\":true,\"items\":[{\"text\":\"Nest\",\"link\":\"/src/questions/server/1_Nest.md\"},{\"text\":\"MongoDB\",\"link\":\"/src/questions/server/2_MongoDB.md\"},{\"text\":\"MySQL\",\"link\":\"/src/questions/server/3_MySQL.md\"},{\"text\":\"Nginx\",\"link\":\"/src/questions/server/4_Nginx.md\"},{\"text\":\"Docker\",\"link\":\"/src/questions/server/5_Docker.md\"},{\"text\":\"Kubernets\",\"link\":\"/src/questions/server/6_Kubernets.md\"},{\"text\":\"Nacos\",\"link\":\"/src/questions/server/7_Nacos.md\"},{\"text\":\"Redis\",\"link\":\"/src/questions/server/8_Redis.md\"}]},{\"text\":\"数据结构及算法\",\"collapsed\":true,\"items\":[{\"text\":\"算法\",\"link\":\"/src/questions/data-structures-algorithms/1_算法.md\"}]},{\"text\":\"前端最前沿\",\"collapsed\":true,\"items\":[{\"text\":\"前端最前沿\",\"link\":\"/src/questions/front-newest/1_前端最前沿.md\"}]},{\"text\":\"计算机基础\",\"collapsed\":true,\"items\":[{\"text\":\"计算机硬件\",\"link\":\"/src/questions/computer-base/1_计算机硬件.md\"},{\"text\":\"计算机软件\",\"link\":\"/src/questions/computer-base/2_计算机软件.md\"},{\"text\":\"计算机网络\",\"link\":\"/src/questions/computer-base/3_计算机网络.md\"},{\"text\":\"计算机编程\",\"link\":\"/src/questions/computer-base/4_计算机编程.md\"},{\"text\":\"计算机科学\",\"link\":\"/src/questions/computer-base/5_计算机科学.md\"},{\"text\":\"软件工程\",\"link\":\"/src/questions/computer-base/6_软件工程.md\"},{\"text\":\"计算机系统 Mac\",\"link\":\"/src/questions/computer-base/7_计算机系统 Mac.md\"},{\"text\":\"计算机系统 Windows\",\"link\":\"/src/questions/computer-base/8_计算机系统 Windows.md\"}]},{\"text\":\"人工智能\",\"collapsed\":true,\"items\":[{\"text\":\"基础理论\",\"link\":\"/src/questions/artificial-intelligence/1_基础理论.md\"},{\"text\":\"基础应用\",\"link\":\"/src/questions/artificial-intelligence/2_基础应用.md\"}]}],\"/src/training/\":[{\"text\":\"面试级别\",\"collapsed\":false,\"items\":[{\"text\":\"W1\",\"link\":\"/src/training/training-level/W1.md\"},{\"text\":\"W2\",\"link\":\"/src/training/training-level/W2.md\"},{\"text\":\"W3\",\"link\":\"/src/training/training-level/W3.md\"},{\"text\":\"W4\",\"link\":\"/src/training/training-level/W4.md\"},{\"text\":\"W5\",\"link\":\"/src/training/training-level/W5.md\"},{\"text\":\"W6\",\"link\":\"/src/training/training-level/W6.md\"}]}]},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/syh-micro-build/mb-front-end-interview\"}],\"footer\":{\"message\":\"基于 MIT 许可发布\",\"copyright\":\"版权所有 © 2024-2025 ShanYi-Hui\"},\"docFooter\":{\"prev\":\"上一页\",\"next\":\"下一页\"},\"outline\":{\"label\":\"页面导航\"},\"lastUpdated\":{\"text\":\"最后更新于\",\"formatOptions\":{\"dateStyle\":\"short\",\"timeStyle\":\"medium\"}},\"search\":{\"provider\":\"local\",\"options\":{\"translations\":{\"button\":{\"buttonText\":\"搜索文档\",\"buttonAriaLabel\":\"搜索文档\"},\"modal\":{\"noResultsText\":\"无法找到相关结果\",\"resetButtonTitle\":\"清除查询条件\",\"footer\":{\"selectText\":\"选择\",\"navigateText\":\"切换\",\"closeText\":\"关闭\"}}}}},\"returnToTopLabel\":\"回到顶部\",\"sidebarMenuLabel\":\"菜单\",\"darkModeSwitchLabel\":\"主题\",\"lightModeSwitchTitle\":\"切换到浅色模式\",\"darkModeSwitchTitle\":\"切换到深色模式\"},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+</code></pre><p>返回值是一个 <code>DOMRect</code>对象，拥有<code>left</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>x</code>, <code>y</code>, <code>width</code>, 和 <code>height</code>属性</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> target = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.target&#x27;</span>);
+<span class="hljs-keyword">const</span> clientRect = target.<span class="hljs-title function_">getBoundingClientRect</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(clientRect);
+
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   bottom: 556.21875,</span>
+<span class="hljs-comment">//   height: 393.59375,</span>
+<span class="hljs-comment">//   left: 333,</span>
+<span class="hljs-comment">//   right: 1017,</span>
+<span class="hljs-comment">//   top: 162.625,</span>
+<span class="hljs-comment">//   width: 684</span>
+<span class="hljs-comment">// }</span>
+</code></pre><p>属性对应的关系图如下所示：</p>
+<p><img src="/public/images/3_JavaScript_20241230002050.png" alt=""></p>
+<p>当页面发生滚动的时候，<code>top</code>与<code>left</code>属性值都会随之改变</p>
+<p>如果一个元素在视窗之内的话，那么它一定满足下面四个条件：</p>
+<ul>
+<li>top 大于等于 0</li>
+<li>left 大于等于 0</li>
+<li>bottom 小于等于视窗高度</li>
+<li>right 小于等于视窗宽度</li>
+</ul>
+<p>实现代码如下：</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isInViewPort</span>(<span class="hljs-params">element</span>) {
+  <span class="hljs-keyword">const</span> viewWidth = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerWidth</span> || <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientWidth</span>;
+  <span class="hljs-keyword">const</span> viewHeight = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span> || <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientHeight</span>;
+  <span class="hljs-keyword">const</span> {
+    top,
+    right,
+    bottom,
+    left,
+  } = element.<span class="hljs-title function_">getBoundingClientRect</span>();
+
+  <span class="hljs-keyword">return</span> (
+    top &gt;= <span class="hljs-number">0</span> &amp;&amp;
+    left &gt;= <span class="hljs-number">0</span> &amp;&amp;
+    right &lt;= viewWidth &amp;&amp;
+    bottom &lt;= viewHeight
+  );
+}
+</code></pre><p><code>Intersection Observer</code> 即重叠观察者，从这个命名就可以看出它用于判断两个元素是否重叠，因为不用进行事件的监听，性能方面相比 <code>getBoundingClientRect</code> 会好很多</p>
+<p>使用步骤主要分为两步：创建观察者和传入被观察者</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> options = {
+  <span class="hljs-comment">// 表示重叠面积占被观察者的比例，从 0 - 1 取值，</span>
+  <span class="hljs-comment">// 1 表示完全被包含</span>
+  <span class="hljs-attr">threshold</span>: <span class="hljs-number">1.0</span>, 
+  <span class="hljs-attr">root</span>:<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#scrollArea&#x27;</span>) <span class="hljs-comment">// 必须是目标元素的父级元素</span>
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">callback</span> = (<span class="hljs-params">entries, observer</span>) =&gt; { ....}
+
+<span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IntersectionObserver</span>(callback, options);
+</code></pre><p>通过<code>new IntersectionObserver</code>创建了观察者 <code>observer</code>，传入的参数 <code>callback</code> 在重叠比例超过 <code>threshold</code> 时会被执行`</p>
+<p>关于<code>callback</code>回调函数常用属性如下：</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// 上段代码中被省略的 callback</span>
+<span class="hljs-keyword">const</span> callback = <span class="hljs-keyword">function</span>(<span class="hljs-params">entries, observer</span>) { 
+    entries.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+        entry.<span class="hljs-property">time</span>;               <span class="hljs-comment">// 触发的时间</span>
+        entry.<span class="hljs-property">rootBounds</span>;         <span class="hljs-comment">// 根元素的位置矩形，这种情况下为视窗位置</span>
+        entry.<span class="hljs-property">boundingClientRect</span>; <span class="hljs-comment">// 被观察者的位置举行</span>
+        entry.<span class="hljs-property">intersectionRect</span>;   <span class="hljs-comment">// 重叠区域的位置矩形</span>
+        entry.<span class="hljs-property">intersectionRatio</span>;  <span class="hljs-comment">// 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）</span>
+        entry.<span class="hljs-property">target</span>;             <span class="hljs-comment">// 被观察者</span>
+    });
+};
+</code></pre><p>通过 <code>observer.observe(target)</code> 这一行代码即可简单的注册被观察者</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> target = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.target&#x27;</span>);
+observer.<span class="hljs-title function_">observe</span>(target);
+</code></pre><p>实现：创建了一个十万个节点的长列表，当节点滚入到视窗中时，背景就会从红色变为黄色</p>
+<p><code>Html</code>结构如下：</p>
+<pre><code class="hljs language-js">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;&lt;/div&gt;
+</code></pre><p><code>css</code>样式如下：</p>
+<pre><code class="hljs language-css">.<span class="hljs-property">container</span> {
+    <span class="hljs-attr">display</span>: flex;
+    flex-<span class="hljs-attr">wrap</span>: wrap;
+}
+.<span class="hljs-property">target</span> {
+    <span class="hljs-attr">margin</span>: 5px;
+    <span class="hljs-attr">width</span>: 20px;
+    <span class="hljs-attr">height</span>: 20px;
+    <span class="hljs-attr">background</span>: red;
+}
+</code></pre><p>往<code>container</code>插入1000个元素</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> $container = $(<span class="hljs-string">&quot;.container&quot;</span>);
+
+<span class="hljs-comment">// 插入 100000 个 &lt;div class=&quot;target&quot;&gt;&lt;/div&gt;</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createTargets</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> htmlString = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">100000</span>)
+    .<span class="hljs-title function_">fill</span>(<span class="hljs-string">&#x27;&lt;div class=&quot;target&quot;&gt;&lt;/div&gt;&#x27;</span>)
+    .<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
+  $container.<span class="hljs-title function_">html</span>(htmlString);
+}
+</code></pre><p>这里，首先使用 <code>getBoundingClientRect</code> 方法进行判断元素是否在可视区域</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isInViewPort</span>(<span class="hljs-params">element</span>) {
+    <span class="hljs-keyword">const</span> viewWidth = <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerWidth</span> || <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientWidth</span>;
+    <span class="hljs-keyword">const</span> viewHeight =
+          <span class="hljs-variable language_">window</span>.<span class="hljs-property">innerHeight</span> || <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientHeight</span>;
+    <span class="hljs-keyword">const</span> { top, right, bottom, left } = element.<span class="hljs-title function_">getBoundingClientRect</span>();
+
+    <span class="hljs-keyword">return</span> top &gt;= <span class="hljs-number">0</span> &amp;&amp; left &gt;= <span class="hljs-number">0</span> &amp;&amp; right &lt;= viewWidth &amp;&amp; bottom &lt;= viewHeight;
+}
+</code></pre><p>然后开始监听<code>scroll</code>事件，判断页面上哪些元素在可视区域中，如果在可视区域中则将背景颜色设置为<code>yellow</code></p>
+<pre><code class="hljs language-js">$(<span class="hljs-variable language_">window</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;scroll&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;scroll !&quot;</span>);
+    $targets.<span class="hljs-title function_">each</span>(<span class="hljs-function">(<span class="hljs-params">index, element</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isInViewPort</span>(element)) {
+            $(element).<span class="hljs-title function_">css</span>(<span class="hljs-string">&quot;background-color&quot;</span>, <span class="hljs-string">&quot;yellow&quot;</span>);
+        }
+    });
+});
+</code></pre><p>通过上述方式，可以看到可视区域颜色会变成黄色了，但是可以明显看到有卡顿的现象，原因在于我们绑定了<code>scroll</code>事件，<code>scroll</code>事件伴随了大量的计算，会造成资源方面的浪费</p>
+<p>下面通过<code>Intersection Observer</code>的形式同样实现相同的功能</p>
+<p>首先创建一个观察者</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IntersectionObserver</span>(getYellow, { <span class="hljs-attr">threshold</span>: <span class="hljs-number">1.0</span> });
+</code></pre><p><code>getYellow</code>回调函数实现对背景颜色改变，如下：</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getYellow</span>(<span class="hljs-params">entries, observer</span>) {
+    entries.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+        $(entry.<span class="hljs-property">target</span>).<span class="hljs-title function_">css</span>(<span class="hljs-string">&quot;background-color&quot;</span>, <span class="hljs-string">&quot;yellow&quot;</span>);
+    });
+}
+</code></pre><p>最后传入观察者，即<code>.target</code>元素</p>
+<pre><code class="hljs language-js">$targets.<span class="hljs-title function_">each</span>(<span class="hljs-function">(<span class="hljs-params">index, element</span>) =&gt;</span> {
+    observer.<span class="hljs-title function_">observe</span>(element);
+});
+</code></pre><p>可以看到功能同样完成，并且页面不会出现卡顿的情况</p>
+</details>
+
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Qiankun 如何处理子应用之间的公共依赖？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 可以将公共依赖提取到主应用中，通过主应用加载公共依赖并将其共享给子应用，避免子应用重复加载相同的依赖，减少资源浪费和提高性能。在注册子应用时，通过配
+置 props 等方式将主应用中的公共依赖传递给子应用使用。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">HTML5 中的WebSocket是什么？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p><strong>1：</strong> 基本概念：</p>
+<ul>
+<li>基于TCP的全双工通信协议</li>
+<li>服务器可以主动推送数据</li>
+<li>建立在HTTP协议之上</li>
+<li>使用ws://或wss://作为协议前缀</li>
+</ul>
+</li>
+<li><p><strong>1：</strong> 主要特点：</p>
+<ul>
+<li>持久连接</li>
+<li>全双工通信</li>
+<li>数据格式轻量</li>
+<li>更好的实时性</li>
+</ul>
+</li>
+<li><p><strong>1：</strong> 与HTTP的区别：</p>
+<ul>
+<li>不需要频繁建立连接</li>
+<li>服务器可以主动推送</li>
+<li>更低的通信开销</li>
+<li>无同源限制</li>
+</ul>
+</li>
+<li><p><strong>1：</strong> 应用场景：</p>
+<ul>
+<li>实时聊天</li>
+<li>游戏通信</li>
+<li>实时数据展示</li>
+<li>协同编辑</li>
+</ul>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">基础配置</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
+
+<pre><code class="hljs language-conf"># <span class="hljs-title class_">Nginx</span> 启动时创建的 worker 进程的数量
+worker_processes  <span class="hljs-number">1</span>;
+
+# 配置 <span class="hljs-title class_">Nginx</span> 主进程的 <span class="hljs-variable constant_">PID</span> 文件路径
+#pid        logs/nginx.<span class="hljs-property">pid</span>;
+
+events {
+    # 指定每个 worker 进程可以同时处理的最大连接数
+    worker_connections  <span class="hljs-number">1024</span>;
+}
+
+http {
+    include       mime.<span class="hljs-property">types</span>;
+    default_type  application/octet-stream;
+
+    # 提高文件传输的效率，特别是对于大文件来说
+    sendfile        on;
+    # 用于减少网络传输中的数据包数量，通过将多个小数据包合并成一个大数据包来提高网络传输的效率
+    tcp_nopush     on;
+
+    # 指定了空闲连接的超时时间，即客户端和服务器之间保持连接的最长时间
+    # 在这里，连接在 <span class="hljs-number">65</span> 秒内没有任何活动就会被关闭。通过调整此值，您可以控制服务器上空闲连接的数量，以及资源的有效利用程度
+    keepalive_timeout  <span class="hljs-number">65</span>;
+
+    # 启用 <span class="hljs-variable constant_">HTTP</span> 响应的压缩功能，以减少传输的数据量，提高网络传输效率
+    gzip  on;
+
+    server {
+        # 端口
+        listen       <span class="hljs-number">8099</span>;
+        server_name  localhost;
+        
+        location / {
+            root html-vue;
+            # hash 路由的重定向
+            try_files $uri $uri/ /index.<span class="hljs-property">html</span>;
+            index index.<span class="hljs-property">html</span>;
+            # 跨域
+            add_header <span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span> <span class="hljs-string">&#x27;*&#x27;</span>;
+            # 允许跨域请求的方法包括 <span class="hljs-variable constant_">GET</span>、<span class="hljs-variable constant_">POST</span> 和 <span class="hljs-variable constant_">OPTIONS</span>
+            add_header <span class="hljs-string">&#x27;Access-Control-Allow-Methods&#x27;</span> <span class="hljs-string">&#x27;GET, POST, OPTIONS&#x27;</span>;
+            # 允许跨域请求携带的自定义请求头
+            add_header <span class="hljs-string">&#x27;Access-Control-Allow-Headers&#x27;</span> <span class="hljs-string">&#x27;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#x27;</span>;
+            
+            # 确保浏览器在使用缓存前必须与服务器确认资源是否被修改过
+            <span class="hljs-keyword">if</span> ($request_filename ~* ^.*?.(html|htm|js)$) {
+              add_header <span class="hljs-title class_">Cache</span>-<span class="hljs-title class_">Control</span> no-cache;
+            }
+        }
+
+        error_page   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /50x.<span class="hljs-property">html</span>;
+        location = /50x.<span class="hljs-property">html</span> {
+            root   html;
+        }
+
+        # 跨域代理 - 作用是不在 vue 项目中写死 ip
+        # 这样配置后，再也不用给前端里面写固定的 ip
+        location /data {
+            # 删除 url 中的 /data 但是目前貌似不生效
+            # rewrite ^<span class="hljs-regexp">/data/</span>(.*)$ /$1 <span class="hljs-keyword">break</span>;
+            proxy_pass <span class="hljs-attr">http</span>:<span class="hljs-comment">//192.168.31.214:3000;</span>
+        }
+    }
+
+    # 基础访问
+    server {
+        listen       <span class="hljs-number">80</span>;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.<span class="hljs-property">html</span> index.<span class="hljs-property">htm</span>;
+        }
+        # 错误页面
+        error_page   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /50x.<span class="hljs-property">html</span>;
+        location = /50x.<span class="hljs-property">html</span> {
+            root   html;
+        }
+
+        # 跨域代理
+        location /data {
+            proxy_pass <span class="hljs-attr">http</span>:<span class="hljs-comment">//192.168.31.214:3000;</span>
+        }
+    }
+}
+</code></pre></details></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">56. 使用 Mobx 的特点是什么？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Mobx 提供了类似observable和的装饰器computed来定义可观察的状态和反应函数。用action修饰的动作用于修改状态，确保跟踪所有更改。Mobx 还提供自动依赖跟踪、不同类型的反应、对反应性的细粒度控制，以及通过 mobx-react 包与 React 无缝集成。总体而言，Mobx 通过根据可观察状态的变化自动执行更新过程来简化状态管理。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">指令集（Instruction Set）是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 指令集是CPU能够执行的指令的集合。不同的处理器架构会采用不同的指令集，包括x86、ARM、MIPS等。程序员需要了解所编写代码所运行的处理器架构和指令集，以确保代码的正确性和性能优化。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">9. TCP的重传机制</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>由于TCP的下层网络（网络层）可能出现丢失、重复或失序的情况，TCP协议提供可靠数据传输服务。为保证数据传输的正确性，TCP会重传其认为已丢失（包括报文中的比特错误）的包。TCP使用两套独立的机制来完成重传，一是基于时间，二是基于确认信息。</p>
+<p>TCP在发送一个数据之后，就开启一个定时器，若是在这个时间内没有收到发送数据的ACK确认报文，则对该报文进行重传，在达到一定次数还没有成功时放弃并发送一个复位信号。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">34. 解释 React 中 render() 的目的？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li>每个React组件强制要求必须有一个 render()。它返回一个 React 元素，是原生 DOM 组件的表示。如果需要渲染多个 HTML 元素，则必须将它们组合在一个封闭标记内，此函数必须保持纯净，即必须每次调用时都返回相同的结果。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">2. React 中的 Hook 是什么？</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: W1</div><details class="inner-content"><ul>
+<li><strong>1：</strong> useState()：用于在函数组件中添加状态。</li>
+<li><strong>1：</strong> useEffect()：用于在函数组件中执行副作用操作（如数据请求、订阅、DOM 操作等）。</li>
+<li><strong>1：</strong> useContext()：用于在函数组件中访问上下文（Context）。</li>
+<li><strong>1：</strong> useReducer()：类似于 useState，但适用于复杂的状态管理，类似于 Redux 的 reducer。</li>
+<li><strong>1：</strong> useRef()：用于访问组件中的 DOM 节点或保存可变的值。</li>
+<li><strong>1：</strong> useMemo() 和 useCallback()：用于性能优化，避免不必要的渲染。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">10. ref与reactive的区别？</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> ref与reactive 是 Vue3 新推出的主要 API 之一，它们主要用于响应式数据的创建。</li>
+<li><strong>1：</strong> ref 函数创建的响应式数据，在模板中可以直接被使用，在 JS 中需要通过 .value 的形式才能使用。</li>
+<li><strong>1：</strong> ref 函数可以接收原始数据类型与引用数据类型。</li>
+<li><strong>1：</strong> reactive 函数只能接收引用数据类型。</li>
+<li><strong>1：</strong> ref 底层还是使用 reactive 来做，ref 是在 reactive 上在进行了封装，增强了其能力，使它支持了对原始数据类型的处理。</li>
+<li><strong>1：</strong> 在 Vue3 中 reactive 能做的，ref 也能做，reactive 不能做的，ref 也能做。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">35. 深浅拷贝的区别？如何实现一个深拷贝？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>深浅拷贝通常只针对引用类型</p>
+</li>
+<li><p>浅拷贝：只拷贝一层对象，复制这一层对象中的原始值，如果有引用类型的话，就复制它的指针</p>
+</li>
+<li><p>深拷贝：层层拷贝，所有类型的属性值都会被复制，原对象的修改不会影响拷贝后的对象 JSON.parse(JSON.stringify(obj)) --- 无法处理 undefined Symbol function -- 无法处理循环引用</p>
+</li>
+</ul>
+<pre><code class="hljs language-js">
+<span class="hljs-title class_">Function</span>  <span class="hljs-title function_">shallowCopy</span>(<span class="hljs-params">obj</span>){
+      <span class="hljs-keyword">let</span> newObj = {]
+      <span class="hljs-keyword">for</span>( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span>  obj ){
+        <span class="hljs-keyword">if</span>(obj.<span class="hljs-title function_">hasOwnProperty</span>(key)){ 
+        <span class="hljs-comment">//hasOwnProperty检测对象自己身上方法而不是原先链上的</span>
+          newObj[key]=obj[key]
+        }
+      }
+      <span class="hljs-keyword">return</span>  newObj
+} 
+<span class="hljs-comment">// 咱们会浅拷贝当然还要深拷贝呀  开始</span>
+<span class="hljs-title class_">Function</span>  <span class="hljs-title function_">shallowCopy</span>(<span class="hljs-params">obj</span>){
+      <span class="hljs-keyword">let</span> newObj = {]
+      <span class="hljs-keyword">for</span>( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span>  obj ){
+        <span class="hljs-keyword">if</span>(obj.<span class="hljs-title function_">hasOwnProperty</span>(key)){ 
+        <span class="hljs-comment">//hasOwnProperty检测对象自己身上方法而不是原先链上的</span>
+        <span class="hljs-keyword">if</span>  ( <span class="hljs-title function_">typeof</span>(obj[key])!==obj||obj[key]===<span class="hljs-literal">null</span>){
+           newObj[key]=obj[key]
+        }<span class="hljs-keyword">else</span>{
+           newObj[key]=<span class="hljs-title function_">shallowCopy</span>(obj[key])
+        }  
+        }
+      }
+      <span class="hljs-keyword">return</span>  newObj
+}
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">44. js 中const真的不能修改吗？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li>const定义的基本类型不能改变，但是定义的引用类型中的 数组 与 对象 可以通过修改对象属性改变。 const使用建议：不要使用const定义 数组 或 对象 作为常量。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">18. 作用域链的理解</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>注：作用域链是指在 JavaScript 中，当访问一个变量时，JavaScript 引擎会按照一定的顺序在当前作用域以及其上层作用域中查找该变量。这个查找的过程就形成了作用域链。</p>
+<details>
+
+<ul>
+<li><strong>1：</strong> 数据类型</li>
+</ul>
+<pre><code class="hljs language-mermaid">graph <span class="hljs-variable constant_">TD</span>;
+
+    A[作用域链] --&gt; B[作用域];
+    A --&gt; C[词法作用域];
+    A --&gt; D[作用域链];
+</code></pre><ul>
+<li><strong>1：</strong> 作用域</li>
+</ul>
+<p>作用域即变量（变量作用域又称上下文）和函数生效（能被访问）的区域或集合。它决定了代码区块中变量和其他资源的可见性。
+例如：</p>
+<pre><code class="hljs language-js">
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting);
+}
+<span class="hljs-title function_">greet</span>();
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting);<span class="hljs-comment">// Uncaught ReferenceError: greeting is not defined</span>
+</code></pre><ul>
+<li><strong>1：</strong> 全局作用域</li>
+</ul>
+<p>任何不在函数中或是大括号中声明的变量，都是在全局作用域下。全局作用域下声明的变量可以在程序的任意位置访问。</p>
+<pre><code class="hljs language-js"><span class="hljs-comment">// 全局变量</span>
+<span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting);
+}
+<span class="hljs-comment">// 打印 &#x27;Hello World!&#x27;</span>
+<span class="hljs-title function_">greet</span>();
+</code></pre><ul>
+<li><strong>1：</strong> 函数作用域</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">var</span> greeting = <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting);
+}
+<span class="hljs-comment">// 打印 &#x27;Hello World!&#x27;</span>
+<span class="hljs-title function_">greet</span>();
+<span class="hljs-comment">// 报错: Uncaught ReferenceError: greeting is not defined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting);
+</code></pre><ul>
+<li><strong>1：</strong> 块级作用域</li>
+</ul>
+<p>ES6 引入：ES6 引入了let和const关键字，与var关键字不同，在大括号中使用let和const声明的变量存在于块级作用域中。在大括号之外不能访问这些变量。</p>
+<pre><code class="hljs language-js">{
+  <span class="hljs-comment">// 块级作用域中的变量</span>
+  <span class="hljs-keyword">let</span> greeting = <span class="hljs-string">&#x27;Hello World!&#x27;</span>;
+  <span class="hljs-keyword">var</span> lang = <span class="hljs-string">&#x27;English&#x27;</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting); <span class="hljs-comment">// Prints &#x27;Hello World!&#x27;</span>
+}
+<span class="hljs-comment">// 变量 &#x27;English&#x27;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lang);
+<span class="hljs-comment">// 报错: Uncaught ReferenceError: greeting is not defined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(greeting);
+</code></pre><ul>
+<li><strong>1：</strong> 词法作用域</li>
+</ul>
+<p>词法作用域又叫静态作用域，变量在创建时就确定好了其作用域，而非在执行阶段确定。也就是说，在编写代码时作用域就已经确定了，JavaScript 遵循的就是词法作用域</p>
+<pre><code class="hljs language-js">
+<span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">var</span> a = <span class="hljs-number">3</span>;
+  <span class="hljs-title function_">foo</span>();
+}
+<span class="hljs-title function_">bar</span>();
+</code></pre><ul>
+<li><strong>1：</strong> 作用域链</li>
+</ul>
+<p>在 JavaScript 中使用一个变量时，JavaScript 引擎会尝试在当前作用域下去寻找该变量。如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域。</p>
+<p>如果在全局作用域里仍然找不到该变量，它就会在全局范围内隐式声明该变量（非严格模式下）或是直接报错。</p>
+<pre><code class="hljs language-js">
+<span class="hljs-keyword">var</span> sex = <span class="hljs-string">&#x27;男&#x27;</span>;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">person</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;张三&#x27;</span>;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">student</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">var</span> age = <span class="hljs-number">18</span>;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name); <span class="hljs-comment">// 张三</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sex); <span class="hljs-comment">// 男</span>
+    }
+    <span class="hljs-title function_">student</span>();
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(age); <span class="hljs-comment">// Uncaught ReferenceError: age is not defined</span>
+}
+<span class="hljs-title function_">person</span>();
+
+<span class="hljs-comment">/*
+student 函数内部：
+当查找name时，在student函数内部找不到，向上一层作用域（person函数内部）找，找到了输出 “张三”。
+当查找sex时，在student函数内部找不到，向上一层作用域（person函数内部）找，还找不到继续向上一层找，即全局作用域，找到了输出 “男”。
+
+person 函数内部：
+当查找age时，在person函数内部找不到，向上一层找，即全局作用域，还是找不到则报错。
+
+*/</span>
+</code></pre></details>
+
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">31. 为什么说React中的props是只读的？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li>保证react的单向数据流的设计模式，使状态更可预测。如果允许自组件修改，那么一个父组件将状态传递给好几个子组件，这几个子组件随意修改，就完全不可预测，不知道在什么地方修改了状态，所以我们必须像纯函数一样保护 props 不被修改</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">在 Vite 项目中如何配置代理（Proxy）以解决跨域问题？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 在 vite.config.js 中配置 server.proxy 选项，例如：</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">server</span>: {
+    <span class="hljs-attr">proxy</span>: {
+      <span class="hljs-string">&#x27;/api&#x27;</span>: {
+        <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://backend-api-url&#x27;</span>,
+        <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">rewrite</span>: <span class="hljs-function">(<span class="hljs-params">path</span>) =&gt;</span> path.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^\/api/</span>, <span class="hljs-string">&#x27;&#x27;</span>)
+      }
+    }
+  }
+};
+<span class="hljs-comment">// 这会将所有以 /api 开头的请求代理到指定的后端 API 地址，并根据 rewrite 规则修改请求路径。</span>
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">21. HTTP 常用的状态码及使用场景？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>1xx：表示目前是协议的中间状态，还需要后续请求</p>
+</li>
+<li><p>2xx：表示请求成功</p>
+</li>
+<li><p>3xx：表示重定向状态，需要重新请求</p>
+</li>
+<li><p>4xx：表示请求报文错误</p>
+</li>
+<li><p>5xx：服务器端错误</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">65. Vue 3 的主要新特性是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Composition API：提供更灵活的代码组织方式。</p>
+<p>性能优化：使用 Proxy 实现响应式，性能更好。</p>
+<p>Tree-shaking：支持按需引入，减小打包体积。</p>
+<p>TypeScript 支持：对 TypeScript 的支持更好。</p>
+<p>Fragment、Teleport、Suspense：新增内置组件。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">进程和线程的区别?</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>. 进程是系统分配资源的基本单位，它包含独立的地址空间、资源表、堆栈、程序计数器等，每个进程都有独立的内存空间和系统资源。而线程是进程的一个实体，是CPU调度和分派的基本单位，线程只拥有一点在运行中必不可少的资源（如程序计数器，一组寄存器和栈），但它可与同属一个进程的其他的线程共享进程所拥有的全部资源。</p>
+</li>
+<li><p>. 由于线程共享进程的内存空间和资源，因此线程间的切换开销小，有利于并发执行。而进程间的切换需要涉及系统资源（如内存、打开的文件等）的分配与回收，开销较大。</p>
+</li>
+<li><p>进程是独立运行的，拥有独立的系统资源，包括内存、CPU时间、磁盘空间等。而线程只是进程的一个执行路径，共享进程的资源，因此线程之间没有独立的地址空间，一个线程死掉就等于整个进程死掉。</p>
+</li>
+<li><p>由于创建或撤销进程时，系统都要为之分配或回收资源，如内存空间、I/O设备等，所付出的开销远大于创建或撤销线程时的开销。同样，在进行进程切换时，涉及当前执行进程CPU环境的保存、新调度进程CPU环境的设置、各种进程资源状态的更改（如内存管理中的数据段、堆栈段和指针的更改）等，而线程切换只需保存和设置少量寄存器内容，不涉及存储管理等方面的操作。</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">什么是重绘和回流及怎么减少重绘和回流？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>重绘（Repaint）：当页面中元素样式的改变不影响布局时，浏览器将只会重新绘制受影响的元素，这个过程称为重绘。例如，改变一个元素的背景色或文字颜色，但不影响其位置和大小，就会触发重绘。</p>
+</li>
+<li><p>回流（Reflow 或 Relayout）：也称为重排，当页面布局或几何属性发生变化时，浏览器需要重新计算元素的几何属性，并重新构建渲染树，这个过程称为回流。例如，改变元素的宽度、高度、位置等属性，或者添加、删除DOM节点，都会触发回流。</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">什么是PWA？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 渐进式网络应用（PWA）是谷歌在2015年底提出的概念。基本上算是web应用程序，但在外观和感觉上与原生app类似。支持PWA的网站可以提供脱机工作、推送通知和设备硬件访问等功能。</li>
+</ul>
+</details></div><div class="content-scoring"><button class="export-excel customized">客制化</button><span>总得分：</span><span class="scoring-num">0</span><button class="export-excel">导出到Excel</button></div></div></div></div></main><footer class="VPDocFooter" data-v-e6f2a212 data-v-1bcd8184><!--[--><!--]--><div class="edit-info" data-v-1bcd8184><!----><div class="last-updated" data-v-1bcd8184><p class="VPLastUpdated" data-v-1bcd8184 data-v-1bb0c8a8>最后更新于: <time datetime="2025-03-05T11:30:20.000Z" data-v-1bb0c8a8></time></p></div></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-1bcd8184><span class="visually-hidden" id="doc-footer-aria-label" data-v-1bcd8184>Pager</span><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link prev" href="/mb-front-end-interview/src/training/training-level/W2.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>上一页</span><span class="title" data-v-1bcd8184>W2</span><!--]--></a></div><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link next" href="/mb-front-end-interview/src/training/training-level/W4.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>下一页</span><span class="title" data-v-1bcd8184>W4</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-d8b57b2d data-v-566314d4><div class="container" data-v-566314d4><p class="message" data-v-566314d4>基于 MIT 许可发布</p><p class="copyright" data-v-566314d4>版权所有 © 2024-2025 ShanYi-Hui</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"CL7-4TFT\",\"ing.md\":\"DQZRn9c2\",\"readme.md\":\"qmLYs93R\",\"src_guide_getting-started.md\":\"Yh0nrujY\",\"src_guide_why.md\":\"DpfsseqL\",\"src_questions_artificial-intelligence_1_基础理论.md\":\"DzEnUFHR\",\"src_questions_artificial-intelligence_2_基础应用.md\":\"88MPxhXX\",\"src_questions_computer-base_1_计算机硬件.md\":\"7ccW9q5h\",\"src_questions_computer-base_2_计算机软件.md\":\"kqoHHdIR\",\"src_questions_computer-base_3_计算机网络.md\":\"CZHghAhn\",\"src_questions_computer-base_4_计算机编程.md\":\"clZTLBk4\",\"src_questions_computer-base_5_计算机科学.md\":\"CVPq3rrh\",\"src_questions_computer-base_6_软件工程.md\":\"Bvrd6ZRz\",\"src_questions_computer-base_7_计算机系统 mac.md\":\"BL_pxDB_\",\"src_questions_computer-base_8_计算机系统 windows.md\":\"CrkFqMQn\",\"src_questions_data-structures-algorithms_1_算法.md\":\"VZa60Ttb\",\"src_questions_front-architect_1_前端架构.md\":\"CHk6hNKq\",\"src_questions_front-base_1_html.md\":\"LhOHQo-Z\",\"src_questions_front-base_2_css.md\":\"RC4KrvHY\",\"src_questions_front-base_3_javascript.md\":\"D03C_TSG\",\"src_questions_front-base_4_typescript.md\":\"B8uxclxS\",\"src_questions_front-component_1_ui组件库.md\":\"lt0ACG8O\",\"src_questions_front-component_2_业务组件库.md\":\"Bs3mq_bU\",\"src_questions_front-engineering_1_前端标准化.md\":\"qitpZqFe\",\"src_questions_front-engineering_2_前端自动化.md\":\"BGsi-r5X\",\"src_questions_front-engineering_3_webpack.md\":\"Ch83H4YJ\",\"src_questions_front-engineering_4_vite.md\":\"BJ3BkeEu\",\"src_questions_front-engineering_5_rollup.md\":\"B8wxVUs0\",\"src_questions_front-frame_1_react.md\":\"1EkQ7uYB\",\"src_questions_front-frame_2_vue.md\":\"BNfv15bK\",\"src_questions_front-frame_3_next.md\":\"BzUWEHzp\",\"src_questions_front-frame_4_nuxt.md\":\"C_8jdgao\",\"src_questions_front-frame_5_qiankun.md\":\"DUPovSFq\",\"src_questions_front-newest_1_前端最前沿.md\":\"C2JP8MIB\",\"src_questions_front-perfomance_1_前端性能优化.md\":\"CXC-w0X2\",\"src_questions_front-runtime_1_浏览器.md\":\"DUf_llrY\",\"src_questions_front-runtime_2_nodejs.md\":\"BXrQZH4z\",\"src_questions_front-safety_1_前端安全.md\":\"DOUx70sC\",\"src_questions_server_1_nest.md\":\"CuyN3kZX\",\"src_questions_server_2_mongodb.md\":\"RqRu2CFC\",\"src_questions_server_3_mysql.md\":\"C7acOSCu\",\"src_questions_server_4_nginx.md\":\"Bkv5YNp-\",\"src_questions_server_5_docker.md\":\"Bl-g4oOg\",\"src_questions_server_6_kubernets.md\":\"Ddc4cHor\",\"src_questions_server_7_nacos.md\":\"i_lK1_82\",\"src_questions_server_8_redis.md\":\"BL4MhzUk\",\"src_training_training-level_w1.md\":\"C0rZslr-\",\"src_training_training-level_w2.md\":\"DT56PF_X\",\"src_training_training-level_w3.md\":\"yOkoU3sC\",\"src_training_training-level_w4.md\":\"jMqQTVrp\",\"src_training_training-level_w5.md\":\"DjEgqvTt\",\"src_training_training-level_w6.md\":\"W-tO-1if\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"前端面试题库\",\"description\":\"致力于为前端人员提供全面可靠的专业知识\",\"base\":\"/mb-front-end-interview/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"nav\":[{\"text\":\"指南\",\"link\":\"/src/guide/why\",\"activeMatch\":\"/src/guide/\"},{\"text\":\"题库\",\"link\":\"/src/questions/front-base/1_HTML\",\"activeMatch\":\"/src/questions/\"},{\"text\":\"训练\",\"link\":\"/src/training/training-level/w1\",\"activeMatch\":\"/src/training/\"}],\"sidebar\":{\"/src/guide/\":[{\"text\":\"初衷\",\"link\":\"/src/guide/why\"},{\"text\":\"快速开始\",\"link\":\"/src/guide/getting-started\"}],\"/src/questions/\":[{\"text\":\"前端基础\",\"collapsed\":false,\"items\":[{\"text\":\"HTML\",\"link\":\"/src/questions/front-base/1_HTML.md\"},{\"text\":\"CSS\",\"link\":\"/src/questions/front-base/2_CSS.md\"},{\"text\":\"JavaScript\",\"link\":\"/src/questions/front-base/3_JavaScript.md\"},{\"text\":\"TypeScript\",\"link\":\"/src/questions/front-base/4_TypeScript.md\"}]},{\"text\":\"前端运行环境\",\"collapsed\":true,\"items\":[{\"text\":\"浏览器\",\"link\":\"/src/questions/front-runtime/1_浏览器.md\"},{\"text\":\"NodeJS\",\"link\":\"/src/questions/front-runtime/2_NodeJS.md\"}]},{\"text\":\"前端框架\",\"collapsed\":true,\"items\":[{\"text\":\"React\",\"link\":\"/src/questions/front-frame/1_React.md\"},{\"text\":\"Vue\",\"link\":\"/src/questions/front-frame/2_Vue.md\"},{\"text\":\"Next\",\"link\":\"/src/questions/front-frame/3_Next.md\"},{\"text\":\"Nuxt\",\"link\":\"/src/questions/front-frame/4_Nuxt.md\"},{\"text\":\"Qiankun\",\"link\":\"/src/questions/front-frame/5_Qiankun.md\"}]},{\"text\":\"前端工程化\",\"collapsed\":true,\"items\":[{\"text\":\"前端标准化\",\"link\":\"/src/questions/front-engineering/1_前端标准化.md\"},{\"text\":\"前端自动化\",\"link\":\"/src/questions/front-engineering/2_前端自动化.md\"},{\"text\":\"Webpack\",\"link\":\"/src/questions/front-engineering/3_Webpack.md\"},{\"text\":\"Vite\",\"link\":\"/src/questions/front-engineering/4_Vite.md\"},{\"text\":\"Rollup\",\"link\":\"/src/questions/front-engineering/5_Rollup.md\"}]},{\"text\":\"前端组件库\",\"collapsed\":true,\"items\":[{\"text\":\"UI组件库\",\"link\":\"/src/questions/front-component/1_UI组件库.md\"},{\"text\":\"业务组件库\",\"link\":\"/src/questions/front-component/2_业务组件库.md\"}]},{\"text\":\"前端安全\",\"collapsed\":true,\"items\":[{\"text\":\"前端安全\",\"link\":\"/src/questions/front-safety/1_前端安全.md\"}]},{\"text\":\"前端性能\",\"collapsed\":true,\"items\":[{\"text\":\"前端性能优化\",\"link\":\"/src/questions/front-perfomance/1_前端性能优化.md\"}]},{\"text\":\"前端架构\",\"collapsed\":true,\"items\":[{\"text\":\"前端架构\",\"link\":\"/src/questions/front-architect/1_前端架构.md\"}]},{\"text\":\"服务端\",\"collapsed\":true,\"items\":[{\"text\":\"Nest\",\"link\":\"/src/questions/server/1_Nest.md\"},{\"text\":\"MongoDB\",\"link\":\"/src/questions/server/2_MongoDB.md\"},{\"text\":\"MySQL\",\"link\":\"/src/questions/server/3_MySQL.md\"},{\"text\":\"Nginx\",\"link\":\"/src/questions/server/4_Nginx.md\"},{\"text\":\"Docker\",\"link\":\"/src/questions/server/5_Docker.md\"},{\"text\":\"Kubernets\",\"link\":\"/src/questions/server/6_Kubernets.md\"},{\"text\":\"Nacos\",\"link\":\"/src/questions/server/7_Nacos.md\"},{\"text\":\"Redis\",\"link\":\"/src/questions/server/8_Redis.md\"}]},{\"text\":\"数据结构及算法\",\"collapsed\":true,\"items\":[{\"text\":\"算法\",\"link\":\"/src/questions/data-structures-algorithms/1_算法.md\"}]},{\"text\":\"前端最前沿\",\"collapsed\":true,\"items\":[{\"text\":\"前端最前沿\",\"link\":\"/src/questions/front-newest/1_前端最前沿.md\"}]},{\"text\":\"计算机基础\",\"collapsed\":true,\"items\":[{\"text\":\"计算机硬件\",\"link\":\"/src/questions/computer-base/1_计算机硬件.md\"},{\"text\":\"计算机软件\",\"link\":\"/src/questions/computer-base/2_计算机软件.md\"},{\"text\":\"计算机网络\",\"link\":\"/src/questions/computer-base/3_计算机网络.md\"},{\"text\":\"计算机编程\",\"link\":\"/src/questions/computer-base/4_计算机编程.md\"},{\"text\":\"计算机科学\",\"link\":\"/src/questions/computer-base/5_计算机科学.md\"},{\"text\":\"软件工程\",\"link\":\"/src/questions/computer-base/6_软件工程.md\"},{\"text\":\"计算机系统 Mac\",\"link\":\"/src/questions/computer-base/7_计算机系统 Mac.md\"},{\"text\":\"计算机系统 Windows\",\"link\":\"/src/questions/computer-base/8_计算机系统 Windows.md\"}]},{\"text\":\"人工智能\",\"collapsed\":true,\"items\":[{\"text\":\"基础理论\",\"link\":\"/src/questions/artificial-intelligence/1_基础理论.md\"},{\"text\":\"基础应用\",\"link\":\"/src/questions/artificial-intelligence/2_基础应用.md\"}]}],\"/src/training/\":[{\"text\":\"面试级别\",\"collapsed\":false,\"items\":[{\"text\":\"W1\",\"link\":\"/src/training/training-level/W1.md\"},{\"text\":\"W2\",\"link\":\"/src/training/training-level/W2.md\"},{\"text\":\"W3\",\"link\":\"/src/training/training-level/W3.md\"},{\"text\":\"W4\",\"link\":\"/src/training/training-level/W4.md\"},{\"text\":\"W5\",\"link\":\"/src/training/training-level/W5.md\"},{\"text\":\"W6\",\"link\":\"/src/training/training-level/W6.md\"}]}]},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/syh-micro-build/mb-front-end-interview\"}],\"footer\":{\"message\":\"基于 MIT 许可发布\",\"copyright\":\"版权所有 © 2024-2025 ShanYi-Hui\"},\"docFooter\":{\"prev\":\"上一页\",\"next\":\"下一页\"},\"outline\":{\"label\":\"页面导航\"},\"lastUpdated\":{\"text\":\"最后更新于\",\"formatOptions\":{\"dateStyle\":\"short\",\"timeStyle\":\"medium\"}},\"search\":{\"provider\":\"local\",\"options\":{\"translations\":{\"button\":{\"buttonText\":\"搜索文档\",\"buttonAriaLabel\":\"搜索文档\"},\"modal\":{\"noResultsText\":\"无法找到相关结果\",\"resetButtonTitle\":\"清除查询条件\",\"footer\":{\"selectText\":\"选择\",\"navigateText\":\"切换\",\"closeText\":\"关闭\"}}}}},\"returnToTopLabel\":\"回到顶部\",\"sidebarMenuLabel\":\"菜单\",\"darkModeSwitchLabel\":\"主题\",\"lightModeSwitchTitle\":\"切换到浅色模式\",\"darkModeSwitchTitle\":\"切换到深色模式\"},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
     
   </body>
 </html>
