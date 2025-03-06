@@ -1,90 +1,6 @@
 # JavaScript
 
-## 1. JS 数据类型有哪些？
-
-#### 类型：`基础`
-
-#### 级别：`W1`
-
-#### 解答（2 分）
-
-- **1：** 基本类型：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol（ES6特性）、BigInt（ES11特性）；
-- **1：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
-
-## 2. == 和 === 的区别是什么？
-
-#### 类型：`基础`
-
-#### 级别：`W1`
-
-#### 解答（2 分）
-
-- **1：** == 是 宽松相等，会进行类型转换，比较前会先转换两边的操作数类型（例如，'5' == 5 为 true;
-- **1：** === 是 严格相等，不会进行类型转换，只有两边的值和类型都相同才会返回 true（例如，'5' === 5 为 false;
-
-## 3. var 、let 、 const 的区别是什么？
-
-#### 类型：`基础`
-
-#### 级别：`W1`
-
-#### 解答（2 分）
-
-- **1：** var 作用域: 函数作用域（如果在函数内部声明），全局作用域（如果在函数外部声明）;
-              提升: 声明和初始化都会被提升（变量提升，但未初始化时是 undefined）;
-- **1：** let、 const 作用域: 级作用域（只在其所在的代码块内有效）;
-          提升: 变量提升但不会初始化，存在“暂时性死区”，即在声明之前不能访问;
-- **1：** 区别:
-            const： 需要在声明时初始化，且之后不能被修改;
-            let：可以修改其值;
-            var： 是函数作用域或全局作用域，let 和 const 是块级作用域;
-
-## 4. 什么是事件冒泡和事件捕获？
-
-#### 类型：`基础`
-
-#### 级别：`W1`
-
-#### 解答（2 分）
-
-- **1：** 事件冒泡：事件从目标元素开始，向上冒泡到 document;
-- **1：** 事件捕获：事件从 document 开始，向下捕获到目标元素;
-- **1：** 事件流顺序: 1.捕获 -> 2.目标 -> 3.冒泡;
-- **2：** 引用类型：对象（Object）、函数（Function）、数组（Array）等；
-
-## 5. JS 什么是防抖和节流？它们的应用场景有哪些？
-
-#### 类型：`基础`
-
-#### 级别：`W1`
-
-#### 解答（3 分）
-
-- **1：** 防抖：在事件被触发后，延迟一定时间后再执行回调函数，如果在延迟时间内再次触发事件，则重新计算延迟时间，直到延迟时间结束后才执行回调函数。例如，在用户输入搜索框时，防止频繁发送请求，可以使用防抖函数，只有在用户停止输入一段时间后才发送搜索请求。
-- **2：** 节流：在一定时间内，只允许函数执行一次。例如，在页面滚动时，需要频繁执行某个函数来处理滚动事件，但为了避免函数执行过于频繁影响性能，可以使用节流函数，限制函数在一定时间内只执行一次。
-
-## 6. JS 请解释在 JavaScript 中this指针的工作原理，在以下函数调用场景中this指向什么？
-
-#### 类型：`基础`
-
-#### 级别：`W1`
-
-```js
-const person = {
-    name: "张三",
-    sayHello: function() {
-        console.log(`你好，我的名字叫 ${this.name}`);
-    }
-};
-person.sayHello();
-```
-
-#### 解答（2 分）
-
-- **1：** 在person.sayHello()调用中，this指向person对象。
-- **1：** 当一个函数作为对象的方法被调用时，this指向调用该方法的对象。在这里，sayHello是person对象的方法，所以this指代person，因此可以正确访问person.name
-
-## 7. JS 请解释setTimeout和setInterval的区别，并说明如何清除定时器
+## JS 数据类型有哪些？
 
 #### 类型：`基础`
 
@@ -92,12 +8,157 @@ person.sayHello();
 
 #### 解答（2 分）
 
-- **1：** setTimeout：在指定的延迟时间（毫秒）后执行一次回调函数。示例：setTimeout(() => console.log('Delayed'), 1000);，1 秒后会执行一次回调打印Delayed。
-setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。示例：let intervalId = setInterval(() => console.log('Repeating'), 1000);，每隔 1 秒就会执行一次回调打印Repeating。
-- **1：** 使用clearTimeout清除setTimeout创建的定时器，传入setTimeout返回的定时器 ID。例如：const timeoutId = setTimeout(() => console.log('Timeout'), 2000); clearTimeout(timeoutId);，这样就会取消即将执行的setTimeout回调。
-          使用clearInterval清除setInterval创建的定时器，传入setInterval返回的定时器 ID，如clearInterval(intervalId);会停止setInterval的重复执行。
+- **1：** 基本类型：字符串（String）、数字（Number）、布尔（Boolean）、空（Null）、未定义（Undefined）、Symbol（ES6+）、BigInt（ES11+）
+- **1：** 引用类型：对象（Object）、函数（Function）、数组（Array）等
 
-## 8. Promise 的常用方法
+## == 和 === 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** `==` 为宽松相等，会隐式转换类型后比较（例如 `'5' == 5` 返回 true）
+- **1：** `===` 为严格相等，要求值和类型完全相同（例如 `'5' === 5` 返回 false）
+
+## var、let、const 的区别是什么？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`
+
+#### 解答（3 分）
+
+- **1：** var 函数作用域/全局作用域，存在变量提升
+- **1：** let/const 块级作用域，存在暂时性死区
+- **1：** const 必须初始化且不可重新赋值
+
+## 什么是事件冒泡和事件捕获？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **1：** 事件冒泡：事件从目标元素向上传播到 `document`
+- **1：** 事件捕获：事件从 `document` 向下捕获到目标元素
+- **1：** 事件流顺序：捕获阶段 → 目标阶段 → 冒泡阶段
+
+## 什么是防抖和节流？它们的应用场景有哪些？
+
+#### 类型：`基础`
+
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+- **2：** 防抖
+  + 在事件被触发后，延迟一定时间后再执行回调函数，如果在延迟时间内再次触发事件，则重新计算延迟时间，直到延迟时间结束后才执行回调函数。
+  + 例如，在用户输入搜索框时，防止频繁发送请求，可以使用防抖函数，只有在用户停止输入一段时间后才发送搜索请求。
+- **2：** 节流
+  + 在一定时间内，只允许函数执行一次。
+  + 例如，在页面滚动时，需要频繁执行某个函数来处理滚动事件，但为了避免函数执行过于频繁影响性能，可以使用节流函数，限制函数在一定时间内只执行一次。
+
+## 解决下方 this 指向问题（示例代码）
+
+#### 类型：`基础`、`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+```javascript
+const obj = {
+  name: 'obj',
+  method: function() {
+    console.log(this.name);
+  },
+  nested: {
+    name: 'nested',
+    method: function() {
+      setTimeout(function() {
+        console.log(this.name);
+      }, 100);
+    }
+  }
+};
+
+const func = obj.method;
+const arrowMethod = () => console.log(this.name);
+
+func(); // 输出？
+obj.method(); // 输出？
+obj.nested.method(); // 输出？
+arrowMethod(); // 输出？
+```
+
+- **1：** `func()`
+  + 输出为空字符串，this 指向 window（浏览器环境）或 global（Node.js 环境）
+  + 原因：独立函数调用时遵循默认绑定规则
+- **1：** `obj.method()`
+  + 输出为 "obj"，this 指向 obj
+  + 原因：方法调用时遵循隐式绑定规则
+- **1：** `obj.nested.method()`
+  + 输出为空字符串，this 指向 window/global
+  + 原因：定时器回调函数中的 this 指向全局对象（ES6 之前）
+- **1：** `arrowMethod()`
+  + 输出为 undefined，this 指向定义时的作用域
+  + 原因：箭头函数无自身 this，继承外层词法作用域
+
+</details>
+
+## 请解释setTimeout和setInterval的区别，并说明如何清除定时器
+
+#### 类型：`基础`、`编程`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（4 分）
+
+<details>
+
+- **1：** 区别
+  + `setTimeout`：单次执行，延迟指定时间后执行一次。  
+  + `setInterval`：循环执行，每隔指定时间执行一次。
+- **1：** 清除定时器
+  + `clearTimeout(timerId)`：清除 `setTimeout` 返回的定时器 ID。  
+  + `clearInterval(timerId)`：清除 `setInterval` 返回的定时器 ID。
+- **2：** 优先使用 setTimeout 递归模式替代 setInterval，避免累积延迟
+
+  ```javascript
+  // 定义一个变量来存储定时器 ID
+
+  let timerId;
+
+  function recursiveTimeout() {
+      console.log('定时任务执行');
+      // 递归调用 setTimeout
+      timerId = setTimeout(recursiveTimeout, 2000);
+  }
+
+  // 启动定时器
+  recursiveTimeout();
+
+  // 定义一个清理定时器的函数
+  function clearRecursiveTimeout() {
+      clearTimeout(timerId);
+  }
+
+  // 在需要的时候调用清理函数
+  // 例如，在 5 秒后停止定时器
+  setTimeout(() => {
+      clearRecursiveTimeout();
+      console.log('定时器已清理');
+  }, 5000);
+  ```
+
+</details>
+
+## Promise 的常用方法
 
 #### 类型：`基础`
 
@@ -110,7 +171,7 @@ setInterval：按照指定的时间间隔（毫秒）重复执行回调函数。
 - **1：** Promise.all(iterable)：接收一个可迭代对象，返回一个新的 Promise，当所有 Promise 都成功时返回结果数组，若有任何 Promise 失败，返回的 Promise 会立即失败。
 - **1：** Promise.race(iterable)：返回一个 Promise，它会在第一个完成的 Promise 状态改变时返回该 Promise 的结果（无论是成功还是失败）。
 - **1：** Promise.allSettled(iterable)：返回一个新的 Promise，在所有输入的 Promise 完成时返回，结果包含每个 Promise 的状态及其结果。
-- **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise。
+- **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise，ES2021 引入。
 - **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
 
 ## 9. 解释 Set 和 Map 的使用及区别
