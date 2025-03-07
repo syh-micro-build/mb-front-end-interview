@@ -174,34 +174,41 @@ arrowMethod(); // 输出？
 - **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise，ES2021 引入。
 - **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
 
-## 9. 解释 Set 和 Map 的使用及区别
+## 编写一个函数，找出两个数组中都存在的元素，并返回去重后的结果
 
-#### 类型：基础
+#### 类型：`基础`、`编程`
 
-#### 级别：W5
+#### 级别：`W2`、`W3`、`W4`
 
-#### 解答（2 分）
+#### 解答（3 分）
 
-- **1：** Set：是一个集合，用于存储不重复的值，按照插入顺序排列。
-- **1：** Map：是一个键值对集合，用于存储键值对，可以存储任何类型的键和值。
-
-```js
-// Set
-let set = new Set();
-set.add(1);
-set.add(2);
-set.add(2); // 会被忽略
-console.log(set); // Set { 1, 2 }
-
-// Map
-let map = new Map();
-map.set('name', 'Alice');
-map.set('age', 25);
-console.log(map.get('name')); // Alice
-
+```javascript
+// 参考代码
+function getIntersection(arr1, arr2) {
+    return [...new Set(arr1)].filter(x => new Set(arr2).has(x));
+}
 ```
 
-## 10. 请写出几个 JavaScript 函数，用于实现数组去重
+## 编写一个函数，统计字符串中每个字符的出现次数，键为字符，值为出现次数
+
+#### 类型：`基础`、`编程`
+
+#### 级别：`W2`、`W3`、`W4`
+
+#### 解答（5 分）
+
+**代码实现：**
+
+```javascript
+function countCharacters(str) {
+    return [...str].reduce((map, char) => {
+        map.set(char, (map.get(char) || 0) + 1);
+        return map;
+    }, new Map());
+}
+```
+
+## 实现数组去重
 
 #### 类型：`基础`
 
@@ -286,85 +293,209 @@ console.log(uniqueArray);
 
 </details>
 
-## 11. ES6 和 CommonJS 的区别
+## ES6 和 CommonJS 的区别
 
-#### 类型：基础
+#### 类型：`拓展`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
 #### 解答（4 分）
 
-- **2：** CommonJS是对模块的浅拷⻉，ES6 Module是对模块的引⽤，即ES6 Module只存只读，不能改变其值，也就是指针指向不能变，类似const
-- **2：** import的接⼝是read-only（只读状态），不能修改其变量值。 即不能修改其变量的指针指向，但可以改变变量内部指针指向，可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错
+- **1：** 语法风格
+  + ES6 模块使用 `import` 和 `export` 关键字。支持多种导出和导入方式，如默认导出（`export default`）和命名导出（`export const` 等）。
+  + CommonJS 模块使用 `require()` 和 `module.exports`。支持 exports 对象和 exports.foo 属性的方式导出。
+- **1：** 加载方式
+  + ES6 模块是静态加载，在编译时就确定模块的依赖关系和导入导出的内容。这使得 JavaScript 引擎可以进行静态分析，实现诸如 Tree - Shaking（消除未使用的代码）等优化。
+  + CommonJS是动态加载，在运行时才会去查找和加载模块。每次 require 调用时都会执行模块代码，只有第一次加载时会缓存结果。
+- **1：** 模块加载机制
+  + ES6 模块主要用于浏览器环境和现代 Node.js 环境（Node.js 从 v13.2.0 开始默认支持 ES6 模块，文件扩展名使用 .mjs）。
+  + CommonJS主要用于 Node.js 服务器端开发，因为它与 Node.js 的同步加载模型和文件系统操作配合良好。
+- **1：** 循环依赖处理
+  + ES6 模块可以处理循环依赖，因为它是静态分析的，在模块加载过程中会先创建模块的引用，在运行时再填充具体的值。
+  + CommonJS处理循环依赖时可能会出现问题，因为它是动态加载的，如果在循环依赖的情况下，某个模块在未完全初始化时就被引用，可能会得到未完全初始化的对象。
 
-注：S6 Module和CommonJS模块的共同点：
-
-CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内部属性的值进⾏改变
-
-[docs](https://juejin.cn/post/7331931937357496354)
-
-## 12. new 操作符的实现原理
+## new 操作符的实现原理
 
 #### 类型：基础
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
 #### 解答（2 分）
 
 <details>
 
 - **2：** new操作符的执行过程：
-
->（1）首先创建了一个新的空对象
->
->（2）设置原型，将对象的原型设置为函数的 prototype 对象
->
->（3）让函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）
->
->（4）判断函数的返回值类型，如果是值类型，返回创建的对象。如果是引用类型，就返回这个引用类型的对象
+  1. 首先创建了一个新的空对象
+  1. 将新对象的原型指向构造函数的原型
+  1. 执行构造函数，并将 `this` 绑定到新对象上
+  1. 根据构造函数的返回值类型决定最终返回的结果，如果构造函数返回一个对象，则返回该对象；否则返回新创建的对象
 
 ```js
-function objectFactory() {
-  let newObject = null;
-  let constructor = Array.prototype.shift.call(arguments);
-  let result = null;
-  // 判断参数是否是一个函数
-  if (typeof constructor !== "function") {
-    console.error("type error");
-    return;
-  }
-  // 新建一个空对象，对象的原型为构造函数的 prototype 对象
-  newObject = Object.create(constructor.prototype);
-  // 将 this 指向新建对象，并执行函数
-  result = constructor.apply(newObject, arguments);
-  // 判断返回对象
-  let flag = result && (typeof result === "object" || typeof result === "function");
-  // 判断返回结果
-  return flag ? result : newObject;
+function myNew(constructor, ...args) {
+    // 步骤 1：创建一个新对象
+    const obj = {};
+
+    // 步骤 2：将新对象的原型指向构造函数的原型
+    obj.__proto__ = constructor.prototype;
+
+    // 步骤 3：执行构造函数，并将 this 绑定到新对象上
+    const result = constructor.apply(obj, args);
+
+    // 步骤 4：根据构造函数的返回值类型决定最终返回的结果
+    return typeof result === 'object' && result!== null? result : obj;
 }
-// 使用方法
-objectFactory(构造函数, 初始化参数);
+
+// 示例构造函数
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// 使用自定义的 myNew 函数创建对象
+const person = myNew(Person, 'John', 30);
+console.log(person); 
 ```
 
 </details>
 
-## 13. 数组的原生方法有哪些？
+## 数组常用方法有哪些
 
-#### 类型：基础
+#### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（7 分）
+#### 解答（6 分）
 
 <details>
 
-- **1：** 数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。
-- **1：** 数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。
-- **1：** 数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。
-- **1：** 数组连接的方法 concat() ，返回的是拼接好的数组，不影响原数组。
-- **1：** 数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。
-- **1：** 数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法
-- **1：** 数组归并方法 reduce() 和 reduceRight() 方法
+- **1：** 数组创建与合并
+  + `Array.from()`：从类数组对象或可迭代对象创建新数组（ES6+）
+
+    ```javascript
+    const set = new Set([1, 2, 3]);
+    const arr = Array.from(set); // [1, 2, 3]
+    ```
+
+  + `Array.of()`：创建包含指定元素的数组（ES6+）
+
+    ```javascript
+    const arr = Array.of(1, 2, 3); // [1, 2, 3]
+    ```
+
+  + `concat()`：合并多个数组，返回新数组
+
+    ```javascript
+    const arr1 = [1, 2];
+    const arr2 = [3, 4];
+    const newArr = arr1.concat(arr2); // [1, 2, 3, 4]
+    ```
+
+- **1：** 数组元素操作
+  + `push()/pop()`：尾增 / 删元素
+
+    ```javascript
+    const arr = [1, 2];
+    arr.push(3); // [1, 2, 3]
+    arr.pop(); // [1, 2]
+    ```
+
+  + `unshift()/shift()`：头增 / 删元素
+
+    ```javascript
+    const arr = [2, 3];
+    arr.unshift(1); // [1, 2, 3]
+    arr.shift(); // [2, 3]
+    ```
+
+  + `splice()`：任意位置增删元素
+
+    ```javascript
+    const arr = [1, 2, 3, 4];
+    arr.splice(1, 2, 5, 6); // [1, 5, 6, 4]
+    ```
+
+- **1：** 数组查找过滤
+  + `indexOf()/lastIndexOf()`：返回元素索引
+
+    ```javascript
+    const arr = [1, 2, 3, 2];
+    arr.indexOf(2); // 1
+    arr.lastIndexOf(2); // 3
+    ```
+
+  + `find()/findIndex()`：按条件查找元素
+
+    ```javascript
+    const arr = [1, 2, 3, 4];
+    arr.find(item => item > 2); // 3
+    arr.findIndex(item => item > 2); // 2
+    ```
+
+  + `includes()`： 判断数组是否包含某元素
+
+    ```javascript
+    const arr = [1, 2, 3, 4];
+    arr.includes(3); // true
+    ```
+
+  + `filter()`：按条件过滤元素
+
+    ```javascript
+    const arr = [1, 2, 3, 4];
+    arr.filter(item => item > 2); // [3, 4]
+    ```
+
+- **1：** 数组遍历与映射
+  + `forEach()`：遍历数组元素
+
+    ```javascript
+    const arr = [1, 2, 3, 4];
+    arr.forEach(item => console.log(item));
+    ```
+
+  + `map()`：映射数组元素
+
+    ```javascript
+    const arr = [1, 2, 3, 4];
+    arr.map(item => item * 2); // [2, 4, 6, 8]
+    ```
+
+- **1：** 数组排序与反转
+  + `sort()`：排序数组元素
+
+    ```javascript
+    const arr = [3, 1, 4, 2];
+    arr.sort(); // [1, 2, 3, 4]
+    ```
+
+  + `reverse()`：反转数组
+
+    ```javascript
+    const arr = [1, 2, 3];
+    arr.reverse(); // [3, 2, 1]
+    ```
+
+- **1：** 数组转换与归约
+  + `join()`：将数组元素拼接成字符串
+
+    ```javascript
+    const arr = [1, 2, 3];
+    arr.join('-'); // '1-2-3'
+    ```
+
+  + `toString()`：将数组元素拼接成字符串
+
+    ```javascript
+    const arr = [1, 2, 3];
+    arr.toString(); // '1,2,3'
+    ```
+
+  + `reduce()`：累加计算
+
+    ```javascript
+    const arr = [1, 2, 3];
+    arr.reduce((acc, cur) => acc + cur); // 6
+    ```
 
 </details>
 
