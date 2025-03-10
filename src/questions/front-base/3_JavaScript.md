@@ -46,20 +46,78 @@
 - **1：** 事件捕获：事件从 `document` 向下捕获到目标元素
 - **1：** 事件流顺序：捕获阶段 → 目标阶段 → 冒泡阶段
 
-## 什么是防抖和节流？它们的应用场景有哪些？
+## 什么是防抖和节流？
 
-#### 类型：`基础`
+#### 类型：`基础`、`编程`
 
 #### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（4 分）
+#### 解答（6 分）
 
-- **2：** 防抖
-  + 在事件被触发后，延迟一定时间后再执行回调函数，如果在延迟时间内再次触发事件，则重新计算延迟时间，直到延迟时间结束后才执行回调函数。
-  + 例如，在用户输入搜索框时，防止频繁发送请求，可以使用防抖函数，只有在用户停止输入一段时间后才发送搜索请求。
-- **2：** 节流
-  + 在一定时间内，只允许函数执行一次。
-  + 例如，在页面滚动时，需要频繁执行某个函数来处理滚动事件，但为了避免函数执行过于频繁影响性能，可以使用节流函数，限制函数在一定时间内只执行一次。
+<details>
+
+- **2：** 基本概念
+  + **防抖（Debounce）**：是指在一定时间内，只有最后一次触发事件才会执行相应的处理函数。如果在这个时间间隔内再次触发事件，会重新计时。其底层机制是利用定时器，每次触发事件时清除之前的定时器，重新设置一个新的定时器，当定时器计时结束后执行处理函数。
+  + **节流（Throttle）**：是指在一定时间内，只执行一次事件处理函数。即使在这个时间间隔内多次触发事件，也只会按照固定的时间间隔执行处理函数。其底层机制通常是通过记录上次执行的时间，在每次触发事件时判断是否达到了规定的时间间隔，如果达到了则执行处理函数并更新上次执行时间。
+
+- **2：** 应用场景
+  + **防抖**：适用于搜索框输入联想、窗口大小改变触发的重绘、按钮点击避免重复提交等场景，这些场景中用户可能会频繁触发事件，使用防抖可以减少不必要的处理。
+  + **节流**：适用于页面滚动加载更多数据、鼠标移动事件、游戏中的技能冷却等场景，这些场景中需要控制事件处理的频率，避免过度处理。
+  
+- **2：** 代码实现示例
+  + **防抖实现（运行环境：浏览器或 Node.js 环境）**：
+
+  ```javascript
+  function debounce(func, delay) {
+      let timer = null;
+      return function() {
+          const context = this;
+          const args = arguments;
+          // 清除之前的定时器
+          clearTimeout(timer);
+          // 设置新的定时器
+          timer = setTimeout(() => {
+              func.apply(context, args);
+          }, delay);
+      };
+  }
+
+  // 使用示例
+  function search() {
+      console.log('执行搜索请求');
+  }
+  const debouncedSearch = debounce(search, 300);
+  // 模拟连续触发事件
+  window.addEventListener('input', debouncedSearch);
+  ```
+
+  + **节流实现（运行环境：浏览器或 Node.js 环境）**：
+
+  ```javascript
+  function throttle(func, limit) {
+      let inThrottle;
+      return function() {
+          const context = this;
+          const args = arguments;
+          if (!inThrottle) {
+              func.apply(context, args);
+              inThrottle = true;
+              // 设置定时器，在规定时间后重置状态
+              setTimeout(() => inThrottle = false, limit);
+          }
+      };
+  }
+
+  // 使用示例
+  function loadMore() {
+      console.log('加载更多数据');
+  }
+  const throttledLoadMore = throttle(loadMore, 500);
+  // 模拟滚动事件
+  window.addEventListener('scroll', throttledLoadMore);
+  ```
+
+</details>
 
 ## 解决下方 this 指向问题（示例代码）
 
@@ -158,21 +216,27 @@ arrowMethod(); // 输出？
 
 </details>
 
-## Promise 的常用方法
+## Promise 是什么？常用方法有哪些？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（7 分）
+#### 解答（9 分）
 
-- **1：** Promise.resolve(value)：返回一个已解决的 Promise，如果 value 是一个 Promise，返回的 Promise 会继承其状态。
-- **1：** Promise.reject(reason)：返回一个已拒绝的 Promise，带有拒绝的原因。
-- **1：** Promise.all(iterable)：接收一个可迭代对象，返回一个新的 Promise，当所有 Promise 都成功时返回结果数组，若有任何 Promise 失败，返回的 Promise 会立即失败。
-- **1：** Promise.race(iterable)：返回一个 Promise，它会在第一个完成的 Promise 状态改变时返回该 Promise 的结果（无论是成功还是失败）。
-- **1：** Promise.allSettled(iterable)：返回一个新的 Promise，在所有输入的 Promise 完成时返回，结果包含每个 Promise 的状态及其结果。
-- **1：** Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise，ES2021 引入。
-- **1：** Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
+- **1：** Promise 是一种用于处理异步操作的 JavaScript 对象。它代表了一个尚未完成但预期将来会完成的操作的结果。
+- **1：** Promise 对象有三种状态：
+  + Pending：准备状态。
+  + Fulfilled：成功状态。
+  + Rejected：失败状态。
+- **7：** 常用方法
+  + Promise.resolve(value)：返回一个已解决的 Promise，如果 value 是一个 Promise，返回的 Promise 会继承其状态。
+  + Promise.reject(reason)：返回一个已拒绝的 Promise，带有拒绝的原因。
+  + Promise.all(iterable)：接收一个可迭代对象，返回一个新的 Promise，当所有 Promise 都成功时返回结果数组，若有任何 Promise 失败，返回的 Promise 会立即失败。
+  + Promise.race(iterable)：返回一个 Promise，它会在第一个完成的 Promise 状态改变时返回该 Promise 的结果（无论是成功还是失败）。
+  + Promise.allSettled(iterable)：返回一个新的 Promise，在所有输入的 Promise 完成时返回，结果包含每个 Promise 的状态及其结果。
+  + Promise.any(iterable)：返回一个新的 Promise，它会在第一个成功的 Promise 完成时返回成功结果，如果所有的 Promise 都失败，则返回一个拒绝的 Promise，ES2021 引入。
+  + Promise.finally(onFinally)：无论 Promise 成功或失败，都会执行 onFinally 回调，常用于清理操作。
 
 ## 编写一个函数，找出两个数组中都存在的元素，并返回去重后的结果
 
@@ -499,342 +563,237 @@ console.log(person);
 
 </details>
 
-## 14. bind、call、apply 区别
+## bind、call、apply 区别
 
-#### 类型：基础
+#### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（3 分）
 
-<details>
+- **3：** 核心区别对比
 
-- **1：** call 和apply 都是为了解决改变 this 的指向。作⽤都是相同的，只是传参的⽅式不同
-- **1：** 除了第⼀个参数外，call 可以接收⼀个参数列表，apply 只接受⼀个参数数组
+  | 方法 | 是否立即执行 | this 绑定方式 | 参数传递方式 | 返回值 |
+  |--|--|--|--|--|
+  | `call` | 是 | 显式指定 `this` | 逗号分隔参数列表 | 函数执行结果 |
+  | `apply`| 是 | 显式指定 `this` | 数组形式参数列表 | 函数执行结果 |
+  | `bind` | 否 | 创建绑定 `this` 的新函数 | 可预传参数 | 新函数 |
 
-```js
-let a = { value: 1 }
-function
-  getValue(name, age) {
-  console.log(name)
-  console.log(age)
-  console.log(this.value)
-}
-getValue.call(a, 'yck','24')
-getValue.apply(a,['yck', '24'])
-```
+  ```javascript
+  function greet(msg) { console.log(`${msg}, ${this.name}`); }
 
-- **1：** bind 和其他两个⽅法作⽤也是⼀致的，只是该⽅法会返回⼀个函数。并且我们可以通过 bind 实现柯⾥化
+  // call：明确传递多个参数
+  greet.call({ name: 'John' }, 'Hello'); // "Hello, John"
 
-</details>
+  // apply：参数已存在数组中
+  greet.apply({ name: 'Alice' }, ['Hi']); // "Hi, Alice"
 
-## 15. == 和 ===区别，什么情况⽤ ==
+  // bind：固定 this 并生成新函数
+  const boundGreet = greet.bind({ name: 'Bob' }, 'Hey');
+  boundGreet(); // "Hey, Bob"
+  ```
 
-#### 类型：基础
+## 谈谈你对Proxy的理解
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 类型：`基础`、`架构`
 
-#### 解答（1 分）
-
-- **1：** ===⽤于判断两者类型和值是否相同。在开发中，对于后端返回的 code，可以通过 == 去判断
-
-## 16. Proxy 的使用
-
-#### 类型：基础
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
 #### 解答（6 分）
 
 <details>
 
-- **4：** 部分 API
+- **1：** 基本概念
+  + `Proxy`，ES6 引入，用于创建一个对象的代理，从而可以对该对象的基本操作（如属性查找、赋值、枚举、函数调用等）进行拦截和自定义处理。`Proxy` 可以理解为在目标对象之前设置一层“拦截”，外界对该对象的访问，都必须先通过这层拦截。
+  + 其语法为 `const proxy = new Proxy(target, handler)`，其中 `target` 是要代理的目标对象，`handler` 是一个对象，它定义了拦截行为的方法。
 
-![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e08a8f141f44148ad6f66c7fdc1ab3e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp)
+- **1：** 拦截操作示例
 
-- **1：** 函数调用的监听
+  ```javascript
+  const target = {
+    name: 'John',
+    age: 30
+  };
 
-```js
-function fun() {
-    console.log("哈哈哈");
-}
-
-const objProxy = new Proxy(fun, {
-    /**
-     * 拦截对函数的调用的捕获器
-     * @param target target new Proxy 所代理的 obj（监听的对象）
-     * @param thisArg 调用函数时绑定的 this 值
-     * @param argArray 调用函数时传递的参数列表
-     */
-    apply(target, thisArg, argArray) {
-        console.log("对 fun 函数进行了 apply 的调用。");
-        // 调用原始函数，并在其结果前后添加一些内容
-        target.apply(thisArg, argArray)
+  const handler = {
+    get(target, property) {
+      console.log(`Getting property ${property}`);
+      return target[property];
     },
-    /**
-     * 监听 class 时的捕获器
-     * @param target target new Proxy 所代理的 obj（监听的对象）
-     * @param argArray new fun() 时传入的参数，例：new fun(1, 2, ...rest)
-     * @param newTarget 被调用的构造函数。在这里，newTarget 就是 objProxy 本身，因为 objProxy 是一个函数代理
-     */
-    construct(target, argArray, newTarget) {
-        console.log("对 fun 函数进行了 construct 的调用。");
-        return new target(...argArray)
+    set(target, property, value) {
+      console.log(`Setting property ${property} to ${value}`);
+      target[property] = value;
+      return true;
     }
-});
+  };
 
-objProxy.apply();
-new objProxy();
+  const proxy = new Proxy(target, handler);
 
-```
+  console.log(proxy.name); // 会触发 get 拦截器，输出 "Getting property name" 然后输出 "John"
+  proxy.age = 31; // 会触发 set 拦截器，输出 "Setting property age to 31"
+  ```
 
-- **1：** new Proxy 中 receiver 参数的作用
+- **4：** 应用场景
+  + **数据验证**：在设置对象属性时进行验证，确保属性值符合特定的规则。例如：
 
-```js
-const obj = {
-    _name: "里斯",
-    age: 16,
-    get name() {
-        return this._name;
+  ```javascript
+  const person = {
+    age: 20
+  };
+  const validator = {
+    set(target, prop, value) {
+      if (prop === 'age' && typeof value!== 'number') {
+        throw new TypeError('Age must be a number');
+      }
+      target[prop] = value;
+      return true;
+    }
+  };
+  const personProxy = new Proxy(person, validator);
+  try {
+    personProxy.age = 'twenty';
+  } catch (error) {
+    console.log(error.message); // 输出 "Age must be a number"
+  }
+  ```
+
+  + **日志记录**：在访问或修改对象属性时记录日志，方便调试和监控。例如在开发过程中，记录对配置对象的操作。
+
+  ```javascript
+  const config = {
+    apiKey: '123456'
+  };
+  const logger = {
+    get(target, prop) {
+      console.log(`Reading property ${prop} from config`);
+      return target[prop];
     },
-    set name(newValue) {
-        this._name = newValue;
+    set(target, prop, value) {
+      console.log(`Setting property ${prop} in config to ${value}`);
+      target[prop] = value;
+      return true;
     }
-};
+  };
+  const configProxy = new Proxy(config, logger);
+  const apiKey = configProxy.apiKey; // 输出 "Reading property apiKey from config"
+  configProxy.apiKey = '654321'; // 输出 "Setting property apiKey in config to 654321"
+  ```
 
-const objProxy = new Proxy(obj, {
-    /**
-     * receiver 就是 objProxy 这个代理对象
-     * receiver 传入 Reflect.get 之后，他就作为 obj 里的 this 了（this 这个时候就改变了）
-     *
-     */
-    get(target, key, receiver) {
-        console.log(receiver);
-        /**
-         * 传入 receiver 后，他被访问了两次
-         */
-        return Reflect.get(target, key, receiver);
-    },
-    set(target, key, newValue, receiver) {
-        Reflect.set(target, key, newValue, receiver);
+  + **访问控制**：对对象的某些属性进行访问限制，只有满足特定条件的操作才能执行。例如，只允许特定用户修改敏感信息。
+
+  ```javascript
+  const sensitiveData = {
+    password: 'secret'
+  };
+  const allowedUser = 'admin';
+  const accessController = {
+    set(target, prop, value, receiver) {
+      if (prop === 'password' && currentUser!== allowedUser) {
+        throw new Error('Only admin can change the password');
+      }
+      target[prop] = value;
+      return true;
     }
-});
+  };
+  let currentUser = 'guest';
+  const dataProxy = new Proxy(sensitiveData, accessController);
+  try {
+    dataProxy.password = 'newSecret';
+  } catch (error) {
+    console.log(error.message); // 输出 "Only admin can change the password"
+  }
+  ```
 
-objProxy.name = "哈哈哈";
-console.log(objProxy.name);
-```
+  + **响应式编程**：在 Vue 3 框架中，`Proxy` 被用于实现数据的响应式更新。当对象的属性发生变化时，自动更新与之绑定的视图。例如：
+
+  ```javascript
+  import { reactive, effect } from 'vue';
+  const state = reactive({
+    count: 0
+  });
+  effect(() => {
+    console.log(state.count);
+  });
+  state.count++; // 会触发 effect 重新执行，输出更新后的 count 值
+  ```
 
 </details>
 
-## 17. Object.defineProperty 的使用
+## 谈谈你对 Object.defineProperty 的理解
 
-#### 类型：基础
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（4 分）
-
-<details>
-
-- **1：** Object.defineProperty 的设计初中不是为了监听对象中属性变化的，而是为了定义访问属性描述符。
-
-- **1：** 访问属性描述符包括：configurable、enumerable、writable、value
-
-- **1：** 访问属性描述符的方法：Object.getOwnPropertyDescriptor()
-
-- **1：** 缺点
-
-    ① 一次监听太多的时候，不是很友好
-
-    ② 新增、删除的时候，他是无能为力的
-
-    ③ 会修改原对象中的属性
-
-```js
-const obj = {
-    name: "里斯",
-    age: 16
-};
-
-/**
- * 监听某个属性
- */
-/*
-Object.defineProperty(obj, "name", {
-    set(v) {
-        console.log(v);
-        console.log("监听到 set");
-    },
-    get() {
-        console.log("监听到 get");
-    }
-});
-*/
-
-/**
- * 监听所有的属性
- */
-Object.keys(obj).forEach(key => {
-    console.log(key);
-    let value = obj[key];
-    Object.defineProperty(obj, key, {
-        set(v) {
-            console.log(`监听到属性 ${key}，被 set 为 ${v}`);
-            value = v;
-        },
-        get() {
-            console.log(`监听到属性 ${key} get`);
-            return value;
-        }
-    });
-});
-
-
-obj.name = "哈哈哈";
-
-console.log(obj.name);
-```
-
-</details>
-
-## 18. 作用域链的理解
-
-#### 类型：基础
+#### 类型：`基础`、`编程`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（5 分）
 
-注：作用域链是指在 JavaScript 中，当访问一个变量时，JavaScript 引擎会按照一定的顺序在当前作用域以及其上层作用域中查找该变量。这个查找的过程就形成了作用域链。
-
 <details>
 
-- **1：** 数据类型
+- **1：** 核心功能  
+  `Object.defineProperty` 是 ES5 引入的方法，用于精确控制对象属性的行为。通过设置属性描述符，可以定义属性的可写性、可枚举性、可配置性，以及 getter/setter 函数。
 
-```mermaid
-graph TD;
+- **2：** 属性描述符详解
 
-    A[作用域链] --> B[作用域];
-    A --> C[词法作用域];
-    A --> D[作用域链];
-```
+  ```javascript
+  const obj = {};
+  Object.defineProperty(obj, 'count', {
+    configurable: false, // 禁止删除属性
+    enumerable: true,    // 允许 for-in 遍历
+    writable: true,      // 允许修改属性值
+    value: 0,           // 初始值
+    get() { return this._count; }, // 读取时触发
+    set(v) { this._count = v >=0? v : 0; } // 设置时校验
+  });
+  ```
 
-- **1：** 作用域
+- **1：** 典型应用场景  
+  + **数据监听（如 Vue 2.x 的响应式系统）**  
 
-作用域即变量（变量作用域又称上下文）和函数生效（能被访问）的区域或集合。它决定了代码区块中变量和其他资源的可见性。
-例如：
-
-```js
-
-function greet() {
-  var greeting = 'Hello World!';
-  console.log(greeting);
-}
-greet();
-
-console.log(greeting);// Uncaught ReferenceError: greeting is not defined
-
-```
-
-- **1：** 全局作用域
-
-任何不在函数中或是大括号中声明的变量，都是在全局作用域下。全局作用域下声明的变量可以在程序的任意位置访问。
-
-```js
-// 全局变量
-var greeting = 'Hello World!';
-function greet() {
-  console.log(greeting);
-}
-// 打印 'Hello World!'
-greet();
-```
-
-- **1：** 函数作用域
-
-```js
-function greet() {
-  var greeting = 'Hello World!';
-  console.log(greeting);
-}
-// 打印 'Hello World!'
-greet();
-// 报错: Uncaught ReferenceError: greeting is not defined
-console.log(greeting);
-
-```
-
-- **1：** 块级作用域
-
-ES6 引入：ES6 引入了let和const关键字，与var关键字不同，在大括号中使用let和const声明的变量存在于块级作用域中。在大括号之外不能访问这些变量。
-
-```js
-{
-  // 块级作用域中的变量
-  let greeting = 'Hello World!';
-  var lang = 'English';
-  console.log(greeting); // Prints 'Hello World!'
-}
-// 变量 'English'
-console.log(lang);
-// 报错: Uncaught ReferenceError: greeting is not defined
-console.log(greeting);
-```
-
-- **1：** 词法作用域
-
-词法作用域又叫静态作用域，变量在创建时就确定好了其作用域，而非在执行阶段确定。也就是说，在编写代码时作用域就已经确定了，JavaScript 遵循的就是词法作用域
-
-```js
-
-var a = 2;
-function foo() {
-  console.log(a);
-}
-function bar() {
-  var a = 3;
-  foo();
-}
-bar();
-```
-
-- **1：** 作用域链
-
-在 JavaScript 中使用一个变量时，JavaScript 引擎会尝试在当前作用域下去寻找该变量。如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域。
-
-如果在全局作用域里仍然找不到该变量，它就会在全局范围内隐式声明该变量（非严格模式下）或是直接报错。
-
-```js
-
-var sex = '男';
-function person() {
-    var name = '张三';
-    function student() {
-        var age = 18;
-        console.log(name); // 张三
-        console.log(sex); // 男
+    ```javascript
+    function defineReactive(obj, key, value) {
+      Object.defineProperty(obj, key, {
+        get() { return value; },
+        set(newVal) {
+          if (newVal !== value) {
+            value = newVal;
+            console.log(`属性 ${key} 被修改为 ${newVal}`);
+          }
+        }
+      });
     }
-    student();
-    console.log(age); // Uncaught ReferenceError: age is not defined
-}
-person();
+    ```
 
-/*
-student 函数内部：
-当查找name时，在student函数内部找不到，向上一层作用域（person函数内部）找，找到了输出 “张三”。
-当查找sex时，在student函数内部找不到，向上一层作用域（person函数内部）找，还找不到继续向上一层找，即全局作用域，找到了输出 “男”。
+  + **只读属性创建**  
 
-person 函数内部：
-当查找age时，在person函数内部找不到，向上一层找，即全局作用域，还是找不到则报错。
+    ```javascript
+    const constant = {};
+    Object.defineProperty(constant, 'PI', {
+      value: 3.1415,
+      writable: false, // 禁止修改
+      configurable: false // 禁止删除
+    });
+    ```
 
-*/
-```
+- **1：** 技术特性与限制  
+  + 只能监听对象属性的直接变化  
+  + 数组索引和 `length` 修改无法自动触发监听  
+  + 深度嵌套对象需递归处理  
+
+**技术对比**：
+
+| 特性 | Object.defineProperty | Proxy |
+|--|--|--|
+| 兼容性 | IE9+ | IE11+ |
+| 监听范围 | 单个属性  | 整个对象 |
+| 性能开销 | 较低  | 较高（复杂对象）|
+| 数组支持 | 需特殊处理 | 原生支持 |
+| 嵌套对象处理 | 递归定义 | 自动代理 |
 
 </details>
 
-## 19. 柯里化
+## 谈谈你对作用域链的理解
 
-#### 类型：基础
+#### 类型：`基础`、`架构`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
@@ -842,64 +801,81 @@ person 函数内部：
 
 <details>
 
-给函数传递一部分参数来调用这个函数，并且 当前的这个函数他会在返回一个函数，去处理剩余的参数，见下面 示例：
+- **1：** 基本定义  
+  作用域链是变量及函数查找的链式结构，由函数嵌套关系决定。内部函数可访问外部函数的变量，查找时从当前作用域逐层向上直至全局作用域。
 
-![](/public/images/3_JavaScript_20241224170424.png)
+- **1：** 运行机制  
+  函数执行时生成执行上下文，其作用域链由当前变量对象和外部作用域引用组成。例如：
 
-也就是 拆分函数的参数，这样的就可以叫 柯里化。
-
-- **1：** 使用函数柯里化的好处？
-
-在函数式的编程中，尽量 让一个函数处理一个问题，尽可能的单一，而不是将一些问题交给一个方法去解决，就好比 react 的函数式组件，你的一个功能组件是经过多个 UI 组件合成而来的一样，所以我们可以将每次传入的参数在，当前函数中处理，在当前函数处理完成后，在下一个函数中在使用上一个函数的处理结果即可。
-
-- **1：** 例子
-
-实现一个给第一个参数加2，给第二个参数乘2的例子
-
-![](/public/images/3_JavaScript_20241224170632.png)
-
-- **2：** 柯里化函数的实现
-
-```js
-/**
- * 多参函数 转 柯里化函数
- */
-function currying(fn) { // 接受一个函数,返回一个函数
-    // 这里是接受剩余参数
-    function receivedParameters(...args) {
-        // 判断当前已经接受到的参数的个数, 和参数本身(这个参数本身就是一个函数)需要接收到参数是否已经一致
-        // console.log(fn.length);
-        // console.log(args.length);
-        // 到传入函数的参数(fn 的参数) 大于 传入的参数(...args)时,就直接调用传入的函数
-        if (args.length >= fn.length) {
-            // 这个 apply 是为了方式外面调用时,绑定了this,而导致这个里面执行 fn 时的混乱
-            return fn.apply(this, args);
-        } else {
-            // 当参数不够的时候, 需要返回一个函数,来接续接收传入的参数,所以 在这 就需要把传入的所有参数,进行一次拼接
-            return function (...smallArgs) {
-                // 这个里面用了递归,来检查参数 是否达到,达到了,就运行传入的函数(fn)
-                return receivedParameters.apply(this, [...args, ...smallArgs])
-            }
-        }
+  ```javascript
+  function outer() {
+    const x = 1;
+    function inner() {
+      console.log(x); // 沿作用域链访问 outer 的 x
     }
-    return receivedParameters
-}
+    inner();
+  }
+  outer(); // 输出 1
+  ```
 
-// 使用
-function fun(n, m, b) { // fun的参数个数,是可以 通过 fun.length 拿到的
-    return n + m + b
-}
+- **2：** 具体应用场景  
+  + **闭包计数器**  
 
-const test = currying(fun);
+    ```javascript
+    // 通过闭包持久保存 count 变量
+    function createCounter() {
+      let count = 0;
+      return {
+        increment: () => { count++; return count; },
+        get: () => count
+      };
+    }
+    const counter = createCounter();
+    console.log(counter.increment()); // 1
+    ```
 
-console.log(test(1, 2, 3));
-console.log(test(1)(2, 3))
-console.log(test(1)(2)(3));
-```
+  + **私有变量封装**  
+
+    ```javascript
+    // 利用作用域链隐藏内部状态
+    function User(name) {
+      const privateEmail = 'user@example.com';
+      this.getName = () => name;
+      this.getEmail = () => privateEmail; // 外部无法直接访问
+    }
+    const user = new User('Alice');
+    console.log(user.getEmail()); // user@example.com
+    ```
+
+  + **事件回调绑定**  
+
+    ```javascript
+    // 回调函数通过作用域链捕获外部变量
+    function setupButton() {
+      const message = 'Button clicked!';
+      document.getElementById('btn').addEventListener('click', () => {
+        alert(message); // 点击时仍能访问 setupButton 的 message
+      });
+    }
+    setupButton();
+    ```
+
+  + **函数柯里化**  
+
+    ```javascript
+    // 通过作用域链保存预传参数
+    function add(a) {
+      return function(b) {
+        return a + b;
+      };
+    }
+    const add5 = add(5);
+    console.log(add5(3)); // 8
+    ```
 
 </details>
 
-## 20. CommonJS和ES6模块的区别？
+## 谈谈你对原型链的理解
 
 #### 类型：`基础`
 
@@ -909,859 +885,703 @@ console.log(test(1)(2)(3));
 
 <details>
 
-- **1：** Iterator 描述
+- **1：** 基本概念
+原型链是 JavaScript 中实现继承的一种方式。每个对象都有一个内部属性 `[[Prototype]]`（在浏览器中可通过 `__proto__` 访问），它指向该对象的原型对象。
+当访问一个对象的属性或方法时，首先会在该对象本身查找，如果找不到，就会沿着其原型链向上，在其原型对象中查找，若原型对象中也没有，就继续在原型对象的原型对象中查找，以此类推，直到找到该属性或方法，或者到达原型链的末尾（即 `Object.prototype`，其 `[[Prototype]]` 为 `null`）。
 
-迭代器（iterator），是确使用户可在容器对象（container，例如链表或数组）上遍访的对象，使用该接口无需关心对象的内部实现细节。
+- **1：** 代码示例及原理
 
-注：迭代器可以帮助我们去遍历某个数据结构。
+  ```javascript
+  // 定义一个构造函数
+  function Animal(name) {
+      this.name = name;
+  }
 
-[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators#%E8%BF%AD%E4%BB%A3%E5%99%A8)
+  // 在 Animal 的原型上添加方法
+  Animal.prototype.sayName = function() {
+      console.log(this.name);
+  };
 
-- **2：** 实现一个简单的迭代器
+  // 创建一个 Animal 的实例
+  const cat = new Animal('Tom');
 
-迭代器是一个对象，但是需要符合[迭代器协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)。
+  // 调用 sayName 方法
+  cat.sayName(); 
 
-[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE)
-注：在使用的过程中，根据需求，进行修改。
+  // 原型链查找过程：
+  // 1. 首先在 cat 对象本身查找 sayName 方法，未找到
+  // 2. 接着在 cat 的原型对象（即 Animal.prototype）中查找，找到并执行
+  ```
+
+- **1：** 作用与应用场景
+  + **代码复用**：通过原型链可以实现多个对象之间的属性和方法共享，避免代码重复。例如，多个 `Animal` 实例都可以共享 `sayName` 方法。
+  + **继承实现**：利用原型链可以让一个对象继承另一个对象的属性和方法，实现不同对象之间的继承关系。例如，定义一个 `Dog` 构造函数，让 `Dog.prototype` 指向 `Animal.prototype`，那么 `Dog` 的实例就可以继承 `Animal` 的属性和方法。
+
+  ```javascript
+  function Dog(name) {
+      Animal.call(this, name);
+  }
+
+  // 设置 Dog 的原型为 Animal 的实例
+  Dog.prototype = Object.create(Animal.prototype);
+  Dog.prototype.constructor = Dog;
+
+  const dog = new Dog('Buddy');
+  dog.sayName(); 
+  ```
+
+</details>
+
+## 谈谈你对函数柯里化的理解
+
+#### 类型：`基础`、`架构`、`编程`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+<details>
+
+- **1：** 基本概念
+函数柯里化是把一个多参数函数转换为一系列单参数函数的技术。也就是说，它允许你将一个需要多个参数的函数，转化为可以逐个接收参数的函数。例如，对于一个接收三个参数的函数 `function add(a, b, c) { return a + b + c; }`，柯里化后可以先传入一个参数，再传入第二个，最后传入第三个，每次传入参数后都会返回一个新的函数等待接收剩余的参数。
+
+- **2：** 实现示例
+
+  ```javascript
+  function curry(func) {
+      return function curried(...args) {
+          if (args.length >= func.length) {
+              return func.apply(this, args);
+          } else {
+              return function(...newArgs) {
+                  return curried.apply(this, args.concat(newArgs));
+              };
+          }
+      };
+  }
+
+  function sum(a, b, c) {
+      return a + b + c;
+  }
+
+  const curriedSum = curry(sum);
+  console.log(curriedSum(1)(2)(3)); // 输出 6
+  ```
+
+- **2：** 应用场景
+  + **参数复用**：当多次调用同一个函数，并且部分参数相同时，可以通过柯里化固定这些参数，减少重复传递。例如，在一个处理不同用户的日志记录函数中，日志的类型是固定的，就可以通过柯里化固定日志类型参数。
+
+  ```javascript
+  function log(type, message) {
+      console.log(`${type}: ${message}`);
+  }
+
+  const errorLog = curry(log)('ERROR');
+  errorLog('File not found'); // 输出 "ERROR: File not found"
+  ```
+
+  + **延迟计算**：可以在需要的时候再传入剩余的参数，实现延迟计算。比如在事件处理中，有些参数在事件触发时才确定，就可以先柯里化函数，在事件触发时再传入这些参数。
+  + **函数组合**：柯里化函数更适合进行函数组合，将多个简单的函数组合成复杂的函数。
+
+</details>
+
+## JS 如何实现函数缓存
+
+#### 类型：`基础`、`架构`、`编程`、`算法`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** 基本原理
+函数缓存是指将函数的输入参数和对应的输出结果存储起来，当再次使用相同的参数调用该函数时，直接从缓存中获取结果，而不是重新执行函数，从而提高函数的执行效率，尤其是对于一些计算密集型或耗时的函数。
+
+- **2：** 实现方式
 
 ```javascript
-/**
- * 下面就是一个迭代器
- * 但是他是毫无作用的
- */
-/*
-const iterator = {
-    next: function () {
-        return {done: true, value: "test"};
-    }
-};
-*/
-
-/**
- * 创建一个迭代器，去访问一个数组
- * 如果迭代器能够生成序列中的下一个值，则返回 false 布尔值。（这等价于没有指定 done 这个属性。）
- *
- * 如果迭代器已将序列迭代完毕，则为 true。这种情况下，value 是可选的，如果它依然存在，即为迭代结束之后的默认返回值。
- */
-function createArrayIterator(arr) {
-    let index = 0;
-    const arrIterator = {
-        next: function () {
-            // return {done: false, value: "你好"};
-            // return {done: false, value: "哈哈"};
-            // return {done: false, value: "啊啊"};
-            // return {done: true, value: undefined};
-            if (index < arr.length) {
-                return {done: false, value: arr[index++]};
-            } else {
-                return {done: true, value: undefined};
-            }
+// 定义 memoize 高阶函数，用于将普通函数转换为具有缓存功能的函数
+function memoize(func) {
+    // 使用 Map 对象来存储缓存，键为参数，值为函数执行结果
+    const cache = new Map();
+    return function (...args) {
+        // 将参数转换为字符串作为缓存的键
+        const key = JSON.stringify(args);
+        // 检查缓存中是否已存在该键对应的结果
+        if (cache.has(key)) {
+            // 若存在，直接从缓存中获取结果并返回
+            return cache.get(key);
         }
+        // 若缓存中不存在，调用原函数并传入参数
+        const result = func.apply(this, args);
+        // 将参数和对应的结果存入缓存
+        cache.set(key, result);
+        // 返回函数执行结果
+        return result;
     };
-    return arrIterator;
 }
 
-const arr1 = ["你好", "哈哈", "啊啊"];
-const arr1Iterator = createArrayIterator(arr1);
+// 模拟一个计算密集型的函数
+function expensiveCalculation(num) {
+    // 打印提示信息，表示正在进行耗时计算
+    console.log('Performing expensive calculation...');
+    // 返回输入参数乘以 2 的结果
+    return num * 2;
+}
 
-console.log(arr1Iterator.next());
-console.log(arr1Iterator.next());
-console.log(arr1Iterator.next());
-// 前面的都能访问到，后面的就无法访问了
-console.log(arr1Iterator.next());
-console.log(arr1Iterator.next());
+// 使用 memoize 函数将 expensiveCalculation 转换为具有缓存功能的函数
+const memoizedCalculation = memoize(expensiveCalculation);
 
-const arr2 = [1, 2, 3, 4, 5, 6];
-const arr2Iterator = createArrayIterator(arr2);
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
-console.log(arr2Iterator.next());
+// 第一次调用，由于缓存中没有结果，会执行计算并将结果存入缓存
+console.log(memoizedCalculation(5)); 
+// 第二次调用，由于参数相同，直接从缓存中获取结果，不再执行计算
+console.log(memoizedCalculation(5)); 
 ```
 
- ![image-20240202230330197](https://not-have.github.io/file/images/image-20240202230330197.png)
+- **2：** 注意事项
+  + **参数类型限制**：在使用 `JSON.stringify` 将参数转换为键时，存在一些类型限制。
 
-</details>
-
-## 21. JS 如何实现函数缓存
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-<details>
-
-- **1：** 是什么
-
-就是实用一个对象来存储计算过的结果，当再次调用函数时，先检查结果是否已经存在，如果存在，则直接返回结果，否则再进行计算。
-本质上是实用空间换时间。
-常用于缓存数据计算和缓存对象：
-
-```js
-const add = (a,b) => a+b;
-const calc = memoize(add); // 函数缓存
-calc(10,20);// 30
-calc(10,20);// 30 缓存
+```javascript
+// 定义一个接收函数作为参数的函数
+function funcWithFuncParam(callback) {
+    // 执行传入的回调函数并返回结果
+    return callback();
+}
+// 将 funcWithFuncParam 转换为具有缓存功能的函数
+const memoizedFunc = memoize(funcWithFuncParam);
+// 定义一个回调函数
+const callback = () => 10;
+// 将包含回调函数的参数数组转换为字符串作为键
+const key1 = JSON.stringify([callback]); 
+// 输出结果为 [null]，说明 JSON.stringify 忽略了函数
+console.log(key1); 
+// 定义一个 Symbol 类型的参数
+const symbolParam = Symbol('test');
+// 将包含 Symbol 类型参数的数组转换为字符串作为键
+const key2 = JSON.stringify([symbolParam]); 
+// 输出结果为 [null]，说明 JSON.stringify 忽略了 Symbol
+console.log(key2); 
 ```
 
-- **2：** 实现
+对于包含函数、`Symbol` 等特殊类型的复杂对象参数，需要自定义生成唯一键的方式，比如使用 `WeakMap` 结合其他逻辑来处理函数，或者为 `Symbol` 类型参数添加额外的标识信息。
 
-注：函数缓存主要依靠 `闭包、柯里化、高阶函数`
+- **缓存大小控制**：如果缓存不断增长，可能会导致内存占用过高。可以考虑实现缓存淘汰策略，如最近最少使用（LRU）算法。
 
-##### 1）闭包
-
-```js
-(function() {
-    var a = 1; // 在 IIFE (立即调用的函数表达式) 内部定义了变量 a
-    function add() {
-        const b = 2; // 在 add 函数内部定义了变量 b
-        let sum = b + a; // sum 是 add 函数内部的局部变量，b 和 a 都在其作用域内
-        console.log(sum); // 输出 3
+```javascript
+// 定义 LRUCache 类，实现最近最少使用的缓存策略
+class LRUCache {
+    // 构造函数，接收缓存容量作为参数
+    constructor(capacity) {
+        // 存储缓存容量
+        this.capacity = capacity;
+        // 使用 Map 对象来存储缓存
+        this.cache = new Map();
     }
-    
-    add(); // 调用 add 函数
-})();
-```
 
-##### 2）柯里化
-
-```js
-// 非函数柯里化
-var add = function (x,y) {
-    return x+y;
-}
-add(3, 15) // 15
-
-// 函数柯里化
-var add2 = function (x) {
-    return function (y) {
-        return x+y;
-    }
-}
-const str = add2(3)(15) //15
-
-console.log(`永远喜欢 ${str} 岁的 girl ！！！`);
-```
-
-##### 3）高阶函数
-
-```js
-function foo(){
-  var a = 2;
-
-  function bar() {
-    console.log(a);
-  }
-  return bar;
-}
-var baz = foo();
-baz();
-```
-
-##### 4）实现函数缓存
-
-```js
-var add = function (x, y) {
-    return x + y;
-}
-
-/**
- * 函数缓存
- * 
- * @param {*} func 要缓存的函数
- * @param {*} content 上下文
- */
-const memoize = function (func, content) {
-  // 创建一个缓存对象，用来存储已计算的结果，避免重复计算
-  let cache = Object.create(null)
-
-  // 如果没有传递 content 参数，则将 content 设置为当前上下文 this
-  content = content || this
-  
-  // 返回一个新的函数，它会接收传入的参数，并进行缓存判断
-  return (...key) => {
-    // 使用 JSON.stringify 将 key 数组转换为字符串，确保相同的参数值被一致缓存
-    const cacheKey = JSON.stringify(key);
-
-    // 检查缓存中是否已经存储了当前参数的计算结果
-    if (!cache[cacheKey]) {
-      // 如果缓存中没有，调用 func 并将结果存储在 cache 中
-      // func.apply(content, key) 用来调用 func，传递 content 作为上下文，key 作为参数
-      cache[cacheKey] = func.apply(content, key);
-    }
-    
-    // 返回缓存中的结果（如果已计算过）
-    return cache[cacheKey];
-  }
-}
-
-/**
- * 使用
- */
-const calc = memoize(add);
-const num1 = calc(100, 200);  // 计算并缓存结果
-console.log(num1);  // 300
-
-const num2 = calc(100, 200);  // 从缓存中获取结果
-console.log(num2);  // 300
-```
-
-##### 5）使用场景
-
-对于昂贵的函数调用，执行复杂计算的函数
-对于具有有限且高度重复输入范围的函数
-对于具有重复输入值的递归函数
-对于纯函数，即每次使用特定输入调用时返回相同输出的函数
-
-</details>
-
-## 22. CommonJS和ES6模块的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- CommonJS模块是同步加载的，ES6模块是异步加载的。
-
-- CommonJS模块的导出是值的拷贝，ES6模块的导出是值的引用。
-
-- CommonJS模块的导入是动态的，ES6模块的导入是静态的。
-
-- CommonJS模块的导出是函数时，导出的函数是值的拷贝，ES6模块的导出是函数时，导出的函数是值的引用。
-
-- CommonJS模块的导出是对象时，导出的对象是值的拷贝，ES6模块的导出是对象时，导出的对象是值的引用。
-
-- CommonJS模块的导出是类时，导出的类是值的拷贝，ES6模块的导出是类时，导出的类是值的引用。
-
-## 23. 介绍一下Promise
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-Promise 是一种用于处理异步操作的 JavaScript 对象。它代表了一个尚未完成但预期将来会完成的操作的结果。
-
-Promise 对象有三种状态：
-
-- Pending（进行中）：初始状态，既不是成功，也不是失败状态。
-
-- Fulfilled（已成功）：意味着操作成功完成。
-
-- Rejected（已失败）：意味着操作失败。
-
-Promise 对象使用 `then` 方法来处理成功和失败的情况。`then` 方法接受两个参数：一个用于处理成功情况的回调函数和一个用于处理失败情况的回调函数。
-
-```js
-const promise = new Promise((resolve, reject) => {
-
-
-})
-
-```
-
-## 24. 如何判断一个元素是否在可视区域内？
-
-#### 类型：`拓展`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（4 分）
-
-<details>
-
-- **1：用途**
-
-可视区域即我们浏览网页的设备肉眼可见的区域，如下图
-
-![](/public/images/3_JavaScript_20241230001543.png)
-
-在日常开发中，我们经常需要判断目标元素是否在视窗之内或者和视窗的距离小于一个值（例如 100 px），从而实现一些常用的功能，例如：
-
-> - 图片的懒加载
-> - 列表的无限滚动
-> - 计算广告元素的曝光情况
-> - 可点击链接的预加载
-
-- **实现方式: 3**
-
-##### 1）offsetTop、scrollTop
-
-`offsetTop`，元素的上外边框至包含元素的上内边框之间的像素距离，其他`offset`属性如下图所示：
-
-![](/public/images/3_JavaScript_20241230001827.png)
-
-下面再来了解下`clientWidth`、`clientHeight`：
-
-- `clientWidth`：元素内容区宽度加上左右内边距宽度，即`clientWidth = content + padding`
-- `clientHeight`：元素内容区高度加上上下内边距高度，即`clientHeight = content + padding`
-
-这里可以看到`client`元素都不包括外边距
-
-最后，关于`scroll`系列的属性如下：
-
-- `scrollWidth` 和 `scrollHeight` 主要用于确定元素内容的实际大小
-
-- `scrollLeft` 和 `scrollTop` 属性既可以确定元素当前滚动的状态，也可以设置元素的滚动位置
-
-- 垂直滚动 `scrollTop > 0`
-
-- 水平滚动 `scrollLeft > 0`
-
-- 将元素的 `scrollLeft` 和 `scrollTop` 设置为 0，可以重置元素的滚动位置
-
-##### 注意
-
-- 上述属性都是只读的，每次访问都要重新开始
-
-下面再看看如何实现判断：
-
-公式如下：
-
-```js
-el.offsetTop - document.documentElement.scrollTop <= viewPortHeight
-```
-
-代码实现：
-
-```js
-function isInViewPortOfOne (el) {
-    // viewPortHeight 兼容所有浏览器写法
-    const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight 
-    const offsetTop = el.offsetTop
-    const scrollTop = document.documentElement.scrollTop
-    const top = offsetTop - scrollTop
-    return top <= viewPortHeight
-}
-```
-
-##### 2）getBoundingClientRect
-
-返回值是一个 `DOMRect`对象，拥有`left`, `top`, `right`, `bottom`, `x`, `y`, `width`, 和 `height`属性
-
-```js
-const target = document.querySelector('.target');
-const clientRect = target.getBoundingClientRect();
-console.log(clientRect);
-
-// {
-//   bottom: 556.21875,
-//   height: 393.59375,
-//   left: 333,
-//   right: 1017,
-//   top: 162.625,
-//   width: 684
-// }
-```
-
-属性对应的关系图如下所示：
-
-![](/public/images/3_JavaScript_20241230002050.png)
-
-当页面发生滚动的时候，`top`与`left`属性值都会随之改变
-
-如果一个元素在视窗之内的话，那么它一定满足下面四个条件：
-
-- top 大于等于 0
-- left 大于等于 0
-- bottom 小于等于视窗高度
-- right 小于等于视窗宽度
-
-实现代码如下：
-
-```js
-function isInViewPort(element) {
-  const viewWidth = window.innerWidth || document.documentElement.clientWidth;
-  const viewHeight = window.innerHeight || document.documentElement.clientHeight;
-  const {
-    top,
-    right,
-    bottom,
-    left,
-  } = element.getBoundingClientRect();
-
-  return (
-    top >= 0 &&
-    left >= 0 &&
-    right <= viewWidth &&
-    bottom <= viewHeight
-  );
-}
-```
-
-##### 3）Intersection Observer
-
-`Intersection Observer` 即重叠观察者，从这个命名就可以看出它用于判断两个元素是否重叠，因为不用进行事件的监听，性能方面相比 `getBoundingClientRect` 会好很多
-
-使用步骤主要分为两步：创建观察者和传入被观察者
-
-###### 创建观察者
-
-```js
-const options = {
-  // 表示重叠面积占被观察者的比例，从 0 - 1 取值，
-  // 1 表示完全被包含
-  threshold: 1.0, 
-  root:document.querySelector('#scrollArea') // 必须是目标元素的父级元素
-};
-
-const callback = (entries, observer) => { ....}
-
-const observer = new IntersectionObserver(callback, options);
-```
-
-通过`new IntersectionObserver`创建了观察者 `observer`，传入的参数 `callback` 在重叠比例超过 `threshold` 时会被执行`
-
-关于`callback`回调函数常用属性如下：
-
-```js
-// 上段代码中被省略的 callback
-const callback = function(entries, observer) { 
-    entries.forEach(entry => {
-        entry.time;               // 触发的时间
-        entry.rootBounds;         // 根元素的位置矩形，这种情况下为视窗位置
-        entry.boundingClientRect; // 被观察者的位置举行
-        entry.intersectionRect;   // 重叠区域的位置矩形
-        entry.intersectionRatio;  // 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）
-        entry.target;             // 被观察者
-    });
-};
-```
-
-###### 传入被观察者
-
-通过 `observer.observe(target)` 这一行代码即可简单的注册被观察者
-
-```js
-const target = document.querySelector('.target');
-observer.observe(target);
-```
-
-##### 4）案例分析
-
-实现：创建了一个十万个节点的长列表，当节点滚入到视窗中时，背景就会从红色变为黄色
-
-`Html`结构如下：
-
-```js
-<div class="container"></div>
-```
-
-`css`样式如下：
-
-```css
-.container {
-    display: flex;
-    flex-wrap: wrap;
-}
-.target {
-    margin: 5px;
-    width: 20px;
-    height: 20px;
-    background: red;
-}
-```
-
-往`container`插入1000个元素
-
-```js
-const $container = $(".container");
-
-// 插入 100000 个 <div class="target"></div>
-function createTargets() {
-  const htmlString = new Array(100000)
-    .fill('<div class="target"></div>')
-    .join("");
-  $container.html(htmlString);
-}
-```
-
-这里，首先使用 `getBoundingClientRect` 方法进行判断元素是否在可视区域
-
-```js
-function isInViewPort(element) {
-    const viewWidth = window.innerWidth || document.documentElement.clientWidth;
-    const viewHeight =
-          window.innerHeight || document.documentElement.clientHeight;
-    const { top, right, bottom, left } = element.getBoundingClientRect();
-
-    return top >= 0 && left >= 0 && right <= viewWidth && bottom <= viewHeight;
-}
-```
-
-然后开始监听`scroll`事件，判断页面上哪些元素在可视区域中，如果在可视区域中则将背景颜色设置为`yellow`
-
-```js
-$(window).on("scroll", () => {
-    console.log("scroll !");
-    $targets.each((index, element) => {
-        if (isInViewPort(element)) {
-            $(element).css("background-color", "yellow");
+    // 获取缓存中指定键的值
+    get(key) {
+        // 检查缓存中是否存在该键
+        if (this.cache.has(key)) {
+            // 若存在，获取该键对应的值
+            const value = this.cache.get(key);
+            // 先删除该键值对
+            this.cache.delete(key);
+            // 再重新插入该键值对，以更新其访问顺序
+            this.cache.set(key, value);
+            // 返回该键对应的值
+            return value;
         }
-    });
-});
-```
+        // 若不存在，返回 -1
+        return -1;
+    }
 
-通过上述方式，可以看到可视区域颜色会变成黄色了，但是可以明显看到有卡顿的现象，原因在于我们绑定了`scroll`事件，`scroll`事件伴随了大量的计算，会造成资源方面的浪费
-
-下面通过`Intersection Observer`的形式同样实现相同的功能
-
-首先创建一个观察者
-
-```js
-const observer = new IntersectionObserver(getYellow, { threshold: 1.0 });
-```
-
-`getYellow`回调函数实现对背景颜色改变，如下：
-
-```js
-function getYellow(entries, observer) {
-    entries.forEach(entry => {
-        $(entry.target).css("background-color", "yellow");
-    });
+    // 向缓存中插入或更新键值对
+    put(key, value) {
+        // 若缓存中已存在该键，先删除该键值对
+        if (this.cache.has(key)) {
+            this.cache.delete(key);
+        } 
+        // 若缓存已满
+        else if (this.cache.size >= this.capacity) {
+            // 删除最早访问的键值对
+            this.cache.delete(this.cache.keys().next().value);
+        }
+        // 插入或更新键值对
+        this.cache.set(key, value);
+    }
 }
 ```
 
-最后传入观察者，即`.target`元素
-
-```js
-$targets.each((index, element) => {
-    observer.observe(element);
-});
-```
-
-可以看到功能同样完成，并且页面不会出现卡顿的情况
+在实现函数缓存时，可以将 `Map` 替换为 `LRUCache` 实例，以控制缓存的大小。
 
 </details>
 
-## 25. 如何实现一个上拉加载，下拉刷新？
+## 谈谈你对唤醒函数的理解
 
-#### 类型：`拓展`
+#### 类型：`基础`、`编程`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+<details>
+
+- **1：** 基本概念
+唤醒函数通常用于控制程序的执行流程，特别是在异步编程或并发编程场景中。其核心作用是在特定条件满足时，将处于等待或阻塞状态的代码重新激活继续执行。它就像是一个“开关”，在合适的时机触发，让程序从暂停状态恢复运行，有助于实现程序的有序执行和资源的合理利用。
+
+- **2：** 实现方式及示例
+  + **基于定时器的唤醒**：通过 `setTimeout` 或 `setInterval` 来设置一个延迟时间，当时间到达时触发唤醒操作。
+
+  ```javascript
+  function wakeAfterDelay(delay) {
+      return new Promise((resolve) => {
+          setTimeout(() => {
+              resolve('唤醒啦');
+          }, delay);
+      });
+  }
+
+  async function main() {
+      console.log('开始等待');
+      const result = await wakeAfterDelay(2000);
+      console.log(result);
+      console.log('继续执行');
+  }
+
+  main();
+  ```
+
+  + **基于事件的唤醒**：监听某个特定事件，当事件发生时进行唤醒。在前端开发中，常见的如按钮点击、网络请求完成等事件。
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+  </head>
+
+  <body>
+      <button id="wakeBtn">点击唤醒</button>
+      <script>
+          function wakeOnClick() {
+              return new Promise((resolve) => {
+                  const btn = document.getElementById('wakeBtn');
+                  btn.addEventListener('click', () => {
+                      resolve('按钮点击，唤醒啦');
+                  });
+              });
+          }
+
+          async function main() {
+              console.log('等待点击');
+              const result = await wakeOnClick();
+              console.log(result);
+              console.log('继续执行');
+          }
+
+          main();
+      </script>
+  </body>
+
+  </html>
+  ```
+
+- **2：** 应用场景
+  + **电商系统中的限时抢购**：在电商的限时抢购活动中，服务器需要在活动开始的瞬间处理大量用户的请求。可以使用唤醒函数结合定时器来实现。服务器在活动开始前处于等待状态，通过 `setTimeout` 设定活动开始时间，当时间到达，唤醒函数被触发，服务器开始接收和处理用户的抢购请求。例如：
+
+  ```javascript
+  const startTime = new Date('2024-12-31 00:00:00').getTime();
+  const currentTime = Date.now();
+  const delay = startTime - currentTime;
+
+  function startFlashSale() {
+      console.log('限时抢购活动开始，开始处理请求');
+      // 处理抢购请求的逻辑
+  }
+
+  if (delay > 0) {
+      setTimeout(startFlashSale, delay);
+  } else {
+      startFlashSale();
+  }
+  ```
+
+  + **视频会议系统中的发言控制**：在视频会议系统中，为了避免多人同时发言造成混乱，通常会有一个主持人控制发言顺序。当主持人允许某个参会者发言时，相当于触发了一个唤醒事件。可以使用基于事件的唤醒函数来实现。例如，参会者的客户端代码如下：
+
+  ```javascript
+  function waitForPermission() {
+      return new Promise((resolve) => {
+          // 监听主持人允许发言的事件
+          document.addEventListener('host-permission', () => {
+              resolve('你可以发言了');
+          });
+      });
+  }
+
+  async function participant() {
+      console.log('等待主持人允许发言');
+      const result = await waitForPermission();
+      console.log(result);
+      // 开始发言的逻辑
+  }
+
+  participant();
+  ```
+
+  + **物流系统中的任务调度**：在物流系统中，当一个包裹到达某个中转站时，需要等待特定的条件满足（如车辆装满、到达规定的发车时间等）才会继续运输。可以使用唤醒函数来控制任务的执行。例如，使用定时器在规定的发车时间唤醒运输任务，或者监听车辆装满的事件来触发唤醒。
+
+</details>
+
+## 如何判断一个元素是否在可视区域？
+
+#### 类型：`基础`、`编程`
+
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（6 分）
 
 <details>
 
-- **2：** 上拉加载
+- **2：** 元素边界与视口边界比较法
+  + **原理**：通过获取元素相对于视口的位置和尺寸信息，与视口的尺寸进行对比，判断元素是否在视口内。底层机制是利用 `getBoundingClientRect()` 方法获取元素的边界信息，该方法返回一个包含元素的大小及其相对于视口的位置的 DOMRect 对象。
+  + **代码示例（运行环境：浏览器环境）**：
 
-首先可以看一张图
+  ```javascript
+  function isElementInViewport(el) {
+      // 获取元素相对于视口的位置和尺寸信息
+      const rect = el.getBoundingClientRect();
+      return (
+          // 判断元素上边界是否在视口内
+          rect.top >= 0 &&
+          // 判断元素左边界是否在视口内
+          rect.left >= 0 &&
+          // 判断元素下边界是否在视口内
+          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+          // 判断元素右边界是否在视口内
+          rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+  }
 
-![](/public/images/3_JavaScript_20241230002614.png)
+  // 使用示例
+  const element = document.getElementById('testElement');
+  console.log(isElementInViewport(element));
+  ```
 
-上拉加载的本质是页面触底，或者快要触底时的动作
+- **2：** Intersection Observer API 法
+  + **原理**：`Intersection Observer API` 提供了一种异步观察目标元素与其祖先元素或顶级文档视口交叉状态的方法。它会在目标元素与视口的交叉状态发生变化时触发回调函数，通过回调函数中的 `isIntersecting` 属性可以判断元素是否在可视区域。
+  + **代码示例（运行环境：支持 Intersection Observer API 的浏览器环境）**：
 
-判断页面触底我们需要先了解一下下面几个属性
+  ```javascript
+  const element = document.getElementById('testElement');
+  // 创建 IntersectionObserver 实例
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+              console.log('元素在可视区域');
+          } else {
+              console.log('元素不在可视区域');
+          }
+      });
+  });
 
-- `scrollTop`：滚动视窗的高度距离`window`顶部的距离，它会随着往上滚动而不断增加，初始值是0，它是一个变化的值
+  // 开始观察元素
+  observer.observe(element);
+  ```
 
-- `clientHeight`:它是一个定值，表示屏幕可视区域的高度；
-- `scrollHeight`：页面不能滚动时也是存在的,此时scrollHeight等于clientHeight。scrollHeight表示`body`所有元素的总长度(包括body元素自身的padding)
-
-综上我们得出一个触底公式：
-
-```js
-scrollTop + clientHeight >= scrollHeight
-```
-
-简单实现
-
-```js
-let clientHeight  = document.documentElement.clientHeight; //浏览器高度
-let scrollHeight = document.body.scrollHeight;
-let scrollTop = document.documentElement.scrollTop;
- 
-let distance = 50;  //距离视窗还用50的时候，开始触发；
-
-if ((scrollTop + clientHeight) >= (scrollHeight - distance)) {
-    console.log("开始加载数据");
-}
-```
-
-- **2：** 下拉刷新
-
-下拉刷新的本质是页面本身置于顶部时，用户下拉时需要触发的动作
-
-关于下拉刷新的原生实现，主要分成三步：
-
-- 监听原生`touchstart`事件，记录其初始位置的值，`e.touches[0].pageY`；
-- 监听原生`touchmove`事件，记录并计算当前滑动的位置值与初始位置值的差值，大于`0`表示向下拉动，并借助CSS3的`translateY`属性使元素跟随手势向下滑动对应的差值，同时也应设置一个允许滑动的最大值；
-- 监听原生`touchend`事件，若此时元素滑动达到最大值，则触发`callback`，同时将`translateY`重设为`0`，元素回到初始位置
-
-举个例子：
-
-`Html`结构如下：
-
-```js
-<main>
-    <p class="refreshText"></p >
-    <ul id="refreshContainer">
-        <li>111</li>
-        <li>222</li>
-        <li>333</li>
-        <li>444</li>
-        <li>555</li>
-        ...
-    </ul>
-</main>
-```
-
-监听`touchstart`事件，记录初始的值
-
-```js
-var _element = document.getElementById('refreshContainer'),
-    _refreshText = document.querySelector('.refreshText'),
-    _startPos = 0,  // 初始的值
-    _transitionHeight = 0; // 移动的距离
-
-_element.addEventListener('touchstart', function(e) {
-    _startPos = e.touches[0].pageY; // 记录初始位置
-    _element.style.position = 'relative';
-    _element.style.transition = 'transform 0s';
-}, false);
-```
-
-监听`touchmove`移动事件，记录滑动差值
-
-```js
-_element.addEventListener('touchmove', function(e) {
-    // e.touches[0].pageY 当前位置
-    _transitionHeight = e.touches[0].pageY - _startPos; // 记录差值
-
-    if (_transitionHeight > 0 && _transitionHeight < 60) { 
-        _refreshText.innerText = '下拉刷新'; 
-        _element.style.transform = 'translateY('+_transitionHeight+'px)';
-
-        if (_transitionHeight > 55) {
-            _refreshText.innerText = '释放更新';
-        }
-    }                
-}, false);
-```
-
-最后，就是监听`touchend`离开的事件
-
-```js
-_element.addEventListener('touchend', function(e) {
-    _element.style.transition = 'transform 0.5s ease 1s';
-    _element.style.transform = 'translateY(0px)';
-    _refreshText.innerText = '更新中...';
-    // todo...
-
-}, false);
-```
-
-从上面可以看到，在下拉到松手的过程中，经历了三个阶段：
-
-- 当前手势滑动位置与初始位置差值大于零时，提示正在进行下拉刷新操作
-- 下拉到一定值时，显示松手释放后的操作提示
-- 下拉到达设定最大值松手时，执行回调，提示正在进行更新操作
-
-- **2：** 案例
-
-在实际开发中，我们更多的是使用第三方库，下面以`better-scroll`进行举例：
-
-HTML结构
-
-```js
-<div id="position-wrapper">
-    <div>
-        <p class="refresh">下拉刷新</p >
-        <div class="position-list">
-   <!--列表内容-->
-        </div>
-        <p class="more">查看更多</p >
-    </div>
-</div>
-```
-
-实例化上拉下拉插件，通过`use`来注册插件
-
-```js
-import BScroll from "@better-scroll/core";
-import PullDown from "@better-scroll/pull-down";
-import PullUp from '@better-scroll/pull-up';
-BScroll.use(PullDown);
-BScroll.use(PullUp);
-```
-
-实例化`BetterScroll`，并传入相关的参数
-
-```js
-let pageNo = 1,pageSize = 10,dataList = [],isMore = true;  
-var scroll= new BScroll("#position-wrapper",{
-    scrollY:true,//垂直方向滚动
-    click:true,//默认会阻止浏览器的原生click事件，如果需要点击，这里要设为true
-    pullUpLoad:true,//上拉加载更多
-    pullDownRefresh:{
-        threshold:50,//触发pullingDown事件的位置
-        stop:0//下拉回弹后停留的位置
-    }
-});
-//监听下拉刷新
-scroll.on("pullingDown",pullingDownHandler);
-//监测实时滚动
-scroll.on("scroll",scrollHandler);
-//上拉加载更多
-scroll.on("pullingUp",pullingUpHandler);
-
-async function pullingDownHandler(){
-    dataList=[];
-    pageNo=1;
-    isMore=true;
-    $(".more").text("查看更多");
-    await getlist();//请求数据
-    scroll.finishPullDown();//每次下拉结束后，需要执行这个操作
-    scroll.refresh();//当滚动区域的dom结构有变化时，需要执行这个操作
-}
-async function pullingUpHandler(){
-    if(!isMore){
-        $(".more").text("没有更多数据了");
-        scroll.finishPullUp();//每次上拉结束后，需要执行这个操作
-        return;
-    }
-    pageNo++;
-    await this.getlist();//请求数据
-    scroll.finishPullUp();//每次上拉结束后，需要执行这个操作
-    scroll.refresh();//当滚动区域的dom结构有变化时，需要执行这个操作    
-}
-function scrollHandler(){
-    if(this.y>50) $('.refresh').text("松手开始加载");
-    else $('.refresh').text("下拉刷新");
-}
-function getlist(){
-    //返回的数据
-    let result=....;
-    dataList=dataList.concat(result);
-    //判断是否已加载完
-    if(result.length<pageSize) isMore=false;
-    //将dataList渲染到html内容中
-}    
-```
-
-注意点：
-
-使用 `better-scroll` 实现下拉刷新、上拉加载时要注意以下几点：
-
-- `wrapper` 里必须只有一个子元素
-- 子元素的高度要比 `wrapper` 要高
-- 使用的时候，要确定 `DOM` 元素是否已经生成，必须要等到 `DOM` 渲染完成后，再 `new BScroll()`
-- 滚动区域的 `DOM` 元素结构有变化后，需要执行刷新 `refresh()`
-- 上拉或者下拉，结束后，需要执行 `finishPullUp()` 或者 `finishPullDown()`，否则将不会执行下次操作
-- `better-scroll`，默认会阻止浏览器的原生 `click` 事件，如果滚动内容区要添加点击事件，需要在实例化属性里设置 `click:true`
+- **2：** 两种方法对比
+  + **元素边界与视口边界比较法**：兼容性好，可在较旧的浏览器（如 IE 5 及以上）中使用，但需要手动处理滚动事件，频繁滚动时会导致性能下降，可以通过节流提升性能。
+  + **Intersection Observer API 法**：性能较高，采用异步方式，不会阻塞主线程，但兼容性稍差，支持现代浏览器，不支持较旧的浏览器（如 IE 系列）。
 
 </details>
 
-## 26. cookie 可以实现不同域共享吗？
+## 如何实现一个上拉加载，下拉刷新？
+
+#### 类型：`基础`、`编程`
+
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+![](/public/images/3_JavaScript_20241230002614.png)
+
+- **2：** 上拉加载实现
+  + **原理**：通过监听页面滚动事件，当滚动到底部时触发加载更多数据的操作。底层机制是比较元素的 `scrollTop`（滚动距离）、`clientHeight`（可见高度）和 `scrollHeight`（内容总高度），当 `scrollTop + clientHeight` 大于等于 `scrollHeight` 时，判定为滚动到底部。
+  + **代码示例（运行环境：浏览器环境）**：
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          #list {
+              height: 300px;
+              overflow-y: auto;
+          }
+
+          .item {
+              height: 50px;
+              border: 1px solid #ccc;
+              margin: 5px;
+          }
+      </style>
+  </head>
+
+  <body>
+      <div id="list">
+          <!-- 列表项 -->
+      </div>
+      <script>
+          const list = document.getElementById('list');
+          let page = 1;
+
+          // 模拟加载数据
+          function loadData() {
+              for (let i = 0; i < 10; i++) {
+                  const item = document.createElement('div');
+                  item.classList.add('item');
+                  item.textContent = `Item ${(page - 1) * 10 + i + 1}`;
+                  list.appendChild(item);
+              }
+              page++;
+          }
+
+          // 监听滚动事件
+          list.addEventListener('scroll', function () {
+              if (list.scrollTop + list.clientHeight >= list.scrollHeight) {
+                  loadData();
+              }
+          });
+
+          // 初始加载数据
+          loadData();
+      </script>
+  </body>
+
+  </html>
+  ```
+
+- **2：** 下拉刷新实现
+  + **原理**：通过监听触摸事件（如 `touchstart`、`touchmove`、`touchend`）或鼠标事件，当用户下拉一定距离后触发刷新操作。通过记录触摸开始的位置，计算下拉的距离，根据距离判断是否触发刷新。
+  + **代码示例（运行环境：支持触摸事件的浏览器环境）**：
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          #refresh-container {
+              position: relative;
+              height: 300px;
+              overflow: hidden;
+          }
+
+          #refresh-content {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              transition: top 0.3s;
+          }
+
+          #refresh-tip {
+              position: absolute;
+              top: -50px;
+              left: 0;
+              width: 100%;
+              height: 50px;
+              text-align: center;
+              line-height: 50px;
+              background-color: #eee;
+          }
+      </style>
+  </head>
+
+  <body>
+      <div id="refresh-container">
+          <div id="refresh-tip">下拉刷新</div>
+          <div id="refresh-content">
+              <!-- 内容 -->
+              <p>Content</p>
+          </div>
+      </div>
+      <script>
+          const container = document.getElementById('refresh-container');
+          const content = document.getElementById('refresh-content');
+          const tip = document.getElementById('refresh-tip');
+          let startY = 0;
+          let isDragging = false;
+
+          // 触摸开始事件
+          container.addEventListener('touchstart', function (e) {
+              startY = e.touches[0].clientY;
+              isDragging = true;
+          });
+
+          // 触摸移动事件
+          container.addEventListener('touchmove', function (e) {
+              if (isDragging) {
+                  const currentY = e.touches[0].clientY;
+                  const distance = currentY - startY;
+                  if (distance > 0) {
+                      content.style.top = distance + 'px';
+                      if (distance > 50) {
+                          tip.textContent = '释放刷新';
+                      } else {
+                          tip.textContent = '下拉刷新';
+                      }
+                  }
+              }
+          });
+
+          // 触摸结束事件
+          container.addEventListener('touchend', function () {
+              if (isDragging) {
+                  isDragging = false;
+                  const top = parseInt(content.style.top);
+                  if (top > 50) {
+                      // 触发刷新操作
+                      tip.textContent = '正在刷新...';
+                      setTimeout(() => {
+                          content.style.top = 0 + 'px';
+                          tip.textContent = '下拉刷新';
+                      }, 2000);
+                  } else {
+                      content.style.top = 0 + 'px';
+                  }
+              }
+          });
+      </script>
+  </body>
+
+  </html>
+  ```
+
+- **1：** 注意事项
+在实际开发中，还需要考虑更多的细节，如加载状态的显示（如加载中动画）、错误处理（如网络请求失败）、性能优化（如使用防抖或节流处理滚动事件）等，以提升用户体验。
+
+</details>
+
+## for in和for of的区别？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（3 分）
 
-- 默认情况下，Cookie 不能在不同的顶级域名之间共享数据。
+<details>
 
-- 但是，如果两个域名属于同一主域名下的子域名，并且您设置了正确的 Domain 属性，那么在这些子域名之间是可以共享 Cookie 的。
+- **1：** 遍历目标不同
+  + **for in**：遍历对象的**可枚举属性**（包括原型链属性），返回属性名（字符串类型）。
 
-- 例如，对于 sub1.example.com 和 sub2.example.com 这样的子域名，如果设置 Cookie 的 Domain 属性为 .example.com ，那么在这两个子域名之间，这个 Cookie 是可以共享和访问的。
+    ```javascript
+    const obj = { a: 1, b: 2 };
+    for (const key in obj) console.log(key); // 'a', 'b'
+    ```
 
-- 然而，如果是完全不同的顶级域名，如 example.com 和 anotherdomain.com 之间，Cookie 是不能直接共享的。
+  + **for of**：遍历**可迭代对象**（数组/字符串/Set/Map等），返回属性值。
 
-- 此外，还需要注意 Cookie 的 Path 属性、安全属性（Secure）、HttpOnly 属性等，这些属性也会影响 Cookie 的使用范围和方式。
+    ```javascript
+    const arr = [1, 2, 3];
+    for (const val of arr) console.log(val); // 1, 2, 3
+    ```
 
-## 27. for in和for of的区别？
+- **1：** 底层机制差异
+  + **for in**：基于对象的`Object.keys()` + 原型链搜索，会触发`[[Enumerate]]`内部方法。
+  + **for of**：基于可迭代协议（需实现`Symbol.iterator`方法），直接访问迭代器。
 
-#### 类型：`基础`
+- **1：** 典型应用场景
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+  | 场景 | 推荐方案 | 原因 |
+  |--|--|--|
+  | 对象属性遍历 | for in | 直接获取属性名 |
+  | 数组元素处理 | for of | 直接获取值，避免索引转换 |
+  | 字符串字符遍历 | for of | 支持Unicode代码点（如表情符号）|
+  | 过滤原型链属性 | for in | 配合`hasOwnProperty`判断 |
 
-#### 解答（2 分）
+</details>
 
-- for…of 是ES6新增的遍历方式，允许遍历一个含有iterator接口的数据结构（数组、对象等）并且返回各项的值，和ES3中的for…in的区别如下
-
-- for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名
-
-- for… in 会遍历对象的整个原型链，性能非常差不推荐使用，而 for … of 只遍历当前对象不会遍历原型链；
-
-- 对于数组的遍历，for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，for…of 只返回数组的下标对应的属性值；
-
-## 28. forEach和map的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 这方法都是用来遍历数组的，两者区别如下：
-
-- for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名forEach()方法会针对每一个元素执行提供的函数，对数据的操作会改变原数组，该方法没有返回值；
-
-- map()方法不会改变原数组的值，返回一个新数组，新数组中的值为原数组调用函数处理之后的值；
-
-## 29. 原型链的终点是什么？如何打印出原型链的终点？
+## forEach和map的区别？
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（3 分）
 
-``` detail
+<details>
 
-由于Object是构造函数，原型链终点是Object.prototype.__proto__，而Object.prototype.__proto__=== null // true，所以，原型链的终点是null。原型链上的所有原型都是对象，所有的对象最终都是由Object构造的，而Object.prototype的下一级是Object.prototype.__proto__。
+- **1：** 返回值
+  + **forEach**：没有返回值，它只是对数组中的每个元素执行一次提供的函数，本质上是用于执行一些副作用操作，比如打印元素、修改元素等。示例如下：
 
-```
+  ```javascript
+  const arr = [1, 2, 3];
+  const result = arr.forEach((element) => {
+      console.log(element);
+  });
+  console.log(result); // 输出 undefined
+  ```
 
-## 29. 如何获得对象非原型链上的属性？
+  + **map**：会返回一个新数组，新数组中的元素是原数组中每个元素经过提供的函数处理后的结果。示例如下：
 
-#### 类型：`基础`
+  ```javascript
+  const arr = [1, 2, 3];
+  const newArr = arr.map((element) => element * 2);
+  console.log(newArr); // 输出 [2, 4, 6]
+  ```
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+- **1：** 用途
+  + **forEach**：侧重于对数组元素进行遍历并执行一些操作，例如更新对象属性、发送请求等。示例如下：
 
-#### 解答（2 分）
+  ```javascript
+  const users = [
+      { name: 'Alice', age: 20 },
+      { name: 'Bob', age: 25 }
+  ];
+  users.forEach((user) => {
+      user.age++;
+  });
+  console.log(users); // 每个用户的年龄加 1
+  ```
 
-- 使用后hasOwnProperty()方法来判断属性是否属于原型链的属性：
+  + **map**：更适合用于创建一个新数组，新数组的元素与原数组元素有某种映射关系，比如对数组元素进行数学运算、转换数据格式等。示例如下：
 
-```js
+  ```javascript
+  const numbers = [1, 2, 3];
+  const squaredNumbers = numbers.map((num) => num * num);
+  console.log(squaredNumbers); // 输出 [1, 4, 9]
+  ```
 
-function iterate(obj){
-   var res=[];
-   for(var key in obj){
-        if(obj.hasOwnProperty(key))
-           res.push(key+': '+obj[key]);
-   }
-   return res;
-} 
+- **1：** 中断遍历
+  + **forEach**：不能使用常规的 `break` 或 `continue` 语句来中断或跳过循环，因为它是一个方法，不是传统的循环结构。如果需要提前终止遍历，只能通过抛出异常的方式，但这种方式不推荐。示例如下：
 
-```
+  ```javascript
+  const arr = [1, 2, 3];
+  try {
+      arr.forEach((element) => {
+          if (element === 2) {
+              throw new Error('Stop iteration');
+          }
+          console.log(element);
+      });
+  } catch (error) {
+      // 处理异常
+  }
+  ```
 
-## 30. Promise.all和Promise.race的区别的使用场景？
+  + **map**：同样不能使用 `break` 或 `continue` 来中断或跳过循环，无论尝试任何中断处理，它都会对数组中的每个元素执行一次提供的函数。
 
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- Promise.all Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值。
-
-- Promise.all中传入的是数组，返回的也是是数组，并且会将进行映射，传入的promise对象返回的值是按照顺序在数组中排列的，但是注意的是他们执行的顺序并不是按照顺序的，除非可迭代对象为空。
-
-- 需要注意，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，这样当遇到发送多个请求并根据请求顺序获取和使用数据的场景，就可以使用Promise.all来解决。
-
-- Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。当要做一件事，超过多长时间就不做了，可以用这个方法来解决：
+</details>
 
 ## 31. 匿名函数的典型应用场景是什么？
 
