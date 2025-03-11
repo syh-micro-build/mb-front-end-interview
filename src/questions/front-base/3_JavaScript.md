@@ -1583,7 +1583,7 @@ class LRUCache {
 
 </details>
 
-## 31. 匿名函数的典型应用场景是什么？
+## 谈谈你对匿名函数的理解
 
 #### 类型：`基础`
 
@@ -1591,159 +1591,331 @@ class LRUCache {
 
 #### 解答（3 分）
 
-- 匿名函数可以在 IIFE 中使用，来封装局部作用域内的代码，以便其声明的变量不会暴露到全局作用域。
+- **1：** 概念：匿名函数无明确名称，可以像变量一样传递和使用。
+- **1：** 语法：有函数表达式（如 `const func = function() {}` ）和箭头函数（ES6，如 `const func = () => {}` ）两种形式。
+- **1：** 应用与优势：常用于事件处理（如 `element.addEventListener('event', () => {})` ）和回调函数（如 `array.map(num => num * 2)` ），能避免命名冲突，让代码更简洁。
 
-```js
-(function () {
-  // 一些代码。
+## 谈谈你对单例模式的理解
+
+#### 类型：`基础`、`架构`、`编程`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **1：** 概念：单例模式是一种创建型设计模式，确保一个类仅有一个实例，并提供一个全局访问点来获取该实例。这样可以避免因创建多个实例导致的资源浪费和数据不一致问题。
+- **2：** 应用场景：单例模式适用于需要全局唯一资源的场景，具体如下：
+  + **数据库连接**：在一个应用程序中，数据库连接是一种昂贵的资源。使用单例模式可以确保整个应用程序中只有一个数据库连接实例，避免因创建多个连接而导致的资源浪费和性能问题。例如，在一个 Node.js 的 Web 应用中，所有的数据库操作都可以通过这一个连接实例来完成。
+  + **日志记录器**：日志记录器用于记录应用程序的运行状态和错误信息。为了保证日志的一致性和完整性，通常只需要一个日志记录器实例。所有模块都可以通过这个单例日志记录器来记录日志，避免不同的日志记录器实例产生的日志文件混乱。
+  + **配置对象**：应用程序的配置信息（如数据库连接字符串、API 密钥等）通常在整个应用程序中是共享的。使用单例模式创建一个配置对象实例，可以确保所有模块访问的是相同的配置信息，避免因配置不一致而导致的错误。
+- **3：** 实现方式：在 JavaScript 中可通过闭包和立即执行函数实现。示例代码如下：
+
+```javascript
+// 使用立即执行函数创建一个闭包，确保变量 instance 的私有性
+const Singleton = (function () {
+    // 用于存储单例实例的变量，初始为 null
+    let instance;
+    // 内部函数，用于创建单例实例
+    function createInstance() {
+        // 创建一个新对象作为单例实例
+        const object = new Object({ name: 'Singleton Instance' });
+        return object;
+    }
+    // 返回一个对象，该对象包含获取单例实例的方法
+    return {
+        // 获取单例实例的方法
+        getInstance: function () {
+            // 如果 instance 为 null，说明还未创建实例
+            if (!instance) {
+                // 调用 createInstance 函数创建实例
+                instance = createInstance();
+            }
+            // 返回单例实例
+            return instance;
+        }
+    };
 })();
+// 调用 getInstance 方法获取单例实例
+const instance1 = Singleton.getInstance();
+// 再次调用 getInstance 方法获取单例实例
+const instance2 = Singleton.getInstance();
+// 验证两次获取的实例是否为同一个
+console.log(instance1 === instance2); // true
 ```
 
-- 匿名函数可以作为只用一次，不需要在其他地方使用的回调函数。当处理函数在调用它们的程序内部被定义时，代码具有更好地自闭性和可读性，可以省去寻找该处理函数的函数体位置的麻烦。
+</details>
 
-```js
+## 谈谈你对观察者模式的理解
 
-setTimeout(function () {
-  console.log('Hello world!');
-}, 1000);
+#### 类型：`基础`、`架构`、`编程`
 
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（6 分）
+
+<details>
+
+- **1：** 概念：观察者模式定义了一种一对多的依赖关系，当一个对象（被观察对象，也称为主题）的状态发生变化时，所有依赖它的对象（观察者）都会收到通知并自动更新。这种模式实现了对象之间的解耦，使得主题和观察者可以独立地变化。
+- **2：** 应用场景：观察者模式在很多场景中都有应用，例如：
+  + **事件处理**：在前端开发中，DOM 事件的处理就是观察者模式的一种应用。DOM 元素是主题，事件监听器是观察者。当元素上的事件触发时，会通知所有的监听器。
+  + **状态管理库**：如 React 的 Redux 或 Vue 的 Vuex，它们使用观察者模式来管理应用的状态。当状态发生变化时，所有订阅了该状态的组件都会收到通知并更新。
+  + **实时数据更新**：在实时数据展示的场景中，如股票行情、实时聊天等，数据的更新可以通过观察者模式通知所有关注该数据的界面进行更新。
+- **3：** 实现方式：在 JavaScript 中，可通过对象和数组来实现观察者模式。示例代码如下：
+
+```javascript
+// 定义主题对象
+class Subject {
+    constructor() {
+        // 存储所有观察者的数组
+        this.observers = [];
+    }
+    // 注册观察者的方法
+    subscribe(observer) {
+        this.observers.push(observer);
+    }
+    // 移除观察者的方法
+    unsubscribe(observer) {
+        this.observers = this.observers.filter(obs => obs!== observer);
+    }
+    // 通知所有观察者状态变化的方法
+    notify() {
+        this.observers.forEach(observer => observer.update());
+    }
+}
+
+// 定义观察者对象
+class Observer {
+    constructor(name) {
+        this.name = name;
+    }
+    // 观察者更新自身状态的方法
+    update() {
+        console.log(`${this.name} 收到通知并更新`);
+    }
+}
+
+// 创建主题实例
+const subject = new Subject();
+// 创建观察者实例
+const observer1 = new Observer('观察者1');
+const observer2 = new Observer('观察者2');
+
+// 注册观察者
+subject.subscribe(observer1);
+subject.subscribe(observer2);
+
+// 主题状态变化，通知观察者
+subject.notify();
+
+// 移除一个观察者
+subject.unsubscribe(observer2);
+// 再次通知观察者
+subject.notify();
 ```
 
-- 匿名函数可以用于函数式编程或 Lodash（类似于回调函数）。
+</details>
 
-```js
-const arr = [1, 2, 3];
-const double = arr.map(function (el) {
-  return el * 2;
-});
-console.log(double); // [2, 4, 6]
+## 谈谈你对发布订阅模式的理解
 
-```
+#### 类型：`基础`、`架构`、`编程`
 
-## 32. 手写单例模式（创建模式）
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
-#### 类型：`基础`
+#### 解答（6 分）
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+<details>
 
-#### 解答（3 分）
+- **1：** 概念：发布 - 订阅模式定义了一种消息传递机制，在该模式里，发布者（发布消息的一方）不会直接将消息发送给特定的订阅者（接收消息的一方），而是将消息发布到一个中间的消息代理（也叫事件总线或调度中心）。
+订阅者则向消息代理订阅自己感兴趣的消息类型，当发布者发布特定类型的消息时，消息代理会将消息推送给相应的订阅者。此模式实现了发布者和订阅者之间的解耦，增强了系统的可扩展性和可维护性。
+- **2：** 应用场景：发布 - 订阅模式在很多场景下都有广泛应用，例如：
+  + **前端开发**：在前端框架（如 Vue、React）中，组件间通信可使用发布 - 订阅模式。不同组件可以通过事件总线来发布和订阅事件，实现组件间的解耦通信。
+  + **消息队列系统**：像 RabbitMQ、Kafka 等消息队列系统，就是基于发布 - 订阅模式实现的。生产者（发布者）将消息发送到消息队列，消费者（订阅者）从队列中接收消息。
+  + **系统模块间通信**：在大型软件系统中，不同模块之间的通信可以采用发布 - 订阅模式。一个模块发布事件，其他感兴趣的模块订阅该事件，这样可以降低模块间的耦合度，提高系统的灵活性。
+- **3：** 实现方式：在 JavaScript 中可通过对象来实现一个简单的发布 - 订阅模式。示例代码如下：
 
-```js
-    let CreateSingleton = (function(){
-       let instance;
-       return function(name) {
-           if (instance) {
-               return instance;
-           }
-           this.name = name;
-           return instance = this;
-       }
-    })();
-    CreateSingleton.prototype.getName = function() {
-       console.log(this.name);
+```javascript
+// 定义事件总线类
+class EventEmitter {
+    constructor() {
+        // 用于存储事件及其对应的回调函数列表
+        this.events = {};
     }
 
-let Winner = new CreateSingleton('Winner');
-let Looser = new CreateSingleton('Looser');
-​
-console.log(Winner === Looser); // true
-console.log(Winner.getName());  // 'Winner'
-console.log(Looser.getName());  // 'Winner'
+    // 订阅事件的方法
+    on(eventName, callback) {
+        if (!this.events[eventName]) {
+            // 如果该事件还没有对应的回调列表，就创建一个空数组
+            this.events[eventName] = [];
+        }
+        // 将回调函数添加到对应事件的回调列表中
+        this.events[eventName].push(callback);
+    }
 
-```
+    // 发布事件的方法
+    emit(eventName, ...args) {
+        if (this.events[eventName]) {
+            // 遍历对应事件的回调列表并依次执行回调函数，同时传递参数
+            this.events[eventName].forEach(callback => callback(...args));
+        }
+    }
 
-## 33. 手写观察者模式（行为模式）
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-```js
-const queuedObservers = new Set();
-const observe = fn => queuedObservers.add(fn);
-​
-​
-const observable = obj => new Proxy(obj, {
-  set(target, key, value, receiver) {
-    const result = Reflect.set(target, key, value, receiver);
-    // notify
-    queuedObservers.forEach(observer => observer());
-    return result;
-  }
-});
-
-obj = observable({
-  name:'789'
-})
-​
-observe(function test(){
-  console.log('触发了')
-})
-​
-obj.name ="前端柒八九"
-
-```
-
-## 34. 手写发布订阅 （行为模式）
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-```js
-class Observer {
-  caches = {}; // 事件中心
-  
-  // eventName事件名-独一无二, fn订阅后执行的自定义行为
-  on (eventName, fn){ 
-    this.caches[eventName] = this.caches[eventName] || [];
-    this.caches[eventName].push(fn);
-  }
-  
-  // 发布 => 将订阅的事件进行统一执行
-  emit (eventName, data) { 
-    if (this.caches[eventName]) {
-      this.caches[eventName]
-      .forEach(fn => fn(data));
-    }
-  }
-  // 取消订阅 => 若fn不传, 直接取消该事件所有订阅信息
-  off (eventName, fn) { 
-    if (this.caches[eventName]) {
-      const newCaches = fn 
-        ? this.caches[eventName].filter(e => e !== fn) 
-        : [];
-      this.caches[eventName] = newCaches;
-    }
-  }
-​
+    // 取消订阅事件的方法
+    off(eventName, callback) {
+        if (this.events[eventName]) {
+            // 过滤掉指定的回调函数
+            this.events[eventName] = this.events[eventName].filter(cb => cb!== callback);
+        }
+    }
 }
 
-    ob = new Observer();
-    ​
-    l1 = (data) => console.log(`l1_${data}`)
-    l2 = (data) => console.log(`l2_${data}`)
-    ​
-    ob.on('event1',l1)
-    ob.on('event1',l2)
-    ​
-    //发布订阅
-    ob.emit('event1',789) 
-    // l1_789
-    // l2_789
-    ​
-    // 取消，订阅l1
-    ob.off('event1',l1)
-    ​
-    ob.emit('event1',567)
+// 创建事件总线实例
+const eventEmitter = new EventEmitter();
 
+// 定义订阅者的回调函数
+const callback1 = (data) => {
+    console.log(`订阅者 1 收到消息：${data}`);
+};
+const callback2 = (data) => {
+    console.log(`订阅者 2 收到消息：${data}`);
+};
+
+// 订阅事件
+eventEmitter.on('message', callback1);
+eventEmitter.on('message', callback2);
+
+// 发布事件
+eventEmitter.emit('message', 'Hello, World!');
+
+// 取消订阅
+eventEmitter.off('message', callback1);
+eventEmitter.emit('message', 'New Message!');
 ```
 
-## 35. 深浅拷贝的区别？如何实现一个深拷贝？
+</details>
+
+## 浅拷贝和深拷贝的区别
+
+#### 类型：`基础`
+
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+<details>
+
+- **1：** 概念差异
+  + **浅拷贝**：对于基本数据类型，会直接复制其值到新对象，新旧对象相互对立；对于引用数据类型，复制的新对象和原对象的引用数据类型属性指向同一个内存地址，修改任意一个，都会同步到另一个。
+  + **深拷贝**：无论是基本数据类型还是引用数据类型，创建一个新对象，它会递归地复制原对象的所有属性。新旧对象相互对立。
+- **1：** 应用场景
+  + **浅拷贝**：在处理一些简单对象且后续可能会对引用数据类型属性进行统一操作时可以使用浅拷贝。
+  + **深拷贝**：在开发中需要对一个配置对象进行修改，但又不想影响原配置时，就可以使用深拷贝。
+- **1：** 实现方式
+  + **浅拷贝方式**
+    - **Object.assign()**：用于将一个或多个源对象的所有可枚举属性复制到目标对象。
+
+    ```javascript
+    const original = { a: 1, b: { c: 2 } };
+    const shallowCopied = Object.assign({}, original);
+    ```
+
+    - **扩展运算符**：使用 `...` 语法可以快速实现浅拷贝。
+
+    ```javascript
+    const original = { a: 1, b: { c: 2 } };
+    const shallowCopied = { ...original };
+    ```
+
+    - **数组的浅拷贝方法**：`Array.prototype.slice()` 和 `Array.prototype.concat()` 可用于数组的浅拷贝。
+
+    ```javascript
+    const originalArray = [1, { value: 2 }];
+    const shallowCopiedArray1 = originalArray.slice();
+    const shallowCopiedArray2 = [].concat(originalArray);
+    ```
+
+  + **深拷贝方式**
+    - **递归实现**：通过递归遍历对象的所有属性，对每个属性进行复制。
+
+    ```javascript
+    function deepCopy(obj) {
+        if (typeof obj!== 'object' || obj === null) {
+            return obj;
+        }
+        let newObj = Array.isArray(obj)? [] : {};
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                newObj[key] = deepCopy(obj[key]);
+            }
+        }
+        return newObj;
+    }
+    const original = { a: 1, b: { c: 2 } };
+    const deepCopied = deepCopy(original);
+    ```
+
+    - **JSON.parse(JSON.stringify())**：将对象转换为 JSON 字符串，再将字符串解析为新对象。但这种方法有局限性，如无法处理函数、正则表达式、`Date` 对象等。
+
+    ```javascript
+    const original = { a: 1, b: { c: 2 } };
+    const deepCopied = JSON.parse(JSON.stringify(original));
+    ```
+
+    - **使用第三方库**：如 `lodash` 中的 `cloneDeep` 方法。
+
+    ```javascript
+    const _ = require('lodash');
+    const original = { a: 1, b: { c: 2 } };
+    const deepCopied = _.cloneDeep(original);
+    ```
+
+</details>
+
+## Ajax是什么
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 概念
+Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它不是一种新的编程语言，而是一种在不刷新整个页面的情况下，与服务器进行异步通信并更新部分网页的技术。通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新，这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+- **1：** 工作原理
+  + 浏览器中的 JavaScript 代码创建一个 XMLHttpRequest 对象（现代也常用 `fetch` API）。
+  + 该对象向服务器发送 HTTP 请求（如 GET、POST 等）。
+  + 服务器接收到请求后进行处理，并返回响应数据（可以是 XML、JSON 等格式）。
+  + 浏览器中的 JavaScript 代码接收服务器的响应数据。
+  + 根据接收到的数据，使用 JavaScript 动态更新网页的部分内容。
+- **1：** 应用场景
+  + **表单验证**：在用户填写表单时，实时验证输入信息，如检查用户名是否已存在。
+  + **数据实时更新**：如股票行情、新闻资讯等的实时刷新。
+  + **动态加载内容**：在网页滚动时动态加载更多数据，实现无限滚动效果。
+- **2：** 示例代码
+
+  ```javascript
+  // 创建 XMLHttpRequest 对象
+  const xhr = new XMLHttpRequest();
+
+  // 打开一个请求
+  xhr.open('GET', 'https://api.example.com/data', true);
+
+  // 监听状态变化
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+          // 请求成功，获取响应数据
+          const responseData = JSON.parse(xhr.responseText);
+          // 更新网页内容
+          document.getElementById('result').innerHTML = responseData.message;
+      }
+  };
+
+  // 发送请求
+  xhr.send();
+  ```
+
+## script标签中defer和async的区别？
 
 #### 类型：`基础`
 
@@ -1751,140 +1923,36 @@ class Observer {
 
 #### 解答（3 分）
 
-- 深浅拷贝通常只针对引用类型
+- **1：** 执行顺序
+  + **defer**：多个带 `defer` 的脚本会按它们在 HTML 里出现的顺序执行，并且是在整个 HTML 文档解析完成后、`DOMContentLoaded` 事件触发前执行。例如，有 `<script defer src="a.js"></script>` 和 `<script defer src="b.js"></script>`，那会先执行 `a.js` 再执行 `b.js`。
+  + **async**：脚本加载完成就马上执行，不保证脚本间的执行顺序。假设有 `<script async src="c.js"></script>` 和 `<script async src="d.js"></script>`，如果 `d.js` 先加载完，就会先执行 `d.js`。
+- **1：** 加载方式
+  + **defer**：在 HTML 文档解析时，脚本会异步加载，不会阻碍文档解析。文档解析结束后，才开始依次执行这些脚本。
+  + **async**：同样是异步加载脚本，不影响文档解析。不过一旦脚本加载完毕，会立刻中断文档解析去执行脚本，执行完再接着解析文档。
+- **1：** 应用场景
+  + **defer**：当脚本之间存在依赖关系，需要按特定顺序执行，并且要确保 DOM 已构建完成时使用。比如要操作 DOM 元素的脚本。
+  + **async**：对于独立运行、不依赖其他脚本和文档解析状态的脚本适用，像第三方统计脚本、广告脚本。
 
-- 浅拷贝：只拷贝一层对象，复制这一层对象中的原始值，如果有引用类型的话，就复制它的指针
-
-- 深拷贝：层层拷贝，所有类型的属性值都会被复制，原对象的修改不会影响拷贝后的对象 JSON.parse(JSON.stringify(obj)) --- 无法处理 undefined Symbol function -- 无法处理循环引用
-
-```js
-
-Function  shallowCopy(obj){
-      let newObj = {]
-      for( let key in  obj ){
-        if(obj.hasOwnProperty(key)){ 
-        //hasOwnProperty检测对象自己身上方法而不是原先链上的
-          newObj[key]=obj[key]
-        }
-      }
-      return  newObj
-} 
-// 咱们会浅拷贝当然还要深拷贝呀  开始
-Function  shallowCopy(obj){
-      let newObj = {]
-      for( let key in  obj ){
-        if(obj.hasOwnProperty(key)){ 
-        //hasOwnProperty检测对象自己身上方法而不是原先链上的
-        if  ( typeof(obj[key])!==obj||obj[key]===null){
-           newObj[key]=obj[key]
-        }else{
-           newObj[key]=shallowCopy(obj[key])
-        }  
-        }
-      }
-      return  newObj
-}
-```
-
-## 36. 说说Ajax的原理
+## class和function的区别?
 
 #### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
 
 #### 解答（3 分）
 
-- Async Javascript and XML ，是一种异步js和网页交互的技术，可以实现不刷新网页就跟服务器交换数据，更新页面。
-
-- 创建XHR实例对象
-
-- 调用实例对象中的open方法与服务器建立连接
-
-- 调用实例对象中的send方法发送请求
-
-- 监听onreadystatechange事件，通过判断readyState的值来获取到最终的数据
-
-- 将数据更新到html页面
-
-## 37. 什么是执行上下文和执行栈？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- 变量或函数的执行上下文，决定了它们的行为以及可以访问哪些数据。每个上下文都有一个关联的变量对象，而这个上下文中定义的所有变量和函数都存在于这个对象上(如DOM中全局上下文关联的便是window对象)。
-
-- 每个函数调用都有自己的上下文。当代码执行流进入函数时，函数的上下文被推到一个执行栈中。在函数执行完之后，执行栈会弹出该函数上下文，在其上的所有变量和函数都会被销毁，并将控制权返还给之前的执行上下文。 JS的执行流就是通过这个执行栈进行控制的。
-
-## 38. 作用域和执行上下文的区别是什么？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- 函数的执行上下文只在函数被调用时生成，而其作用域在创建时已经生成；
-
-- 函数的作用域会包含若干个执行上下文(有可能是零个，当函数未被调用时)。
-
-## 39. require/import之间的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- require是CommonJS语法，import是ES6语法；
-
-- require只在后端服务器支持，import在高版本浏览器及Node中都可以支持；
-
-- require引入的是原始导出值的复制，import则是导出值的引用；
-
-- require时运行时动态加载，import是静态编译；
-
-- require调用时默认不是严格模式，import则默认调用严格模式.
-
-## 40. script标签中defer和async的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- defer 和 async属性都是去异步加载外部的JS脚本文件，它们都不会阻塞页面HTML的解析，其区别如下：
-
-- 执行顺序： 多个带async属性的标签，不能保证加载的顺序；多个带defer属性的标签，按照加载顺序执行；
-
-- 脚本是否并行执行：async属性，表示 后续文档的加载和执行与js脚本的加载和执行是并行进行的，即异步执行；defer属性，加载后续文档的过程和js脚本的加载(此时仅加载不执行)是并行进行的(异步)，js脚本需要等到文档所有元素解析完成之后才执行，DOMContentLoaded事件触发执行之前。
-
-- 没有 defer 或 async，浏览器会立即加载并执行指定的脚本，之前加载到一半的HTML页面会停止下来，被阻塞加载。
-
-- 有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行，将script变成异步，当scripet异步解析完成后，如果HTML页面还没有完成解析，又会继续阻塞页面的解析。
-
-- 有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行，将script变成异步。但是 script.js 的执行要在所有元素解析完成之后，类似于将这个script放在了页面的底部。
-
-## 41. class和function的区别?
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 相同点：1. 函数作为构造函数
-
-- 不同点：
-
-- class构造函数必须使用new操作符。
-
-- class声明不可以提升。
-
-- class不可以用call、apply、bind改变this指向。
+- **1：** 语法
+  + **class**：ES6 引入，用 `class` 声明，有 `constructor` 等特定结构。
+  + **function**：传统声明，可作普通或构造函数。
+- **1：** 继承
+  + **class**：用 `extends` 实现，简洁直观。
+  + **function**：实现方式复杂，如原型链、组合继承。
+- **1：** `this` 指向
+  + **class**：方法默认严格模式，`this` 指向实例。
+  + **function**：`this` 指向取决于调用方式。
+- **1：** 静态成员
+  + **class**：用 `static` 定义。
+  + **function**：在函数对象上添加属性模拟。
 
 ## 42. 为什么0.1+0.2 ! == 0.3，如何让其相等 ？
 
