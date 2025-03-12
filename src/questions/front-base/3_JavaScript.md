@@ -1939,7 +1939,7 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 #### 级别：`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（3 分）
+#### 解答（4 分）
 
 - **1：** 语法
   + **class**：ES6 引入，用 `class` 声明，有 `constructor` 等特定结构。
@@ -1954,7 +1954,30 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
   + **class**：用 `static` 定义。
   + **function**：在函数对象上添加属性模拟。
 
-## 42. 为什么0.1+0.2 ! == 0.3，如何让其相等 ？
+## 为什么0.1 + 0.2!== 0.3，如何让其相等 ？
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（3 分）
+
+- **1：** 原因：JavaScript 用 IEEE 754 双精度 64 位浮点数表示数字，0.1 和 0.2 转二进制是无限循环小数，存储有精度丢失，相加结果是近似值，所以 `0.1 + 0.2!== 0.3`。
+- **1：** 设误差范围：用 `Number.EPSILON` 作最小精度，两数差值小于它就认为相等。
+
+  ```javascript
+  const isEqual = (a, b) => Math.abs(a - b) < Number.EPSILON;
+  console.log(isEqual(0.1 + 0.2, 0.3));
+  ```
+
+- **1：** 转整数计算：小数乘倍数变整数计算，结果再除以相同倍数。
+
+  ```javascript
+  const result = (0.1 * 10 + 0.2 * 10) / 10;
+  console.log(result === 0.3);
+  ```
+
+## typeof与instanceof的区别？
 
 #### 类型：`基础`
 
@@ -1962,55 +1985,10 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 #### 解答（2 分）
 
-- 计算机是通过二进制的方式存储数据的，所以计算机计算0.1+0.2的时候，实际上是计算的两个数的二进制的和。0.1的二进制是0.0001100110011001100...（1100循环），0.2的二进制是：0.00110011001100...（1100循环），这两个数的二进制都是无限循环的数。那JavaScript是如何处理无限循环的二进制小数呢？
+- **1：** typeof 为一元运算符，语法如 `typeof 变量`，返回表示数据类型的字符串，只能区分基本类型，引用类型（除 `function`）都返回 `'object'`，`null` 也返回 `'object'`
+- **1:** instanceof 为二元运算符，语法如 `对象 instanceof 构造函数`，返回布尔值，判断对象是否为特定类的实例，比如Array、Function、Object、自定义类
 
-- toFixed(num) 方法可把 Number 四舍五入为指定小数位数的数字。
-
-```js
-(n1 + n2).toFixed(2) // 注意，toFixed为四舍五入
-```
-
-## 43. JS严格模式有什么特点？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 全局变量必须声明
-
-- 禁止this指向windows
-
-- 函数参数名称不能重复
-
-- 禁止使用with语句
-
-- 创建eval作用域（单独作用域）
-
-## 44. js 中const真的不能修改吗？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- const定义的基本类型不能改变，但是定义的引用类型中的 数组 与 对象 可以通过修改对象属性改变。 const使用建议：不要使用const定义 数组 或 对象 作为常量。
-
-## 45. typeof与instanceof的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- 返回结果类型不同：typeof会返回一个变量的基本类型，instanceof返回的是一个布尔值
-
-- 判断范围不同：instanceof 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型；而typeof 也存在弊端，它虽然可以判断基础数据类型（null 除外），但是引用数据类型中，除了function 类型以外，其他的也无法判断
-
-## 46. 如何判断一个变量是不是数组？
+## 如何判断一个变量是不是数组？
 
 #### 类型：`基础`
 
@@ -2024,67 +2002,85 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 - Object.prototype.toString.call();
 
-## 47. class的原型本质怎么理解？
+## 谈谈你对事件循环的理解
 
-#### 类型：`基础`
+#### 类型：`基础`、`架构`、`编程`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（10 分）
 
-- 原型：所有的class都有显示原型，每个实例都有隐式原型，实例的隐式原型等于对应class的显示原型，非基本属性的class的隐式原型等于其继承的class的显示原型。
+<details>
 
-- 原型链：每一个对象都有一个隐式原型叫__proto__，它的指向是构造函数的原型对象。当查找某个属性或方法时，先从自身上查找，没有找到会沿着__proto_找到构造函数的原型对象，仍然没有找到会继续沿着__proto__向上查找到它构造函数原型对象的原型对象，直到找到顶级对象object为null，由此形成的链条为原型链。
+- **1：**
+  + 事件循环是 JavaScript 在单线程环境下处理异步任务的执行机制。
+  + 执行顺序为：先执行同步代码，同步代码执行完后，检查并执行微任务队列中的所有微任务，微任务队列清空后，从宏任务队列中取出一个宏任务执行，执行完这个宏任务后，再次检查并执行微任务队列，如此循环往复。
 
-## 48. ES5、ES6 如何实现继承?
+- **3：**
+  **浏览器环境代码示例（Chrome 112）**
 
-#### 类型：`基础`
+  ```javascript
+  console.log('start');
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+  // 同步执行 Promise 构造函数内的代码
+  new Promise((resolve) => {
+    console.log('Promise 构造函数内');
+    resolve();
+  }).then(() => {
+    console.log('Promise 微任务 1');
+    // 嵌套微任务
+    Promise.resolve().then(() => console.log('Promise 微任务 2'));
+  });
 
-#### 解答（2 分）
+  // 宏任务 setTimeout
+  setTimeout(() => {
+    console.log('宏任务 setTimeout');
+    // 微任务
+    Promise.resolve().then(() => console.log('Promise 微任务 3'));
+  }, 0);
 
-- ES5：①原型链继承 ②构造函数继承 ③组合继承 ④寄生组合继承
+  // 创建 MutationObserver 实例，这是一个微任务
+  const observer = new MutationObserver(() => console.log('MutationObserver 微任务'));
+  const div = document.createElement('div');
+  observer.observe(div, { attributes: true });
+  div.setAttribute('test', 'attr');
 
-- ES6：ES6 中引入了 class 关键字， class 可以通过 extends 关键字实现继承。ES6的继承中super是用来①调用父类函数 ②指向父类的原型
+  // 同步代码
+  console.log('end');
+  ```
 
-## 49. 宏任务有哪些？微任务有哪些？
+  **执行顺序说明**：
+  1. 执行同步代码：输出 `start`，`Promise 构造函数内`，`end`。
+  2. 执行微任务队列：输出 `Promise 微任务 1`，`Promise 微任务 2`，`MutationObserver 微任务`。
+  3. 执行宏任务队列：`宏任务 setTimeout`，`Promise 微任务 3`。
 
-#### 类型：`基础`
+- **2：**
+  **常见宏任务和微任务类型**
+  + **宏任务**：
+    - **定时器类**：`setTimeout`、`setInterval`。
+    - **I/O 操作**：文件读取、网络请求（如 `XMLHttpRequest` 的完成回调）。
+    - **UI 渲染**：浏览器的重排和重绘。
+    - **`setImmediate`**：在 Node.js 环境中，它是一个宏任务，会在 I/O 事件回调之后执行。
+    - **`requestAnimationFrame`**：在浏览器中，它会在下次重绘之前执行，属于宏任务。
+  + **微任务**：
+    - **Promise 相关**：`Promise.then`、`Promise.catch`、`Promise.finally`。
+    - **`process.nextTick`**：在 Node.js 环境中，它的优先级高于普通微任务，会在当前操作结束后立即执行。
+    - **`MutationObserver`**：用于监听 DOM 变化，当 DOM 发生变化时，相应的回调会作为微任务执行。
+    - **`queueMicrotask`**：可以将一个函数作为微任务加入到微任务队列中。
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+- **2：**
+  **浏览器与 Node.js 差异**
+  + **微任务优先级**：浏览器中常见的微任务顺序是 `Promise` 相关微任务 > `MutationObserver`；Node.js 中 `process.nextTick` 优先级高于 `Promise` 相关微任务。
+  + **宏任务队列**：浏览器的宏任务队列包含定时器、I/O、UI 渲染等；Node.js 的宏任务队列有多个执行阶段，如 `timers`（处理定时器回调）、`I/O`（处理 I/O 回调）、`idle`、`prepare`、`check`（执行 `setImmediate` 回调）等。
+- **2：**
+  **实践建议**：
+  + 避免在 `Promise` 构造函数内编写耗时代码，防止阻塞主线程。
+  + 对于动画相关任务，使用 `requestAnimationFrame` 进行优化。
+  + 控制微任务执行时间，避免长时间占用主线程导致 UI 渲染卡顿。
 
-#### 解答（2 分）
+</details>
 
-- JavaScript 运行时的事件循环机制中，任务分为宏任务（macro task）和微任务（micro task）。
-
-- 常见的宏任务有：
-
-- setTimeout 和 setInterval 的回调函数
-
-- DOM 事件
-
-- XMLHttpRequest 中的readystatechange事件
-
-- requestAnimationFrame 中的回调函数
-
-- I/O 操作和网络请求的回调函数
-
-- Node.js 中的文件读写操作的回调函数
-
-- Node.js 中的进程事件
-
-- 常见的微任务有：
-
-- Promise.then 和 Promise.catch 的回调函数
-
-- MutationObserver 的回调函数
-
-- process.nextTick 函数
-
-- Object.observe 的回调函数
-
-## 50. DOM操作的常用API
+## DOM操作的常用API
 
 #### 类型：`基础`
 
@@ -2118,25 +2114,40 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 - 获取元素类名：className
 
-- 设置元素类名：className
-
 - 获取元素内容：innerHTML
 
-## 51. attribute和property（都是属性）的区别
+## attribute 和 property 的区别
 
 #### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W1`、`W2`、`W3`
 
-#### 解答（3 分）
+#### 解答（5 分）
 
-- 两者都有可能引起DOM重新渲染
+- **1：**
+  **定义**：attribute 是 HTML 标签属性，property 是 DOM 对象属性。
+- **2：**
+  **示例**
 
-- property : 修改对象属性，不会体现到html结构中
+  ```html
+  <input id="test" value="default">
+  ```
 
-- attribute : 修改html属性，会改变html结构
+  ```javascript
+  const input = document.getElementById('test');
+  input.getAttribute('value'); // "default"
+  input.value = 'new';
+  ```
 
-## 52. 什么是事件冒泡？什么是事件代理？
+  **区别**：
+  + **类型**：attribute 是字符串，property 类型多样。
+  + **同步**：二者修改通常互不影响。
+- **1：**
+  **特例**：表单 `value` 中，attribute 是初始值，property 是当前值；布尔属性的 attribute 存在即生效，property 需显式设置。
+- **1：**
+  **建议**：与 HTML 同步用 attribute，操作 DOM 状态用 property，后者性能佳。
+
+## 什么是事件代理？
 
 #### 类型：`基础`
 
@@ -2144,13 +2155,9 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 #### 解答（2 分）
 
-- 事件冒泡和事件代理都是JavaScript中处理事件的机制。
-
-- 事件冒泡指的是当用户触发某个元素的事件时，该事件会先被触发该元素上，然后再逐级往上层元素传递，直至达到文档节点。简单来说，就是事件从子元素向父元素冒泡传递的过程。
-
 - 事件代理，又称事件委托，是利用了事件冒泡机制，把事件绑定到父元素上，然后通过判断事件的target属性，来确定触发事件的元素是否是我们需要处理事件的元素，从而实现事件处理的目的。这种机制能够减少事件处理程序的数量，避免了为每一个节点添加事件处理程序，从而节省内存和提高程序的效率。
 
-## 53. Ajax Fetch Axios的区别？
+## Ajax Fetch Axios的区别？
 
 #### 类型：`基础`
 
@@ -2164,7 +2171,50 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 - Ajax：是一个概念，表示通过JavaScript进行异步网络请求的技术。
 
-## 54. 描述cookie，localStorage，sessionStorage的区别？
+## cookie、localStorage、sessionStorage 的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：**  
+  **核心区别**  
+
+  | 维度 | cookie | localStorage | sessionStorage |
+  |--|--|--|--|
+  | 存储位置 | 浏览器和服务器端 | 浏览器本地 | 浏览器本地 |
+  | 容量 | 约4KB | 约5-10MB | 约5-10MB |
+  | 生命周期 | 可设置过期时间 | 长期保存（手动清除） | 会话结束时自动清除 |
+  | 作用域 | 同源且同路径 | 同源窗口共享 | 同源且同窗口 |
+  | 自动携带 | 每次HTTP请求自动发送 | 不参与网络传输 | 不参与网络传输 |
+
+- **2：**  
+  **关键特性**  
+  + **cookie**：  
+    - 支持 `HttpOnly`（防 XSS）、`Secure`（HTTPS 传输）  
+    - 常用于会话管理、用户追踪  
+  + **localStorage**：  
+    - 持久化存储，适合长期保存不常更新的数据  
+    - 通过 `localStorage.setItem()` 等 API 操作  
+  + **sessionStorage**：  
+    - 临时存储，页面关闭即失效  
+    - 常用于表单草稿、临时状态保存  
+
+- **1：**  
+  **使用场景建议**  
+  + **优先选 localStorage**：需持久化且不敏感的数据（如用户设置）  
+  + **优先选 sessionStorage**：临时数据（如购物车未提交时的临时存储）  
+  + **仅用 cookie**：需跨域传输或安全敏感场景（如 CSRF Token）  
+
+- **1：**  
+  **注意事项**  
+  + 三者均受同源策略限制  
+  + localStorage 和 sessionStorage 存储内容可通过 `StorageEvent` 监听  
+  + cookie 需手动加密敏感信息，而另外两者无此机制
+
+## 如何阻止事件冒泡，事件的默认行为？
 
 #### 类型：`基础`
 
@@ -2172,99 +2222,121 @@ Ajax 即 Asynchronous JavaScript and XML（异步的 JavaScript 与 XML），它
 
 #### 解答（2 分）
 
-- cookie：存储在客户端，大小限制为4KB，有有效期，可以设置过期时间，默认为会话级别，即浏览器关闭后cookie失效。
+- **1：** 阻止事件冒泡：event.stopPropagation();
 
-- localStorage：存储在客户端，大小限制为5MB，没有有效期，除非手动清除，否则一直存在。
+- **1：** 阻止事件默认行为：event.preventDefault();
 
-- sessionStorage：存储在客户端，大小限制为5MB，仅在当前会话有效，关闭浏览器后失效。
-
-- localStorage和sessionStorage的区别在于，localStorage的数据在浏览器关闭后依然存在，而sessionStorage的数据在浏览器关闭后就会失效。
-
-## 55. 如何阻止事件冒泡，事件的默认行为？
+## document.write() 和 innerHTML 的区别
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（5 分）
 
-- 阻止事件冒泡：
+- **1：**
 
-- event.stopPropagation();
+  | 对比项 | document.write() | innerHTML |
+  | --- | --- | --- |
+  | 作用 | 向文档流写内容 | 修改指定元素内部 HTML |
+  | 时机 | 加载时正常，加载后覆盖文档 | 随时可用 |
+  | 范围 | 全局文档 | 指定元素子节点 |
+  | 性能 | 大量调用阻塞重绘 | 复杂度影响性能 |
+  | 安全 | 易致 XSS | 需过滤输入 |
 
-- IE：evnet.cancelBuddle = true;
+- **1：**
+  + **document.write()**
 
-- 阻止事件默认行为：
+    ```javascript
+    // 加载时
+    document.write('<h1>Hi</h1>');
+    // 加载后覆盖
+    <button onclick="document.write('Cleared')">Clear</button>
+    ```
 
-- event.preventDefault();
+  + **innerHTML**
 
-- IE： e.return Value = false;
+    ```javascript
+    // 修改内容
+    div.innerHTML = '<p>New</p>';
+    // 批量优化
+    const frag = document.createDocumentFragment();
+    frag.innerHTML = '1<br>2';
+    list.appendChild(frag);
+    ```
 
-## 56. document.write() 和 innerHTML 的区别？
+- **2：**
+  + **innerHTML 应用场景**：在电商商品详情页，当用户点击不同颜色款式时，使用 `innerHTML` 动态更新商品图片展示区域；在社交网站的评论区，新评论提交后用 `innerHTML` 动态添加新评论内容。
+  + **document.write() 应用场景**：网页嵌入第三方广告脚本时，广告代码常使用 `document.write()` 直接向文档流插入广告内容；开发一些简单的网页生成工具，在页面加载时使用 `document.write()` 动态生成完整页面结构。
 
-#### 类型：`基础`
+- **1：**
+  document.write() 加载后用会泄漏内存；innerHTML 复杂内容用 textContent 防 XSS；两者少用于频繁更新。
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- document.write()是直接写入到页面的内容流，如果在写之前没有调用document.open()，浏览器会自动调用open()，每次写完关闭之后会重新调用该函数，会导致页面被重写；
-
-- innerHTML则是 DOM 页面元素的一个属性，代表该元素的html内容；
-
-- innerHTML将内容写入到某个DOM节点，不会导致页面重绘；
-
-- innerHTML在很多情况下都优于document.write()，原因在于其允许更精确的控制要刷新页面的那个部分
-
-## 57. window load和document ready的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- window load：当整个页面及所有依赖资源如样式表和图片都已完成加载时，触发window load事件。
-
-- document ready：当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，无需等待样式表、图像和子框架的加载完成。
-
-- window load事件是在页面加载完成后触发的，而document ready事件是在DOM加载完成后触发的，因此，document ready事件比window load事件更早触发。
-
-- 因此，如果需要在页面加载完成后执行某些操作，可以使用window load事件；如果需要在DOM加载完成后执行某些操作，可以使用document ready事件。
-
-## 58. Set、Map的区别？
+## window load 和 document ready 的区别
 
 #### 类型：`基础`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
-#### 解答（2 分）
+#### 解答（5 分）
 
-- Set：是一种新的数据结构，类似于数组，但是成员的值都是唯一的，没有重复的值。
+- **1：**
+  **定义**：`window load` 是页面所有资源（如图片、脚本）加载完触发；`document ready` 是 DOM 结构加载完就触发，不等资源。
 
-- Map：是一种新的数据结构，类似于对象，但是键可以是任意类型。
+- **2：**
+  **示例**
 
-- Set和Map的区别在于，Set的键值是唯一的，而Map的键值可以是任意类型。
+  ```javascript
+  // window load
+  window.onload = function() {
+      console.log('所有资源加载完成');
+  };
+  // document ready（jQuery）
+  $(document).ready(function() {
+      console.log('DOM 结构加载完成');
+  });
+  ```
 
-## 59. return，break，continue的区别是什么
+  **顺序**：`document ready` 通常先触发。
+
+- **1：**
+  **场景**
+  + `window load`：操作图片尺寸等依赖资源加载的场景。
+  + `document ready`：尽早执行交互逻辑，如绑定按钮事件。
+
+- **1：**
+  **注意**：`window load` 可能因资源慢而延迟；`document ready` 要确保操作的 DOM 已存在。
+
+## return，break，continue 的区别是什么
 
 #### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W1`、`W2`
 
-#### 解答（2 分）
+#### 解答（3 分）
 
-- return 必须写在函数内部，遇到return后函数内部剩余的代码不再执行，直接返回；还可以使用return返回一个值给外面使用
+- **1：**
+  **基本概念**
+  + `return`：用于函数中，会终止函数的执行，并将指定的值返回给函数调用处。如果没有指定返回值，则返回 `undefined`。
+  + `break`：用于循环（`for`、`while`、`do-while`）或 `switch` 语句中，会立即终止当前所在的循环或 `switch` 语句，跳出该结构。
+  + `continue`：用于循环语句中，会跳过当前循环的剩余代码，直接开始下一次循环。
 
-- break 跳出循环，剩余的循环不再执行
+- **1：**
+  **应用场景**
+  + `return`：当函数完成特定任务，需要将结果反馈给调用者时使用。比如计算两个数的和并返回结果。
+  + `break`：在循环中，当满足某个条件，不再需要继续执行循环时使用。比如在查找数组中某个元素，找到后就停止循环。
+  + `continue`：当循环中遇到某些特殊情况，不需要执行本次循环的剩余代码，但仍要继续后续循环时使用。比如过滤数组中的某些特定值。
 
-- continue  跳出本次循环，剩余的循环继续执行
+- **1：**
+  **注意事项**
+  + `return` 只能在函数内部使用，在函数外部使用会导致语法错误。
+  + `break` 和 `continue` 只能在循环或 `switch` 语句中使用，在其他地方使用会报错。
 
-## 60. typeof NaN 的结果是什么？
+## typeof NaN 的结果是什么？
 
 #### 类型：`基础`
 
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+#### 级别：`W1`、`W2`
 
 #### 解答（2 分）
 
@@ -2276,7 +2348,40 @@ typeof NaN; // "number"
 
 ```
 
-## 61. 其他值到字符串的转换规则？
+## isNaN 和 Number.isNaN 函数的区别
+
+#### 类型：`基础`
+
+#### 级别：`W1`、`W2`、`W3`
+
+#### 解答（4 分）
+
+- **1：**
+  **基本概念**
+  + `isNaN`：是全局函数，用于判断一个值是否为 `NaN`。它会先尝试将传入的值转换为数字，再判断转换后的结果是否为 `NaN`。
+  + `Number.isNaN`：是 `Number` 对象的静态方法，用于判断一个值是否严格等于 `NaN`，不会进行类型转换。
+
+- **2：**
+  **代码示例及区别体现**
+
+  ```javascript
+  // isNaN 示例
+  console.log(isNaN('abc')); // true，因为 'abc' 转换为数字是 NaN
+  console.log(isNaN('123')); // false，'123' 可转换为数字 123
+  console.log(isNaN(NaN)); // true
+
+  // Number.isNaN 示例
+  console.log(Number.isNaN('abc')); // false，'abc' 不是严格的 NaN
+  console.log(Number.isNaN(NaN)); // true
+  console.log(Number.isNaN(123)); // false
+  ```
+
+- **1：**
+  **应用场景**
+  + `isNaN`：当需要判断一个值是否能转换为有效的数字时使用，例如在处理用户输入时，判断输入是否为合法的数字。
+  + `Number.isNaN`：当需要严格判断一个值是否就是 `NaN` 时使用，比如在进行数据验证，确保某个变量的值就是 `NaN`。
+
+## || 和 && 操作符的返回值？
 
 #### 类型：`基础`
 
@@ -2284,139 +2389,10 @@ typeof NaN; // "number"
 
 #### 解答（2 分）
 
-- Null 和 Undefined 类型 ，null 转换为 "null"，undefined 转换为 "undefined"，
+- **1：** `||` 条件判断时，符号两边有一个为`true`，则返回`true`，否则返回`false`。输出值时，输出第一个为真的值。
+- **1：** `&&` 条件判断时，符号两边有一个为`false`，则返回`false`，否则返回`true`。输出值时，输出第二个为真的值。
 
-- Boolean 类型，true 转换为 "true"，false 转换为 "false"。
-
-- Number 类型的值直接转换，不过那些超出字符表示范围的整数部分，则用十六进制表示。
-
-- Symbol 类型的值直接转换，但是只允许显式转换，如 String(sym)。
-
-- 对普通对象来说，除非自行定义 toString() 方法，否则会调用 toString()（Object.prototype.toString()）来返回内部属性 [[Class]] 的值，如"[object Object]"。如果对象有自己的 toString() 方法，字符串化时就会调用该方法并使用其返回值。
-
-## 62. isNaN 和 Number.isNaN 函数的区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 函数 isNaN 接收参数后，会尝试将这个参数转换为数值，任何不能被转换为数值的的值都会返回 true，因此非数字值传入也会返回 true ，会影响 NaN 的判断。
-
-- 函数 Number.isNaN 会首先判断传入参数是否为数字，如果是数字再继续判断是否为 NaN ，不会进行数据类型的转换，这种方法对于 NaN 的判断更为准确。
-
-## 63.  || 和 && 操作符的返回值？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- || 和 && 首先会对第一个操作数执行条件判断，如果其不是布尔值就先强制转换为布尔类型，然后再执行条件判断。
-
-- 对于 || 来说，如果条件判断结果为 true 就返回第一个操作数的值，如果为 false 就返回第二个操作数的值。
-
-- && 则相反，如果条件判断结果为 true 就返回第二个操作数的值，如果为 false 就返回第一个操作数的值。
-
-- || 和 && 返回它们其中一个操作数的值，而非条件判断的结果。
-
-## 64. 为什么会有BigInt的提案？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- JavaScript中Number.MAX_SAFE_INTEGER表示最⼤安全数字，计算结果是9007199254740991，即在这个数范围内不会出现精度丢失（⼩数除外）。但是⼀旦超过这个范围，js就会出现计算不准确的情况，这在⼤数计算的时候不得不依靠⼀些第三⽅库进⾏解决，因此官⽅提出了BigInt来解决此问题。
-
-## 65. object.assign和扩展运算法是深拷贝还是浅拷贝，两者区别？
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 两者都是浅拷贝。
-
-- Object.assign()方法接收的第一个参数作为目标对象，后面的所有参数作为源对象。然后把所有的源对象合并到目标对象中。它会修改了一个对象，因此会触发 ES6 setter。
-
-- 扩展操作符（…）使用它时，数组或对象中的每一个值都会被拷贝到一个新的数组或对象中。它不复制继承的属性或类的属性，但是它会复制ES6的 symbols 属性。
-
-## 66. 如果new一个箭头函数的会怎么样?
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 箭头函数是ES6中的提出来的，它没有prototype，也没有自己的this指向，更不可以使用arguments参数，所以不能New一个箭头函数。
-
-- new操作符的实现步骤如下：
-
-- 1.创建一个对象
-
-- 2.将构造函数的作用域赋给新对象（也就是将对象的__proto__属性指向构造函数的prototype属性）
-
-- 3.指向构造函数中的代码，构造函数中的this指向该对象（也就是为这个对象添加属性和方法）
-
-- 4.返回新的对象
-
-- 由于箭头函数没有自己的this，用new调用会报错！所以，上面的第二、三步，箭头函数都是没有办法执行的。
-
-## 67. 对对象与数组的解构的理解
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 解构是 ES6 提供的一种新的提取数据的模式，这种模式能够从对象或数组里有针对性地拿到想要的数值。
-
-- 数组的解构 在解构数组时，以元素的位置为匹配条件来提取想要的数据的
-
-- 对象的解构 对象解构比数组结构稍微复杂一些，也更显强大。在解构对象时，是以属性的名称为匹配条件，来提取想要的数据的
-
-## 68. 对 rest 参数的理解
-
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 扩展运算符被用在函数形参上时，它还可以把一个分离的参数序列整合成一个数组：
-
-``` js
-function mutiple(...args) {
-  let result = 1;
-  for (var val of args) {
-    result *= val;
-  }
-  return result;
-}
-mutiple(1, 2, 3, 4) // 24
-
-```
-
-- 这里，传入 mutiple 的是四个分离的参数，但是如果在 mutiple 函数里尝试输出 args 的值，会发现它是一个数组：
-
-``` js
-function mutiple(...args) {
-  console.log(args)
-}
-mutiple(1, 2, 3, 4) // [1, 2, 3, 4]
-
-```
-
-- 这就是 … rest运算符的又一层威力了，它可以把函数的多个入参收敛进一个数组里。这一点经常用于获取函数的多余参数，或者像上面这样处理函数参数个数不确定的情况。
-
-## 68. Map数据结构有哪些操作方法？
+## Map数据结构有哪些操作方法？
 
 #### 类型：`基础`
 
@@ -2436,31 +2412,9 @@ mutiple(1, 2, 3, 4) // [1, 2, 3, 4]
 
 - clear()：清除所有成员，没有返回值。
 
-## 69. 数组有哪些原生方法？
+## Unicode、UTF-8、UTF-16、UTF-32的区别？
 
-#### 类型：`基础`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- 数组和字符串的转换方法：toString()、toLocalString()、join() 其中 join() 方法可以指定转换为字符串时的分隔符。
-
-- 数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。
-
-- 数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。
-
-- 数组连接的方法 concat() ，返回的是拼接好的数组，不影响原数组。
-
-- 数组截取办法 slice()，用于截取数组中的一部分返回，不影响原数组。
-
-- 数组插入方法 splice()，影响原数组查找特定项的索引的方法，indexOf() 和 lastIndexOf() 迭代方法 every()、some()、filter()、map() 和 forEach() 方法
-
-- reduce() 和 reduceRight() 方法将数组元素计算为一个值，这对求和非常有用
-
-## 70. Unicode、UTF-8、UTF-16、UTF-32的区别？
-
-#### 类型：`基础`
+#### 类型：`拓展`
 
 #### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
 
