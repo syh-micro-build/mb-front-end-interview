@@ -9,12 +9,12 @@
     <link rel="preload stylesheet" href="/mb-front-end-interview/assets/style.CfHBCVxN.css" as="style">
     <link rel="preload stylesheet" href="/mb-front-end-interview/vp-icons.css" as="style">
     
-    <script type="module" src="/mb-front-end-interview/assets/app.D_tXsTg_.js"></script>
+    <script type="module" src="/mb-front-end-interview/assets/app.sGCIefLx.js"></script>
     <link rel="preload" href="/mb-front-end-interview/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/theme.B7mL2hbk.js">
+    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/theme.DTgmue_e.js">
     <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/framework.Dvg3AjVP.js">
-    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/markdownDialog.B_xZcBep.js">
-    <link rel="modulepreload" href="/mb-front-end-interview/assets/src_training_training-level_W3.md.d5s5SNvX.lean.js">
+    <link rel="modulepreload" href="/mb-front-end-interview/assets/chunks/markdownDialog.M3zWpYJA.js">
+    <link rel="modulepreload" href="/mb-front-end-interview/assets/src_training_training-level_W3.md.DjAkh7u0.lean.js">
     <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
     <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
   </head>
@@ -31,8 +31,280 @@
 </ul>
 </li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">25. react如何做到和vue中keep-alive的缓存效果</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li>React Keep Alive 提供了 ，必须把 放在 Provider 里面，并且每个 组件都必须拥有一个唯一的 key</li>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">66. 说说React Hooks是如何解决类组件中一些常见问题的</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>React Hooks允许我们在不编写class的情况下使用state以及其他的React特性。</p>
+</li>
+<li><p>这解决了类组件中一些常见问题，如代码复用困难、逻辑难以拆分以及生命周期方法难以管理等。</p>
+</li>
+<li><p>通过使用Hooks，我们可以将组件逻辑提取到可重用的函数中，使得代码更加简洁、易读和可维护。</p>
+</li>
+<li><p>此外，Hooks还提供了更灵活的方式来管理组件的状态和生命周期，使得组件逻辑更加清晰和可预测。</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">二分查找</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 适用条件： 数组必须是有序的。</li>
+<li><strong>1：</strong> 应用场景： 查找有序数组中的元素，例如数据查询、搜索问题。</li>
+<li><strong>1：</strong> 时间复杂度： O(log n)。</li>
+<li><strong>1：</strong> 思路：<ul>
+<li>每次取中间元素与目标值比较。</li>
+<li>若中间值大于目标值，目标值一定在左半部分。</li>
+<li>若中间值小于目标值，目标值一定在右半部分。</li>
+<li>重复上述步骤直到找到目标值或数组为空。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">binarySearch</span>(<span class="hljs-params">arr, target</span>) {
+  <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = arr.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">while</span> (left &lt;= right) {
+    <span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((left + right) / <span class="hljs-number">2</span>);
+    <span class="hljs-keyword">if</span> (arr[mid] === target) {
+        <span class="hljs-keyword">return</span> mid;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &lt; target) {
+        left = mid + <span class="hljs-number">1</span>;
+    } <span class="hljs-keyword">else</span> {
+        right = mid - <span class="hljs-number">1</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>; <span class="hljs-comment">// 未找到目标值</span>
+}
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">36. React的事件和普通的HTML事件有什么不同？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>区别：</p>
+<ul>
+<li><p>对于事件名称命名方式，原生事件为全小写，react 事件采用小驼峰；</p>
+</li>
+<li><p>对于事件函数处理语法，原生事件为字符串，react 事件为函数；</p>
+</li>
+<li><p>react 事件不能采用 return false 的方式来阻止浏览器的默认行为，而必须要地明确地调用preventDefault()来阻止默认行为。</p>
+</li>
+</ul>
+<p>合成事件是 react 模拟原生 DOM 事件所有能力的一个事件对象，其优点如下：</p>
+<ul>
+<li><p>兼容所有浏览器，更好的跨平台；</p>
+</li>
+<li><p>将事件统一存放在一个数组，避免频繁的新增与删除（垃圾回收）。</p>
+</li>
+<li><p>方便 react 统一管理和事务机制。</p>
+</li>
+</ul>
+<p>事件的执行顺序为原生事件先执行，合成事件后执行，合成事件会冒泡绑定到 document 上，所以尽量避免原生事件与合成事件混用，如果原生事件阻止冒泡，可能会导致合成事件不执行，因为需要冒泡到document 上合成事件才会执行。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">70. React18中引入了新的startTransition API，说说它的作用以及如何使用</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>React18中引入的startTransition API用于标记那些可能需要一段时间才能完成的更新（例如，从服务器获取数据）。</p>
+</li>
+<li><p>这个API允许React将UI的渲染划分为优先级较低的任务和优先级较高的任务。</p>
+</li>
+<li><p>通过调用startTransition并传入一个回调函数，我们可以告诉React：“这个更新可以稍后完成，先处理其他更紧急的事情。”</p>
+</li>
+<li><p>这使得React能够在等待数据加载时保持响应性，提供更好的用户体验。</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">55. Redux 实现了哪种模式？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Redux 实现了Flux 模式，它是应用程序的可预测状态管理模式。它通过引入单向数据流和应用程序状态的集中存储来帮助管理应用程序的状态。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">35. Redux 有哪些优点？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>结果的可预测性 - 由于总是存在一个真实来源，即 store ，因此不存在如何将当前状态与动作和应用的其他部分同步的问题。</p>
+</li>
+<li><p>可维护性 - 由于没有直接接触 DOM，React 组件更容易进行单元测试和重用。</p>
+</li>
+<li><p>服务端渲染 - 你只需渲染应用一次，然后将结果发送到客户端。这对于 SEO 和快速首次渲染非常重要。</p>
+</li>
+<li><p>开发人员工具 - 从组件层次结构、当前状态和派生数据（如路由）到与时间旅行和编辑动作相关的任何内容，您都可以立即访问。</p>
+</li>
+<li><p>社区和生态系统 - React 拥有非常庞大且快速增长的生态系统，大量可重用的库和组件都可用于 React。</p>
+</li>
+<li><p>易于测试 - 由于应用的状态保存在 store 中，并且不直接与浏览器 DOM 交互，因此您的测试将更易于预测和复制。</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">52. 如何跟踪功能组件的卸载？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>通常，useEffect 创建的资源需要在组件离开屏幕前进行清理或重置，例如订阅或计时器标识符。
+为此，传递给 useEffect 的函数可以返回一个清理函数。清理函数将在组件从用户界面移除之前运行，以防止内存泄漏。此外，如果组件渲染多次（通常是这种情况），则会在执行下一个效果之前清理前一个效果。</p>
+<pre><code class="hljs language-js"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleChange</span>(<span class="hljs-params">value</span>) {
+    <span class="hljs-title function_">setValue</span>(value);
+  }
+  <span class="hljs-title class_">SomeAPI</span>.<span class="hljs-title function_">doFunction</span>(id, handleChange);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">cleanup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title class_">SomeAPI</span>.<span class="hljs-title function_">undoFunction</span>(id, handleChange);
+  };
+})
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">26. React如何做路由监听</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><pre><code class="hljs language-react">
+<span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>){ <span class="hljs-variable language_">this</span>.<span class="hljs-property">context</span>.<span class="hljs-property">router</span>.<span class="hljs-property">history</span>.<span class="hljs-title function_">listen</span>(<span class="hljs-function">(<span class="hljs-params">route</span>)=&gt;</span>{ <span class="hljs-keyword">if</span>(route.<span class="hljs-property">pathname</span>===<span class="hljs-string">&#x27;/xxx&#x27;</span>){ <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>); } }); } 
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">PWA有那些优点？</h4><div class="head-re"><span class="head-score">9 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 更小更快: 渐进式的web应用程序比原生应用程序小得多。他们甚至不需要安装。这是他们没有浪费磁盘空间和加载速度非常快</li>
+<li><strong>1：</strong> 响应式界面: PWA支持的网页能够自动适应各种屏幕大小。它可以是手机、平板、台式机或笔记本。</li>
+<li><strong>1：</strong> 无需更新: 大多数移动应用程序需要每周定期更新。与普通网站一样，每当用户交互发生且不需要应用程序或游戏商店批准时，PWA总是加载最新更新版本</li>
+<li><strong>1：</strong> 高性价比：原生移动应用需要分别为Android和iOS设备开发，开发成本非常高。另一方面，PWAs有着相同的功能，但只是先前价格的一小部分，开发成本低。</li>
+<li><strong>1：</strong> SEO优势：搜索引擎可以发现PWAs，并且加载速度非常快。就像其他网站一样，它们的链接也可以共享。提供良好的用户体验和结果，在SEO排名提高。</li>
+<li><strong>1：</strong> 脱机功能：由于service worker API的支持，可以在脱机或低internet连接中访问PWAs。</li>
+<li><strong>1：</strong> 推送通知：通过推送通知的支持，PWAs轻松地与用户进行交互，提供非常棒的用户体验。</li>
+<li><strong>1：</strong> 零安装：在浏览过程中，PWA会在手机和平板电脑上有自己的图标，就像移动应用程序一样，但不需要经过冗长的安装过程。</li>
+<li><strong>1：</strong> 绕过应用商店</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">== 和 === 的区别是什么？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> <code>==</code> 为宽松相等，会隐式转换类型后比较（例如 <code>&#39;5&#39; == 5</code> 返回 true）</li>
+<li><strong>1：</strong> <code>===</code> 为严格相等，要求值和类型完全相同（例如 <code>&#39;5&#39; === 5</code> 返回 false）</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">哪些操作会造成内存泄漏？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> 第一种情况是由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。</li>
+<li><strong>1：</strong> 第二种情况是设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留在内存中，而无法被回收。</li>
+<li><strong>1：</strong> 第三种情况是获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回收。</li>
+<li><strong>1：</strong> 第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">16. 如何在TypeScript中实现函数重载？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
+
+<ul>
+<li><strong>2：</strong> 函数重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。在TypeScript中，我们需要先声明所有重载的函数签名，然后再实现一个通用的函数：</li>
+</ul>
+<pre><code class="hljs language-typescript"><span class="hljs-comment">// 重载签名</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a: number, b: number</span>): number;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a: string, b: string</span>): string;
+
+<span class="hljs-comment">// 实现签名</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a: number | string, b: number | string</span>): number | string {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a === <span class="hljs-string">&#x27;number&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">&#x27;number&#x27;</span>) {
+        <span class="hljs-keyword">return</span> a + b;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a === <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">&#x27;string&#x27;</span>) {
+        <span class="hljs-keyword">return</span> a.<span class="hljs-title function_">concat</span>(b);
+    }
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Parameters must be numbers or strings&#x27;</span>);
+}
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));          <span class="hljs-comment">// 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;Hello &quot;</span>, <span class="hljs-string">&quot;World&quot;</span>)); <span class="hljs-comment">// &quot;Hello World&quot;</span>
+</code></pre><ul>
+<li><strong>2：</strong> 在类中使用函数重载：</li>
+</ul>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Calculator</span> {
+    <span class="hljs-title function_">add</span>(<span class="hljs-attr">a</span>: number, <span class="hljs-attr">b</span>: number): number;
+    <span class="hljs-title function_">add</span>(<span class="hljs-attr">a</span>: string, <span class="hljs-attr">b</span>: string): string;
+    <span class="hljs-title function_">add</span>(<span class="hljs-attr">a</span>: any, <span class="hljs-attr">b</span>: any): any {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a === <span class="hljs-string">&#x27;number&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">&#x27;number&#x27;</span>) {
+            <span class="hljs-keyword">return</span> a + b;
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> a === <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">&#x27;string&#x27;</span>) {
+            <span class="hljs-keyword">return</span> a.<span class="hljs-title function_">concat</span>(b);
+        }
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Parameters must be numbers or strings&#x27;</span>);
+    }
+}
+</code></pre></details>
+
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">6. webpack 中提供服务器的工具是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> webpack 中提供服务器的工具为 webpack-dev-server</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">10. webpack proxy 为什么能解决跨域？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>2：</strong> 在开发阶段，webpack-dev-server 会启动一个本地开发服务器，所以我们的应用在开发阶段是独立运行在 localhost 的一个端口上，而后端服务又是运行在另外一个地址上所以在开发阶段中，由于浏览器同源策略的原因，当本地访问后端就会出现跨域请求的问题通过设置 webpack proxy 实现代理请求后，相当于浏览器与服务端中添加一个代理者当本地发送请求的时候，
+代理服务器响应该请求，并将请求转发到目标服务器，目标服务器响应数据后再将数据返回给代理服务器，最终再由代理服务器将数据响应给本地。<br>在代理服务器传递数据给本地浏览器的过程中，两者同源，并不存在跨域行为，这时候浏览器就能正常接收数据。<br><strong>注意：服务器与服务器之间请求数据并不会存在跨域行为，跨域行为是浏览器安全策略限制。</strong></li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">13. webpack的Plugin和Loader的区别</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong>【Loader】：用于对模块源码的转换， loader可以将文件从不同的语言（如TypeScript）转换为JavaScript，或者将内联图像转换为data URL。比如说：CSS-Loader，Style-Loader等。</li>
+<li><strong>1：</strong>【Plugin】：目的在于解决loader无法实现的其他事，从打包优化和压缩，到重新定义环境变量，功能强大到可以用来处理各种各样的任务。webpack提供了很多开箱即用的插件：CommonChunkPlugin主要用于提取第三方库和公共模块，避免首屏加载的bundle文件，或者按需加载的bundle文件体积过大，导致加载时间过长，是一把优化的利器。而在多页面应用中，更是能够为每个页面间的应用程序共享代码创建bundle。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Vite 项目构建速度快的原因是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> Vite 利用了现代浏览器的原生 ES （ES Modules）模块支持，采用了按需加载和热更新技术。在开发过程中，它只加载和处理当前需要的模块，减少了不必要的代码编译和打包工作，并且通过快速
+的热更新机制，使开发过程中能够迅速响应代码变化，提高了构建速度。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Vite 在开发模式下如何实现快速启动？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>2：</strong> Vite 利用 ES 模块的原生支持，通过浏览器直接加载模块文件，避免了传统打包工具的打包和重构过程。这种方式大大减少了启动时间，实现了快速的热更新和模块替换。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">7. webpack-dev-server是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> webpack-dev-server是官方推出的一款开发工具，将自动编译和自动刷新浏览器等一系列对开发友好的功能全部集成在了一起，目的是为了提高开发者日常的开发效率，只适用在开发阶段关于配置方面。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">esbuild 和 rollup 都是 vite 的基础依赖， 那么他们有啥不同？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p><strong>1：</strong> esbuild：esbuild 是一个快速、可扩展的 JavaScript 打包器，它被用作 Vite 的默认构建工具。esbuild 的主要任务是将源代码转换为浏览器可以理解的代码，同时还支持压缩、代码分割、按需加载等功能。esbuild 利用其高性能的构建能力，实现了快速的开发服务器和热模块替换。</p>
+</li>
+<li><p><strong>1：</strong> Rollup：Rollup 是一个 JavaScript 模块打包工具，也是 Vite 的另一个基础依赖。在 Vite 中，Rollup 主要用于生产构建阶段。它通过静态分析模块依赖关系，将多个模块打包为一个或多个最终的输出文件。Rollup 支持多种输出格式，如 ES 模块、CommonJS、UMD 等，可以根据项目的需要进行配置。</p>
+</li>
+<li><p><strong>1：</strong> 尽管 esbuild 和 Rollup 都是 Vite 的基础依赖，但它们的分工是不同的。esbuild 用于开发服务器阶段，通过实时编译和提供模块来实现快速的冷启动和热模块替换。而 Rollup 用于生产构建阶段，将源代码打包为最终可发布的文件，以用于部署到生产环境。这样的分工使得 Vite 在开发过程中能够快速响应变化，并在构建过程中生成高效的最终输出文件。</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">21. 什么是 useEffect？它如何工作？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>useEffect 是一个 Hook，用于在函数组件中执行副作用操作，如数据获取、订阅或手动更改 DOM。</p>
+</li>
+<li><p>工作原理：</p>
+</li>
+<li><p>执行副作用：在组件挂载和更新时执行副作用操作。</p>
+</li>
+<li><p>清理副作用：返回一个可选的清理函数，用于在组件卸载或下次执行副作用前清理上一次的副作用。</p>
+</li>
+</ul>
+<pre><code class="hljs language-JSX"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">DataFetcher</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [data, setData] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>);
+
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">fetchData</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+      <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;/api/data&#x27;</span>);
+      <span class="hljs-keyword">const</span> json = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();
+      <span class="hljs-title function_">setData</span>(json);
+    };
+
+    <span class="hljs-title function_">fetchData</span>();
+
+    <span class="hljs-comment">// 清理函数</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Cleanup&#x27;</span>);
+    };
+  }, []); <span class="hljs-comment">// 依赖数组为空，表示仅在组件挂载时执行</span>
+
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      {data ? &lt;pre&gt;{JSON.stringify(data, null, 2)}&lt;/pre&gt; : &lt;p&gt;Loading...&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">DataFetcher</span>;
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">请简要介绍一下 Qiankun 及其主要应用场景</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Qiankun 是一个基于 single-spa 的微前端实现库，由蚂蚁金服开源。它提供了简单、强大的微前端解决方案，用于将多个独立的前端应用整合到一个大的应用中。其主要应用场景包括：</p>
+<ul>
+<li><strong>1：</strong> 大型项目拆分：将复杂的大型前端项目拆分成多个小型、独立的子应用，每个子应用可以由不同的团队独立开发、测试和部署。</li>
+<li><strong>1：</strong> 旧系统升级：在不影响现有业务的前提下，逐步对旧系统进行升级改造，将新功能以子应用的形式集成到旧系统中。</li>
+<li><strong>1：</strong> 多技术栈融合：允许在同一个项目中使用不同的前端技术栈（如 Vue、React、Angular 等），充分发挥各技术栈的优势。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Quirks（怪癖）模式是什么？它和Standards（标准）有什么区别？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>页面如果写了DTD，就意味着这个页面采用对CSS支持更好的布局，而如果没有，则采用兼容之前的布局方式，这就是Quirks模式，有时候也叫怪癖模式、诡异模式、怪异模式。</p>
+<p>区别：总体会有布局、样式解析、脚本执行三个方面区别，这里列举一些比较常见的区别：</p>
+<ul>
+<li><p>盒模型：在W3C标准中，如果设置一个元素的宽度和高度，指的是元素内容的宽度和高度，然而在Quirks模式下，IE的宽度和高度还包含了padding和border</p>
+</li>
+<li><p>设置行内元素的高宽：在Standards模式下，给行内元素设置width和height都不会生效，而在Quriks模式下会生效</p>
+</li>
+<li><p>用margin：0 auto设置水平居中:在Standards模式下，设置margin：0 auto；可以使元素水平居中，但是在Quriks模式下失效</p>
+</li>
+<li><p>设置百分比高度:在Standards模式下，元素的高度是由包含的内容决定的，如果父元素没有设置百分比的高度，子元素设置百分比的高度是无效的</p>
+</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Qiankun 中主应用和子应用是如何通信的？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> props 通信：主应用在加载子应用时，可以通过 props 向子应用传递数据。子应用可以在 mount 生命周期中接收这些数据。例如：</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-comment">// 主应用</span>
+<span class="hljs-title function_">registerMicroApps</span>([
+  {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;app1&#x27;</span>,
+    <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;//localhost:8081&#x27;</span>,
+    <span class="hljs-attr">container</span>: <span class="hljs-string">&#x27;#subapp-viewport&#x27;</span>,
+    <span class="hljs-attr">props</span>: {
+      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;Hello from main app&#x27;</span>
+    }
+  }
+]);
+
+<span class="hljs-comment">// 子应用</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">mount</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(props.<span class="hljs-property">message</span>); <span class="hljs-comment">// 输出: Hello from main app</span>
+}
+</code></pre><ul>
+<li><strong>1：</strong> 事件通信：可以使用自定义事件来实现主应用和子应用之间的通信。主应用和子应用都可以触发和监听事件。Qiankun 提供了 window.dispatchEvent 和 window.addEventListener 来实现事件的触发和监听。</li>
+<li><strong>1：</strong> 全局状态管理：使用第三方状态管理库（如 Redux、MobX 等），将状态存储在全局，主应用和子应用都可以访问和修改这些状态。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">18. 什么是 React Context API？它解决了什么问题？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>React Context API：</p>
+</li>
+<li><p>Context API 是 React 提供的一种在组件树中传递数据的机制，无需通过 props 逐层传递。</p>
+</li>
+<li><p>创建 Context：使用 React.createContext 创建一个 Context 对象。</p>
+</li>
+<li><p>提供 Context：使用 Context.Provider 组件将数据传递给子组件。</p>
+</li>
+<li><p>消费 Context：使用 Context.Consumer 组件或 useContext Hook 在子组件中访问数据。</p>
+</li>
 </ul>
 </details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">59. 如何在 Redux Thunk 中处理异步操作？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>要使用 Redux Thunk，需要将其作为中间件导入。Action创建者不应只返回一个对象，而应返回一个将dispatch 作为参数的函数。</p>
 <pre><code class="hljs language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">addUser</span> = (<span class="hljs-params">{ firstName, lastName }</span>) =&gt; {
@@ -52,646 +324,173 @@
     <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">addUserError</span>(error.<span class="hljs-property">message</span>));
   })
 }
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">29. 受控组件和非受控组件有什么区别？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>在 HTML 文档中，许多表单元素（例如、、）都保持自己的状态。不受控制的组件将 DOM 视为这些输入状态的真实源。在受控组件中，内部状态用于跟踪元素值。当输入值改变时，React 会重新渲染输入。</p>
+</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">WebAssembly (Wasm) 的核心特点有哪些？</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong>  高性能：WebAssembly 的字节码格式在浏览器中编译运行接近原生速度，非常适合对性能要求高的任务。</li>
+<li><strong>1：</strong>  跨平台支持：WebAssembly 是浏览器标准，适用于 Chrome、Firefox、Safari 等主流浏览器，且具备良好的跨平台兼容性。</li>
+<li><strong>1：</strong>  安全性：Wasm 运行在沙盒环境，不能直接访问宿主机器资源，符合 Web 的安全模型。</li>
+<li><strong>1：</strong>  语言多样性：支持 C、C++、Rust 等多种语言，弥补了 JavaScript 仅限于单语言开发的不足。</li>
+<li><strong>1：</strong>  小体积：Wasm 格式文件较小，传输高效，加载速度快。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">常见的浏览器内核有哪些？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong>  Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]</li>
+<li><strong>1：</strong>  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等</li>
+<li><strong>1：</strong>  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]</li>
+<li><strong>1：</strong>  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">17. node.js的同步和异步编程是什么意思？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><p>同步编程指的是程序按照顺序依次执行的方式。在这种方式下，程序会逐行地执行代码，并且在某条代码执行完毕之前，其他后续代码都会暂停等待。这种方式适用于那些顺序依赖性强、逻辑复杂度低的情况。</p>
 </li>
-<li><p>在与非 React 代码集成时，不受控制的组件非常有用（例如，如果您需要支持某种 jQuery 表单插件）。</p>
+<li><p>而异步编程则是指程序在同一时间内可以并行执行多个任务的方式。在这种方式下，程序可以不按顺序地执行代码，并且可以在某些任务未完成时就开始执行其他任务。这种方式适用于那些顺序依赖性较弱、并发性要求较高的情况。</p>
+</li>
+<li><p>Node.js主要支持异步编程，并且通过Event Loop机制实现了高效的并发能力。然而，为了兼容其他编程风格，也支持一些同步编程的功能。</p>
 </li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">45. 对 React-Intl 的理解，它的工作原理？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>React-intl是雅虎的语言国际化开源项目FormatJS的一部分，通过其提供的组件和API可以与ReactJS绑定。</p>
-<p>React-intl提供了两种使用方法，一种是引用React组件，另一种是直接调取API，官方更加推荐在React项目中使用前者，只有在无法使用React组件的地方，才应该调用框架提供的API。它提供了一系列的React组件，包括数字格式化、字符串格式化、日期格式化等。</p>
-<p>在React-intl中，可以配置不同的语言包，他的工作原理就是根据需要，在语言包之间进行切换。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">为什么要初始化 CSS 样式</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>消除浏览器默认样式差异（如 margin、padding），便于布局。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">78. mixin和mixis区别？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>mixin用于全局混入，会影响到每个组件实例，通常插件都是这样做初始化的。比如：可以全局混入封装好的ajax或者一些工具函数等。</p>
+<p>mixins用于单组件，是最常使用的扩展组件的方式。如果多个组件中有相同的业务逻辑，就可以将这些逻辑剥离出来，通过mixins混入代码。比如上拉下拉加载数据这种逻辑等。</p>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">请解释setTimeout和setInterval的区别，并说明如何清除定时器</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础`、`编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
+
+<ul>
+<li><p><strong>1：</strong> 区别</p>
+<ul>
+<li><code>setTimeout</code>：单次执行，延迟指定时间后执行一次。  </li>
+<li><code>setInterval</code>：循环执行，每隔指定时间执行一次。</li>
+</ul>
+</li>
+<li><p><strong>1：</strong> 清除定时器</p>
+<ul>
+<li><code>clearTimeout(timerId)</code>：清除 <code>setTimeout</code> 返回的定时器 ID。  </li>
+<li><code>clearInterval(timerId)</code>：清除 <code>setInterval</code> 返回的定时器 ID。</li>
+</ul>
+</li>
+<li><p><strong>2：</strong> 优先使用 setTimeout 递归模式替代 setInterval，避免累积延迟</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// 定义一个变量来存储定时器 ID</span>
+
+<span class="hljs-keyword">let</span> timerId;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">recursiveTimeout</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;定时任务执行&#x27;</span>);
+    <span class="hljs-comment">// 递归调用 setTimeout</span>
+    timerId = <span class="hljs-built_in">setTimeout</span>(recursiveTimeout, <span class="hljs-number">2000</span>);
+}
+
+<span class="hljs-comment">// 启动定时器</span>
+<span class="hljs-title function_">recursiveTimeout</span>();
+
+<span class="hljs-comment">// 定义一个清理定时器的函数</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">clearRecursiveTimeout</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">clearTimeout</span>(timerId);
+}
+
+<span class="hljs-comment">// 在需要的时候调用清理函数</span>
+<span class="hljs-comment">// 例如，在 5 秒后停止定时器</span>
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">clearRecursiveTimeout</span>();
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;定时器已清理&#x27;</span>);
+}, <span class="hljs-number">5000</span>);
+</code></pre></li>
+</ul>
+</details>
+
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">当前主流的微前端方案大概有哪些？</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> iframe：Web中的原生方案，也是微前端的起源，接入很简单，但是最大缺点就是通信很麻烦。</li>
+<li><strong>1：</strong> single-spa：较早兴起的微前端框架，是后续很多微前端框架的奠基石。</li>
+<li><strong>1：</strong> qiankun：基于 single-spa，由阿里巴巴出品，国内比较主流的微前端方案。</li>
+<li><strong>1：</strong> micro-app：基于 Webcomponent 的微前端方案，由京东出品。</li>
+<li><strong>1：</strong> EMP：基于 webpack 5 module federation（模块联邦） 的微前端方案，由欢聚时代出品。</li>
+<li><strong>1：</strong> 无界：腾讯推出的一款微前端解决方式。它是一种基于 Web Components + iframe 的全新微前端方案，继承 iframe 的优点，补足 iframe 的缺点，让 iframe 焕发新生</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">11. `type A = { a: number; b: string; } ，type B = { a: number; b: string; c: boolean; }` 请问A和B的关系是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
+<li><strong>1：</strong> A是B的子类型 。因为A包含的属性a和b在B中都有，且B还额外包含c属性 。</li>
+</ul>
+</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">谈谈你对事件循环的理解</h4><div class="head-re"><span class="head-score">10 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础`、`架构`、`编程</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
+
+<ul>
+<li><p><strong>1：</strong></p>
+<ul>
+<li>事件循环是 JavaScript 在单线程环境下处理异步任务的执行机制。</li>
+<li>执行顺序为：先执行同步代码，同步代码执行完后，检查并执行微任务队列中的所有微任务，微任务队列清空后，从宏任务队列中取出一个宏任务执行，执行完这个宏任务后，再次检查并执行微任务队列，如此循环往复。</li>
+</ul>
+</li>
+<li><p><strong>3：</strong>
+<strong>浏览器环境代码示例（Chrome 112）</strong></p>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;start&#x27;</span>);
+
+<span class="hljs-comment">// 同步执行 Promise 构造函数内的代码</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Promise 构造函数内&#x27;</span>);
+  <span class="hljs-title function_">resolve</span>();
+}).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Promise 微任务 1&#x27;</span>);
+  <span class="hljs-comment">// 嵌套微任务</span>
+  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Promise 微任务 2&#x27;</span>));
+});
+
+<span class="hljs-comment">// 宏任务 setTimeout</span>
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;宏任务 setTimeout&#x27;</span>);
+  <span class="hljs-comment">// 微任务</span>
+  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Promise 微任务 3&#x27;</span>));
+}, <span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// 创建 MutationObserver 实例，这是一个微任务</span>
+<span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MutationObserver</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;MutationObserver 微任务&#x27;</span>));
+<span class="hljs-keyword">const</span> div = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>);
+observer.<span class="hljs-title function_">observe</span>(div, { <span class="hljs-attr">attributes</span>: <span class="hljs-literal">true</span> });
+div.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-string">&#x27;attr&#x27;</span>);
+
+<span class="hljs-comment">// 同步代码</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;end&#x27;</span>);
+</code></pre><p><strong>执行顺序说明</strong>：</p>
+<ol>
+<li>执行同步代码：输出 <code>start</code>，<code>Promise 构造函数内</code>，<code>end</code>。</li>
+<li>执行微任务队列：输出 <code>Promise 微任务 1</code>，<code>Promise 微任务 2</code>，<code>MutationObserver 微任务</code>。</li>
+<li>执行宏任务队列：<code>宏任务 setTimeout</code>，<code>Promise 微任务 3</code>。</li>
+</ol>
+</li>
+<li><p><strong>2：</strong>
+<strong>常见宏任务和微任务类型</strong></p>
+<ul>
+<li><strong>宏任务</strong>：<ul>
+<li><strong>定时器类</strong>：<code>setTimeout</code>、<code>setInterval</code>。</li>
+<li><strong>I/O 操作</strong>：文件读取、网络请求（如 <code>XMLHttpRequest</code> 的完成回调）。</li>
+<li><strong>UI 渲染</strong>：浏览器的重排和重绘。</li>
+<li><strong><code>setImmediate</code></strong>：在 Node.js 环境中，它是一个宏任务，会在 I/O 事件回调之后执行。</li>
+<li><strong><code>requestAnimationFrame</code></strong>：在浏览器中，它会在下次重绘之前执行，属于宏任务。</li>
+</ul>
+</li>
+<li><strong>微任务</strong>：<ul>
+<li><strong>Promise 相关</strong>：<code>Promise.then</code>、<code>Promise.catch</code>、<code>Promise.finally</code>。</li>
+<li><strong><code>process.nextTick</code></strong>：在 Node.js 环境中，它的优先级高于普通微任务，会在当前操作结束后立即执行。</li>
+<li><strong><code>MutationObserver</code></strong>：用于监听 DOM 变化，当 DOM 发生变化时，相应的回调会作为微任务执行。</li>
+<li><strong><code>queueMicrotask</code></strong>：可以将一个函数作为微任务加入到微任务队列中。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>2：</strong>
+<strong>浏览器与 Node.js 差异</strong></p>
+<ul>
+<li><strong>微任务优先级</strong>：浏览器中常见的微任务顺序是 <code>Promise</code> 相关微任务 &gt; <code>MutationObserver</code>；Node.js 中 <code>process.nextTick</code> 优先级高于 <code>Promise</code> 相关微任务。</li>
+<li><strong>宏任务队列</strong>：浏览器的宏任务队列包含定时器、I/O、UI 渲染等；Node.js 的宏任务队列有多个执行阶段，如 <code>timers</code>（处理定时器回调）、<code>I/O</code>（处理 I/O 回调）、<code>idle</code>、<code>prepare</code>、<code>check</code>（执行 <code>setImmediate</code> 回调）等。</li>
+</ul>
+</li>
+<li><p><strong>2：</strong>
+<strong>实践建议</strong>：</p>
+<ul>
+<li>避免在 <code>Promise</code> 构造函数内编写耗时代码，防止阻塞主线程。</li>
+<li>对于动画相关任务，使用 <code>requestAnimationFrame</code> 进行优化。</li>
+<li>控制微任务执行时间，避免长时间占用主线程导致 UI 渲染卡顿。</li>
+</ul>
+</li>
+</ul>
+</details>
+
 </details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">31. 为什么说React中的props是只读的？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
 <li>保证react的单向数据流的设计模式，使状态更可预测。如果允许自组件修改，那么一个父组件将状态传递给好几个子组件，这几个子组件随意修改，就完全不可预测，不知道在什么地方修改了状态，所以我们必须像纯函数一样保护 props 不被修改</li>
 </ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">33. 说说对高阶组件（HOC）的理解？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>高阶函数（Higher-order function），至少满足下列一个条件的函数</p>
-</li>
-<li><p>接受一个或多个函数作为输入</p>
-</li>
-<li><p>输出一个函数</p>
-</li>
-<li><p>在React中，高阶组件即接受一个或多个组件作为参数并且返回一个组件，本质也就是一个函数，并不是一个组件</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">23. 说说对Fiber架构的理解？解决了什么问题？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>在react中，主要做了以下的操作：</p>
-<ul>
-<li><strong>1：</strong> 为每个增加了优先级，优先级高的任务可以中断低优先级的任务。然后再重新，注意是重新执行优先级低的任务</li>
-<li><strong>1：</strong> 增加了异步任务，调用requestIdleCallback api，浏览器空闲的时候执行</li>
-<li><strong>1：</strong> dom diff树变成了链表，一个dom对应两个fiber（一个链表），对应两个队列，这都是为找到被中断的任务，重新执行</li>
-<li><strong>1：</strong> Fiber把渲染更新过程拆分成多个子任务，每次只做一小部分，做完看是否还有剩余时间，如果有继续下一个任务；如果没有，挂起当前任务，将时间控制权交给主线程，等主线程不忙的时候在继续执行，即可以中断与恢复，恢复后也可以复用之前的中间状态，并给不同的任务赋予不同的优先级，其中每个任务更新单元为 React Element 对应的 Fiber节点</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">76. 如何用 React构建（ build）生产模式？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>通常，使用 Webpack的 DefinePlugin方法将 NODE ENV设置为 production。这将剥离 propType验证和额外的警告。除此之外，还可以减少代码，因为 React使用 Uglify的dead-code来消除开发代码和注释，这将大大减少包占用的空间。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">68. React18中引入的并发模式是什么，它带来了哪些改进</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>React18中引入的并发模式是一种新的渲染策略，它允许React在渲染过程中中断和恢复工作，以便更好地响应用户输入和其他高优先级任务。</p>
-</li>
-<li><p>通过并发模式，React可以更好地管理资源的分配和使用，提高应用的响应性和性能。</p>
-</li>
-<li><p>此外，并发模式还为React的未来扩展提供了基础，比如支持更复杂的动画和交互效果。</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">32. 使用Hooks要遵守哪些原则？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>只在最顶层使用 Hook  不要在循环，条件或嵌套函数中调用 Hook， 确保总是在你的 React 函数的最顶层调用他们。</p>
-</li>
-<li><p>只在 React 函数中调用 Hook</p>
-</li>
-</ul>
-<p>不要在普通的 JavaScript 函数中调用 Hook。你可以：</p>
-<ul>
-<li><p>在 React 的函数组件中调用 Hook</p>
-</li>
-<li><p>在自定义 Hook 中调用其他 Hook</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">51. 在React中组件的this.state和setState有什么区别？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>this.state通常是用来初始化state的，this.setState是用来修改state值的。如果初始化了state之后再使用this.state，之前的state会被覆盖掉，如果使用this.setState，只会替换掉相应的state值。所以，如果想要修改state的值，就需要使用setState，而不能直接修改state，直接修改state之后页面是不会更新的。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">44. 在React中如何避免不必要的render？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>React 基于虚拟 DOM 和高效 Diff 算法的完美配合，实现了对 DOM 最小粒度的更新。大多数情况下，React 对 DOM 的渲染效率足以业务日常。但在个别复杂业务场景下，性能问题依然会困扰我们。此时需要采取一些措施来提升运行性能，其很重要的一个方向，就是避免不必要的渲染（Render）。这里提下优化的点</p>
-<ul>
-<li>shouldComponentUpdate 和 PureComponent</li>
-</ul>
-<p>在 React 类组件中，可以利用 shouldComponentUpdate或者 PureComponent 来减少因父组件更新而触发子组件的 render，从而达到目的。shouldComponentUpdate 来决定是否组件是否重新渲染，如果不希望组件重新渲染，返回 false 即可。</p>
-<ul>
-<li>利用高阶组件</li>
-</ul>
-<p>在函数组件中，并没有 shouldComponentUpdate 这个生命周期，可以利用高阶组件，封装一个类似 PureComponet 的功能</p>
-<ul>
-<li>使用 React.memo</li>
-</ul>
-<p>React.memo 是 React 16.6 新的一个 API，用来缓存组件的渲染，避免不必要的更新，其实也是一个高阶组件，与 PureComponent 十分类似，但不同的是， React.memo只能用于函数组件。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">53. Vuex和单纯的全局对象有什么区别？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。</p>
-<p>不能直接改变 store 中的状态。改变 store 中的状态的唯一途径就是显式地提交 (commit) mutation。这样可以方便地跟踪每一个状态的变化，从而能够实现一些工具帮助更好地了解我们的应用</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">从输入URL到看到页面发生的全过程？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li>1.用户首先在浏览器地址栏中输入想要访问的网站的URL。</li>
-<li>2.浏览器内部代码会解析这个URL。它首先会检查本地hosts文件，看是否有对应的域名。如果有，浏览器就会直接向该IP地址发送请求。如果没有，浏览器会将域名发送给DNS服务器进行解析，将域名转换成对应的服务器IP地址。</li>
-<li>3.浏览器通过HTTP协议向服务器发送请求。HTTP协议是一种应用层协议，用于在客户端和服务器之间传输数据。浏览器会根据URL中的路径和参数构建HTTP请求，并发送给服务器。</li>
-<li>4.服务器接收到请求后，会根据请求的内容进行处理，并返回相应的HTTP响应。响应中包含了服务器返回的数据，如HTML、CSS、JavaScript等资源文件，以及状态码等信息。</li>
-<li>5.浏览器接收到服务器返回的响应后，会解析响应中的数据，并开始渲染页面。浏览器会根据HTML文件中的标签和属性，将页面元素渲染出来。同时，浏览器还会下载并解析CSS和JavaScript文件，以实现页面的样式和交互功能。</li>
-<li>6.当页面加载完成后，浏览器会触发DOMContentLoaded事件，通知页面已经加载完成。此时，页面中的JavaScript代码可以开始执行，实现页面的交互功能。</li>
-<li>7.如果页面中还有异步请求（如Ajax请求），浏览器会继续发送这些请求，并等待服务器返回响应。当这些请求完成后，浏览器会更新页面中的相应部分，以反映最新的数据。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">浏览器中常见的存储方式有哪些？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> Cookie，用于存储少量的用户信息，会随着每次 HTTP 请求发送到服务器。</li>
-<li><strong>1：</strong> LocalStorage 用于持久化存储，大小一般在 5MB 左右，不会自动发送到服务器。</li>
-<li><strong>1：</strong> SessionStorage 也是本地存储，但是数据在会话结束（浏览器关闭）后就会清除。</li>
-<li><strong>1：</strong> IndexedDB 是一种更强大的非关系型数据库，用于存储大量的结构化数据。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">51. Vue-Router 的懒加载如何实现</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>加载渲染过程：</p>
-<p>方案一(常用)：使用箭头函数+import动态加载</p>
-<pre><code class="hljs language-js">  <span class="hljs-keyword">const</span> <span class="hljs-title function_">List</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/components/list.vue&#x27;</span>)
-  <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>({
-    <span class="hljs-attr">routes</span>: [
-      { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">List</span> }
-    ]
-  })
-</code></pre><p>方案二：使用箭头函数+require动态加载</p>
-<pre><code class="hljs language-js"><span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>({
-  <span class="hljs-attr">routes</span>: [
-   {
-     <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list&#x27;</span>,
-     <span class="hljs-attr">component</span>: <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">require</span>([<span class="hljs-string">&#x27;@/components/list&#x27;</span>], resolve)
-   }
-  ]
-})
-</code></pre><p>方案二：方案三：使用webpack的require.ensure技术，也可以实现按需加载。 这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。</p>
-<pre><code class="hljs language-js"><span class="hljs-comment">// r就是resolve</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">List</span> = r =&gt; <span class="hljs-built_in">require</span>.<span class="hljs-title function_">ensure</span>([], <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">r</span>(<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@/components/list&#x27;</span>)), <span class="hljs-string">&#x27;list&#x27;</span>);
-<span class="hljs-comment">// 路由也是正常的写法  这种是官方推荐的写的 按模块划分懒加载 </span>
-<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Router</span>({
-  <span class="hljs-attr">routes</span>: [
-  {
-    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/list&#x27;</span>,
-    <span class="hljs-attr">component</span>: <span class="hljs-title class_">List</span>,
-    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;list&#x27;</span>
-  }
- ]
-}))
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">3. webpack 的热更新原理?</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> 在编写未经过 webpack 打包的源代码后，Webpack Compile 将源代码和 HMR Runtime 一起编译成 bundle 文件，传输给 Bundle Server 静态资源服务器，</li>
-<li><strong>1：</strong> 当某一个文件或者模块发生变化时，webpack 监听到文件变化对文件重新编译打包，编译生成唯一的hash 值，这个 hash 值用来作为下一次热更新的标识根据变化的内容生成两个补丁文件: manifest (包含了 hash 和 chundId ，用来说明变化的内容)和 chunk.js 模块。</li>
-<li><strong>1：</strong> 由于 socket 服务器在 HMR Runtime 和 HMR Server 之间建立 websocket 链接，当文件发生改动的时候，服务端会向浏览器推送一条消息，消息包含文件改动后生成的 hash 值，如下图的h 属性，作为下一次热更细的标识</li>
-<li><strong>1：</strong> 在浏览器接受到这条消息之前，浏览器已经在上一次 socket 消息中已经记住了此时的 hash 标识这时候我们会创建一个 ajax 去服务端请求获取到变化内容的 manifest 文件mainfest 文件包含重新 build 生成的 hash 值，以及变化的模块，对应上图的 c 属性浏览器根据 manifest 文件获取模块变化的内容，从而触发 render 流程，实现局部模块更新。
-<img src="/public/images/image.png" alt="alt text"></li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">38. Webpack 的核心概念有哪些？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> 入口（Entry）：指示 Webpack 从哪个模块开始打包，可配置单个或多个入口。</li>
-<li><strong>1：</strong> 输出（Output）：告诉 Webpack 打包后的文件存放在哪里，以及如何命名。</li>
-<li><strong>1：</strong> loader：用于处理不同类型的文件，将它们转换为 Webpack 能够处理的模块。例如，<code>css-loader</code> 用于处理 CSS 文件，<code>babel-loader</code> 用于将 ES6+ 代码转
-换为向后兼容的 JavaScript 代码。</li>
-<li><strong>1：</strong> 插件（Plugin）：用于执行更广泛的任务，如代码压缩、分割代码、生成 HTML 文件等。常见的插件有 HtmlWebpackPlugin、MiniCssExtractPlugin 等。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">11. webpack的loader是什么？为什么使用它？它有哪几种配置方式</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 架构</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> loader 用于对模块的&quot;源代码&quot;进行转换，在 import 或&quot;加载&quot;模块时预处理文件</li>
-<li><strong>1：</strong> webpack 做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。<br>在 webpack 内部中，任何文件都是模块，不仅仅只是js 文件。默认情况下，在遇到 import 或者 require 加载模块的时候，webpack 只支持对 js 和 json文件打包，像 css、 sass、 png 等这些类型的文件的时候，webpack 则无能为力，这时候就需要配置对应的 loader 进行文件内容的解析。</li>
-<li><strong>3：</strong> 关于配置 loader 的方式有三种:<blockquote>
-<p>配置方式(推荐)：在 webpack.config.js文件中指定 loader<br>内联方式：在每个 import 语句中显式指定 loader<br>Cl 方式：在 shell 命令中指定它们</p>
-</blockquote>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">什么是 FOUC（无样式内容闪烁）？你如何来避免 FOUC？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>无样式内容闪烁，因 CSS 加载延迟。解决方案：将 CSS 放在 <code>&lt;head&gt;</code> 中，避免使用 @import。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">CSS 中的 BEM 命名规范是什么？为什么要使用它？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><p><strong>2：</strong> BEM 命名规范：</p>
-<ul>
-<li>Block（块）：独立的组件，如 <code>.button</code></li>
-<li>Element（元素）：属于块的一部分，用 <code>__</code> 连接，如 <code>.button__text</code></li>
-<li>Modifier（修饰符）：改变块或元素的外观或行为，用 <code>--</code> 连接，如 <code>.button--large</code></li>
-</ul>
-</li>
-<li><p><strong>2：</strong> 使用BEM的好处：</p>
-<ul>
-<li>提高代码的可读性和可维护性</li>
-<li>避免CSS选择器嵌套过深</li>
-<li>减少命名冲突</li>
-<li>明确表达组件结构和关系</li>
-<li>方便团队协作和代码复用</li>
-</ul>
-</li>
-</ul>
-</details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">请解释 Nuxt3 中 nitro 的作用及关键配置项</h4><div class="head-re"><span class="head-score">8 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><strong>2：</strong> nitro 负责 Nuxt3 服务器端构建与部署核心支撑、服务端渲染（SSR）及性能优化、灵活的路由处理与适配、跨平台与多环境适配</li>
-<li><strong>1：</strong> 指定服务器的预设模式，决定了 Nuxt3 应用最终如何构建以及适配何种类型的运行环境。例：</li>
-</ul>
-<pre><code class="hljs language-js"><span class="hljs-comment">// nuxt.config.ts</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">nitro</span>: {
-    <span class="hljs-attr">preset</span>: <span class="hljs-string">&#x27;node-server&#x27;</span>
-  }
-}
-<span class="hljs-comment">//在上述配置中，选择 node-server 预设，表示应用将以适合在传统 Node.js 服务器上运行的方式进行构建，生成对应的可执行代码和相关配置。如果设置为 serverless，</span>
-<span class="hljs-comment">// 例如 preset: &#x27;serverless&#x27;，则会按照无服务器架构的要求对应用进行构建，以便能够部署到像 AWS Lambda 这样的无服务器环境中，nitro 会自动处理相关的代码打包、资源管理等差异，确保应用正常运行。</span>
-</code></pre><ul>
-<li><strong>2：</strong> routeRules,用于详细定义各个路由的规则，涵盖缓存策略、重定向规则、响应头设置等方面，能够根据具体的业务需求对不同路由进行定制化配置，优化路由相关的性能和用户访问逻辑。</li>
-</ul>
-<pre><code class="hljs language-ts"><span class="hljs-comment">// nuxt.config.ts</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">nitro</span>: {
-    <span class="hljs-attr">routeRules</span>: {
-      <span class="hljs-string">&#x27;/&#x27;</span>: {
-        <span class="hljs-attr">cache</span>: {
-          <span class="hljs-attr">maxAge</span>: <span class="hljs-number">60</span> * <span class="hljs-number">10</span> <span class="hljs-comment">// 为首页设置缓存时间，这里是 10 分钟</span>
-        }
-      },
-      <span class="hljs-string">&#x27;/about&#x27;</span>: {
-        <span class="hljs-attr">redirect</span>: {
-          <span class="hljs-attr">destination</span>: <span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-comment">// 将访问 /about 页面重定向到首页</span>
-          <span class="hljs-attr">statusCode</span>: <span class="hljs-number">302</span>
-        }
-      },
-      <span class="hljs-string">&#x27;/api/data&#x27;</span>: {
-        <span class="hljs-attr">headers</span>: {
-          <span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="hljs-string">&#x27;*&#x27;</span> <span class="hljs-comment">// 为 /api/data 路由设置响应头，允许跨域访问</span>
-        }
-      }
-    }
-  }
-}
-<span class="hljs-comment">//在这个示例中，针对应用的根路由（/）设置了缓存策略，即用户首次访问后，在接下来的 10 分钟内再次访问该页面时，服务器可以直接从缓存中获取页面内容并返回，减</span>
-<span class="hljs-comment">// 少服务器处理负担；对于 /about 页面配置了重定向规则，当用户访问该页面时会以 302 状态码重定向到首页；而 /api/data 路由则通过设置响应头，解决了该路由的跨域访问问题，方便前端与之交互。</span>
-</code></pre><ul>
-<li><strong>1：</strong> devProxy, 主要在开发环境中发挥作用，用于配置代理服务器，将前端应用发出的请求代理转发到指定的后端服务器地址，以此巧妙地解决开发过程中常见的跨域问题，使得前后端能够在本地
-开发环境下顺畅地协同工作。</li>
-</ul>
-<pre><code class="hljs language-ts"><span class="hljs-comment">// nuxt.config.ts</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">nitro</span>: {
-    <span class="hljs-attr">devProxy</span>: {
-      <span class="hljs-string">&#x27;/api&#x27;</span>: {
-        <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://localhost:3000/api&#x27;</span>, <span class="hljs-comment">// 后端 API 服务器的实际地址</span>
-        <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>
-      }
-    }
-  }
-}
-</code></pre><ul>
-<li><strong>1：</strong> output, 可以对构建输出的相关参数进行配置，包括指定构建输出的目录、公共资源目录的设置、确定模块格式等内容，让开发者能够根据项目的实际部署需求以及目标环境的
-要求，精准地定制构建结果的呈现形式。</li>
-</ul>
-<pre><code class="hljs language-ts"><span class="hljs-comment">// nuxt.config.ts</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">nitro</span>: {
-    <span class="hljs-attr">output</span>: {
-      <span class="hljs-attr">dir</span>: <span class="hljs-string">&#x27;dist&#x27;</span>, <span class="hljs-comment">// 设置构建输出目录为 dist</span>
-      <span class="hljs-attr">publicDir</span>: <span class="hljs-string">&#x27;public&#x27;</span>, <span class="hljs-comment">// 设定公共资源目录为 public</span>
-      <span class="hljs-attr">format</span>: <span class="hljs-string">&#x27;esm&#x27;</span> <span class="hljs-comment">// 设置模块格式为 ESM（ECMAScript 模块），也可根据需求选择其他格式</span>
-    }
-  }
-}
-</code></pre><ul>
-<li><strong>1：</strong> plugins, 允许开发者在 nitro 的构建流程中引入自定义的插件，这些插件能够扩展 nitro 的功能，执行诸如在服务器启动时初始化特定资源、修改请求和响应处理逻辑、与外部
-系统进行集成等操作，从而为服务器端应用增添更多的灵活性和可定制性。</li>
-</ul>
-<pre><code class="hljs language-ts"><span class="hljs-comment">// nuxt.config.ts</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-attr">nitro</span>: {
-    <span class="hljs-attr">plugins</span>: [<span class="hljs-string">&#x27;./server/plugins/myPlugin.ts&#x27;</span>]
-  }
-}
-</code></pre></details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">49. 对 SPA 单页面的理解，它的优缺点分别是什么？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>对于 runtime 来说，只需要保证组件存在 render 函数即可，而有了预编译之后，只需要保证构建过程中生成 render 函数就可以。在 webpack 中，使用vue-loader编译.vue文件，内部依赖的vue-template-compiler模块，在 webpack 构建过程中，将template预编译成 render 函数。与 react 类似，在添加了jsx的语法糖解析器babel-plugin-transform-vue-jsx之后，就可以直接手写render函数。</p>
-<p>所以，template和jsx的都是render的一种表现形式，不同的是：JSX相对于template而言，具有更高的灵活性，在复杂的组件中，更具有优势，而 template 虽然显得有些呆滞。但是 template 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">62. 如何动态绑定 class 和 style？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>在 Vue 中，可以通过对象或数组的形式动态绑定 class 和 style。对于 class，如果样式个数和名字不确定，则适合使用对象写法；若样式确定但是否应用不确定，则适用数组写法。例如：</p>
-<pre><code class="hljs language-html">&lt;div :<span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;{ active: isActive, &#x27;text-danger&#x27;: hasError }&quot;</span>&gt;&lt;/div&gt;
-&lt;div :class=&quot;[isActive ? &#x27;active&#x27; : &#x27;&#x27;, errorClass]&quot;&gt;&lt;/div&gt;
-&lt;div :style=&quot;{ color: activeColor, fontSize: fontSize + &#x27;px&#x27; }&quot;&gt;&lt;/div&gt;
-&lt;div :style=&quot;[baseStyles, overridingStyles]&quot;&gt;&lt;/div&gt;
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">CSS 动画和过渡的区别是什么？如何使用它们？</h4><div class="head-re"><span class="head-score">6 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><strong>2：</strong> 过渡（Transition）：<ul>
-<li>从一个状态到另一个状态的平滑过渡</li>
-<li>需要触发条件（如hover）</li>
-<li>只能定义开始和结束状态</li>
-</ul>
-</li>
-</ul>
-<pre><code class="hljs language-css">.<span class="hljs-property">element</span> {
-    <span class="hljs-attr">width</span>: 100px;
-    <span class="hljs-attr">transition</span>: width <span class="hljs-number">0.</span>3s ease;
-}
-
-.<span class="hljs-property">element</span>:hover {
-    <span class="hljs-attr">width</span>: 200px;
-}
-</code></pre><ul>
-<li><strong>2：</strong> 动画（Animation）：<ul>
-<li>可以定义多个状态的变化</li>
-<li>可以循环播放</li>
-<li>可以自动播放，无需触发条件</li>
-</ul>
-</li>
-</ul>
-<pre><code class="hljs language-css">@keyframes slide {
-    <span class="hljs-number">0</span>% {
-        <span class="hljs-attr">transform</span>: <span class="hljs-title function_">translateX</span>(<span class="hljs-number">0</span>);
-    }
-    <span class="hljs-number">50</span>% {
-        <span class="hljs-attr">transform</span>: <span class="hljs-title function_">translateX</span>(100px);
-    }
-    <span class="hljs-number">100</span>% {
-        <span class="hljs-attr">transform</span>: <span class="hljs-title function_">translateX</span>(<span class="hljs-number">0</span>);
-    }
-}
-
-.<span class="hljs-property">element</span> {
-    <span class="hljs-attr">animation</span>: slide 2s ease infinite;
-}
-</code></pre><ul>
-<li><strong>2：</strong> 主要区别：<ul>
-<li>触发方式：过渡需要触发条件，动画可以自动播放</li>
-<li>状态数量：过渡只有开始和结束两个状态，动画可以有多个状态</li>
-<li>循环播放：动画可以循环播放，过渡不能</li>
-<li>控制能力：动画的控制能力更强，可以精确控制中间状态</li>
-</ul>
-</li>
-</ul>
-</details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">34. Vue中怎么异步加载组件</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><pre><code class="hljs language-js">&lt;template&gt; 
-    &lt;MyComponent /&gt; 
-&lt;/template&gt;
-&lt;script setup&gt;
-import { defineAsyncComponent } from &#x27;vue&#x27;
-
-const MyComponent = defineAsyncComponent(() =&gt;
-  import(&#x27;./components/MyComponent.vue&#x27;)
-)
-&lt;/script&gt;
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">30. React如何进行代码拆分？拆分的原则是什么？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>react 的拆分前提是代码目录设计规范，模块定义规范，代码设计规范，符合程序设计的一般原则，例如高内聚、低耦合等等。</p>
-</li>
-<li><p>在我们的react项目中：</p>
-</li>
-<li><p>在 api 层面我们单独封装，对外暴露 http 请求的结果。</p>
-</li>
-<li><p>数据层我们使用的 mobx 封装处理异步请求和业务逻辑处理。</p>
-</li>
-<li><p>视图层，尽量使用 mobx 层面的传递过来的数据，修改逻辑。</p>
-</li>
-<li><p>静态类型的资源单独放置</p>
-</li>
-<li><p>公共组件、高阶组件、插件单独放置</p>
-</li>
-<li><p>工具类文件单独放置</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">42. 哪些方法会触发 React 重新渲染？重新渲染 render 会做些什么？</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>（1）哪些方法会触发 react 重新渲染?</p>
-<ul>
-<li>setState（）方法被调用</li>
-</ul>
-<p>setState 是 React 中最常用的命令，通常情况下，执行 setState 会触发 render。但是这里有个点值得关注，执行 setState 的时候不一定会重新渲染。当 setState 传入 null 时，并不会触发 render。</p>
-<ul>
-<li>父组件重新渲染</li>
-</ul>
-<p>只要父组件重新渲染了，其子组件都有可能重新渲染，因为父组件重新渲染了之后，所有子组件都会重新走一遍生命周期，这个时候只要子组件的 shouldComponentUpdate 或者 pureComponent 返回了 true，都会触发子组件的重新渲染。</p>
-<p>（2）重新渲染 render 会做些什么?</p>
-<ul>
-<li><p>会对新旧 VNode 进行对比，也就是我们所说的Diff算法。</p>
-</li>
-<li><p>对新旧两棵树进行一个深度优先遍历，这样每一个节点都会一个标记，在到深度遍历的时候，每遍历到一和个节点，就把该节点和新的节点树进行对比，如果有差异就放到一个对象里面</p>
-</li>
-<li><p>遍历差异对象，根据差异的类型，根据对应对规则更新VNode</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">58. 什么是React调和？</h4><div class="head-re"><span class="head-score">2 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 编程</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li>调和是 React 的一种算法，用于区分一棵元素树和另一棵元素树，以确定需要替换的部分。
-调和是我们过去所说的虚拟 DOM 背后的算法。其定义听起来是这样的：当您渲染 React 应用程序时，描述应用程序的元素树会在预留内存中生成。然后，这棵树就会被包含在呈现环境中，例如，在浏览器应用程序中，它会被转化为一组 DOM 操作。应用状态更新时，会生成新的元素树。新的树会与之前的树进行比较，以便准确计算和启用重新绘制更新后的应用程序所需的操作。</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">HTML、XML、XHTML 的区别</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p>HTML：超文本标记语言，是语法较为松散的、不严格的Web语言；</p>
-</li>
-<li><p>XML：可扩展标记语言，是语法较为严格、严格的标记语言；</p>
-</li>
-<li><p>XHTML：可扩展超文本标记语言，是HTML进行XML严格化的结果；</p>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">69. Vue 3 中的 Teleport 是什么？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>Teleport 用于将组件渲染到指定 DOM 节点。</p>
-<pre><code class="hljs language-js">
-&lt;template&gt;
-  &lt;teleport to=&quot;body&quot;&gt;
-    &lt;div&gt;Modal&lt;/div&gt;
-  &lt;/teleport&gt;
-&lt;/template&gt;
-</code></pre></details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">13. TCP的可靠传输机制</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>TCP 的可靠传输机制是基于连续 ARQ 协议和滑动窗口协议的。</p>
-<p>TCP 协议在发送方维持了一个发送窗口，发送窗口以前的报文段是已经发送并确认了的报文段，发送窗口中包含了已经发送但 未确认的报文段和允许发送但还未发送的报文段，发送窗口以后的报文段是缓存中还不允许发送的报文段。当发送方向接收方发 送报文时，会依次发送窗口内的所有报文段，并且设置一个定时器，这个定时器可以理解为是最早发送但未收到确认的报文段。</p>
-<p>如果在定时器的时间内收到某一个报文段的确认回答，则滑动窗口，将窗口的首部向后滑动到确认报文段的后一个位置，此时如 果还有已发送但没有确认的报文段，则重新设置定时器，如果没有了则关闭定时器。如果定时器超时，则重新发送所有已经发送 但还未收到确认的报文段，并将超时的间隔设置为以前的两倍。</p>
-<p>当发送方收到接收方的三个冗余的确认应答后，这是一种指示，说明该报文段以后的报文段很有可能发生丢失了，那么发送方会启用快速重传的机制，就是当前定时器结束前，发送所有的已发 送但确认的报文段</p>
-<p>接收方使用的是累计确认的机制，对于所有按序到达的报文段，接收方返回一个报文段的肯定回答。如果收到了一个乱序的报文 段，那么接方会直接丢弃，并返回一个最近的按序到达的报文段的肯定回答。使用累计确认保证了返回的确认号之前的报文段都 已经按序到达了，所以发送窗口可以移动到已确认报文段的后面。</p>
-<p>发送窗口的大小是变化的，它是由接收窗口剩余大小和网络中拥塞程度来决定的，TCP 就是通过控制发送窗口的长度来控制报文 段的发送速率。</p>
-<p>但是 TCP 协议并不完全和滑动窗口协议相同，因为许多的 TCP 实现会将失序的报文段给缓存起来，并且发生重传时，只会重 传一个报文段，因此 TCP 协议的可靠传输机制更像是窗口滑动协议和选择重传协议的一个混合体。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">谈谈你对唤醒函数的理解</h4><div class="head-re"><span class="head-score">5 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础`、`编程</div><div class="head-tips">级别: `W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><p><strong>1：</strong> 基本概念
-唤醒函数通常用于控制程序的执行流程，特别是在异步编程或并发编程场景中。其核心作用是在特定条件满足时，将处于等待或阻塞状态的代码重新激活继续执行。它就像是一个“开关”，在合适的时机触发，让程序从暂停状态恢复运行，有助于实现程序的有序执行和资源的合理利用。</p>
-</li>
-<li><p><strong>2：</strong> 实现方式及示例</p>
-<ul>
-<li><strong>基于定时器的唤醒</strong>：通过 <code>setTimeout</code> 或 <code>setInterval</code> 来设置一个延迟时间，当时间到达时触发唤醒操作。</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">wakeAfterDelay</span>(<span class="hljs-params">delay</span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
-        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;唤醒啦&#x27;</span>);
-        }, delay);
-    });
-}
-
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;开始等待&#x27;</span>);
-    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">wakeAfterDelay</span>(<span class="hljs-number">2000</span>);
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;继续执行&#x27;</span>);
-}
-
-<span class="hljs-title function_">main</span>();
-</code></pre><ul>
-<li><strong>基于事件的唤醒</strong>：监听某个特定事件，当事件发生时进行唤醒。在前端开发中，常见的如按钮点击、网络请求完成等事件。</li>
-</ul>
-<pre><code class="hljs language-html">&lt;!<span class="hljs-variable constant_">DOCTYPE</span> html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;button id=&quot;wakeBtn&quot;&gt;点击唤醒&lt;/button&gt;
-    &lt;script&gt;
-        function wakeOnClick() {
-            return new Promise((resolve) =&gt; {
-                const btn = document.getElementById(&#x27;wakeBtn&#x27;);
-                btn.addEventListener(&#x27;click&#x27;, () =&gt; {
-                    resolve(&#x27;按钮点击，唤醒啦&#x27;);
-                });
-            });
-        }
-
-        async function main() {
-            console.log(&#x27;等待点击&#x27;);
-            const result = await wakeOnClick();
-            console.log(result);
-            console.log(&#x27;继续执行&#x27;);
-        }
-
-        main();
-    &lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code></pre></li>
-<li><p><strong>2：</strong> 应用场景</p>
-<ul>
-<li><strong>电商系统中的限时抢购</strong>：在电商的限时抢购活动中，服务器需要在活动开始的瞬间处理大量用户的请求。可以使用唤醒函数结合定时器来实现。服务器在活动开始前处于等待状态，通过 <code>setTimeout</code> 设定活动开始时间，当时间到达，唤醒函数被触发，服务器开始接收和处理用户的抢购请求。例如：</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&#x27;2024-12-31 00:00:00&#x27;</span>).<span class="hljs-title function_">getTime</span>();
-<span class="hljs-keyword">const</span> currentTime = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();
-<span class="hljs-keyword">const</span> delay = startTime - currentTime;
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">startFlashSale</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;限时抢购活动开始，开始处理请求&#x27;</span>);
-    <span class="hljs-comment">// 处理抢购请求的逻辑</span>
-}
-
-<span class="hljs-keyword">if</span> (delay &gt; <span class="hljs-number">0</span>) {
-    <span class="hljs-built_in">setTimeout</span>(startFlashSale, delay);
-} <span class="hljs-keyword">else</span> {
-    <span class="hljs-title function_">startFlashSale</span>();
-}
-</code></pre><ul>
-<li><strong>视频会议系统中的发言控制</strong>：在视频会议系统中，为了避免多人同时发言造成混乱，通常会有一个主持人控制发言顺序。当主持人允许某个参会者发言时，相当于触发了一个唤醒事件。可以使用基于事件的唤醒函数来实现。例如，参会者的客户端代码如下：</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">waitForPermission</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
-        <span class="hljs-comment">// 监听主持人允许发言的事件</span>
-        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;host-permission&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;你可以发言了&#x27;</span>);
-        });
-    });
-}
-
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">participant</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;等待主持人允许发言&#x27;</span>);
-    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">waitForPermission</span>();
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);
-    <span class="hljs-comment">// 开始发言的逻辑</span>
-}
-
-<span class="hljs-title function_">participant</span>();
-</code></pre><ul>
-<li><strong>物流系统中的任务调度</strong>：在物流系统中，当一个包裹到达某个中转站时，需要等待特定的条件满足（如车辆装满、到达规定的发车时间等）才会继续运输。可以使用唤醒函数来控制任务的执行。例如，使用定时器在规定的发车时间唤醒运输任务，或者监听车辆装满的事件来触发唤醒。</li>
-</ul>
-</li>
-</ul>
-</details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">JS 如何实现函数缓存</h4><div class="head-re"><span class="head-score">3 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础`、`架构`、`编程`、`算法</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><details>
-
-<ul>
-<li><p><strong>1：</strong> 基本原理
-函数缓存是指将函数的输入参数和对应的输出结果存储起来，当再次使用相同的参数调用该函数时，直接从缓存中获取结果，而不是重新执行函数，从而提高函数的执行效率，尤其是对于一些计算密集型或耗时的函数。</p>
-</li>
-<li><p><strong>2：</strong> 实现方式</p>
-</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// 定义 memoize 高阶函数，用于将普通函数转换为具有缓存功能的函数</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">memoize</span>(<span class="hljs-params">func</span>) {
-    <span class="hljs-comment">// 使用 Map 对象来存储缓存，键为参数，值为函数执行结果</span>
-    <span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...args</span>) {
-        <span class="hljs-comment">// 将参数转换为字符串作为缓存的键</span>
-        <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(args);
-        <span class="hljs-comment">// 检查缓存中是否已存在该键对应的结果</span>
-        <span class="hljs-keyword">if</span> (cache.<span class="hljs-title function_">has</span>(key)) {
-            <span class="hljs-comment">// 若存在，直接从缓存中获取结果并返回</span>
-            <span class="hljs-keyword">return</span> cache.<span class="hljs-title function_">get</span>(key);
-        }
-        <span class="hljs-comment">// 若缓存中不存在，调用原函数并传入参数</span>
-        <span class="hljs-keyword">const</span> result = func.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, args);
-        <span class="hljs-comment">// 将参数和对应的结果存入缓存</span>
-        cache.<span class="hljs-title function_">set</span>(key, result);
-        <span class="hljs-comment">// 返回函数执行结果</span>
-        <span class="hljs-keyword">return</span> result;
-    };
-}
-
-<span class="hljs-comment">// 模拟一个计算密集型的函数</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">expensiveCalculation</span>(<span class="hljs-params">num</span>) {
-    <span class="hljs-comment">// 打印提示信息，表示正在进行耗时计算</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Performing expensive calculation...&#x27;</span>);
-    <span class="hljs-comment">// 返回输入参数乘以 2 的结果</span>
-    <span class="hljs-keyword">return</span> num * <span class="hljs-number">2</span>;
-}
-
-<span class="hljs-comment">// 使用 memoize 函数将 expensiveCalculation 转换为具有缓存功能的函数</span>
-<span class="hljs-keyword">const</span> memoizedCalculation = <span class="hljs-title function_">memoize</span>(expensiveCalculation);
-
-<span class="hljs-comment">// 第一次调用，由于缓存中没有结果，会执行计算并将结果存入缓存</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">memoizedCalculation</span>(<span class="hljs-number">5</span>)); 
-<span class="hljs-comment">// 第二次调用，由于参数相同，直接从缓存中获取结果，不再执行计算</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">memoizedCalculation</span>(<span class="hljs-number">5</span>)); 
-</code></pre><ul>
-<li><strong>2：</strong> 注意事项<ul>
-<li><strong>参数类型限制</strong>：在使用 <code>JSON.stringify</code> 将参数转换为键时，存在一些类型限制。</li>
-</ul>
-</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// 定义一个接收函数作为参数的函数</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">funcWithFuncParam</span>(<span class="hljs-params">callback</span>) {
-    <span class="hljs-comment">// 执行传入的回调函数并返回结果</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>();
-}
-<span class="hljs-comment">// 将 funcWithFuncParam 转换为具有缓存功能的函数</span>
-<span class="hljs-keyword">const</span> memoizedFunc = <span class="hljs-title function_">memoize</span>(funcWithFuncParam);
-<span class="hljs-comment">// 定义一个回调函数</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">callback</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-number">10</span>;
-<span class="hljs-comment">// 将包含回调函数的参数数组转换为字符串作为键</span>
-<span class="hljs-keyword">const</span> key1 = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>([callback]); 
-<span class="hljs-comment">// 输出结果为 [null]，说明 JSON.stringify 忽略了函数</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key1); 
-<span class="hljs-comment">// 定义一个 Symbol 类型的参数</span>
-<span class="hljs-keyword">const</span> symbolParam = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;test&#x27;</span>);
-<span class="hljs-comment">// 将包含 Symbol 类型参数的数组转换为字符串作为键</span>
-<span class="hljs-keyword">const</span> key2 = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>([symbolParam]); 
-<span class="hljs-comment">// 输出结果为 [null]，说明 JSON.stringify 忽略了 Symbol</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key2); 
-</code></pre><p>对于包含函数、<code>Symbol</code> 等特殊类型的复杂对象参数，需要自定义生成唯一键的方式，比如使用 <code>WeakMap</code> 结合其他逻辑来处理函数，或者为 <code>Symbol</code> 类型参数添加额外的标识信息。</p>
-<ul>
-<li><strong>缓存大小控制</strong>：如果缓存不断增长，可能会导致内存占用过高。可以考虑实现缓存淘汰策略，如最近最少使用（LRU）算法。</li>
-</ul>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// 定义 LRUCache 类，实现最近最少使用的缓存策略</span>
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">LRUCache</span> {
-    <span class="hljs-comment">// 构造函数，接收缓存容量作为参数</span>
-    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">capacity</span>) {
-        <span class="hljs-comment">// 存储缓存容量</span>
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">capacity</span> = capacity;
-        <span class="hljs-comment">// 使用 Map 对象来存储缓存</span>
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
-    }
-
-    <span class="hljs-comment">// 获取缓存中指定键的值</span>
-    <span class="hljs-title function_">get</span>(<span class="hljs-params">key</span>) {
-        <span class="hljs-comment">// 检查缓存中是否存在该键</span>
-        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">has</span>(key)) {
-            <span class="hljs-comment">// 若存在，获取该键对应的值</span>
-            <span class="hljs-keyword">const</span> value = <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">get</span>(key);
-            <span class="hljs-comment">// 先删除该键值对</span>
-            <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">delete</span>(key);
-            <span class="hljs-comment">// 再重新插入该键值对，以更新其访问顺序</span>
-            <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">set</span>(key, value);
-            <span class="hljs-comment">// 返回该键对应的值</span>
-            <span class="hljs-keyword">return</span> value;
-        }
-        <span class="hljs-comment">// 若不存在，返回 -1</span>
-        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
-    }
-
-    <span class="hljs-comment">// 向缓存中插入或更新键值对</span>
-    <span class="hljs-title function_">put</span>(<span class="hljs-params">key, value</span>) {
-        <span class="hljs-comment">// 若缓存中已存在该键，先删除该键值对</span>
-        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">has</span>(key)) {
-            <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">delete</span>(key);
-        } 
-        <span class="hljs-comment">// 若缓存已满</span>
-        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-property">size</span> &gt;= <span class="hljs-variable language_">this</span>.<span class="hljs-property">capacity</span>) {
-            <span class="hljs-comment">// 删除最早访问的键值对</span>
-            <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>);
-        }
-        <span class="hljs-comment">// 插入或更新键值对</span>
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">cache</span>.<span class="hljs-title function_">set</span>(key, value);
-    }
-}
-</code></pre><p>在实现函数缓存时，可以将 <code>Map</code> 替换为 <code>LRUCache</code> 实例，以控制缓存的大小。</p>
-</details>
-
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">为什么要初始化 CSS 样式</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>消除浏览器默认样式差异（如 margin、padding），便于布局。</p>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">Rollup 支持哪些输出格式？</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W1`、`W2`、`W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><strong>1：</strong> Rollup 支持多种输出格式，包括amd（用于 AMD 模块系统）、cjs（CommonJS，用于 Node.js）、es（ES6 模块）、iife（立即执行函数表达式，用于浏览器）、umd（通用模块定义，可在多种环境使用）</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">HTML5 中的WebSocket是什么？</h4><div class="head-re"><span class="head-score">4 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 拓展</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><ul>
-<li><p><strong>1：</strong> 基本概念：</p>
-<ul>
-<li>基于TCP的全双工通信协议</li>
-<li>服务器可以主动推送数据</li>
-<li>建立在HTTP协议之上</li>
-<li>使用ws://或wss://作为协议前缀</li>
-</ul>
-</li>
-<li><p><strong>1：</strong> 主要特点：</p>
-<ul>
-<li>持久连接</li>
-<li>全双工通信</li>
-<li>数据格式轻量</li>
-<li>更好的实时性</li>
-</ul>
-</li>
-<li><p><strong>1：</strong> 与HTTP的区别：</p>
-<ul>
-<li>不需要频繁建立连接</li>
-<li>服务器可以主动推送</li>
-<li>更低的通信开销</li>
-<li>无同源限制</li>
-</ul>
-</li>
-<li><p><strong>1：</strong> 应用场景：</p>
-<ul>
-<li>实时聊天</li>
-<li>游戏通信</li>
-<li>实时数据展示</li>
-<li>协同编辑</li>
-</ul>
-</li>
-</ul>
-</details></div><div class="main-box_inner"><div class="inner-head"><h4 class="head-title">png、jpg、gif、webp这些图片格式的区别</h4><div class="head-re"><span class="head-score">1 分</span><input class="head-statistics" type="number" step="1"></div></div><div class="head-tips">类型 基础</div><div class="head-tips">级别: `W3`、`W4`、`W5`、`W6`</div><details class="inner-content"><p>png：无损压缩，尺寸体积要比jpg/jpeg的大。适合做小图标和存在透明背景的图</p>
-<p>jpg：采用压缩算法，有一点失真，比png体积要小。适合做中大图片</p>
-<p>gif：一般是做动图</p>
-<p>webp:同时支持有损或者无损压缩，相同质量的图片，webp具有更小的体积。兼容性不是特别好</p>
-</details></div><div class="content-scoring"><button class="export-excel customized">客制化</button><span>总得分：</span><span class="scoring-num">0</span><button class="export-excel">导出到Excel</button></div></div></div></div></main><footer class="VPDocFooter" data-v-e6f2a212 data-v-1bcd8184><!--[--><!--]--><div class="edit-info" data-v-1bcd8184><!----><div class="last-updated" data-v-1bcd8184><p class="VPLastUpdated" data-v-1bcd8184 data-v-1bb0c8a8>最后更新于: <time datetime="2025-03-11T10:06:57.000Z" data-v-1bb0c8a8></time></p></div></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-1bcd8184><span class="visually-hidden" id="doc-footer-aria-label" data-v-1bcd8184>Pager</span><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link prev" href="/mb-front-end-interview/src/training/training-level/W2.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>上一页</span><span class="title" data-v-1bcd8184>W2</span><!--]--></a></div><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link next" href="/mb-front-end-interview/src/training/training-level/W4.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>下一页</span><span class="title" data-v-1bcd8184>W4</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-d8b57b2d data-v-566314d4><div class="container" data-v-566314d4><p class="message" data-v-566314d4>基于 MIT 许可发布</p><p class="copyright" data-v-566314d4>版权所有 © 2024-2025 ShanYi-Hui</p></div></footer><!--[--><!--]--></div></div>
-    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"CTDjqzeX\",\"ing.md\":\"CH0HdY0B\",\"readme.md\":\"DnZL1-VP\",\"src_guide_getting-started.md\":\"CJ0J_CtP\",\"src_guide_why.md\":\"CbRX8aDm\",\"src_questions_artificial-intelligence_1_基础理论.md\":\"DgcZUKDE\",\"src_questions_artificial-intelligence_2_基础应用.md\":\"C-6y2qIx\",\"src_questions_computer-base_1_计算机硬件.md\":\"DlDomtZl\",\"src_questions_computer-base_2_计算机软件.md\":\"BLqZyJ7K\",\"src_questions_computer-base_3_计算机网络.md\":\"BRWkc7dO\",\"src_questions_computer-base_4_计算机编程.md\":\"CE0AEDMb\",\"src_questions_computer-base_5_计算机科学.md\":\"BIPGThwM\",\"src_questions_computer-base_6_软件工程.md\":\"LfItVMhz\",\"src_questions_computer-base_7_计算机系统 mac.md\":\"CfCMI_51\",\"src_questions_computer-base_8_计算机系统 windows.md\":\"CT5dgkcF\",\"src_questions_data-structures-algorithms_1_算法.md\":\"C5OQ6B1C\",\"src_questions_front-architect_1_前端架构.md\":\"nlJ-6Zmq\",\"src_questions_front-base_1_html.md\":\"lN9bZGUZ\",\"src_questions_front-base_2_css.md\":\"BkAEUReq\",\"src_questions_front-base_3_javascript.md\":\"ORAxtGxP\",\"src_questions_front-base_4_typescript.md\":\"DUcY6JJd\",\"src_questions_front-component_1_ui组件库.md\":\"Cw6Ub8xE\",\"src_questions_front-component_2_业务组件库.md\":\"CPFt5D9o\",\"src_questions_front-engineering_1_前端标准化.md\":\"_IjVLQDC\",\"src_questions_front-engineering_2_前端自动化.md\":\"CCkdHCll\",\"src_questions_front-engineering_3_webpack.md\":\"DxYcK11n\",\"src_questions_front-engineering_4_vite.md\":\"C3jG4P_f\",\"src_questions_front-engineering_5_rollup.md\":\"aqF6ocmE\",\"src_questions_front-frame_1_react.md\":\"CgoS3dDk\",\"src_questions_front-frame_2_vue.md\":\"CMsYTgMa\",\"src_questions_front-frame_3_next.md\":\"B-QiY-J7\",\"src_questions_front-frame_4_nuxt.md\":\"rwjDYcf7\",\"src_questions_front-frame_5_qiankun.md\":\"CjSY80ey\",\"src_questions_front-newest_1_前端最前沿.md\":\"Be5yzuEA\",\"src_questions_front-perfomance_1_前端性能优化.md\":\"CNZTYAVc\",\"src_questions_front-runtime_1_浏览器.md\":\"CV_H3dXA\",\"src_questions_front-runtime_2_nodejs.md\":\"y4RBr4Hw\",\"src_questions_front-safety_1_前端安全.md\":\"DRc-ceK8\",\"src_questions_server_1_nest.md\":\"DMoVbT6x\",\"src_questions_server_2_mongodb.md\":\"BONv2NLt\",\"src_questions_server_3_mysql.md\":\"D5_KVqET\",\"src_questions_server_4_nginx.md\":\"rmjcinpv\",\"src_questions_server_5_docker.md\":\"DbBYBc0a\",\"src_questions_server_6_kubernets.md\":\"B_ZSjKij\",\"src_questions_server_7_nacos.md\":\"CHU7ic1v\",\"src_questions_server_8_redis.md\":\"CQEQv895\",\"src_training_training-level_w1.md\":\"CTGYARiY\",\"src_training_training-level_w2.md\":\"5zoripVU\",\"src_training_training-level_w3.md\":\"d5s5SNvX\",\"src_training_training-level_w4.md\":\"D4PoiEyU\",\"src_training_training-level_w5.md\":\"yBawm4Yy\",\"src_training_training-level_w6.md\":\"oM5ZqnVr\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"前端面试题库\",\"description\":\"致力于为前端人员提供全面可靠的专业知识\",\"base\":\"/mb-front-end-interview/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"nav\":[{\"text\":\"指南\",\"link\":\"/src/guide/why\",\"activeMatch\":\"/src/guide/\"},{\"text\":\"题库\",\"link\":\"/src/questions/front-base/1_HTML\",\"activeMatch\":\"/src/questions/\"},{\"text\":\"训练\",\"link\":\"/src/training/training-level/w1\",\"activeMatch\":\"/src/training/\"}],\"sidebar\":{\"/src/guide/\":[{\"text\":\"初衷\",\"link\":\"/src/guide/why\"},{\"text\":\"快速开始\",\"link\":\"/src/guide/getting-started\"}],\"/src/questions/\":[{\"text\":\"前端基础\",\"collapsed\":false,\"items\":[{\"text\":\"HTML\",\"link\":\"/src/questions/front-base/1_HTML.md\"},{\"text\":\"CSS\",\"link\":\"/src/questions/front-base/2_CSS.md\"},{\"text\":\"JavaScript\",\"link\":\"/src/questions/front-base/3_JavaScript.md\"},{\"text\":\"TypeScript\",\"link\":\"/src/questions/front-base/4_TypeScript.md\"}]},{\"text\":\"前端运行环境\",\"collapsed\":true,\"items\":[{\"text\":\"浏览器\",\"link\":\"/src/questions/front-runtime/1_浏览器.md\"},{\"text\":\"NodeJS\",\"link\":\"/src/questions/front-runtime/2_NodeJS.md\"}]},{\"text\":\"前端框架\",\"collapsed\":true,\"items\":[{\"text\":\"React\",\"link\":\"/src/questions/front-frame/1_React.md\"},{\"text\":\"Vue\",\"link\":\"/src/questions/front-frame/2_Vue.md\"},{\"text\":\"Next\",\"link\":\"/src/questions/front-frame/3_Next.md\"},{\"text\":\"Nuxt\",\"link\":\"/src/questions/front-frame/4_Nuxt.md\"},{\"text\":\"Qiankun\",\"link\":\"/src/questions/front-frame/5_Qiankun.md\"}]},{\"text\":\"前端工程化\",\"collapsed\":true,\"items\":[{\"text\":\"前端标准化\",\"link\":\"/src/questions/front-engineering/1_前端标准化.md\"},{\"text\":\"前端自动化\",\"link\":\"/src/questions/front-engineering/2_前端自动化.md\"},{\"text\":\"Webpack\",\"link\":\"/src/questions/front-engineering/3_Webpack.md\"},{\"text\":\"Vite\",\"link\":\"/src/questions/front-engineering/4_Vite.md\"},{\"text\":\"Rollup\",\"link\":\"/src/questions/front-engineering/5_Rollup.md\"}]},{\"text\":\"前端组件库\",\"collapsed\":true,\"items\":[{\"text\":\"UI组件库\",\"link\":\"/src/questions/front-component/1_UI组件库.md\"},{\"text\":\"业务组件库\",\"link\":\"/src/questions/front-component/2_业务组件库.md\"}]},{\"text\":\"前端安全\",\"collapsed\":true,\"items\":[{\"text\":\"前端安全\",\"link\":\"/src/questions/front-safety/1_前端安全.md\"}]},{\"text\":\"前端性能\",\"collapsed\":true,\"items\":[{\"text\":\"前端性能优化\",\"link\":\"/src/questions/front-perfomance/1_前端性能优化.md\"}]},{\"text\":\"前端架构\",\"collapsed\":true,\"items\":[{\"text\":\"前端架构\",\"link\":\"/src/questions/front-architect/1_前端架构.md\"}]},{\"text\":\"服务端\",\"collapsed\":true,\"items\":[{\"text\":\"Nest\",\"link\":\"/src/questions/server/1_Nest.md\"},{\"text\":\"MongoDB\",\"link\":\"/src/questions/server/2_MongoDB.md\"},{\"text\":\"MySQL\",\"link\":\"/src/questions/server/3_MySQL.md\"},{\"text\":\"Nginx\",\"link\":\"/src/questions/server/4_Nginx.md\"},{\"text\":\"Docker\",\"link\":\"/src/questions/server/5_Docker.md\"},{\"text\":\"Kubernets\",\"link\":\"/src/questions/server/6_Kubernets.md\"},{\"text\":\"Nacos\",\"link\":\"/src/questions/server/7_Nacos.md\"},{\"text\":\"Redis\",\"link\":\"/src/questions/server/8_Redis.md\"}]},{\"text\":\"数据结构及算法\",\"collapsed\":true,\"items\":[{\"text\":\"算法\",\"link\":\"/src/questions/data-structures-algorithms/1_算法.md\"}]},{\"text\":\"前端最前沿\",\"collapsed\":true,\"items\":[{\"text\":\"前端最前沿\",\"link\":\"/src/questions/front-newest/1_前端最前沿.md\"}]},{\"text\":\"计算机基础\",\"collapsed\":true,\"items\":[{\"text\":\"计算机硬件\",\"link\":\"/src/questions/computer-base/1_计算机硬件.md\"},{\"text\":\"计算机软件\",\"link\":\"/src/questions/computer-base/2_计算机软件.md\"},{\"text\":\"计算机网络\",\"link\":\"/src/questions/computer-base/3_计算机网络.md\"},{\"text\":\"计算机编程\",\"link\":\"/src/questions/computer-base/4_计算机编程.md\"},{\"text\":\"计算机科学\",\"link\":\"/src/questions/computer-base/5_计算机科学.md\"},{\"text\":\"软件工程\",\"link\":\"/src/questions/computer-base/6_软件工程.md\"},{\"text\":\"计算机系统 Mac\",\"link\":\"/src/questions/computer-base/7_计算机系统 Mac.md\"},{\"text\":\"计算机系统 Windows\",\"link\":\"/src/questions/computer-base/8_计算机系统 Windows.md\"}]},{\"text\":\"人工智能\",\"collapsed\":true,\"items\":[{\"text\":\"基础理论\",\"link\":\"/src/questions/artificial-intelligence/1_基础理论.md\"},{\"text\":\"基础应用\",\"link\":\"/src/questions/artificial-intelligence/2_基础应用.md\"}]}],\"/src/training/\":[{\"text\":\"面试级别\",\"collapsed\":false,\"items\":[{\"text\":\"W1\",\"link\":\"/src/training/training-level/W1.md\"},{\"text\":\"W2\",\"link\":\"/src/training/training-level/W2.md\"},{\"text\":\"W3\",\"link\":\"/src/training/training-level/W3.md\"},{\"text\":\"W4\",\"link\":\"/src/training/training-level/W4.md\"},{\"text\":\"W5\",\"link\":\"/src/training/training-level/W5.md\"},{\"text\":\"W6\",\"link\":\"/src/training/training-level/W6.md\"}]}]},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/syh-micro-build/mb-front-end-interview\"}],\"footer\":{\"message\":\"基于 MIT 许可发布\",\"copyright\":\"版权所有 © 2024-2025 ShanYi-Hui\"},\"docFooter\":{\"prev\":\"上一页\",\"next\":\"下一页\"},\"outline\":{\"label\":\"页面导航\"},\"lastUpdated\":{\"text\":\"最后更新于\",\"formatOptions\":{\"dateStyle\":\"short\",\"timeStyle\":\"medium\"}},\"search\":{\"provider\":\"local\",\"options\":{\"translations\":{\"button\":{\"buttonText\":\"搜索文档\",\"buttonAriaLabel\":\"搜索文档\"},\"modal\":{\"noResultsText\":\"无法找到相关结果\",\"resetButtonTitle\":\"清除查询条件\",\"footer\":{\"selectText\":\"选择\",\"navigateText\":\"切换\",\"closeText\":\"关闭\"}}}}},\"returnToTopLabel\":\"回到顶部\",\"sidebarMenuLabel\":\"菜单\",\"darkModeSwitchLabel\":\"主题\",\"lightModeSwitchTitle\":\"切换到浅色模式\",\"darkModeSwitchTitle\":\"切换到深色模式\"},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+</details></div><div class="content-scoring"><button class="export-excel customized">客制化</button><span>总得分：</span><span class="scoring-num">0</span><button class="export-excel">导出到Excel</button></div></div></div></div></main><footer class="VPDocFooter" data-v-e6f2a212 data-v-1bcd8184><!--[--><!--]--><div class="edit-info" data-v-1bcd8184><!----><div class="last-updated" data-v-1bcd8184><p class="VPLastUpdated" data-v-1bcd8184 data-v-1bb0c8a8>最后更新于: <time datetime="2025-03-12T10:13:04.000Z" data-v-1bb0c8a8></time></p></div></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-1bcd8184><span class="visually-hidden" id="doc-footer-aria-label" data-v-1bcd8184>Pager</span><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link prev" href="/mb-front-end-interview/src/training/training-level/W2.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>上一页</span><span class="title" data-v-1bcd8184>W2</span><!--]--></a></div><div class="pager" data-v-1bcd8184><a class="VPLink link pager-link next" href="/mb-front-end-interview/src/training/training-level/W4.html" data-v-1bcd8184><!--[--><span class="desc" data-v-1bcd8184>下一页</span><span class="title" data-v-1bcd8184>W4</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-d8b57b2d data-v-566314d4><div class="container" data-v-566314d4><p class="message" data-v-566314d4>基于 MIT 许可发布</p><p class="copyright" data-v-566314d4>版权所有 © 2024-2025 ShanYi-Hui</p></div></footer><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"DWcuxi6H\",\"ing.md\":\"bAJzL5wj\",\"readme.md\":\"CA3-_Jpn\",\"src_guide_getting-started.md\":\"Cx6SZiyU\",\"src_guide_why.md\":\"DOAyEZQX\",\"src_questions_artificial-intelligence_1_基础理论.md\":\"DYMvsHvf\",\"src_questions_artificial-intelligence_2_基础应用.md\":\"5cllqO-d\",\"src_questions_computer-base_1_计算机硬件.md\":\"C6Yk0Hjf\",\"src_questions_computer-base_2_计算机软件.md\":\"Bde1qVO8\",\"src_questions_computer-base_3_计算机网络.md\":\"B7Q-m4sv\",\"src_questions_computer-base_4_计算机编程.md\":\"C_-W9mXB\",\"src_questions_computer-base_5_计算机科学.md\":\"Df2lE70w\",\"src_questions_computer-base_6_软件工程.md\":\"B9idcnXG\",\"src_questions_computer-base_7_计算机系统 mac.md\":\"5YsGlX5R\",\"src_questions_computer-base_8_计算机系统 windows.md\":\"DlGXEKXH\",\"src_questions_data-structures-algorithms_1_算法.md\":\"DbvUJo7b\",\"src_questions_front-architect_1_前端架构.md\":\"BlICIy_F\",\"src_questions_front-base_1_html.md\":\"BJeqUgMb\",\"src_questions_front-base_2_css.md\":\"DZdPrOQb\",\"src_questions_front-base_3_javascript.md\":\"DnGPf_A_\",\"src_questions_front-base_4_typescript.md\":\"8nXyTXBm\",\"src_questions_front-component_1_ui组件库.md\":\"ZFN6OVBm\",\"src_questions_front-component_2_业务组件库.md\":\"Ct9Ck5zx\",\"src_questions_front-engineering_1_前端标准化.md\":\"Bq5DHOSo\",\"src_questions_front-engineering_2_前端自动化.md\":\"BN9zjIbe\",\"src_questions_front-engineering_3_webpack.md\":\"8eaZzOtX\",\"src_questions_front-engineering_4_vite.md\":\"BDVqsyM8\",\"src_questions_front-engineering_5_rollup.md\":\"DBVnKIhM\",\"src_questions_front-frame_1_react.md\":\"CFt8ndJA\",\"src_questions_front-frame_2_vue.md\":\"xAno7ZUY\",\"src_questions_front-frame_3_next.md\":\"Bt1IQJQa\",\"src_questions_front-frame_4_nuxt.md\":\"CvGQdydm\",\"src_questions_front-frame_5_qiankun.md\":\"C_bJ3c_J\",\"src_questions_front-newest_1_前端最前沿.md\":\"BiXw8lU3\",\"src_questions_front-perfomance_1_前端性能优化.md\":\"BlaAbkMD\",\"src_questions_front-runtime_1_浏览器.md\":\"C4a0GxYI\",\"src_questions_front-runtime_2_nodejs.md\":\"D3xgXW8p\",\"src_questions_front-safety_1_前端安全.md\":\"DIeJ5-8Q\",\"src_questions_server_1_nest.md\":\"lQ3Wk-iR\",\"src_questions_server_2_mongodb.md\":\"BWUALWl-\",\"src_questions_server_3_mysql.md\":\"CqqgeGXy\",\"src_questions_server_4_nginx.md\":\"Bk1OnI6d\",\"src_questions_server_5_docker.md\":\"Caf-bezx\",\"src_questions_server_6_kubernets.md\":\"DvrLAoVO\",\"src_questions_server_7_nacos.md\":\"Y-ai80mh\",\"src_questions_server_8_redis.md\":\"DpCDOXGu\",\"src_training_training-level_w1.md\":\"DawlxvwF\",\"src_training_training-level_w2.md\":\"DIoaad9Z\",\"src_training_training-level_w3.md\":\"DjAkh7u0\",\"src_training_training-level_w4.md\":\"BKKMRT-H\",\"src_training_training-level_w5.md\":\"CCVc827f\",\"src_training_training-level_w6.md\":\"BnCGiQqX\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"前端面试题库\",\"description\":\"致力于为前端人员提供全面可靠的专业知识\",\"base\":\"/mb-front-end-interview/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"nav\":[{\"text\":\"指南\",\"link\":\"/src/guide/why\",\"activeMatch\":\"/src/guide/\"},{\"text\":\"题库\",\"link\":\"/src/questions/front-base/1_HTML\",\"activeMatch\":\"/src/questions/\"},{\"text\":\"训练\",\"link\":\"/src/training/training-level/w1\",\"activeMatch\":\"/src/training/\"}],\"sidebar\":{\"/src/guide/\":[{\"text\":\"初衷\",\"link\":\"/src/guide/why\"},{\"text\":\"快速开始\",\"link\":\"/src/guide/getting-started\"}],\"/src/questions/\":[{\"text\":\"前端基础\",\"collapsed\":false,\"items\":[{\"text\":\"HTML\",\"link\":\"/src/questions/front-base/1_HTML.md\"},{\"text\":\"CSS\",\"link\":\"/src/questions/front-base/2_CSS.md\"},{\"text\":\"JavaScript\",\"link\":\"/src/questions/front-base/3_JavaScript.md\"},{\"text\":\"TypeScript\",\"link\":\"/src/questions/front-base/4_TypeScript.md\"}]},{\"text\":\"前端运行环境\",\"collapsed\":true,\"items\":[{\"text\":\"浏览器\",\"link\":\"/src/questions/front-runtime/1_浏览器.md\"},{\"text\":\"NodeJS\",\"link\":\"/src/questions/front-runtime/2_NodeJS.md\"}]},{\"text\":\"前端框架\",\"collapsed\":true,\"items\":[{\"text\":\"React\",\"link\":\"/src/questions/front-frame/1_React.md\"},{\"text\":\"Vue\",\"link\":\"/src/questions/front-frame/2_Vue.md\"},{\"text\":\"Next\",\"link\":\"/src/questions/front-frame/3_Next.md\"},{\"text\":\"Nuxt\",\"link\":\"/src/questions/front-frame/4_Nuxt.md\"},{\"text\":\"Qiankun\",\"link\":\"/src/questions/front-frame/5_Qiankun.md\"}]},{\"text\":\"前端工程化\",\"collapsed\":true,\"items\":[{\"text\":\"前端标准化\",\"link\":\"/src/questions/front-engineering/1_前端标准化.md\"},{\"text\":\"前端自动化\",\"link\":\"/src/questions/front-engineering/2_前端自动化.md\"},{\"text\":\"Webpack\",\"link\":\"/src/questions/front-engineering/3_Webpack.md\"},{\"text\":\"Vite\",\"link\":\"/src/questions/front-engineering/4_Vite.md\"},{\"text\":\"Rollup\",\"link\":\"/src/questions/front-engineering/5_Rollup.md\"}]},{\"text\":\"前端组件库\",\"collapsed\":true,\"items\":[{\"text\":\"UI组件库\",\"link\":\"/src/questions/front-component/1_UI组件库.md\"},{\"text\":\"业务组件库\",\"link\":\"/src/questions/front-component/2_业务组件库.md\"}]},{\"text\":\"前端安全\",\"collapsed\":true,\"items\":[{\"text\":\"前端安全\",\"link\":\"/src/questions/front-safety/1_前端安全.md\"}]},{\"text\":\"前端性能\",\"collapsed\":true,\"items\":[{\"text\":\"前端性能优化\",\"link\":\"/src/questions/front-perfomance/1_前端性能优化.md\"}]},{\"text\":\"前端架构\",\"collapsed\":true,\"items\":[{\"text\":\"前端架构\",\"link\":\"/src/questions/front-architect/1_前端架构.md\"}]},{\"text\":\"服务端\",\"collapsed\":true,\"items\":[{\"text\":\"Nest\",\"link\":\"/src/questions/server/1_Nest.md\"},{\"text\":\"MongoDB\",\"link\":\"/src/questions/server/2_MongoDB.md\"},{\"text\":\"MySQL\",\"link\":\"/src/questions/server/3_MySQL.md\"},{\"text\":\"Nginx\",\"link\":\"/src/questions/server/4_Nginx.md\"},{\"text\":\"Docker\",\"link\":\"/src/questions/server/5_Docker.md\"},{\"text\":\"Kubernets\",\"link\":\"/src/questions/server/6_Kubernets.md\"},{\"text\":\"Nacos\",\"link\":\"/src/questions/server/7_Nacos.md\"},{\"text\":\"Redis\",\"link\":\"/src/questions/server/8_Redis.md\"}]},{\"text\":\"数据结构及算法\",\"collapsed\":true,\"items\":[{\"text\":\"算法\",\"link\":\"/src/questions/data-structures-algorithms/1_算法.md\"}]},{\"text\":\"前端最前沿\",\"collapsed\":true,\"items\":[{\"text\":\"前端最前沿\",\"link\":\"/src/questions/front-newest/1_前端最前沿.md\"}]},{\"text\":\"计算机基础\",\"collapsed\":true,\"items\":[{\"text\":\"计算机硬件\",\"link\":\"/src/questions/computer-base/1_计算机硬件.md\"},{\"text\":\"计算机软件\",\"link\":\"/src/questions/computer-base/2_计算机软件.md\"},{\"text\":\"计算机网络\",\"link\":\"/src/questions/computer-base/3_计算机网络.md\"},{\"text\":\"计算机编程\",\"link\":\"/src/questions/computer-base/4_计算机编程.md\"},{\"text\":\"计算机科学\",\"link\":\"/src/questions/computer-base/5_计算机科学.md\"},{\"text\":\"软件工程\",\"link\":\"/src/questions/computer-base/6_软件工程.md\"},{\"text\":\"计算机系统 Mac\",\"link\":\"/src/questions/computer-base/7_计算机系统 Mac.md\"},{\"text\":\"计算机系统 Windows\",\"link\":\"/src/questions/computer-base/8_计算机系统 Windows.md\"}]},{\"text\":\"人工智能\",\"collapsed\":true,\"items\":[{\"text\":\"基础理论\",\"link\":\"/src/questions/artificial-intelligence/1_基础理论.md\"},{\"text\":\"基础应用\",\"link\":\"/src/questions/artificial-intelligence/2_基础应用.md\"}]}],\"/src/training/\":[{\"text\":\"面试级别\",\"collapsed\":false,\"items\":[{\"text\":\"W1\",\"link\":\"/src/training/training-level/W1.md\"},{\"text\":\"W2\",\"link\":\"/src/training/training-level/W2.md\"},{\"text\":\"W3\",\"link\":\"/src/training/training-level/W3.md\"},{\"text\":\"W4\",\"link\":\"/src/training/training-level/W4.md\"},{\"text\":\"W5\",\"link\":\"/src/training/training-level/W5.md\"},{\"text\":\"W6\",\"link\":\"/src/training/training-level/W6.md\"}]}]},\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/syh-micro-build/mb-front-end-interview\"}],\"footer\":{\"message\":\"基于 MIT 许可发布\",\"copyright\":\"版权所有 © 2024-2025 ShanYi-Hui\"},\"docFooter\":{\"prev\":\"上一页\",\"next\":\"下一页\"},\"outline\":{\"label\":\"页面导航\"},\"lastUpdated\":{\"text\":\"最后更新于\",\"formatOptions\":{\"dateStyle\":\"short\",\"timeStyle\":\"medium\"}},\"search\":{\"provider\":\"local\",\"options\":{\"translations\":{\"button\":{\"buttonText\":\"搜索文档\",\"buttonAriaLabel\":\"搜索文档\"},\"modal\":{\"noResultsText\":\"无法找到相关结果\",\"resetButtonTitle\":\"清除查询条件\",\"footer\":{\"selectText\":\"选择\",\"navigateText\":\"切换\",\"closeText\":\"关闭\"}}}}},\"returnToTopLabel\":\"回到顶部\",\"sidebarMenuLabel\":\"菜单\",\"darkModeSwitchLabel\":\"主题\",\"lightModeSwitchTitle\":\"切换到浅色模式\",\"darkModeSwitchTitle\":\"切换到深色模式\"},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
     
   </body>
 </html>
