@@ -1,6 +1,654 @@
-# webpack
+# Webpack
 
-## 1. webpack 的热更新是什么?
+## 请简要解释 Webpack 是什么，它的主要作用是什么？
+
+#### 类型：`架构`
+
+#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
+
+#### 解答（1 分）
+
+- **1：** Webpack 是一个模块打包工具，它可以将各种类型的模块（如 JS、CSS、图片等）打包成一个或多个文件。主要作用包括处理模块间的依赖关系、优化资源加载、提高项目的可维护性和性能。
+
+## Webpack 常用配置有哪些
+
+#### 类型： `架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（12 分）
+
+<details>
+
+- **1：** **入口与出口**
+  + **入口**：单入口 `entry: './src/index.js'`；多入口 `entry: { main: './src/main.js', vendor: './src/vendor.js' }`。
+  + **出口**：`output: { path: path.resolve(__dirname, 'dist'), filename: '[name].[hash].js' }`。
+
+- **4：** **Loader 及功能与示例**
+  + 用于处理不同类型文件的转换器。它可以将非 JavaScript 文件（如 CSS、图片、TS 等）转换为 Webpack 能够处理的模块。
+  + `style-loader`：将 CSS 以 `<style>` 标签形式插入到 HTML 的 `<head>` 中。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          // 先使用 css-loader 解析，再用 style-loader 插入
+          use: ['style-loader', 'css-loader'] 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `css-loader`：解析 CSS 文件中的 `@import` 和 `url()` 等语句，处理 CSS 模块之间的依赖关系。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          // 解析 CSS 文件
+          use: 'css-loader' 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `sass-loader`：将 Sass 或 SCSS 文件编译为 CSS 文件，需配合 `node-sass` 或 `dart-sass` 使用。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          // 按顺序依次使用 sass-loader、css-loader、style-loader 处理
+          use: ['style-loader', 'css-loader', 'sass-loader'] 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `less-loader`：把 Less 文件转换为普通的 CSS 文件。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.less$/,
+          // 处理 Less 文件
+          use: ['style-loader', 'css-loader', 'less-loader'] 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `postcss-loader`：使用 PostCSS 对 CSS 进行转换和优化，例如添加浏览器前缀、压缩 CSS 等。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    // 添加浏览器前缀
+                    require('autoprefixer') 
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  };
+  ```
+
+  + `file-loader`：处理文件资源，将文件复制到输出目录，并返回文件的公共 URL，适用于图片、字体等。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg|jpeg|gif)$/i,
+          // 处理图片文件
+          use: 'file-loader' 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `url-loader`：功能与 `file-loader` 类似，但当文件大小小于指定阈值时，会将文件转换为 Data URL 嵌入到代码中，减少 HTTP 请求。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg|jpeg|gif)$/i,
+          use: {
+            loader: 'url-loader',
+            options: {
+              // 小于 8192 字节转换为 Data URL
+              limit: 8192 
+            }
+          }
+        }
+      ]
+    }
+  };
+  ```
+
+  + `svg-url-loader`：专门处理 SVG 文件，可将 SVG 转换为 Data URL 或使用 `file-loader` 处理。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.svg$/,
+          // 处理 SVG 文件
+          use: 'svg-url-loader' 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `babel-loader`：结合 Babel 将 ES6+ 代码转换为向后兼容的 JavaScript 代码，确保在旧浏览器中正常运行。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
+      ]
+    }
+  };
+  ```
+
+  + `ts-loader`：将 TypeScript 文件编译为 JavaScript 文件，配合 TypeScript 项目使用。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          // 处理 TypeScript 文件
+          use: 'ts-loader' 
+        }
+      ]
+    }
+  };
+  ```
+
+  + `markdown-loader`：将 Markdown 文件转换为 HTML 字符串，方便在项目中使用 Markdown 内容。
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.md$/,
+          // 处理 Markdown 文件
+          use: 'markdown-loader' 
+        }
+      ]
+    }
+  };
+  ```
+
+- **4：** **插件及功能与示例**
+  + 用于在 Webpack 构建过程的优化和扩展，如代码压缩、生成 HTML 文件、分割代码等。
+  + `HtmlWebpackPlugin`：自动生成 HTML 文件，并将打包后的 JavaScript 和 CSS 文件自动插入到 HTML 中，可使用模板文件。
+
+  ```javascript
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  module.exports = {
+    plugins: [
+      new HtmlWebpackPlugin({
+        // 指定 HTML 模板文件
+        template: './src/index.html' 
+      })
+    ]
+  };
+  ```
+
+  + `MiniCssExtractPlugin`：将 CSS 提取到单独的文件中，避免将 CSS 内联到 JavaScript 中，提高页面加载性能。
+
+  ```javascript
+  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            // 提取 CSS 到单独文件
+            MiniCssExtractPlugin.loader, 
+            'css-loader'
+          ]
+        }
+      ]
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css'
+      })
+    ]
+  };
+  ```
+
+  + `OptimizeCssAssetsPlugin`：压缩和优化 CSS 文件，去除多余的空格、注释等。
+
+  ```javascript
+  const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+  module.exports = {
+    plugins: [
+      // 压缩优化 CSS
+      new OptimizeCssAssetsPlugin() 
+    ]
+  };
+  ```
+
+  + `TerserPlugin`：在生产模式下默认使用，用于压缩 JavaScript 代码，减小文件体积。
+
+  ```javascript
+  const TerserPlugin = require('terser-webpack-plugin');
+  module.exports = {
+    optimization: {
+      minimizer: [
+        // 压缩 JavaScript 代码
+        new TerserPlugin() 
+      ]
+    }
+  };
+  ```
+
+  + `SplitChunksPlugin`（Webpack 4 及以后）：提取公共模块，实现代码分割，减少重复打包。
+
+  ```javascript
+  module.exports = {
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
+    }
+  };
+  ```
+
+  + `HardSourceWebpackPlugin`：为模块提供中间缓存，加快二次构建速度。
+
+  ```javascript
+  const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+  module.exports = {
+    plugins: [
+      // 启用模块缓存
+      new HardSourceWebpackPlugin() 
+    ]
+  };
+  ```
+
+  + `DefinePlugin`：定义全局常量，可在代码中使用，常用于区分开发和生产环境。
+
+  ```javascript
+  const webpack = require('webpack');
+  module.exports = {
+    plugins: [
+      new webpack.DefinePlugin({
+        // 定义全局常量
+        'process.env.NODE_ENV': JSON.stringify('production') 
+      })
+    ]
+  };
+  ```
+
+  + `HotModuleReplacementPlugin`：开启热更新功能，在开发过程中修改代码后只更新修改的模块，无需重新加载整个页面。
+
+  ```javascript
+  const webpack = require('webpack');
+  module.exports = {
+    devServer: {
+      hot: true
+    },
+    plugins: [
+      // 开启热更新
+      new webpack.HotModuleReplacementPlugin() 
+    ]
+  };
+  ```
+
+  + `CleanWebpackPlugin`：在每次构建前清理输出目录，避免旧文件残留。
+
+  ```javascript
+  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+  module.exports = {
+    plugins: [
+      // 清理输出目录
+      new CleanWebpackPlugin() 
+    ]
+  };
+  ```
+
+  + `WebpackBundleAnalyzerPlugin`：生成打包文件的可视化报告，帮助分析各个模块的大小和依赖关系，便于优化打包结果。
+
+  ```javascript
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  module.exports = {
+    plugins: [
+      // 生成打包分析报告
+      new BundleAnalyzerPlugin() 
+    ]
+  };
+  ```
+
+- **1：** **模式**
+  + `development`：开启调试特性，如生成 Source Map、不进行代码压缩等，方便开发调试。
+  + `production`：自动开启代码压缩、Tree Shaking 等优化，减小打包文件体积，提高生产环境性能。
+
+- **2：** **开发服务器**
+  + **热更新**：`devServer: { hot: true }`，结合 `webpack.HotModuleReplacementPlugin` 实现模块热替换。
+  + **代理**：`devServer: { proxy: { '/api': { target: 'http://backend.example.com' } } }`，解决开发环境中的跨域问题。
+
+</details>
+
+## Webpack 是如何处理模块打包的？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+<details>
+
+- **1：** **模块解析**
+  + Webpack 从配置的入口文件开始，通过静态分析代码中的导入语句（如 `import`、`require`）来识别模块之间的依赖关系。例如，当遇到 `import './module.js'` 时，Webpack 会将 `module.js` 标记为当前模块的依赖。
+  + 对于不同类型的模块，Webpack 会根据配置的 `resolve` 规则来确定模块的查找路径和文件扩展名。比如，设置 `extensions: ['.js', '.json']` 后，在查找模块时会自动尝试添加这些扩展名。
+
+- **1：** **Loader 处理**
+  + 在解析模块的过程中，Webpack 会根据 `module.rules` 配置的规则，使用相应的 loader 对模块进行处理。例如，对于 CSS 文件，会使用 `css-loader` 解析其中的 `@import` 和 `url()` 语句，再使用 `style-loader` 将 CSS 注入到 DOM 中。
+  + loader 是按照从右到左（或从下到上）的顺序依次执行的。例如 `use: ['style-loader', 'css-loader']`，会先执行 `css-loader`，再执行 `style-loader`。
+
+- **1：** **依赖图构建**
+  + Webpack 通过递归地解析所有模块及其依赖，构建出一个完整的依赖图（Dependency Graph）。这个图记录了所有模块之间的依赖关系和顺序。
+  + 依赖图中的每个节点代表一个模块，边代表模块之间的依赖关系。Webpack 会根据这个图来确定模块的打包顺序和方式。
+
+- **1：** **代码生成与打包**
+  + Webpack 根据依赖图将所有模块的代码合并和打包成一个或多个文件。在这个过程中，Webpack 会对代码进行优化，如去除未使用的代码（Tree Shaking）、压缩代码等。
+  + 对于不同的入口文件，Webpack 会生成对应的打包文件。例如，配置了多个入口 `entry: { app: './src/app.js', admin: './src/admin.js' }`，会生成 `app.bundle.js` 和 `admin.bundle.js` 等文件。
+
+- **1：** **插件机制**
+  + Webpack 在整个打包过程中提供了丰富的钩子（Hook），插件可以在这些钩子上注册自己的逻辑，从而在不同的阶段执行特定的任务。
+  + 例如，`HtmlWebpackPlugin` 会在打包完成后生成 HTML 文件，并将打包后的 JavaScript 和 CSS 文件插入到 HTML 中；`MiniCssExtractPlugin` 会在打包过程中提取 CSS 到单独的文件中。
+
+</details>
+
+## 为什么 Webpack 需要配置多个入口文件
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`
+
+#### 解答（5 分）
+
+<details>
+
+- **1：** **多页面应用（MPA）开发**
+  + 在多页面应用中，不同页面可能有不同的功能和依赖。例如，一个电商网站有首页、商品列表页、商品详情页、购物车页等。每个页面都有自己独立的 JavaScript 和 CSS 代码。通过配置多个入口文件，可以将不同页面的代码分别打包，避免所有页面加载相同的代码，减少不必要的资源加载，提高页面加载速度。
+  + 示例配置：
+
+  ```javascript
+  // webpack.config.js
+  const path = require('path');
+
+  module.exports = {
+      entry: {
+          home: './src/pages/home/index.js',
+          productList: './src/pages/productList/index.js',
+          productDetail: './src/pages/productDetail/index.js',
+          cart: './src/pages/cart/index.js'
+      },
+      output: {
+          path: path.resolve(__dirname, 'dist'),
+          filename: '[name].bundle.js'
+      }
+  };
+  ```
+
+- **1：** **分离公共代码和业务代码**
+  + 对于大型项目，可能会有一些公共的库和工具函数，如 React、Vue、lodash 等。将这些公共代码和业务代码分离，可以提高代码的可维护性和复用性。同时，公共代码可以被多个页面共享，浏览器可以缓存这些公共代码，减少重复加载。
+  + 示例配置：
+
+  ```javascript
+  // webpack.config.js
+  const path = require('path');
+
+  module.exports = {
+      entry: {
+          vendors: ['react', 'react-dom', 'lodash'],
+          app: './src/index.js'
+      },
+      output: {
+          path: path.resolve(__dirname, 'dist'),
+          filename: '[name].bundle.js'
+      }
+  };
+  ```
+
+- **1：** **开发和生产环境分离**
+  + 在开发和生产环境中，可能需要不同的配置和代码。例如，在开发环境中需要开启热更新、调试工具等，而在生产环境中需要进行代码压缩、优化等。通过配置多个入口文件，可以分别为开发和生产环境打包不同的代码。
+  + 示例配置：
+
+  ```javascript
+  // webpack.config.js
+  const path = require('path');
+
+  module.exports = {
+      entry: {
+          development: './src/development.js',
+          production: './src/production.js'
+      },
+      output: {
+          path: path.resolve(__dirname, 'dist'),
+          filename: '[name].bundle.js'
+      }
+  };
+  ```
+
+- **1：** **按需加载不同功能模块**
+  + 对于一些复杂的单页面应用，可能会有一些功能模块不是所有用户都会用到的。例如，一个社交网站的视频编辑功能，只有部分用户会使用。可以将这些功能模块配置为独立的入口文件，当用户需要使用这些功能时，再动态加载相应的代码，提高应用的性能和响应速度。
+  + 示例配置：
+
+  ```javascript
+  // webpack.config.js
+  const path = require('path');
+
+  module.exports = {
+      entry: {
+          main: './src/main.js',
+          videoEditor: './src/videoEditor.js'
+      },
+      output: {
+          path: path.resolve(__dirname, 'dist'),
+          filename: '[name].bundle.js'
+      }
+  };
+  ```
+
+- **1：** **多语言支持**
+  + 对于支持多语言的应用，不同语言的文本和资源可能需要分别打包。通过配置多个入口文件，可以为每种语言生成独立的打包文件，根据用户的语言设置加载相应的资源。
+  + 示例配置：
+
+  ```javascript
+  // webpack.config.js
+  const path = require('path');
+
+  module.exports = {
+      entry: {
+          en: './src/locales/en.js',
+          zh: './src/locales/zh.js'
+      },
+      output: {
+          path: path.resolve(__dirname, 'dist'),
+          filename: '[name].bundle.js'
+      }
+  };
+  ```
+
+</details>
+
+## 如何配置 Webpack 实现图片的压缩和优化？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+<details>
+
+- **2：** **安装依赖**
+要对图片进行处理和压缩，需要安装 `file-loader`、`url-loader` 和 `image-webpack-loader` 这几个 loader，使用以下命令安装：
+
+```bash
+npm install file-loader url-loader image-webpack-loader --save-dev
+```
+
+- **1：** **`file-loader` 配置**
+`file-loader` 用于处理图片文件，将其复制到输出目录并返回公共 URL。
+
+  ```javascript
+  module.exports = {
+      module: {
+          rules: [
+              {
+                  // 匹配图片文件的扩展名
+                  test: /\.(png|jpg|jpeg|gif)$/i,
+                  use: [
+                      {
+                          // 使用 file-loader 处理匹配到的图片文件
+                          loader: 'file-loader',
+                          options: { 
+                              // 输出的文件名保持原文件名和扩展名
+                              name: '[name].[ext]', 
+                              // 图片输出到 dist 目录下的 images 文件夹中
+                              outputPath: 'images/' 
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  };
+  ```
+
+- **1：** **结合 `url-loader`**
+`url-loader` 可以根据文件大小决定是将图片转换为 Data URL 还是使用 `file-loader` 处理。
+
+  ```javascript
+  module.exports = {
+      module: {
+          rules: [
+              {
+                  // 匹配图片文件的扩展名
+                  test: /\.(png|jpg|jpeg|gif)$/i,
+                  use: [
+                      {
+                          // 使用 url-loader 处理图片文件
+                          loader: 'url-loader',
+                          options: { 
+                              // 小于 8KB 的图片转换为 Data URL
+                              limit: 8192, 
+                              // 输出的文件名保持原文件名和扩展名
+                              name: '[name].[ext]', 
+                              // 图片输出到 dist 目录下的 images 文件夹中
+                              outputPath: 'images/' 
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  };
+  ```
+
+- **1：** **添加 `image-webpack-loader` 压缩**
+`image-webpack-loader` 用于对图片进行压缩优化，可与 `url-loader` 结合使用。
+
+  ```javascript
+  module.exports = {
+      module: {
+          rules: [
+              {
+                  // 匹配图片文件的扩展名
+                  test: /\.(png|jpg|jpeg|gif)$/i,
+                  use: [
+                      {
+                          // 先使用 url-loader 处理图片
+                          loader: 'url-loader',
+                          options: { 
+                              // 小于 8KB 的图片转换为 Data URL
+                              limit: 8192, 
+                              // 输出的文件名保持原文件名和扩展名
+                              name: '[name].[ext]', 
+                              // 图片输出到 dist 目录下的 images 文件夹中
+                              outputPath: 'images/' 
+                          }
+                      },
+                      {
+                          // 再使用 image-webpack-loader 对图片进行压缩
+                          loader: 'image-webpack-loader',
+                          options: {
+                              // 对 JPEG 图片进行渐进式压缩，质量设为 65
+                              mozjpeg: { progressive: true, quality: 65 },
+                              // 禁用 optipng 压缩
+                              optipng: { enabled: false },
+                              // PNG 图片质量范围 0.65 - 0.90，压缩速度设为 4
+                              pngquant: { quality: [0.65, 0.90], speed: 4 },
+                              // GIF 图片不使用隔行扫描
+                              gifsicle: { interlaced: false },
+                              // WebP 图片质量设为 75
+                              webp: { quality: 75 }
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  };
+  ```
+
+</details>
+
+## 描述一下在 Webpack 中如何实现代码分割（Code Splitting）
 
 #### 类型：`架构`
 
@@ -8,32 +656,503 @@
 
 #### 解答（2 分）
 
-- **1：** Hot Module Replacement 简称 HRM
-- **1：** 模块热替换，指在应用程序运行过程中，替换、添加、删除模块，而无需重新刷新整个应用
-
-## 2. webpack 中如何配置开启热更新？
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- **2：**
+- **1：** 可以通过以下几种方式实现代码分割：
+  + 多入口配置：在 `entry` 中配置多个入口文件，Webpack 会根据入口文件进行分割。
+  + 动态导入（Dynamic Imports）：使用 `import()` 语法动态加载模块，Webpack 会自动将动态导入的模块分割成单独的文件。
+- **1：** 动态导入示例：
 
 ```javascript
-const webpack = require("webpack");
+// 动态导入模块
+button.addEventListener('click', async () => {
+  const { add } = await import('./math.js');
+  console.log(add(1, 2));
+});
+```
+
+## Webpack 中的热更新（Hot Module Replacement）是什么，如何配置？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** 热更新（Hot Module Replacement，简称 HMR）是指在开发过程中，当修改某个模块时，Webpack 会只更新该模块，而不是重新加载整个页面，从而提高开发效率。
+- **1：** 配置步骤：
+  + 安装 `webpack-dev-server`。
+  + 在 Webpack 配置文件中开启 HMR：
+
+```javascript
+const webpack = require('webpack');
+
 module.exports = {
-  // ...
+  mode: 'development',
   devServer: {
-    // HMR
-    hot: true,
-    // hotOnly: true
+    hot: true // 开启 HMR
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin() // 使用 HMR 插件
+  ]
 };
 ```
 
-## 3. webpack 的热更新原理?
+## 如何在 Webpack 中配置环境变量？
+
+#### 类型：`架构`  
+
+#### 级别：`W3`、`W4` 、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** **DefinePlugin 核心配置**  
+
+  ```javascript
+  // webpack.config.js
+  const { DefinePlugin } = require('webpack');
+  module.exports = {
+    plugins: [
+      new DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV), // 必配：环境标识
+        'API_URL': JSON.stringify('https://api.example.com'), // 自定义变量（需字符串化）
+      }),
+    ],
+  };
+  ```
+
+- **2：** **dotenv-webpack 多环境**  
+  1. 安装：`npm i dotenv-webpack -D`  
+  2. 创建 `.env` 文件：  
+
+      ```env
+      # .env.development（开发）
+      NODE_ENV=development  
+      API_URL=https://dev.api.com  
+      ```  
+
+  3. 配置：  
+
+      ```javascript
+        const Dotenv = require('dotenv-webpack');
+
+        module.exports = {
+          plugins: [
+            new Dotenv({
+              path: `.env.${process.env.NODE_ENV}`, // 根据当前环境加载对应文件
+              safe: true, // 启用 .env.example 作为默认值（需提前创建）
+              systemvars: true // 允许访问系统环境变量（如 PATH）
+            })
+          ]
+        };
+      ```
+
+  4. 脚本激活环境：
+
+      ```json
+      // package.json
+      {
+        "scripts": {
+          "dev": "NODE_ENV=development webpack", // 加载 .env.development
+          "build": "NODE_ENV=production webpack" // 加载 .env.production（需手动创建）
+        }
+      }
+      ```
+
+- **1：** **代码中动态使用**  
+
+  ```javascript
+  // 环境区分逻辑
+  if (process.env.NODE_ENV === 'development') {
+    console.log('开发模式日志'); // 生产环境自动删除（Tree Shaking）
+  }
+  // 动态API
+  fetch(`${process.env.API_URL}/user`); // 开发/生产环境不同地址
+  ```
+
+- **1：** **避坑清单**  
+  所有变量必须 `JSON.stringify`（否则报错）  
+  敏感变量走 CI/CD（如 GitHub Secrets，勿存 `.env`）
+
+## Webpack 中的 Tree Shaking 是什么，如何开启？
+
+#### 类型：`架构`  
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：** 是什么  
+  + **Tree Shaking** 是通过**静态分析 ES Module 导入导出语句**，移除未被使用代码的优化（类似“摇树去枯叶”）。  
+  + **核心依赖**：ES Module 静态结构（`import/export` 编译时确定），无法用于 CommonJS。
+
+- **1：** 核心作用  
+  + **减体积**：剔除死代码（如未调用的函数、未使用的变量），典型场景：lodash 按需引入体积减少 90%+。  
+  + **提性能**：减少浏览器下载/执行的代码量，提升首屏加载速度。
+
+- **1：** 配置与说明  
+
+  | 步骤 | 配置代码 | 说明 |
+  |---|---|---|
+  | **前提**            | 使用 ES Module（`import/export`）                      | CommonJS 动态语法（`require`）不支持 Tree Shaking                   |
+  | **生产模式默认**    | `mode: 'production'`                                   | 自动启用 Tree Shaking + Terser 压缩（无需额外配置）                 |
+  | **显式配置**        | ```javascript<br>optimization: {<br>  treeShaking: true<br>}<br>``` | 开发模式如需开启（不推荐，影响构建速度）                             |
+  | **标记副作用**      | `package.json` 声明：<br>`"sideEffects": false`          | 全局无副作用（适用于纯 ESM 库），或精细保留：`["*.css", "./src/utils/side-effect.js"]` |
+
+- **1：** 完整示例（生产模式）  
+
+```javascript
+// webpack.config.js
+module.exports = {
+  mode: 'production', // 关键：自动开启 Tree Shaking
+  entry: './src/index.js',
+  output: { filename: 'bundle.[contenthash].js' }
+};
+
+// src/math.js（ES Module）
+export const add = (a, b) => a + b; // 被引用，保留
+export const subtract = (a, b) => a - b; // 未引用，被摇树移除
+
+// src/index.js
+import { add } from './math.js'; // 仅引入 add
+console.log(add(1, 2));
+```
+
+- **1：** 注意事项  
+  + **必查项**：打包后代码搜索未引用的函数名（如 `subtract`），确认是否被删除。  
+  + **样式文件**：CSS 需在 `sideEffects` 中声明（否则可能被误删）。  
+  + **动态导入**：`import('./module.js')` 单独打包，不影响主包 Tree Shaking。  
+  + **开发模式**：无需开启（`mode: 'development'` 下默认关闭，因压缩会拖慢构建）。
+
+## 如何在 Webpack 中处理字体文件？
+
+#### 类型：`架构`
+
+#### 级别：`W2`、`W3`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** 可以使用 `file-loader` 或 `url-loader` 来处理字体文件。
+- **1：** 配置示例：
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+
+## Webpack 中的 Source Map 是什么，有什么作用，如何配置？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（5 分）
+
+- **1：**  是什么
+  + **Source Map** 是一个映射文件，记录**打包后代码**与**原始源代码**的对应关系（如行列号、变量名）。
+
+- **1：**  作用
+  + 类似“代码翻译器”，让浏览器调试工具能定位到原始代码并保留变量原名（即使代码被压缩、合并或转换，如：变量名压缩为`a`、`b`）。
+
+- **1：**  如何配置？
+
+通过 `devtool` 配置，支持多种模式（开发/生产差异化）：
+
+| 模式 | 速度 | 精准度 | 适用场景 | 特点 |
+|---|---|---|---|---|
+| `eval-cheap-module`      | ★★★★★| 行映射（无列） | 本地开发（默认推荐）   | `eval()` 包裹模块，构建速度快；`cheap`：仅映射行号（忽略列），进一步提升速度；`module`：支持 loader 处理后的源代码（如 Babel 转换的 JS）|
+| `inline-cheap-module`    | ★★★★☆| 行映射（嵌入） | 无需独立文件的场景     | 文件结构简单；`cheap`：仅映射行号，构建速度快 |
+| `source-map`             | ★★☆☆☆| 行列全映射     | 生产环境（需服务器配合）| 生成独立 `.map` 文件，浏览器自动加载（需服务器配置 `Access-Control-Allow-Origin`）|
+| `hidden-source-map`      | ★★☆☆☆| 行列全映射     | 生产环境（不上传浏览器）| 安全，生成 `.map` 但不自动关联（需手动上传到错误监控平台，避免暴露源码）|
+
+- **1：**  参考示例
+
+```javascript
+// webpack.config.js
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
+  },
+  devtool: process.env.NODE_ENV === 'development' 
+    ? 'eval-cheap-module-source-map' // 开发环境快
+    : 'source-map', // 生产环境准
+  // 其他配置...
+};
+```
+
+- **1：**  注意事项
+  + 生产环境建议关闭 `source-map` 或配合 CDN 加密，避免源码泄露。  
+  + 若使用 `webpack-dev-server`，默认已开启 `inline-source-map`，可通过 `devServer.devtool` 覆盖。  
+
+## 如何在 Webpack 中使用 TypeScript？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** 首先安装 `ts-loader` 和 `typescript`。
+- **1：** 然后在 Webpack 配置文件中配置：
+
+```javascript
+module.exports = {
+  resolve: {
+    extensions: ['.ts', '.js'] // 解析文件扩展名
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  }
+};
+```
+
+## 如何优化 Webpack 构建速度？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（8 分）
+
+<details>
+
+- **2分：缩小打包范围**  
+  + **1分**：使用 `include`/`exclude` 限定 loader 处理文件范围  
+
+    ```javascript
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          loader: 'babel-loader',
+          include: path.resolve(__dirname, 'src'), // 只处理 src 目录
+          exclude: /node_modules/
+        }
+      ]
+    }
+    ```
+
+  + **1分**：配置 `resolve.alias` 减少路径解析耗时  
+
+    ```javascript
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src')
+      }
+    }
+    ```
+
+- **2分：缓存优化**  
+  + **1分**：启用持久化缓存（Webpack 5+ 内置）  
+
+    ```javascript
+    module.exports = {
+      cache: {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename] // 配置文件变化时缓存失效
+        }
+      }
+    };
+    ```
+
+  + **1分**：使用 `babel-loader` 的缓存  
+
+    ```javascript
+    {
+      loader: 'babel-loader',
+      options: { cacheDirectory: true }
+    }
+    ```
+
+- **2分：多进程加速**  
+  + **1分**：使用 `thread-loader` 并行处理模块  
+
+    ```javascript
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          use: ['thread-loader', 'babel-loader']
+        }
+      ]
+    }
+    ```
+
+  + **1分**：配置 `HappyPack` 分割任务  
+
+    ```javascript
+    const HappyPack = require('happypack');
+    module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            use: 'happypack/loader?id=js'
+          }
+        ]
+      },
+      plugins: [
+        new HappyPack({
+          id: 'js',
+          threads: 4,
+          loaders: ['babel-loader']
+        })
+      ]
+    };
+    ```
+
+- **2分：构建优化**  
+  + **1分**：使用 `DLLPlugin` 预编译依赖库  
+
+    ```javascript
+    // webpack.dll.config.js
+    module.exports = {
+      entry: {
+        vendor: ['react', 'react-dom']
+      },
+      output: {
+        filename: '[name].dll.js',
+        library: '[name]_library'
+      },
+      plugins: [
+        new webpack.DllPlugin({
+          path: path.join(__dirname, 'dist', '[name]-manifest.json'),
+          name: '[name]_library'
+        })
+      ]
+    };
+    ```
+
+  + **1分**：启用 `splitChunks` 优化代码分割  
+
+    ```javascript
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        automaticNameDelimiter: '~'
+      }
+    }
+    ```
+
+</details>
+
+## Webpack 中的 DllPlugin 和 DllReferencePlugin 有什么作用，如何使用？
+
+#### 类型：`架构`
+
+#### 级别：`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** `DllPlugin` 用于创建动态链接库（DLL），将一些不经常变化的模块（如第三方库）打包成一个单独的文件，减少每次构建的时间。`DllReferencePlugin` 用于在主构建中引用这些 DLL 文件。
+- **1：** 使用步骤：
+  + 配置 `DllPlugin` 创建 DLL 文件：
+
+```javascript
+// webpack.dll.config.js
+const webpack = require('webpack');
+const path = require('path');
+
+module.exports = {
+  entry: {
+    vendors: ['react', 'react-dom']
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].dll.js',
+    library: '[name]_[hash]'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      name: '[name]_[hash]',
+      path: path.resolve(__dirname, 'dist', '[name]-manifest.json')
+    })
+  ]
+};
+```
+
+- 配置 `DllReferencePlugin` 引用 DLL 文件：
+
+```javascript
+// webpack.config.js
+const webpack = require('webpack');
+const path = require('path');
+
+module.exports = {
+  // 其他配置...
+  plugins: [
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, 'dist', 'vendors-manifest.json')
+    })
+  ]
+};
+```
+
+## 如何在 Webpack 中配置代理来解决跨域问题？
+
+#### 类型：`架构`
+
+#### 级别：`W3`、`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** 在 `webpack-dev-server` 中配置代理。
+- **1：** 示例如下：
+
+```javascript
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://api.example.com', // 目标服务器地址
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' }
+      }
+    }
+  }
+};
+```
+
+## Webpack 中的 Module Federation 是什么，有什么应用场景？
+
+#### 类型：`架构`
+
+#### 级别：`W4`、`W5`、`W6`
+
+#### 解答（2 分）
+
+- **1：** Module Federation 是 Webpack 5 引入的一个新特性，它允许在不同的 Webpack 构建之间共享模块，实现模块的动态加载和远程调用。
+- **1：** 应用场景包括微前端架构，不同团队开发的前端应用可以通过 Module Federation 共享组件和模块，提高开发效率和代码复用性。
+
+## webpack 的热更新原理?
 
 #### 类型：`架构`
 
@@ -47,20 +1166,7 @@ module.exports = {
 - **1：** 在浏览器接受到这条消息之前，浏览器已经在上一次 socket 消息中已经记住了此时的 hash 标识这时候我们会创建一个 ajax 去服务端请求获取到变化内容的 manifest 文件mainfest 文件包含重新 build 生成的 hash 值，以及变化的模块，对应上图的 c 属性浏览器根据 manifest 文件获取模块变化的内容，从而触发 render 流程，实现局部模块更新。
 ![alt text](/public/images/image.png)
 
-## 4. 简述webpack的构建流程？
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-- **1：** 初始化流程：从配置文件和 Shell 语句中读取与合并参数，并初始化需要使用的插件和配置插件等执行环境所需要的参数
-- **1：** 编译构建流程：从 Entry 发出，针对每个 Module 串行调用对应的 Loader 去翻译文件内容，再找.到该 Module 依赖的 Module，递归地进行编译处理
-- **1：** 输出流程：对编译后的 Module 组合成 Chunk，把 Chunk 转换成文件，输出到文件系统
-![alt text](/public/images/image2.png)
-
-## 5. webpack proxy是什么？
+## webpack proxy是什么？怎么配置？
 
 #### 类型：`架构`
 
@@ -68,36 +1174,7 @@ module.exports = {
 
 #### 解答（2 分）
 
-- **2：** webpack proxy，是 webpack 提供的代理服务，基本行为就是接收客户端发送的请求后转发给其他服务器，其目的是为了便于开发者在开发模式下解决跨域问题(浏览器安全策略限制)
-
-## 6. webpack 中提供服务器的工具是什么？
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- **1：** webpack 中提供服务器的工具为 webpack-dev-server
-
-## 7. webpack-dev-server是什么？
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- **1：** webpack-dev-server是官方推出的一款开发工具，将自动编译和自动刷新浏览器等一系列对开发友好的功能全部集成在了一起，目的是为了提高开发者日常的开发效率，只适用在开发阶段关于配置方面。
-
-## 8. webpack代理怎么配置？proxy中常用的属性是什么？
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
+- **1：** webpack proxy，是 webpack 提供的代理服务，基本行为就是接收客户端发送的请求后转发给其他服务器，其目的是为了便于开发者在开发模式下解决跨域问题(浏览器安全策略限制)
 - **1：** 配置如下：
 
 ```javascript
@@ -118,22 +1195,15 @@ module.exports = {
 };
 ```
 
-- **2：** 常用属性：  
-
- >target：表示的是代理到的目标地址  
- >pathRewrite：默认情况下，我们的 /api-hy 也会被写入到URL中，如果希望删除、可以使用pathRewrite  
- >secure：默认情况下不接收转发到https的服务器上，如果希望支持，可以设置为false  
- >changeOrigin：它表示是否更新代理后请求的 headers 中host地址  
-
-## 9. proxy是工作原理？
+## proxy是工作原理？
 
 #### 类型：`架构`
 
 #### 级别：`W3`、`W4`、`W5`、`W6`
 
-#### 解答（1 分）
+#### 解答（2 分）
 
-- **1：** proxy 工作原理实质上是利用 http-proxy-middleware 这个 http 代理中间件，实现请求转发给其他服务器
+- **2：** proxy 工作原理实质上是利用 http-proxy-middleware 这个 http 代理中间件，实现请求转发给其他服务器
 
 ```javascript
 const express = require('express');
@@ -144,76 +1214,7 @@ app.use('/api', proxy({target: 'http://www.example.org', changeOrigin: true
 app.listen(3000);
 ```
 
-## 10. webpack proxy 为什么能解决跨域？
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- **2：** 在开发阶段，webpack-dev-server 会启动一个本地开发服务器，所以我们的应用在开发阶段是独立运行在 localhost 的一个端口上，而后端服务又是运行在另外一个地址上所以在开发阶段中，由于浏览器同源策略的原因，当本地访问后端就会出现跨域请求的问题通过设置 webpack proxy 实现代理请求后，相当于浏览器与服务端中添加一个代理者当本地发送请求的时候，
-代理服务器响应该请求，并将请求转发到目标服务器，目标服务器响应数据后再将数据返回给代理服务器，最终再由代理服务器将数据响应给本地。  
-在代理服务器传递数据给本地浏览器的过程中，两者同源，并不存在跨域行为，这时候浏览器就能正常接收数据。  
-**注意：服务器与服务器之间请求数据并不会存在跨域行为，跨域行为是浏览器安全策略限制。**
-
-## 11. webpack的loader是什么？为什么使用它？它有哪几种配置方式
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（5 分）
-
-- **1：** loader 用于对模块的"源代码"进行转换，在 import 或"加载"模块时预处理文件
-- **1：** webpack 做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。  
-在 webpack 内部中，任何文件都是模块，不仅仅只是js 文件。默认情况下，在遇到 import 或者 require 加载模块的时候，webpack 只支持对 js 和 json文件打包，像 css、 sass、 png 等这些类型的文件的时候，webpack 则无能为力，这时候就需要配置对应的 loader 进行文件内容的解析。
-- **3：** 关于配置 loader 的方式有三种:
-  >配置方式(推荐)：在 webpack.config.js文件中指定 loader  
-  >内联方式：在每个 import 语句中显式指定 loader  
-  >Cl 方式：在 shell 命令中指定它们  
-
-## 12. webpack的Plugin是什么
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- **2：** webpack 中的 plugin 赋予其各种灵活的功能，例如打包优化、资源管理、环境变量注入等，它们会运行在 webpack 的不同阶段(钩子/生命周期)，贯穿了 webpack 整个编译周期，目的在于解决 loader 无法实现的其他事
-
-## 13. webpack的Plugin和Loader的区别
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- **1：**【Loader】：用于对模块源码的转换， loader可以将文件从不同的语言（如TypeScript）转换为JavaScript，或者将内联图像转换为data URL。比如说：CSS-Loader，Style-Loader等。
-- **1：**【Plugin】：目的在于解决loader无法实现的其他事，从打包优化和压缩，到重新定义环境变量，功能强大到可以用来处理各种各样的任务。webpack提供了很多开箱即用的插件：CommonChunkPlugin主要用于提取第三方库和公共模块，避免首屏加载的bundle文件，或者按需加载的bundle文件体积过大，导致加载时间过长，是一把优化的利器。而在多页面应用中，更是能够为每个页面间的应用程序共享代码创建bundle。
-
-## 14. webpack常见的提升构建速度的方法
-
-#### 类型：`架构`
-
-#### 级别：`W3`、`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- **2：** 常见的有一下几种：
-
- >优化 loader 配置  
- >合理使用 resolve.extensions  
- >优化 resolve.modules  
- >优化 resolve.alias  
- >使用 DLLPlugin 插件  
- >使用 cache-loader  
- >terser 启动多线程  
- >合理使用 sourceMap
-
-## 15. webpack中的Loader如何编写？
+## webpack中的Loader如何编写？
 
 #### 类型：`架构`
 
@@ -243,7 +1244,7 @@ return content;//同步
 }
 ```
 
-## 16. webpack中的Plugin如何编写？
+## webpack中的Plugin如何编写？
 
 #### 类型：`架构`
 
@@ -251,14 +1252,14 @@ return content;//同步
 
 #### 解答（5 分）
 
-- **5：** 由于 webpack 基于发布订阅模式，在运行的生命周期中会广播出许多事件，插件通过监听这些事件就可以在特定的阶段执行自己的插件任务  
+- **3：** 由于 webpack 基于发布订阅模式，在运行的生命周期中会广播出许多事件，插件通过监听这些事件就可以在特定的阶段执行自己的插件任务  
 webpack 编译会创建两个核心对象:
-- compiler:包含了 webpack 环境的所有的配置信息，包括 options，loader 和 plugin，和webpack 整个生命周期相关的钩子
-- compilation:作为 plugin 内置事件回调函数的参数，包含了当前的模块资源、编译生成资源、变化的文件以及被跟踪依赖的状态信息。当检测到一个文件变化，一次新的 Compilation  
-将被创建如果自己要实现 plugin ，也需要遵循一定的规范:
-- 插件必须是一个函数或者是一个包含 apply 方法的对象，这样才能访问 compiler 实例.
-- 传给每个插件的 compiler 和compilation 对象都是同一个引用，因此不建议修改
-- 异步的事件需要在插件处理完任务时调用回调函数通知 webpack 进入下一个流程，不然会卡住
+  + compiler:包含了 webpack 环境的所有的配置信息，包括 options，loader 和 plugin，和webpack 整个生命周期相关的钩子
+  + compilation:作为 plugin 内置事件回调函数的参数，包含了当前的模块资源、编译生成资源、变化的文件以及被跟踪依赖的状态信息。当检测到一个文件变化，一次新的 Compilation  将被创建
+- **2：** 如果自己要实现 plugin ，也需要遵循一定的规范:
+  + 插件必须是一个函数或者是一个包含 apply 方法的对象，这样才能访问 compiler 实例.
+  + 传给每个插件的 compiler 和compilation 对象都是同一个引用，因此不建议修改
+  + 异步的事件需要在插件处理完任务时调用回调函数通知 webpack 进入下一个流程，不然会卡住
 
 ```javascript
 class MyPlugin {
@@ -274,7 +1275,7 @@ class MyPlugin {
 }
 ```
 
-## 17. 说说如何借助webpack来优化前端性能?
+## 说说如何借助webpack来优化前端性能?
 
 #### 类型：`架构`
 
@@ -283,61 +1284,16 @@ class MyPlugin {
 #### 解答（3 分）
 
 - **3：**
+  + JS代码压缩  
+  + CSS代码压缩  
+  + Html文件代码压缩  
+  + 文件大小压缩  
+  + 图片压缩  
+  + Tree Shaking  
+  + 代码分离  
+  + 内联 chunk
 
- >JS代码压缩  
- >CSS代码压缩  
- >Html文件代码压缩  
- >文件大小压缩  
- >图片压缩  
- >Tree Shaking  
- >代码分离  
- >内联 chunk
-
-### 18. 有哪些常见的Loader？你用过哪些Loader？
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- raw-loader：加载文件原始内容（utf-8）
-
-- file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
-
-- url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去
-
-- source-map-loader：加载额外的 Source Map 文件，以方便断点调试
-
-- image-loader：加载并且压缩图片文件
-
-- babel-loader：把 ES6 转换成 ES5
-
-- css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
-
-### 19. 有哪些常见的Plugin？你用过哪些Plugin？
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-- html-webpack-plugin：简化 html 文件的创建，可以指定模板和输出文件
-
-- mini-css-extract-plugin：分离 css 文件
-
-- clean-webpack-plugin：清理文件夹
-
-- webpack-bundle-analyzer：可视化 webpack 输出文件的体积
-
-- terser-webpack-plugin：压缩 js 文件
-
-- optimize-css-assets-webpack-plugin：压缩 css 文件
-
-- webpack-bundle-analyzer：可视化 webpack 输出文件的体积
-
-### 20. 使用webpack开发时，你用过哪些可以提高效率的插件？
+## 使用webpack开发时，你用过哪些可以提高效率的插件？
 
 #### 类型：`架构`
 
@@ -355,37 +1311,7 @@ class MyPlugin {
 
 - HotModuleReplacementPlugin：模块热替换
 
-### 21. source map是什么？生产环境怎么用？
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-source map 是将编译、打包、压缩后的代码映射回源代码的过程。打包压缩后的代码不具备良好的可读性，想要调试源码就需要 soucre map。
-
-map文件只要不打开开发者工具，浏览器是不会加载的。
-
-线上环境一般有三种处理方案：
-
-- hidden-source-map：借助第三方错误监控平台 Sentry 使用
-- nosources-source-map：只会显示具体行数和错误，不会显示具体源码
-- inline-source-map：通过 dataURL 形式内联在打包文件中
-
-注意：避免在生产中使用 eval-source-map 和 cheap-module-eval-source-map，因为这两个配置会导致代码缓存失效，从而降低应用性能。
-
-### 22. 模块打包原理？
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（2 分）
-
-Webpack 实际上为每个模块创造了一个可以导出和导入的环境，本质上并没有修改 代码的执行逻辑，代码执行顺序与模块加载顺序也完全一致。
-
-### 23. 文件监听原理
+## 文件监听原理
 
 #### 类型：`架构`
 
@@ -405,24 +1331,13 @@ Webpack开启监听模式，有两种方式：
 
 原理：轮询判断文件的最后编辑时间是否变化，如果某个文件发生了变化，并不会立刻告诉监听者，而是先缓存起来，等 aggregateTimeout 后再执行。
 
-### 24. 如何对bundle体积进行监控和分析？
+## 文件指纹是什么
 
 #### 类型：`架构`
 
 #### 级别：`w3`,`W4`、`W5`、`W6`
 
-#### 解答（2 分）
-
-VSCode 中有一个插件 Import Cost 可以帮助我们对引入模块的大小进行实时监测，还可以使用 webpack-bundle-analyzer 生成 bundle 的模块组成图，显示所占体积。
-bundlesize 工具包可以进行自动化资源体积监控。
-
-### 25. 文件指纹是什么
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（3 分）
+#### 解答（1 分）
 
 文件指纹是打包后输出的文件名的后缀。
 
@@ -432,13 +1347,13 @@ bundlesize 工具包可以进行自动化资源体积监控。
 
 - Contenthash：根据文件内容来定义 hash，文件内容不变，则 contenthash 不变
 
-### 26. JS的文件指纹设置
+## JS的文件指纹设置
 
 #### 类型：`架构`
 
 #### 级别：`w3`,`W4`、`W5`、`W6`
 
-#### 解答（3 分）
+#### 解答（2 分）
 
 文件指纹是打包后输出的文件名的后缀。
 
@@ -458,7 +1373,7 @@ module.exports = {
 
 ```
 
-### 27. CSS的文件指纹设置
+## CSS的文件指纹设置
 
 #### 类型：`架构`
 
@@ -483,12 +1398,9 @@ module.exports = {
         filename: `[name][contenthash:8].css`        
       })    
   ]}
-
-
-
 ```
 
-### 28. 图片的文件指纹设置
+## 图片的文件指纹设置
 
 #### 类型：`架构`
 
@@ -541,33 +1453,7 @@ module.exports = {
 
 ```
 
-### 29. 在实际工程中，配置文件上百行乃是常事，如何保证各个loader按照预想方式工作？
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-可以使用 enforce 强制执行 loader 的作用顺序，pre 代表在所有正常 loader 之前执行，post 是所有 loader 之后执行。(inline 官方不推荐使用)
-
-### 30. 那代码分割的本质是什么？有什么意义呢？
-
-#### 类型：`架构`
-
-#### 级别：`w3`,`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-代码分割的本质其实就是在源代码直接上线和打包成唯一脚本main.bundle.js这两种极端方案之间的一种更适合实际场景的中间状态。
-
-源代码直接上线：虽然过程可控，但是http请求多，性能开销大。
-
-打包成唯一脚本：虽然减少http请求，但是体积大，导致体积过大，影响首屏加载性能。
-
-代码分割的意义：将代码分割成多份进行按需加载，减少单个文件体积，降低首屏加载时间，提升性能。
-
-### 31. 是否写过Loader？简单描述一下编写loader的思路？
+## 是否写过Loader？简单描述一下编写loader的思路？
 
 #### 类型：`架构`
 
@@ -593,7 +1479,7 @@ Npm link
 
 ResolveLoader
 
-### 32. 是否写过Plugin？简单描述一下编写Plugin的思路？
+## 是否写过Plugin？简单描述一下编写Plugin的思路？
 
 #### 类型：`架构`
 
@@ -619,7 +1505,7 @@ watch-run 当依赖的文件发生变化时会触发
 
 - 异步的事件需要在插件处理完任务时调用回调函数通知 Webpack 进入下一个流程，不然会卡住
 
-### 33. 聊一聊Babel原理吧
+## 聊一聊Babel原理吧
 
 #### 类型：`架构`
 
@@ -641,7 +1527,7 @@ watch-run 当依赖的文件发生变化时会触发
 
 - 生成：将处理后的 AST 转换成代码
 
-### 34. Babel如何配置？如何配置才能让babel支持最新es语法？
+## Babel如何配置？如何配置才能让babel支持最新es语法？
 
 #### 类型：`架构`
 
@@ -672,7 +1558,7 @@ module.exports = {
 };
 ```
 
-### 35. 为什么要用 Webpack
+## 为什么要用 Webpack
 
 #### 类型：`架构`
 
@@ -692,7 +1578,7 @@ module.exports = {
 
 对于小型项目来说，这些问题不太明显。但随之项目规模逐渐增大，再去解决这些问题就很吃力，这个时候我们就需要一种工具来帮我们把这些机械性问题，自动化的解决掉，让开发者更加专注在业务层面。
 
-### 36. webpack 如何确定依赖引用顺序
+## webpack 如何确定依赖引用顺序
 
 #### 类型：`架构`
 
@@ -710,7 +1596,7 @@ module.exports = {
 
 确定顺序：根据依赖图确定模块的引用顺序，确保被依赖的模块先于依赖它们的模块打包。
 
-### 37. SourceMap 原理
+## SourceMap 原理
 
 #### 类型：`架构`
 
@@ -729,87 +1615,3 @@ module.exports = {
 - 当在浏览器开发者工具调试时，浏览器会读取这行注释并加载对应的 SourceMap 文件
 
 报错时，点击跳转。即使运行的是编译后的代码，也能够追溯到原始源代码的具体位置，而不是处理经过转换或压缩后的代码，从而提高了调试效率。
-
-## 38. Webpack 的核心概念有哪些？
-
-#### 类型：`架构`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（4 分）
-
-- **1：** 入口（Entry）：指示 Webpack 从哪个模块开始打包，可配置单个或多个入口。
-- **1：** 输出（Output）：告诉 Webpack 打包后的文件存放在哪里，以及如何命名。
-- **1：** loader：用于处理不同类型的文件，将它们转换为 Webpack 能够处理的模块。例如，`css-loader` 用于处理 CSS 文件，`babel-loader` 用于将 ES6+ 代码转
-换为向后兼容的 JavaScript 代码。
-- **1：** 插件（Plugin）：用于执行更广泛的任务，如代码压缩、分割代码、生成 HTML 文件等。常见的插件有 HtmlWebpackPlugin、MiniCssExtractPlugin 等。
-
-## 39. Webpack 如何实现代码分割？
-
-#### 类型：`架构`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（3 分）
-
-<details>
-
-在 Webpack 中，实现代码分割有以下几种方式：
-
-- **1：** 多入口配置：在 entry 中配置多个入口，Webpack 会为每个入口生成一个独立的打包文件。
-
-```js
-module.exports = {
-  entry: {
-    index: './src/index.js',
-    about: './src/about.js'
-  },
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  }
-};
-```
-
-- **1：** 动态导入（Dynamic Import）：使用 ES6 的动态导入语法（import()）实现按需加载。Webpack 会自动将动态导入的模块分割成单独的文件。
-
-```js
-// 在代码中使用动态导入
-button.addEventListener('click', async () => {
-  const { add } = await import('./math.js');
-  console.log(add(1, 2));
-});
-```
-
-- **1：** SplitChunksPlugin：Webpack 内置的插件，用于分割公共代码和第三方库，减少重复打包。
-
-```js
-module.exports = {
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  }
-};
-```
-
-</details>
-
-## 40. Webpack 中的 externals 配置有什么作用？
-
-#### 类型：`架构`
-
-#### 级别：`W1`、`W2`、`W3`、`W4`、`W5`、`W6`
-
-#### 解答（1 分）
-
-- externals 配置用于告诉 Webpack 哪些模块不需要打包到输出文件中，而是在运行时从外部获取。这在处理一些第三方库时非常有用，例如使用 CDN 引入 jQuery 时，我
-们不希望 Webpack 将 jQuery 打包到我们的项目中，而是在页面中通过 CDN 引入。示例配置如下：
-
-```js
-module.exports = {
-    externals: {
-        jquery: 'jQuery'
-    }
-};
-```
